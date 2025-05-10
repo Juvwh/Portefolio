@@ -1,586 +1,1063 @@
 <!DOCTYPE html>
-<html lang="fr-BE" data-website-id="1" data-main-object="website.page(4,)" data-is-published="True" data-can-optimize-seo="True" data-can-publish="True" data-editable="1" data-view-xmlid="website.homepage" data-viewid="524" data-logged="true"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- saved from url=(0022)http://localhost:8069/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="ace-monokai">.ace-monokai .ace_gutter {
+  background: #2F3129;
+  color: #8F908A
+}
+
+.ace-monokai .ace_print-margin {
+  width: 1px;
+  background: #555651
+}
+
+.ace-monokai {
+  background-color: #272822;
+  color: #F8F8F2
+}
+
+.ace-monokai .ace_cursor {
+  color: #F8F8F0
+}
+
+.ace-monokai .ace_marker-layer .ace_selection {
+  background: #49483E
+}
+
+.ace-monokai.ace_multiselect .ace_selection.ace_start {
+  box-shadow: 0 0 3px 0px #272822;
+}
+
+.ace-monokai .ace_marker-layer .ace_step {
+  background: rgb(102, 82, 0)
+}
+
+.ace-monokai .ace_marker-layer .ace_bracket {
+  margin: -1px 0 0 -1px;
+  border: 1px solid #49483E
+}
+
+.ace-monokai .ace_marker-layer .ace_active-line {
+  background: #202020
+}
+
+.ace-monokai .ace_gutter-active-line {
+  background-color: #272727
+}
+
+.ace-monokai .ace_marker-layer .ace_selected-word {
+  border: 1px solid #49483E
+}
+
+.ace-monokai .ace_invisible {
+  color: #52524d
+}
+
+.ace-monokai .ace_entity.ace_name.ace_tag,
+.ace-monokai .ace_keyword,
+.ace-monokai .ace_meta.ace_tag,
+.ace-monokai .ace_storage {
+  color: #F92672
+}
+
+.ace-monokai .ace_punctuation,
+.ace-monokai .ace_punctuation.ace_tag {
+  color: #fff
+}
+
+.ace-monokai .ace_constant.ace_character,
+.ace-monokai .ace_constant.ace_language,
+.ace-monokai .ace_constant.ace_numeric,
+.ace-monokai .ace_constant.ace_other {
+  color: #AE81FF
+}
+
+.ace-monokai .ace_invalid {
+  color: #F8F8F0;
+  background-color: #F92672
+}
+
+.ace-monokai .ace_invalid.ace_deprecated {
+  color: #F8F8F0;
+  background-color: #AE81FF
+}
+
+.ace-monokai .ace_support.ace_constant,
+.ace-monokai .ace_support.ace_function {
+  color: #66D9EF
+}
+
+.ace-monokai .ace_fold {
+  background-color: #A6E22E;
+  border-color: #F8F8F2
+}
+
+.ace-monokai .ace_storage.ace_type,
+.ace-monokai .ace_support.ace_class,
+.ace-monokai .ace_support.ace_type {
+  font-style: italic;
+  color: #66D9EF
+}
+
+.ace-monokai .ace_entity.ace_name.ace_function,
+.ace-monokai .ace_entity.ace_other,
+.ace-monokai .ace_entity.ace_other.ace_attribute-name,
+.ace-monokai .ace_variable {
+  color: #A6E22E
+}
+
+.ace-monokai .ace_variable.ace_parameter {
+  font-style: italic;
+  color: #FD971F
+}
+
+.ace-monokai .ace_string {
+  color: #E6DB74
+}
+
+.ace-monokai .ace_comment {
+  color: #75715E
+}
+
+.ace-monokai .ace_indent-guide {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWPQ0FD0ZXBzd/wPAAjVAoxeSgNeAAAAAElFTkSuQmCC) right repeat-y
+}
+
+.ace-monokai .ace_indent-guide-active {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQIW2PQ1dX9zzBz5sz/ABCcBFFentLlAAAAAElFTkSuQmCC) right repeat-y;
+}
+
+/*# sourceURL=ace/css/ace-monokai */</style><style id="error_marker.css">
+    .error_widget_wrapper {
+        background: inherit;
+        color: inherit;
+        border:none
+    }
+    .error_widget {
+        border-top: solid 2px;
+        border-bottom: solid 2px;
+        margin: 5px 0;
+        padding: 10px 40px;
+        white-space: pre-wrap;
+    }
+    .error_widget.ace_error, .error_widget_arrow.ace_error{
+        border-color: #ff5a5a
+    }
+    .error_widget.ace_warning, .error_widget_arrow.ace_warning{
+        border-color: #F1D817
+    }
+    .error_widget.ace_info, .error_widget_arrow.ace_info{
+        border-color: #5a5a5a
+    }
+    .error_widget.ace_ok, .error_widget_arrow.ace_ok{
+        border-color: #5aaa5a
+    }
+    .error_widget_arrow {
+        position: absolute;
+        border: solid 5px;
+        border-top-color: transparent!important;
+        border-right-color: transparent!important;
+        border-left-color: transparent!important;
+        top: -5px;
+    }
+
+/*# sourceURL=ace/css/error_marker.css */</style><style id="ace-tm">.ace-tm .ace_gutter {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.ace-tm .ace_print-margin {
+  width: 1px;
+  background: #e8e8e8;
+}
+
+.ace-tm .ace_fold {
+    background-color: #6B72E6;
+}
+
+.ace-tm {
+  background-color: #FFFFFF;
+  color: black;
+}
+
+.ace-tm .ace_cursor {
+  color: black;
+}
+        
+.ace-tm .ace_invisible {
+  color: rgb(191, 191, 191);
+}
+
+.ace-tm .ace_storage,
+.ace-tm .ace_keyword {
+  color: blue;
+}
+
+.ace-tm .ace_constant {
+  color: rgb(197, 6, 11);
+}
+
+.ace-tm .ace_constant.ace_buildin {
+  color: rgb(88, 72, 246);
+}
+
+.ace-tm .ace_constant.ace_language {
+  color: rgb(88, 92, 246);
+}
+
+.ace-tm .ace_constant.ace_library {
+  color: rgb(6, 150, 14);
+}
+
+.ace-tm .ace_invalid {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: red;
+}
+
+.ace-tm .ace_support.ace_function {
+  color: rgb(60, 76, 114);
+}
+
+.ace-tm .ace_support.ace_constant {
+  color: rgb(6, 150, 14);
+}
+
+.ace-tm .ace_support.ace_type,
+.ace-tm .ace_support.ace_class {
+  color: rgb(109, 121, 222);
+}
+
+.ace-tm .ace_keyword.ace_operator {
+  color: rgb(104, 118, 135);
+}
+
+.ace-tm .ace_string {
+  color: rgb(3, 106, 7);
+}
+
+.ace-tm .ace_comment {
+  color: rgb(76, 136, 107);
+}
+
+.ace-tm .ace_comment.ace_doc {
+  color: rgb(0, 102, 255);
+}
+
+.ace-tm .ace_comment.ace_doc.ace_tag {
+  color: rgb(128, 159, 191);
+}
+
+.ace-tm .ace_constant.ace_numeric {
+  color: rgb(0, 0, 205);
+}
+
+.ace-tm .ace_variable {
+  color: rgb(49, 132, 149);
+}
+
+.ace-tm .ace_xml-pe {
+  color: rgb(104, 104, 91);
+}
+
+.ace-tm .ace_entity.ace_name.ace_function {
+  color: #0000A2;
+}
+
+
+.ace-tm .ace_heading {
+  color: rgb(12, 7, 255);
+}
+
+.ace-tm .ace_list {
+  color:rgb(185, 6, 144);
+}
+
+.ace-tm .ace_meta.ace_tag {
+  color:rgb(0, 22, 142);
+}
+
+.ace-tm .ace_string.ace_regex {
+  color: rgb(255, 0, 0)
+}
+
+.ace-tm .ace_marker-layer .ace_selection {
+  background: rgb(181, 213, 255);
+}
+.ace-tm.ace_multiselect .ace_selection.ace_start {
+  box-shadow: 0 0 3px 0px white;
+}
+.ace-tm .ace_marker-layer .ace_step {
+  background: rgb(252, 255, 0);
+}
+
+.ace-tm .ace_marker-layer .ace_stack {
+  background: rgb(164, 229, 101);
+}
+
+.ace-tm .ace_marker-layer .ace_bracket {
+  margin: -1px 0 0 -1px;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+.ace-tm .ace_marker-layer .ace_active-line {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.ace-tm .ace_gutter-active-line {
+    background-color : #dcdcdc;
+}
+
+.ace-tm .ace_marker-layer .ace_selected-word {
+  background: rgb(250, 250, 255);
+  border: 1px solid rgb(200, 200, 250);
+}
+
+.ace-tm .ace_indent-guide {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;
+}
+
+.ace-tm .ace_indent-guide-active {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAZSURBVHjaYvj///9/hivKyv8BAAAA//8DACLqBhbvk+/eAAAAAElFTkSuQmCC") right repeat-y;
+}
+
+/*# sourceURL=ace/css/ace-tm */</style><style id="ace_editor.css">
+.ace_br1 {border-top-left-radius    : 3px;}
+.ace_br2 {border-top-right-radius   : 3px;}
+.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}
+.ace_br4 {border-bottom-right-radius: 3px;}
+.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}
+.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}
+.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}
+.ace_br8 {border-bottom-left-radius : 3px;}
+.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}
+.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}
+.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}
+.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}
+
+
+.ace_editor {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Source Code Pro', 'source-code-pro', monospace;
+    direction: ltr;
+    text-align: left;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.ace_scroller {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    background-color: inherit;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: text;
+}
+
+.ace_content {
+    position: absolute;
+    box-sizing: border-box;
+    min-width: 100%;
+    contain: style size layout;
+    font-variant-ligatures: no-common-ligatures;
+}
+
+.ace_keyboard-focus:focus {
+    box-shadow: inset 0 0 0 2px #5E9ED6;
+    outline: none;
+}
+
+.ace_dragging .ace_scroller:before{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    background: rgba(250, 250, 250, 0.01);
+    z-index: 1000;
+}
+.ace_dragging.ace_dark .ace_scroller:before{
+    background: rgba(0, 0, 0, 0.01);
+}
+
+.ace_gutter {
+    position: absolute;
+    overflow : hidden;
+    width: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    cursor: default;
+    z-index: 4;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    contain: style size layout;
+}
+
+.ace_gutter-active-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.ace_scroller.ace_scroll-left:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;
+    pointer-events: none;
+}
+
+.ace_gutter-cell, .ace_gutter-cell_svg-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-left: 19px;
+    padding-right: 6px;
+    background-repeat: no-repeat;
+}
+
+.ace_gutter-cell_svg-icons .ace_gutter_annotation {
+    margin-left: -14px;
+    float: left;
+}
+
+.ace_gutter-cell .ace_gutter_annotation {
+    margin-left: -19px;
+    float: left;
+}
+
+.ace_gutter-cell.ace_error, .ace_icon.ace_error, .ace_icon.ace_error_fold {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+
+.ace_gutter-cell.ace_warning, .ace_icon.ace_warning, .ace_icon.ace_warning_fold {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+
+.ace_gutter-cell.ace_info, .ace_icon.ace_info {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+.ace_dark .ace_gutter-cell.ace_info, .ace_dark .ace_icon.ace_info {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");
+}
+
+.ace_icon_svg.ace_error {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiI+CjxnIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJyZWQiIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIj4KPGNpcmNsZSBmaWxsPSJub25lIiBjeD0iOCIgY3k9IjgiIHI9IjciIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPGxpbmUgeDE9IjExIiB5MT0iNSIgeDI9IjUiIHkyPSIxMSIvPgo8bGluZSB4MT0iMTEiIHkxPSIxMSIgeDI9IjUiIHkyPSI1Ii8+CjwvZz4KPC9zdmc+");
+    background-color: crimson;
+}
+.ace_icon_svg.ace_warning {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiI+CjxnIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJkYXJrb3JhbmdlIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiI+Cjxwb2x5Z29uIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiIHBvaW50cz0iOCAxIDE1IDE1IDEgMTUgOCAxIi8+CjxyZWN0IHg9IjgiIHk9IjEyIiB3aWR0aD0iMC4wMSIgaGVpZ2h0PSIwLjAxIi8+CjxsaW5lIHgxPSI4IiB5MT0iNiIgeDI9IjgiIHkyPSIxMCIvPgo8L2c+Cjwvc3ZnPg==");
+    background-color: darkorange;
+}
+.ace_icon_svg.ace_info {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiI+CjxnIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJibHVlIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiI+CjxjaXJjbGUgZmlsbD0ibm9uZSIgY3g9IjgiIGN5PSI4IiByPSI3IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjxwb2x5bGluZSBwb2ludHM9IjggMTEgOCA4Ii8+Cjxwb2x5bGluZSBwb2ludHM9IjkgOCA2IDgiLz4KPGxpbmUgeDE9IjEwIiB5MT0iMTEiIHgyPSI2IiB5Mj0iMTEiLz4KPHJlY3QgeD0iOCIgeT0iNSIgd2lkdGg9IjAuMDEiIGhlaWdodD0iMC4wMSIvPgo8L2c+Cjwvc3ZnPg==");
+    background-color: royalblue;
+}
+
+.ace_icon_svg.ace_error_fold {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiIgZmlsbD0ibm9uZSI+CiAgPHBhdGggZD0ibSAxOC45Mjk4NTEsNy44Mjk4MDc2IGMgMC4xNDYzNTMsNi4zMzc0NjA0IC02LjMyMzE0Nyw3Ljc3Nzg0NDQgLTcuNDc3OTEyLDcuNzc3ODQ0NCAtMi4xMDcyNzI2LC0wLjEyODc1IDUuMTE3Njc4LDAuMzU2MjQ5IDUuMDUxNjk4LC03Ljg3MDA2MTggLTAuNjA0NjcyLC04LjAwMzk3MzQ5IC03LjA3NzI3MDYsLTcuNTYzMTE4OSAtNC44NTczLC03LjQzMDM5NTU2IDEuNjA2LC0wLjExNTE0MjI1IDYuODk3NDg1LDEuMjYyNTQ1OTYgNy4yODM1MTQsNy41MjI2MTI5NiB6IiBmaWxsPSJjcmltc29uIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0ibSA4LjExNDc1NjIsMi4wNTI5ODI4IGMgMy4zNDkxNjk4LDAgNi4wNjQxMzI4LDIuNjc2ODYyNyA2LjA2NDEzMjgsNS45Nzg5NTMgMCwzLjMwMjExMjIgLTIuNzE0OTYzLDUuOTc4OTIwMiAtNi4wNjQxMzI4LDUuOTc4OTIwMiAtMy4zNDkxNDczLDAgLTYuMDY0MTc3MiwtMi42NzY4MDggLTYuMDY0MTc3MiwtNS45Nzg5MjAyIDAuMDA1MzksLTMuMjk5ODg2MSAyLjcxNzI2NTYsLTUuOTczNjQwOCA2LjA2NDE3NzIsLTUuOTc4OTUzIHogbSAwLC0xLjczNTgyNzE5IGMgLTQuMzIxNDgzNiwwIC03LjgyNDc0MDM4LDMuNDU0MDE4NDkgLTcuODI0NzQwMzgsNy43MTQ3ODAxOSAwLDQuMjYwNzI4MiAzLjUwMzI1Njc4LDcuNzE0NzQ1MiA3LjgyNDc0MDM4LDcuNzE0NzQ1MiA0LjMyMTQ0OTgsMCA3LjgyNDY5OTgsLTMuNDU0MDE3IDcuODI0Njk5OCwtNy43MTQ3NDUyIDAsLTIuMDQ2MDkxNCAtMC44MjQzOTIsLTQuMDA4MzY3MiAtMi4yOTE3NTYsLTUuNDU1MTc0NiBDIDEyLjE4MDIyNSwxLjEyOTk2NDggMTAuMTkwMDEzLDAuMzE3MTU1NjEgOC4xMTQ3NTYyLDAuMzE3MTU1NjEgWiBNIDYuOTM3NDU2Myw4LjI0MDU5ODUgNC42NzE4Njg1LDEwLjQ4NTg1MiA2LjAwODY4MTQsMTEuODc2NzI4IDguMzE3MDAzNSw5LjYwMDc5MTEgMTAuNjI1MzM3LDExLjg3NjcyOCAxMS45NjIxMzgsMTAuNDg1ODUyIDkuNjk2NTUwOCw4LjI0MDU5ODUgMTEuOTYyMTM4LDYuMDA2ODA2NiAxMC41NzMyNDYsNC42Mzc0MzM1IDguMzE3MDAzNSw2Ljg3MzQyOTcgNi4wNjA3NjA3LDQuNjM3NDMzNSA0LjY3MTg2ODUsNi4wMDY4MDY2IFoiIGZpbGw9ImNyaW1zb24iIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4=");
+    background-color: crimson;
+}
+.ace_icon_svg.ace_warning_fold {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyMCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC43NzY5IDE0LjczMzdMOC42NTE5MiAyLjQ4MzY5QzguMzI5NDYgMS44Mzg3NyA3LjQwOTEzIDEuODM4NzcgNy4wODY2NyAyLjQ4MzY5TDAuOTYxNjY5IDE0LjczMzdDMC42NzA3NzUgMTUuMzE1NSAxLjA5MzgzIDE2IDEuNzQ0MjkgMTZIMTMuOTk0M0MxNC42NDQ4IDE2IDE1LjA2NzggMTUuMzE1NSAxNC43NzY5IDE0LjczMzdaTTMuMTYwMDcgMTQuMjVMNy44NjkyOSA0LjgzMTU2TDEyLjU3ODUgMTQuMjVIMy4xNjAwN1pNOC43NDQyOSAxMS42MjVWMTMuMzc1SDYuOTk0MjlWMTEuNjI1SDguNzQ0MjlaTTYuOTk0MjkgMTAuNzVWNy4yNUg4Ljc0NDI5VjEwLjc1SDYuOTk0MjlaIiBmaWxsPSIjRUM3MjExIi8+CjxwYXRoIGQ9Ik0xMS4xOTkxIDIuOTUyMzhDMTAuODgwOSAyLjMxNDY3IDEwLjM1MzcgMS44MDUyNiA5LjcwNTUgMS41MDlMMTEuMDQxIDEuMDY5NzhDMTEuNjg4MyAwLjk0OTgxNCAxMi4zMzcgMS4yNzI2MyAxMi42MzE3IDEuODYxNDFMMTcuNjEzNiAxMS44MTYxQzE4LjM1MjcgMTMuMjkyOSAxNy41OTM4IDE1LjA4MDQgMTYuMDE4IDE1LjU3NDVDMTYuNDA0NCAxNC40NTA3IDE2LjMyMzEgMTMuMjE4OCAxNS43OTI0IDEyLjE1NTVMMTEuMTk5MSAyLjk1MjM4WiIgZmlsbD0iI0VDNzIxMSIvPgo8L3N2Zz4=");
+    background-color: darkorange;
+}
+
+.ace_scrollbar {
+    contain: strict;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+}
+
+.ace_scrollbar-inner {
+    position: absolute;
+    cursor: text;
+    left: 0;
+    top: 0;
+}
+
+.ace_scrollbar-v{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    top: 0;
+}
+
+.ace_scrollbar-h {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    left: 0;
+}
+
+.ace_print-margin {
+    position: absolute;
+    height: 100%;
+}
+
+.ace_text-input {
+    position: absolute;
+    z-index: 0;
+    width: 0.5em;
+    height: 1em;
+    opacity: 0;
+    background: transparent;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    font: inherit;
+    padding: 0 1px;
+    margin: 0 -1px;
+    contain: strict;
+    -ms-user-select: text;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+    /*with `pre-line` chrome inserts &nbsp; instead of space*/
+    white-space: pre!important;
+}
+.ace_text-input.ace_composition {
+    background: transparent;
+    color: inherit;
+    z-index: 1000;
+    opacity: 1;
+}
+.ace_composition_placeholder { color: transparent }
+.ace_composition_marker { 
+    border-bottom: 1px solid;
+    position: absolute;
+    border-radius: 0;
+    margin-top: 1px;
+}
+
+[ace_nocontext=true] {
+    transform: none!important;
+    filter: none!important;
+    clip-path: none!important;
+    mask : none!important;
+    contain: none!important;
+    perspective: none!important;
+    mix-blend-mode: initial!important;
+    z-index: auto;
+}
+
+.ace_layer {
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    /* workaround for chrome bug https://github.com/ajaxorg/ace/issues/2312*/
+    word-wrap: normal;
+    white-space: pre;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    /* setting pointer-events: auto; on node under the mouse, which changes
+        during scroll, will break mouse wheel scrolling in Safari */
+    pointer-events: none;
+}
+
+.ace_gutter-layer {
+    position: relative;
+    width: auto;
+    text-align: right;
+    pointer-events: auto;
+    height: 1000000px;
+    contain: style size layout;
+}
+
+.ace_text-layer {
+    font: inherit !important;
+    position: absolute;
+    height: 1000000px;
+    width: 1000000px;
+    contain: style size layout;
+}
+
+.ace_text-layer > .ace_line, .ace_text-layer > .ace_line_group {
+    contain: style size layout;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.ace_hidpi .ace_text-layer,
+.ace_hidpi .ace_gutter-layer,
+.ace_hidpi .ace_content,
+.ace_hidpi .ace_gutter {
+    contain: strict;
+}
+.ace_hidpi .ace_text-layer > .ace_line, 
+.ace_hidpi .ace_text-layer > .ace_line_group {
+    contain: strict;
+}
+
+.ace_cjk {
+    display: inline-block;
+    text-align: center;
+}
+
+.ace_cursor-layer {
+    z-index: 4;
+}
+
+.ace_cursor {
+    z-index: 4;
+    position: absolute;
+    box-sizing: border-box;
+    border-left: 2px solid;
+    /* workaround for smooth cursor repaintng whole screen in chrome */
+    transform: translatez(0);
+}
+
+.ace_multiselect .ace_cursor {
+    border-left-width: 1px;
+}
+
+.ace_slim-cursors .ace_cursor {
+    border-left-width: 1px;
+}
+
+.ace_overwrite-cursors .ace_cursor {
+    border-left-width: 0;
+    border-bottom: 1px solid;
+}
+
+.ace_hidden-cursors .ace_cursor {
+    opacity: 0.2;
+}
+
+.ace_hasPlaceholder .ace_hidden-cursors .ace_cursor {
+    opacity: 0;
+}
+
+.ace_smooth-blinking .ace_cursor {
+    transition: opacity 0.18s;
+}
+
+.ace_animate-blinking .ace_cursor {
+    animation-duration: 1000ms;
+    animation-timing-function: step-end;
+    animation-name: blink-ace-animate;
+    animation-iteration-count: infinite;
+}
+
+.ace_animate-blinking.ace_smooth-blinking .ace_cursor {
+    animation-duration: 1000ms;
+    animation-timing-function: ease-in-out;
+    animation-name: blink-ace-animate-smooth;
+}
+    
+@keyframes blink-ace-animate {
+    from, to { opacity: 1; }
+    60% { opacity: 0; }
+}
+
+@keyframes blink-ace-animate-smooth {
+    from, to { opacity: 1; }
+    45% { opacity: 1; }
+    60% { opacity: 0; }
+    85% { opacity: 0; }
+}
+
+.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {
+    position: absolute;
+    z-index: 3;
+}
+
+.ace_marker-layer .ace_selection {
+    position: absolute;
+    z-index: 5;
+}
+
+.ace_marker-layer .ace_bracket {
+    position: absolute;
+    z-index: 6;
+}
+
+.ace_marker-layer .ace_error_bracket {
+    position: absolute;
+    border-bottom: 1px solid #DE5555;
+    border-radius: 0;
+}
+
+.ace_marker-layer .ace_active-line {
+    position: absolute;
+    z-index: 2;
+}
+
+.ace_marker-layer .ace_selected-word {
+    position: absolute;
+    z-index: 4;
+    box-sizing: border-box;
+}
+
+.ace_line .ace_fold {
+    box-sizing: border-box;
+
+    display: inline-block;
+    height: 11px;
+    margin-top: -2px;
+    vertical-align: middle;
+
+    background-image:
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");
+    background-repeat: no-repeat, repeat-x;
+    background-position: center center, top left;
+    color: transparent;
+
+    border: 1px solid black;
+    border-radius: 2px;
+
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.ace_dark .ace_fold {
+}
+
+.ace_fold:hover{
+    background-image:
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");
+}
+
+.ace_tooltip {
+    background-color: #f5f5f5;
+    border: 1px solid gray;
+    border-radius: 1px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    color: black;
+    max-width: 100%;
+    padding: 3px 4px;
+    position: fixed;
+    z-index: 999999;
+    box-sizing: border-box;
+    cursor: default;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: normal;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    pointer-events: none;
+    overflow: auto;
+    max-width: min(60em, 66vw);
+    overscroll-behavior: contain;
+}
+.ace_tooltip pre {
+    white-space: pre-wrap;
+}
+
+.ace_tooltip.ace_dark {
+    background-color: #636363;
+    color: #fff;
+}
+
+.ace_tooltip:focus {
+    outline: 1px solid #5E9ED6;
+}
+
+.ace_icon {
+    display: inline-block;
+    width: 18px;
+    vertical-align: top;
+}
+
+.ace_icon_svg {
+    display: inline-block;
+    width: 12px;
+    vertical-align: top;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 12px;
+    -webkit-mask-position: center;
+}
+
+.ace_folding-enabled > .ace_gutter-cell, .ace_folding-enabled > .ace_gutter-cell_svg-icons {
+    padding-right: 13px;
+}
+
+.ace_fold-widget {
+    box-sizing: border-box;
+
+    margin: 0 -12px 0 1px;
+    display: none;
+    width: 11px;
+    vertical-align: top;
+
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: center;
+
+    border-radius: 3px;
+    
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.ace_folding-enabled .ace_fold-widget {
+    display: inline-block;   
+}
+
+.ace_fold-widget.ace_end {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");
+}
+
+.ace_fold-widget.ace_closed {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");
+}
+
+.ace_fold-widget:hover {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+.ace_fold-widget:active {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+/**
+ * Dark version for fold widgets
+ */
+.ace_dark .ace_fold-widget {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");
+}
+.ace_dark .ace_fold-widget.ace_end {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");
+}
+.ace_dark .ace_fold-widget.ace_closed {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");
+}
+.ace_dark .ace_fold-widget:hover {
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.ace_dark .ace_fold-widget:active {
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.ace_inline_button {
+    border: 1px solid lightgray;
+    display: inline-block;
+    margin: -1px 8px;
+    padding: 0 5px;
+    pointer-events: auto;
+    cursor: pointer;
+}
+.ace_inline_button:hover {
+    border-color: gray;
+    background: rgba(200,200,200,0.2);
+    display: inline-block;
+    pointer-events: auto;
+}
+
+.ace_fold-widget.ace_invalid {
+    background-color: #FFB4B4;
+    border-color: #DE5555;
+}
+
+.ace_fade-fold-widgets .ace_fold-widget {
+    transition: opacity 0.4s ease 0.05s;
+    opacity: 0;
+}
+
+.ace_fade-fold-widgets:hover .ace_fold-widget {
+    transition: opacity 0.05s ease 0.05s;
+    opacity:1;
+}
+
+.ace_underline {
+    text-decoration: underline;
+}
+
+.ace_bold {
+    font-weight: bold;
+}
+
+.ace_nobold .ace_bold {
+    font-weight: normal;
+}
+
+.ace_italic {
+    font-style: italic;
+}
+
+
+.ace_error-marker {
+    background-color: rgba(255, 0, 0,0.2);
+    position: absolute;
+    z-index: 9;
+}
+
+.ace_highlight-marker {
+    background-color: rgba(255, 255, 0,0.2);
+    position: absolute;
+    z-index: 8;
+}
+
+.ace_mobile-menu {
+    position: absolute;
+    line-height: 1.5;
+    border-radius: 4px;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: white;
+    box-shadow: 1px 3px 2px grey;
+    border: 1px solid #dcdcdc;
+    color: black;
+}
+.ace_dark > .ace_mobile-menu {
+    background: #333;
+    color: #ccc;
+    box-shadow: 1px 3px 2px grey;
+    border: 1px solid #444;
+
+}
+.ace_mobile-button {
+    padding: 2px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.ace_mobile-button:hover {
+    background-color: #eee;
+    opacity:1;
+}
+.ace_mobile-button:active {
+    background-color: #ddd;
+}
+
+.ace_placeholder {
+    font-family: arial;
+    transform: scale(0.9);
+    transform-origin: left;
+    white-space: pre;
+    opacity: 0.7;
+    margin: 0 10px;
+}
+
+.ace_ghost_text {
+    opacity: 0.5;
+    font-style: italic;
+    white-space: pre;
+}
+
+.ace_screenreader-only {
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+}
+/*# sourceURL=ace/css/ace_editor.css */</style><style id="ace_scrollbar.css">.ace_editor>.ace_sb-v div, .ace_editor>.ace_sb-h div{
+  position: absolute;
+  background: rgba(128, 128, 128, 0.6);
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  z-index: 8;
+}
+.ace_editor>.ace_sb-v, .ace_editor>.ace_sb-h {
+  position: absolute;
+  z-index: 6;
+  background: none;
+  overflow: hidden!important;
+}
+.ace_editor>.ace_sb-v {
+  z-index: 6;
+  right: 0;
+  top: 0;
+  width: 12px;
+}
+.ace_editor>.ace_sb-v div {
+  z-index: 8;
+  right: 0;
+  width: 100%;
+}
+.ace_editor>.ace_sb-h {
+  bottom: 0;
+  left: 0;
+  height: 12px;
+}
+.ace_editor>.ace_sb-h div {
+  bottom: 0;
+  height: 100%;
+}
+.ace_editor>.ace_sb_grabbed {
+  z-index: 8;
+  background: #000;
+}
+/*# sourceURL=ace/css/ace_scrollbar.css */</style>
         
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="generator" content="Odoo">
-        <meta name="default_title" content="Home | My Website">
-        <meta name="robots" content="noindex">
-        <meta name="description" content="This is the homepage of the website">
-        <meta name="keywords">
-        <meta name="default_description">
-            
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="Home | My Website">
-        <meta property="og:site_name" content="My Website">
-        <meta property="og:url" content="https://justinvanwichelen.be/">
-        <meta property="og:image" content="https://justinvanwichelen.be/web/image/website/1/logo?unique=2f7a9a2">
-        <meta property="og:description" content="This is the homepage of the website">
-            
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Home | My Website">
-        <meta name="twitter:image" content="https://justinvanwichelen.be/web/image/website/1/logo/300x300?unique=2f7a9a2">
-        <meta name="twitter:description" content="This is the homepage of the website">
-        
-        <link rel="canonical" href="https://justinvanwichelen.be/">
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
         <title>Home | My Website</title>
-        <link type="image/x-icon" rel="shortcut icon" href="http://localhost:8069/web/image/website/1/favicon?unique=2f7a9a2">
-        <link rel="preload" href="http://localhost:8069/web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" crossorigin="">
-        <link type="text/css" rel="stylesheet" href="./index_files/web.assets_frontend.min.css">
+        <link type="image/x-icon" rel="shortcut icon" href="http://localhost:8069/web/image/website/1/favicon?unique=9205b2b">
         <script id="web.layout.odooscript" type="text/javascript">
             var odoo = {
-                csrf_token: "90856cf651d3411538404922bef781dd6feeb504o1778343929",
+                csrf_token: "f7747be5600585093583a8276e899f2684958d31o1778255627",
                 debug: "",
             };
         </script>
-        <script type="text/javascript">
-            odoo.__session_info__ = {"is_admin": true, "is_system": true, "is_public": false, "is_internal_user": true, "is_website_user": false, "uid": 2, "is_frontend": true, "profile_session": null, "profile_collectors": null, "profile_params": null, "show_effect": true, "currencies": {"1": {"symbol": "$", "position": "before", "digits": [69, 2]}}, "bundle_params": {"lang": "fr_BE", "website_id": 1}, "test_mode": false, "server_version": "18.0-20250507", "server_version_info": [18, 0, 0, "final", 0, ""], "websocket_worker_version": "18.0-4", "translationURL": "/website/translations", "cache_hashes": {"translations": "4551a94c6b46f52a7258b2a4d63a5839436f4e0b"}, "geoip_country_code": null, "geoip_phone_code": null, "lang_url_code": "fr", "website_id": 1, "website_company_id": 1};
-            if (!/(^|;\s)tz=/.test(document.cookie)) {
-                const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
-                document.cookie = `tz=${userTZ}; path=/`;
-            }
-        </script>
-        <script type="text/javascript" defer="defer" src="./index_files/web.assets_frontend_minimal.min.js.téléchargement" onerror="__odooAssetError=1"></script>
-        <script type="text/javascript" defer="defer" onerror="__odooAssetError=1" src="./index_files/web.assets_frontend_lazy.min.js.téléchargement"></script>
         
-        
-    <style id="conditional_visibility"></style><style id="conditional_visibility"></style><meta id="ConnectiveDocSignExtentionInstalled" name="ConnectiveDocSignExtentionInstalled" data-extension-version="1.0.7"></head>
-    <body class="">
-                
-                <input type="hidden" class="o_page_option_data" autocomplete="off" data-oe-model="ir.ui.view" data-oe-id="526" data-oe-field="arch" data-oe-xpath="/data/xpath[13]/t[1]/t[1]/input[1]" name="header_overlay">
-                
-                <input type="hidden" class="o_page_option_data" autocomplete="off" data-oe-model="ir.ui.view" data-oe-id="526" data-oe-field="arch" data-oe-xpath="/data/xpath[13]/t[1]/t[1]/input[1]" name="header_color">
-                
-                <input type="hidden" class="o_page_option_data" autocomplete="off" data-oe-model="ir.ui.view" data-oe-id="526" data-oe-field="arch" data-oe-xpath="/data/xpath[13]/t[1]/t[1]/input[1]" name="header_text_color">
-                
-                <input type="hidden" class="o_page_option_data" autocomplete="off" data-oe-model="ir.ui.view" data-oe-id="526" data-oe-field="arch" data-oe-xpath="/data/xpath[13]/t[1]/t[1]/input[1]" name="header_visible" value="True">
-                
-                <input type="hidden" class="o_page_option_data" autocomplete="off" data-oe-model="ir.ui.view" data-oe-id="526" data-oe-field="arch" data-oe-xpath="/data/xpath[13]/t[1]/t[1]/input[1]" name="footer_visible" value="True">
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+                <meta name="theme-color" content="#71639e">
+                <link rel="manifest" href="http://localhost:8069/web/manifest.webmanifest" crossorigin="use-credentials">
+                <link rel="apple-touch-icon" href="http://localhost:8069/web/static/img/odoo-icon-ios.png">
+                <script type="text/javascript">
+                    // Block to avoid leaking variables in the script scope
+                    {
+                        odoo.__session_info__ = {"uid": 2, "is_system": true, "is_admin": true, "is_public": false, "is_internal_user": true, "user_context": {"lang": "fr_BE", "tz": "Europe/Brussels", "uid": 2}, "db": "JVPortefolio", "user_settings": {"id": 1, "user_id": {"id": 2}, "is_discuss_sidebar_category_channel_open": true, "is_discuss_sidebar_category_chat_open": true, "push_to_talk_key": false, "use_push_to_talk": false, "voice_active_duration": 200, "channel_notifications": false, "mute_until_dt": false, "volumes": [["ADD", []]]}, "server_version": "18.0-20250507", "server_version_info": [18, 0, 0, "final", 0, ""], "support_url": "https://www.odoo.com/buy", "name": "Administrator", "username": "justinvanwichelen@gmail.com", "partner_write_date": "2025-05-07 11:03:07", "partner_display_name": "Administrator", "partner_id": 3, "web.base.url": "http://localhost:8069", "active_ids_limit": 20000, "profile_session": null, "profile_collectors": null, "profile_params": null, "max_file_upload_size": 134217728, "home_action_id": false, "cache_hashes": {"translations": "2cfa885a3f4034ccc1e888ed95afd2d59af399cf", "load_menus": "9170ccda93b3815c28e4c6e8d6fc2389df0feda9ef04b49d16fe2e164b2b6147"}, "currencies": {"1": {"symbol": "$", "position": "before", "digits": [69, 2]}}, "bundle_params": {"lang": "fr_BE"}, "test_mode": false, "view_info": {"list": {"display_name": "Liste", "icon": "oi oi-view-list", "multi_record": true}, "form": {"display_name": "Formulaire", "icon": "fa fa-address-card", "multi_record": false}, "graph": {"display_name": "Graphique", "icon": "fa fa-area-chart", "multi_record": true}, "pivot": {"display_name": "Tableau crois\u00e9 dynamique", "icon": "oi oi-view-pivot", "multi_record": true}, "calendar": {"display_name": "Calendrier", "icon": "fa fa-calendar", "multi_record": true}, "kanban": {"display_name": "Kanban", "icon": "oi oi-view-kanban", "multi_record": true}, "search": {"display_name": "Rechercher", "icon": "oi oi-search", "multi_record": true}, "activity": {"display_name": "Activit\u00e9", "icon": "fa fa-clock-o", "multi_record": true}, "hierarchy": {"display_name": "Hi\u00e9rarchie", "icon": "fa fa-share-alt fa-rotate-90", "multi_record": true}}, "user_companies": {"current_company": 1, "allowed_companies": {"1": {"id": 1, "name": "My Company", "sequence": 0, "child_ids": [], "parent_id": false}}, "disallowed_ancestor_companies": {}}, "show_effect": true, "display_switch_company_menu": false, "websocket_worker_version": "18.0-4", "tour_enabled": true, "current_tour": {"custom": false, "name": "project_tour", "url": "/odoo", "steps": [], "rainbowManMessage": "\u003cp\u003eF\u00e9licitations, vous \u00eates maintenant un expert de la gestion de projet.\u003c/p\u003e"}, "storeData": {"Store": {"action_discuss_id": 121, "channel_types_with_seen_infos": ["chat", "group"], "hasGifPickerFeature": false, "hasLinkPreviewFeature": true, "hasMessageTranslationFeature": false, "internalUserGroupId": 1, "mt_comment_id": 1, "odoobot": {"id": 2, "type": "partner"}, "self": {"id": 3, "type": "partner"}, "settings": {"id": 1, "user_id": {"id": 2}, "is_discuss_sidebar_category_channel_open": true, "is_discuss_sidebar_category_chat_open": true, "push_to_talk_key": false, "use_push_to_talk": false, "voice_active_duration": 200, "channel_notifications": false, "mute_until_dt": false, "volumes": [["ADD", []]]}}, "res.partner": [{"active": false, "avatar_128_access_token": "e164ed243594d5927234a5ffc79bf3305f55d406c7c83504038bbc896d6b3da4o0x684ce751", "email": "odoobot@example.com", "id": 2, "im_status": "bot", "isInternalUser": true, "is_company": false, "name": "OdooBot", "userId": 1, "write_date": "2025-05-07 11:03:07"}, {"active": true, "avatar_128_access_token": "9af82e3c2e4bfd9228f01973025c1103bc7c2bc7f565992c791be45a0a3b0fd2o0x684ce878", "id": 3, "isAdmin": true, "isInternalUser": true, "name": "Administrator", "notification_preference": "email", "signature": "\u003cspan data-o-mail-quote=\"1\"\u003e-- \u003cbr data-o-mail-quote=\"1\"\u003e\nAdministrator\u003c/span\u003e", "userId": 2, "write_date": "2025-05-07 11:03:07"}]}, "iap_company_enrich": false};
+                        const { user_context,  cache_hashes } = odoo.__session_info__;
+                        const lang = new URLSearchParams(document.location.search).get("lang");
+                        let menuURL = `/web/webclient/load_menus/${cache_hashes.load_menus}`;
+                        if (lang) {
+                            user_context.lang = lang;
+                            menuURL += `?lang=${lang}`
+                        }
+                        odoo.reloadMenus = () => fetch(menuURL).then(res => res.json());
+                        odoo.loadMenusPromise = odoo.reloadMenus();
+                        // Prefetch translations to speedup webclient. This is done in JS because link rel="prefetch"
+                        // is not yet supported on safari.
+                        fetch(`/web/webclient/translations/${cache_hashes.translations}?lang=${user_context.lang}`);
+                    }
+                </script>
+                <link type="text/css" rel="stylesheet" href="./index_files/web.assets_web_print.min.css" media="print">
 
-
-        </div><div id="wrapwrap" class="homepage   ">
-                <header id="top" data-anchor="true" data-name="Header" data-extra-items-toggle-aria-label="Bouton d&#39;éléments supplémentaires" class="o_header_standard o_top_fixed_element" style=" ">
-                    
-    <nav data-name="Navbar" aria-label="Main" class="navbar navbar-expand-lg navbar-light o_colored_level o_cc o_header_force_no_radius d-none d-lg-block p-0 shadow-sm ">
-        
-
-            <div id="o_main_nav" class="o_main_nav">
-                <div aria-label="Haut" class="container d-flex align-items-center justify-content-between py-3">
-                    
-    <span id="o_fake_navbar_brand" data-oe-model="ir.ui.view" data-oe-id="569" data-oe-field="arch" data-oe-xpath="/t[1]/span[1]"></span>
-                    
-    <ul role="menu" id="top_menu" class="nav navbar-nav top_menu pe-2">
-        
-
-                        
-    <li role="presentation" class="nav-item">
-        <a role="menuitem" href="http://localhost:8069/" class="nav-link active">
-            <span data-oe-model="website.menu" data-oe-id="5" data-oe-field="name" data-oe-type="char" data-oe-expression="submenu.name">Page d'accueil</span>
-        </a>
-    </li>
-                    
-    </ul>
-                    <ul class="o_header_sales_one_right_col navbar-nav align-items-center gap-1 flex-grow-1 justify-content-end">
-                        
-                        
-                        
-        <li class="">
-                
-                <a data-bs-target="#o_search_modal" data-bs-toggle="modal" role="button" title="Rechercher" href="http://localhost:8069/#" data-oe-model="ir.ui.view" data-oe-id="644" data-oe-field="arch" data-oe-xpath="/data/xpath/li/t[1]/a[1]" class="btn rounded-circle p-1 lh-1 o_navlink_background text-reset o_not_editable">
-                    <i class="oi oi-search fa-stack lh-lg"></i>
-                </a>
-        </li>
-                        
-                        
-        
-                        
-        <li data-name="Language Selector" class="o_header_language_selector ">
-        
-        
-        </li>
-                    </ul>
-                </div>
-            </div>
-        
-    </nav>
-    <nav data-name="Navbar" aria-label="Mobile" class="navbar  navbar-light o_colored_level o_cc o_header_mobile d-block d-lg-none shadow-sm o_header_force_no_radius">
-        
-
-        <div class="o_main_nav container flex-wrap justify-content-between">
+                    <link type="text/css" rel="stylesheet" href="./index_files/web.assets_web.min.css" media="screen">
+        <script type="text/javascript" src="./index_files/web.assets_web.min.js.téléchargement" onerror="__odooAssetError=1"></script>
             
-    <span id="o_fake_navbar_brand" data-oe-model="ir.ui.view" data-oe-id="569" data-oe-field="arch" data-oe-xpath="/t[1]/span[1]"></span>
-            <ul class="o_header_mobile_buttons_wrap navbar-nav flex-row align-items-center gap-2 mb-0" data-oe-model="ir.ui.view" data-oe-id="1955" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/ul[1]">
-            <li class="o_not_editable" contenteditable="false">
-                    <button class="nav-link btn me-auto p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#top_menu_collapse_mobile" aria-controls="top_menu_collapse_mobile" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </li>
-                </ul>
-            <div id="top_menu_collapse_mobile" class="offcanvas offcanvas-end o_navbar_mobile">
-                <div class="offcanvas-header justify-content-end o_not_editable" data-oe-model="ir.ui.view" data-oe-id="1955" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[1]/div[1]">
-                    <button type="button" class="nav-link btn-close" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
-                </div>
-                <div class="offcanvas-body d-flex flex-column justify-content-between h-100 w-100">
-                    <ul class="navbar-nav">
-                        
-                        
-        <li class="">
-    <form method="get" class="o_searchbar_form s_searchbar_input " action="http://localhost:8069/website/search" data-snippet="s_searchbar_input">
-            <div role="search" class="input-group mb-3">
-        <input type="search" name="search" class="search-query form-control oe_search_box rounded-start-pill text-bg-light ps-3 border-0 bg-light" placeholder="Rechercher…" data-search-type="all" data-limit="0" data-display-image="true" data-display-description="true" data-display-extra-link="true" data-display-detail="true" data-order-by="name asc">
-        <button type="submit" aria-label="Rechercher" title="Rechercher" class="btn oe_search_button rounded-end-pill bg-o-color-3 pe-3">
-            <i class="oi oi-search"></i>
-        </button>
-    </div>
-
-            <input name="order" type="hidden" class="o_search_order_by" data-oe-model="ir.ui.view" data-oe-id="637" data-oe-field="arch" data-oe-xpath="/data/xpath[3]/form/input[1]" value="name asc">
-            
+    <meta id="ConnectiveDocSignExtentionInstalled" name="ConnectiveDocSignExtentionInstalled" data-extension-version="1.0.7"><script type="text/javascript" src="./index_files/web._assets_jquery.min.js.téléchargement"></script><link type="text/css" rel="stylesheet" href="./index_files/website.backend_assets_all_wysiwyg.min.css"><script type="text/javascript" src="./index_files/website.backend_assets_all_wysiwyg.min.js.téléchargement"></script><script type="text/javascript" src="./index_files/web.ace_lib.min.js.téléchargement"></script></head>
+    <body class="o_web_client" style="">
+        
+        
     
-        </form>
-        </li>
-                        
-    <ul role="menu" class="nav navbar-nav top_menu  text-end">
-        
-
-                            
-    <li role="presentation" class="nav-item">
-        <a role="menuitem" href="http://localhost:8069/" class="nav-link active">
-            <span data-oe-model="website.menu" data-oe-id="5" data-oe-field="name" data-oe-type="char" data-oe-expression="submenu.name">Page d'accueil</span>
-        </a>
-    </li>
-                        
-    </ul>
-                        
-                        
-                    </ul>
-                    <ul class="navbar-nav gap-2 mt-3 w-100">
-                        
-        <li data-name="Language Selector" class="o_header_language_selector ">
-        
-        
-        </li>
-                        
-                        
-        
-    <li class="dropdown dropup o_no_autohide_item">
-                <a href="http://localhost:8069/#" role="button" data-bs-toggle="dropdown" class="dropdown-toggle nav-link d-flex align-items-center border-0">
-                    <div class="">
-                        <i class="fa fa-1x fa-fw fa-user me-2" data-oe-model="ir.ui.view" data-oe-id="1952" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/li[1]/a[1]/div[1]/i[1]">​</i>
-                    </div>
-                    <span class="me-auto small">Administrator</span>
-                </a>
-                <div role="menu" class="dropdown-menu js_usermenu w-100">
-                    <a href="http://localhost:8069/odoo" role="menuitem" class="dropdown-item ps-3" id="o_backend_user_dropdown_link" data-oe-model="ir.ui.view" data-oe-id="1952" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/li[1]/div[1]/a[1]"> Applications
-                    <i class="fa fa-fw fa-th me-1 small text-primary text-primary-emphasis" contenteditable="false">​</i>
-                        </a>
-            <a href="http://localhost:8069/my/home" role="menuitem" class="dropdown-item ps-3" data-oe-id="1953" data-oe-xpath="/data/xpath/a" data-oe-model="ir.ui.view" data-oe-field="arch"> Mon compte
-            <i class="fa fa-fw fa-id-card-o me-1 small text-primary text-primary-emphasis" contenteditable="false">​</i>
-                </a>
-                    <div id="o_logout_divider" class="dropdown-divider" data-oe-model="ir.ui.view" data-oe-id="1952" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/li[1]/div[1]/div[1]"></div>
-                    <a role="menuitem" id="o_logout" class="dropdown-item ps-3" href="http://localhost:8069/web/session/logout?redirect=/" data-oe-model="ir.ui.view" data-oe-id="1952" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/li[1]/div[1]/a[2]"> Déconnexion
-                    <i class="fa fa-fw fa-sign-out me-1 small text-primary text-primary-emphasis" contenteditable="false">​</i>
-                        </a>
-                </div>
-            </li>
-        
-                        
-                    </ul>
-                </div>
-            </div>
-        </div>
-    
-    </nav>
-    
-        </header>
-                <main>
-                    
-        <div id="wrap" class="oe_structure oe_empty" data-oe-model="ir.ui.view" data-oe-id="524" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]"><section class="s_text_image o_colored_level o_cc o_cc2 pb0 pt32" data-snippet="s_image_text" data-name="Image - Texte" style="background-color: rgb(12, 26, 63); position: relative;">
-        
-        <div class="container">
-            <div class="row o_grid_mode" data-row-count="7">
-                
-                
-            <div class="o_colored_level o_grid_item g-col-lg-9 g-height-7 col-lg-9" style="z-index: 2; grid-area: 1 / 4 / 8 / 13;">
-                    <h2 class="h3-fs" style="text-align: center;"><font class="text-o-color-4"><span class="display-2-fs"><strong>HI ALL, I'M JUSTIN 👋</strong></span></font></h2>
-        
-                    <p>
-        <font class="text-o-color-4">
-As a graduate </font><font style="color: rgb(239, 198, 49);"><strong>Technical Artist</strong></font><font class="text-o-color-4"> currently pursuing a </font><font style="color: rgb(239, 198, 49);"><strong>Master’s degree in Computer Science</strong></font><font class="text-o-color-4"> with a specialization in </font><font style="color: rgb(239, 198, 49);"><strong>Artificial Intelligence</strong></font><font class="text-o-color-4">, I blend </font><font style="color: rgb(239, 198, 49);"><strong>creativity and technical expertise</strong></font><font class="text-o-color-4"> to build immersive digital experiences. Proficient in Photoshop, I excel in crafting detailed visual assets.</font></p><p><font class="text-o-color-4">My Master’s thesis explores the applications of AI in role-playing games, focusing on how intelligent systems can enhance interactivity and narrative depth. I am also fascinated by </font><font style="color: rgb(239, 198, 49);"><strong>Large Language Models (LLMs)</strong></font><font class="text-o-color-4">, from their design to their applications. Additionally, my course in health informatics has allowed me to apply AI in healthcare, broadening my understanding of its impactful, cross-industry potential.
-
-</font></p></div><div class="o_colored_level o_grid_item g-col-lg-3 g-height-7 col-lg-3 o_grid_item_image" style="z-index: 1; grid-area: 1 / 1 / 8 / 4;"><img src="./index_files/cv_photo2.svg" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-shape="web_editor/geometric_round/geo_round_blob_medium" data-shape-colors=";;;;" data-shape-flip="xy" data-shape-rotate="180" data-shape-animation-speed="0.7" data-mimetype="image/svg+xml" data-original-id="515" data-original-src="/web/image/515-cd454ee1/cv_photo2.png" data-mimetype-before-conversion="image/png" data-original-mimetype="image/webp" data-resize-width="690" data-file-name="cv_photo2.svg" loading="lazy" style=""></div></div>
-        </div>
-    </section><section class="s_cards_grid o_colored_level pb0 o_cc o_cc2 pt8" data-snippet="s_cards_grid" data-name="Cards Grid" style="background-color: rgb(12, 26, 63); position: relative;">
-        
-        <div class="container">
-            <div class="row s_nb_column_fixed o_grid_mode" data-row-count="12">
-                
-                
-                
-                
-                
-            <div class="o_grid_item g-col-lg-12 g-height-1 o_colored_level col-lg-12" style="z-index: 1; grid-area: 1 / 1 / 2 / 13;">
-                    <h1 style="text-align: center;"><font class="text-white"><span class="h4-fs"><strong>Highlighted projects</strong></span></font></h1>
-                </div><div data-name="Card" class="o_grid_item g-col-lg-4 g-height-11 col-lg-4 o_colored_level" style="z-index: 2; grid-area: 2 / 1 / 13 / 5;">
-                    <div class="s_card o_cc o_cc1 card o_colored_level o_card_img_top" data-vxml="001" data-snippet="s_card" data-name="Card" style="--card-img-size-h: 25%; --card-img-aspect-ratio: 60%; --card-img-ratio-align: 42%;">
-                        <figure class="o_card_img_wrapper mb-0 ratio o_card_img_adjust_h o_card_img_ratio_custom">
-                            <img src="./index_files/_MasterThesis.webp" alt="" class="o_card_img img img-fluid o_we_custom_image card-img-top" data-mimetype="image/webp" data-original-id="460" data-original-src="/web/image/460-2d676103/_MasterThesis.png" data-mimetype-before-conversion="image/png" data-resize-width="690" loading="lazy" style="">
-                        </figure>
-                        <div class="card-body">
-                            <h5 class="card-title" style="text-align: center;">
-        <span style="font-size: 1.25rem;"><strong>ROLES PLAY GAME WITH LLM (2025)&nbsp;</strong></span><br></h5>
-                            <p class="card-text">
-        Immerse yourself in a real-time AI-generated RPG, where each adventure is unique, immersive and shaped by your choices. Discover how AI&nbsp;become&nbsp;a true game master.<br></p><p style="text-align: center;"><a class="btn btn-primary" href="http://localhost:8069/rpg-with-llm">Really?? I want to know more!</a></p>
-                        </div>
-                    </div>
-                </div><div data-name="Card" class="o_grid_item g-col-lg-4 g-height-11 col-lg-4 o_colored_level" style="z-index: 2; grid-area: 2 / 5 / 13 / 9;">
-                    <div class="s_card o_cc o_cc1 card o_colored_level o_card_img_top" data-vxml="001" data-snippet="s_card" data-name="Card" style="--card-img-size-h: 25%; --card-img-aspect-ratio: 60%; --card-img-ratio-align: 42%;">
-                        <figure class="o_card_img_wrapper mb-0 ratio o_card_img_adjust_h o_card_img_ratio_custom">
-                            <img src="./index_files/BachelorThesis.webp" alt="" class="o_card_img img img-fluid o_we_custom_image card-img-top" data-mimetype="image/webp" data-original-id="475" data-original-src="/web/image/475-30983120/BachelorThesis.png" data-mimetype-before-conversion="image/png" data-resize-width="690" loading="lazy" style="">
-                        </figure>
-                        <div class="card-body">
-                            <h5 class="card-title" style="text-align: center;">
-        <span style="font-size: 1.25rem;"><strong>LOKI GAME (2022)&nbsp;</strong></span><br></h5>
-                            <p class="card-text">A school project completed in 3 month by 8 keen student in 2022. I worked on the UI, the code, modular system, gameplay, HUD and VFX.</p><p style="text-align: center;"><a class="btn btn-primary" href="http://localhost:8069/loki">I'm as curious as a cat!</a></p>
-                        </div>
-                    </div>
-                </div><div data-name="Card" class="o_grid_item g-col-lg-4 g-height-11 col-lg-4 o_colored_level" style="z-index: 2; grid-area: 2 / 9 / 13 / 13;">
-                    <div class="s_card o_cc o_cc1 card o_colored_level o_card_img_top" data-vxml="001" data-snippet="s_card" data-name="Card" style="--card-img-size-h: 25%; --card-img-aspect-ratio: 60%; --card-img-ratio-align: 42%;">
-                        <figure class="o_card_img_wrapper mb-0 ratio o_card_img_adjust_h o_card_img_ratio_custom">
-                            <img src="./index_files/img_UnityTFA_Playtrhough.webp" alt="" class="o_card_img img img-fluid o_we_custom_image card-img-top" data-mimetype="image/webp" data-original-id="476" data-original-src="/web/image/476-8ef29858/img_UnityTFA_Playtrhough.png" data-mimetype-before-conversion="image/png" data-resize-width="690" loading="lazy" style="">
-                        </figure>
-                        <div class="card-body">
-                            <h5 class="card-title" style="text-align: center;">
-        <span style="font-size: 1.25rem;"><strong>DIABOLO III&nbsp;CYBERPUNK (2025)&nbsp;</strong></span><br></h5>
-                            <p class="card-text">I've recreated a cyberpunk version of Diablo III, complete with homemade gameplay, VFX, animations and HUD. Combat, puzzles and futuristic powers await you.</p><p style="text-align: center;"><a class="btn btn-primary" href="http://localhost:8069/diablocyberpunk">Keep selling me that dream</a></p>
-                        </div>
-                    </div>
-                </div></div>
-        </div>
-    </section><section class="s_product_list o_colored_level bg-o-color-1 pb24 pt8" data-vcss="001" data-snippet="s_product_list" data-name="Articles" style="position: relative;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Floats/01&quot;,&quot;colors&quot;:{&quot;c1&quot;:&quot;#EFC631&quot;,&quot;c2&quot;:&quot;#0C1A3F&quot;,&quot;c3&quot;:&quot;#0E1528&quot;,&quot;c4&quot;:&quot;#0C1A3F&quot;,&quot;c5&quot;:&quot;#EFC631&quot;},&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;2&quot;,&quot;animated&quot;:&quot;true&quot;}"><div class="o_we_shape o_web_editor_Floats_01 o_we_animated" style="background-image: url(&quot;/web_editor/shape/web_editor%2FFloats%2F01.svg?c1=%23EFC631&amp;c2=%230C1A3F&amp;c3=%230E1528&amp;c4=%230C1A3F&amp;c5=%23EFC631&amp;shapeAnimationSpeed=2&quot;);"></div>
-        <div class="container">
-            <div class="row s_nb_column_fixed">
-                <div class="col-lg-12">
-                    <h1 style="text-align: center;"><span class="h4-fs"><strong>Want to see more projects about ...</strong></span></h1>
-                </div>
-                <div data-name="Card" class="col-lg-2 col-6 offset-lg-1">
-                    <div class="s_card card o_cc o_cc1 o_colored_level border o_card_img_top" data-snippet="s_card" data-vxml="001" data-name="Card" style="position: relative; border-radius: 16px !important; border-width: 4px !important; border-color: rgb(211, 192, 161) !important;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Wavy/24&quot;,&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;2&quot;,&quot;animated&quot;:&quot;true&quot;}"><div class="o_we_shape o_web_editor_Wavy_24 o_we_animated" style="background-image: url(&quot;/web_editor/shape/web_editor%2FWavy%2F24.svg?c1=%230C1A3F&amp;c2=%23c9e2ef&amp;shapeAnimationSpeed=2&quot;);"></div>
-                        <figure class="o_card_img_wrapper mb-0 ratio ratio-1x1">
-                            <a aria-label="Lien vers le produit" href="http://localhost:8069/#">
-                                <img src="./index_files/logo_GameJam_2.svg" alt="" class="o_card_img img img-fluid o_we_custom_image o_animate_on_hover card-img-top" data-shape="web_editor/geometric/geo_square" data-shape-colors=";;;;" data-hover-effect="dolly_zoom" data-hover-effect-color="rgba(0, 0, 0, 0)" data-hover-effect-intensity="30" data-mimetype="image/svg+xml" data-original-id="542" data-original-src="/web/image/542-811a0fab/logo_GameJam_2.png" data-mimetype-before-conversion="image/png" data-original-mimetype="image/webp" data-resize-width="690" data-file-name="logo_GameJam_2.svg" loading="lazy" style=""></a></figure></div>
-                </div>
-                <div data-name="Card" class="col-lg-2 col-6">
-                    <div class="s_card card o_cc o_cc1 o_colored_level o_card_img_top" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-color: rgb(211, 192, 161); position: relative; border-radius: 16px !important; border-width: 4px !important;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Wavy/24&quot;,&quot;flip&quot;:[&quot;x&quot;],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;2&quot;,&quot;animated&quot;:&quot;true&quot;}"><div class="o_we_shape o_web_editor_Wavy_24 o_we_animated" style="background-image: url(&quot;/web_editor/shape/web_editor%2FWavy%2F24.svg?c1=%230C1A3F&amp;c2=%23c9e2ef&amp;flip=x&amp;shapeAnimationSpeed=2&quot;); background-position: 50% 50%;"></div>
-                        <figure class="o_card_img_wrapper mb-0 ratio ratio-1x1">
-                            <a aria-label="Lien vers le produit" href="http://localhost:8069/#">
-                                <img src="./index_files/logo_Technical_Art_2.svg" alt="" class="o_card_img img img-fluid o_we_custom_image card-img-top o_animate_on_hover" data-shape="web_editor/geometric/geo_square" data-shape-colors=";;;;" data-hover-effect="dolly_zoom" data-hover-effect-color="rgba(0, 0, 0, 0)" data-hover-effect-intensity="30" data-mimetype="image/svg+xml" data-original-id="544" data-original-src="/web/image/544-9c1d0808/logo_Technical_Art_2.png" data-mimetype-before-conversion="image/png" data-original-mimetype="image/webp" data-resize-width="690" data-file-name="logo_Technical_Art_2.svg" loading="lazy" style=""></a></figure></div>
-                </div>
-                <div data-name="Card" class="col-lg-2 col-6">
-                    <div class="s_card card o_cc o_cc1 o_colored_level o_card_img_top" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-color: rgb(211, 192, 161); position: relative; border-radius: 16px !important; border-width: 4px !important;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Wavy/24&quot;,&quot;flip&quot;:[&quot;y&quot;],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;2&quot;,&quot;animated&quot;:&quot;true&quot;}"><div class="o_we_shape o_web_editor_Wavy_24 o_we_animated" style="background-image: url(&quot;/web_editor/shape/web_editor%2FWavy%2F24.svg?c1=%230C1A3F&amp;c2=%23c9e2ef&amp;flip=y&amp;shapeAnimationSpeed=2&quot;); background-position: 50% 50%;"></div>
-                        <figure class="o_card_img_wrapper mb-0 ratio ratio-1x1">
-                            <a aria-label="Lien vers le produit" href="http://localhost:8069/#">
-                                <img src="./index_files/logo_gameplay_2.svg" alt="" class="o_card_img img img-fluid o_we_custom_image o_animate_on_hover card-img-top" data-shape="web_editor/geometric/geo_square" data-shape-colors=";;;;" data-hover-effect="dolly_zoom" data-hover-effect-color="rgba(0, 0, 0, 0)" data-hover-effect-intensity="30" data-mimetype="image/svg+xml" data-original-id="548" data-original-src="/web/image/548-82030b82/logo_gameplay_2.png" data-mimetype-before-conversion="image/png" data-original-mimetype="image/webp" data-resize-width="690" data-file-name="logo_gameplay_2.svg" loading="lazy" style=""></a></figure></div>
-                </div>
-                <div data-name="Card" class="col-lg-2 col-6">
-                    <div class="s_card card o_cc o_cc1 o_colored_level o_card_img_top" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-color: rgb(211, 192, 161); border-radius: 16px !important; border-width: 4px !important; position: relative;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Wavy/24&quot;,&quot;flip&quot;:[&quot;x&quot;,&quot;y&quot;],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;2&quot;,&quot;animated&quot;:&quot;true&quot;}"><div class="o_we_shape o_web_editor_Wavy_24 o_we_animated" style="background-image: url(&quot;/web_editor/shape/web_editor%2FWavy%2F24.svg?c1=%230C1A3F&amp;c2=%23c9e2ef&amp;flip=xy&amp;shapeAnimationSpeed=2&quot;); background-position: 50% 50%;"></div>
-                        <figure class="o_card_img_wrapper mb-0 ratio ratio-1x1">
-                            <a aria-label="Lien vers le produit" href="http://localhost:8069/#">
-                                <img src="./index_files/logo_IT_2.svg" alt="" class="o_card_img img img-fluid o_we_custom_image o_animate_on_hover card-img-top" data-shape="web_editor/geometric/geo_square" data-shape-colors=";;;;" data-hover-effect="dolly_zoom" data-hover-effect-color="rgba(0, 0, 0, 0)" data-hover-effect-intensity="30" data-mimetype="image/svg+xml" data-original-id="546" data-original-src="/web/image/546-bf0fd255/logo_IT_2.png" data-mimetype-before-conversion="image/png" data-original-mimetype="image/webp" data-resize-width="690" data-file-name="logo_IT_2.svg" loading="lazy" style=""></a></figure></div>
-                </div>
-                <div data-name="Card" class="col-lg-2 col-6">
-                    <div class="s_card card o_cc o_cc1 o_colored_level o_card_img_top" data-snippet="s_card" data-vxml="001" data-name="Card" style="border-color: rgb(211, 192, 161); position: relative; border-radius: 16px !important; border-width: 4px !important;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Wavy/24&quot;,&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;2&quot;,&quot;animated&quot;:&quot;true&quot;}"><div class="o_we_shape o_web_editor_Wavy_24 o_we_animated" style="background-image: url(&quot;/web_editor/shape/web_editor%2FWavy%2F24.svg?c1=%230C1A3F&amp;c2=%23c9e2ef&amp;shapeAnimationSpeed=2&quot;);"></div>
-                        <figure class="o_card_img_wrapper mb-0 ratio ratio-1x1">
-                            <a aria-label="Lien vers le produit" href="http://localhost:8069/#">
-                                <img src="./index_files/Logo_Personnal_2.svg" alt="" class="o_card_img img img-fluid o_we_custom_image o_animate_on_hover card-img-top" data-shape="web_editor/geometric/geo_square" data-shape-colors=";;;;" data-hover-effect="dolly_zoom" data-hover-effect-color="rgba(0, 0, 0, 0)" data-hover-effect-intensity="30" data-mimetype="image/svg+xml" data-original-id="547" data-original-src="/web/image/547-126bf061/Logo_Personnal_2.png" data-mimetype-before-conversion="image/png" data-original-mimetype="image/webp" data-resize-width="690" data-file-name="Logo_Personnal_2.svg" loading="lazy" style=""></a></figure></div>
-                </div>
-                </div>
-        </div>
-    </section><section class="s_embed_code o_colored_level pt80 text-center pb168" data-snippet="s_embed_code" data-name="Embed Code" style="position: relative; background-color: rgb(14, 21, 40);" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Wavy/01_001&quot;,&quot;colors&quot;:{&quot;c3&quot;:&quot;#0C1A3F&quot;},&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;0&quot;}"><div class="o_we_shape o_web_editor_Wavy_01_001" style="background-image: url(&quot;/web_editor/shape/web_editor%2FWavy%2F01_001.svg?c3=%230C1A3F&quot;);"></div>
-        <template class="s_embed_code_saved"></template>
-        <div class="s_embed_code_embedded o_not_editable container-fluid"><link href="./index_files/all.min.css" rel="stylesheet"><style>
-body { 
-  font-family: "Montserrat", "Arial", sans-serif;
-  margin: 0;
-}
-
-.timeline {
-  --background: #0E1528;
-  --accent: #efc631;
-  --text: white;
-  --line: #c4c4c4;
-  background: var(--background);
-  color: var(--text);
-  padding: 30px;
-}
-
-.timeline h1 {
-  border-left: 4px solid var(--accent);
-  padding: 10px 12px 10px;
-}
-
-.timeline ul {
-  list-style: none;
-  position: relative;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(var(--items), 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-}
-
-.timeline ul:before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  border-top: 3px solid var(--text);
-  left: 11px;
-}
-
-.timeline ul:after {
-  content: "\f04b";
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-top: 1px;
-  right: -15px;
-  font-size: 25px;
-  color: var(--accent);
-}
-
-.timeline ul li {
-  --circle-size: 15px;
-  grid-column: var(--index);
-  overflow: hidden;
-  position: relative;
-  height: calc(100% + var(--circle-size) * 0.5);
-}
-
-.timeline ul li:after {
-  content: '';
-  width: var(--circle-size);
-  height: var(--circle-size);
-  background: var(--line);
-  position: absolute;
-  bottom: 0;
-  left: var(--circle-size);
-  border-radius: 100px;
-  transform: translateX(-50%);
-  z-index: 1;
-}
-
-.timeline ul li:nth-child(even):after {
-  bottom: auto;
-  top: 0;
-}
-
-.timeline ul li:nth-child(even) {
-  grid-row: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-top: 40px;
-  margin-top: calc(var(--circle-size) * -0.45);
-}
-
-.timeline ul li:nth-child(odd) p:after,
-.timeline ul li:nth-child(even) h3:before {
-  content: "";
-  display: block;
-  border-left: 2px dashed var(--text);
-  height: 100vh;
-  margin-top: 10px;
-  position: absolute;
-  left: calc(var(--circle-size) - 1px);
-}
-
-.timeline ul li:nth-child(even) h3:before {
-  bottom: 100%;
-  margin-bottom: 5px;
-}
-
-.timeline ul li>* {
-  padding-left: calc(var(--circle-size) * 0.4);
-}
-
-.timeline ul li h3 {
-  color: var(--accent);
-  margin: 0;
-  margin-bottom: 5px;
-  font-size: 1.6em;
-  position: relative;
-}
-
-.timeline ul li p {
-  margin: 0;
-  position: relative;
-  text-wrap: pretty;
-}
-
-@media (max-width: 568px) {
-  .timeline ul {
-    display: flex;
-    flex-direction: column;
-  }
-  .timeline ul li {
-    grid-column: 1 !important;
-    grid-row: var(--index) !important;
-    height: 100%;
-    padding-bottom: 30px;
-    padding-top: 10px;
-  }
-}
-.timeline-image-wrapper {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.timeline-icon {
-  width: 75px;
-  height: 75px;
-  object-fit: contain;
-}
-
-</style><div class="timeline" style="--items: 7;">
-    <ul>
-      <li style="--index: 1">
-        <h3>Nov 2019 - today</h3>
-        <p>
-          Starts working as a student at ‘La Sucrerie’. In contact with customers.
-          </p><div class="timeline-image-wrapper">
-            <img src="./index_files/_logo_LaSucrerue.webp" alt="Sucrerie" class="timeline-icon" loading="lazy" style="">
-          </div>
-        <p></p>
-      </li>
-      <li style="--index: 2">
-        <h3>Feb-May 2022</h3>
-        <p>
-          Intern as a technical artist at Appeals Studio. Working on the development of Outcast 2.
-          </p><div class="timeline-image-wrapper">
-            <img src="./index_files/_appealLogo.webp" alt="Appeals" class="timeline-icon" loading="lazy" style="">
-          </div>
-        <p></p>
-      </li>
-      <li style="--index: 3">
-        <h3>Jun 2022</h3>
-        <p>
-          Graduates as a Technical Artist from the Haute Ecole Albert-Jacquard
-          </p><div class="timeline-image-wrapper">
-            <img src="./index_files/_HeajLogo.webp" alt="HEAJ" class="timeline-icon" loading="lazy" style="">
-          </div>
-        <p></p>
-      </li>
-      <li style="--index: 4">
-        <h3>Sept-Dec 2024</h3>
-        <p>
-          IT tutor for around forty students in the first year of a bachelor's degree in IT (at UCLouvain)
-          </p><div class="timeline-image-wrapper">
-            <img src="./index_files/_UclLouvainLogo.webp" alt="Tutor" class="timeline-icon" loading="lazy" style="">
-          </div>
-        <p></p>
-      </li>
-      <li style="--index: 5">
-        <h3>Jun 2025</h3>
-        <p>
-          Master's degree graduates in computer science from the Catholic University of Louvain-La-Neuve
-          </p><div class="timeline-image-wrapper">
-            <img src="./index_files/_UclLouvainLogo.webp" alt="UCLouvain" class="timeline-icon" loading="lazy" style="">
-          </div>
-        <p></p>
-      </li>
-      <li style="--index: 6">
-        <h3>Next</h3>
-        <p>
-          Maybe with you ... ?
-          </p><div class="timeline-image-wrapper">
-            <img src="./index_files/_logo_MaybeWithYou.webp" alt="UCLouvain" class="timeline-icon" loading="lazy" style="">
-          </div>
-        <p></p>
-      </li>
-    </ul>
-  </div></div>
-    </section><section class="s_image_gallery o_colored_level o_spc-small o_masonry pb168 pt0" data-vcss="002" data-columns="6" style="overflow: hidden; position: relative; background-color: rgb(12, 26, 63);" data-snippet="s_images_wall" data-name="Mur d&#39;images" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Wavy/01_001&quot;,&quot;flip&quot;:[],&quot;showOnMobile&quot;:false,&quot;shapeAnimationSpeed&quot;:&quot;0&quot;}"><div class="o_we_shape o_web_editor_Wavy_01_001"></div>
-        <div class="o_container_small"><div class="row s_nb_column_fixed"><div class="o_masonry_col o_snippet_not_selectable col-lg-2"><img src="./index_files/logo_Csharp.webp" alt="" class="img img-fluid d-block o_we_custom_image" data-mimetype="image/webp" data-original-id="514" data-original-src="/web/image/514-46aaf24c/logo_Csharp.png" data-mimetype-before-conversion="image/png" data-resize-width="128" style="width: 50% !important;" loading="lazy" data-index="0"><img class="img img-fluid d-block o_we_custom_image" src="./index_files/logo_premiere.webp" data-index="6" alt="" data-name="Image" style="width: 50% !important;" data-mimetype="image/webp" data-original-id="523" data-original-src="/web/image/523-6fc0692c/logo_premiere.png" data-mimetype-before-conversion="image/png" loading="lazy"></div><div class="o_masonry_col o_snippet_not_selectable col-lg-2"><img class="img img-fluid d-block o_we_custom_image" src="./index_files/logo_Python.webp" data-index="1" alt="" data-name="Image" style="width: 50% !important;" data-mimetype="image/webp" data-original-id="522" data-original-src="/web/image/522-cf3ab3d5/logo_Python.png" data-mimetype-before-conversion="image/png" loading="lazy"><img class="img img-fluid d-block o_we_custom_image" src="./index_files/logo_git.webp" data-index="7" alt="" data-name="Image" style="width: 50% !important;" data-mimetype="image/webp" data-original-id="526" data-original-src="/web/image/526-2f30f997/logo_git.png" data-mimetype-before-conversion="image/png" loading="lazy"></div><div class="o_masonry_col o_snippet_not_selectable col-lg-2"><img src="./index_files/logo_Unity.webp" alt="" class="img img-fluid d-block o_we_custom_image" data-mimetype="image/webp" data-original-id="516" data-original-src="/web/image/516-35939b56/logo_Unity.png" data-mimetype-before-conversion="image/png" data-resize-width="128" style="width: 50% !important;" loading="lazy" data-index="2"><img class="img img-fluid d-block o_we_custom_image" src="./index_files/logo_perforce.webp" data-index="8" alt="" data-name="Image" style="width: 50% !important;" data-mimetype="image/webp" data-original-id="525" data-original-src="/web/image/525-c1277110/logo_perforce.png" data-mimetype-before-conversion="image/png" loading="lazy"></div><div class="o_masonry_col o_snippet_not_selectable col-lg-2"><img class="img img-fluid d-block o_we_custom_image" src="./index_files/logo_UnrealEngine.webp" data-index="3" alt="" data-name="Image" style="width: 50% !important;" data-mimetype="image/webp" data-original-id="517" data-original-src="/web/image/517-d09b1467/logo_UnrealEngine.png" data-mimetype-before-conversion="image/png" loading="lazy"><img class="img img-fluid d-block o_we_custom_image" src="./index_files/logo_Visual.webp" data-index="9" alt="" data-name="Image" style="width: 50% !important;" data-mimetype="image/webp" data-original-id="521" data-original-src="/web/image/521-82734310/logo_Visual.png" data-mimetype-before-conversion="image/png" loading="lazy"></div><div class="o_masonry_col o_snippet_not_selectable col-lg-2"><img class="img img-fluid d-block o_we_custom_image" src="./index_files/Gdevelop.webp" data-index="4" alt="" data-name="Image" style="width: 50% !important;" data-mimetype="image/webp" data-original-id="527" data-original-src="/web/image/527-6a2f78da/Gdevelop.png" data-mimetype-before-conversion="image/png" loading="lazy"><img class="img img-fluid d-block o_we_custom_image" src="./index_files/logo_intelligi.webp" data-index="10" alt="" data-name="Image" style="width: 50% !important;" data-mimetype="image/webp" data-original-id="530" data-original-src="/web/image/530-19514fe8/logo_intelligi.png" data-mimetype-before-conversion="image/png" loading="lazy"></div><div class="o_masonry_col o_snippet_not_selectable col-lg-2"><img class="img img-fluid d-block o_we_custom_image" src="./index_files/logo_Photoshop.webp" data-index="5" alt="" data-name="Image" style="width: 50% !important;" data-mimetype="image/webp" data-original-id="524" data-original-src="/web/image/524-61f16892/logo_Photoshop.png" data-mimetype-before-conversion="image/png" loading="lazy"><img src="./index_files/logo_embergen.webp" alt="" class="img img-fluid d-block o_we_custom_image" style="width: 50% !important;" data-mimetype="image/webp" data-original-id="529" data-original-src="/web/image/529-1f36df52/logo_embergen.png" data-mimetype-before-conversion="image/png" data-resize-width="500" loading="lazy" data-index="11"></div></div></div>
-    </section><section class="s_company_team_basic o_colored_level o_cc o_cc1 pb88 pt0" data-snippet="s_company_team_basic" data-name="Équipe basique" style="background-color: rgb(14, 21, 40);">
-        <div class="container">
-            <div class="row o_grid_mode" data-row-count="4">
-                
-                
-                
-                
-                
-            <div class="o_grid_item g-col-6 g-col-lg-3 o_colored_level g-height-1 col-6" data-name="Team Member" style="z-index: 2; --grid-item-padding-x: 32px; grid-area: 1 / 1 / 2 / 4; --grid-item-padding-y: 0px;">
-                    <div class="s_text_highlight o_colored_level my-3 w-100 text-center o_cc o_cc3 bg-100" data-snippet="s_text_highlight" data-name="Surlignage du texte">
-        <div class="container">
-            <h3>Own a driving license (B)</h3>
-            <p>​And ready to roll right&nbsp; &nbsp; &nbsp; &nbsp; up to you!</p></div></div></div><div class="o_grid_item g-col-6 g-col-lg-3 o_colored_level g-height-1 col-6" data-name="Team Member" style="z-index: 2; --grid-item-padding-x: 32px; grid-area: 1 / 4 / 2 / 7; --grid-item-padding-y: 0px;">
-                    <div class="s_text_highlight o_colored_level my-3 w-100 text-center o_cc o_cc3 bg-100" data-snippet="s_text_highlight" data-name="Surlignage du texte">
-        <div class="container">
-            <h3>Languages</h3>
-            <p style="margin-bottom: 0px;"><strong>French </strong>: native</p><p><strong>English </strong>: fluent</p><p><br></p>
-        </div>
-    </div>
-                    <h4 class="h5-fs" style="text-align: center;"><font class="text-o-color-4">​</font><br></h4><p class="h5-fs" style="text-align: center;"><br></p>
-                </div><div class="o_grid_item g-col-6 o_colored_level g-height-4 g-col-lg-6 col-6" data-name="Team Member" style="z-index: 2; --grid-item-padding-x: 32px; grid-area: 1 / 7 / 5 / 13; --grid-item-padding-y: 0px;">
-                    <div class="s_text_highlight o_colored_level my-3 w-100 text-center o_cc o_cc3 bg-100" data-snippet="s_text_highlight" data-name="Surlignage du texte">
-        <div class="container">
-            <h3>I was a scout animator for 7 years</h3>
-            <p>So I know how to make quick decisions, get a group on board towards a goal, and come up with a plan B, C and D when plan A goes awry.</p></div></div><p class="h5-fs" style="text-align: center;"><br></p>
-                </div></div>
-        </div>
-    </section></div>
-    
-        <div id="o_shared_blocks" class="oe_unremovable" data-oe-id="580" data-oe-xpath="/data/xpath/div" data-oe-model="ir.ui.view" data-oe-field="arch"></div>
-                <div id="o_search_modal_block"><div class="modal fade css_editable_mode_hidden" id="o_search_modal" aria-hidden="true" tabindex="-1">
-                    <div class="modal-dialog modal-lg pt-5">
-                        <div class="modal-content mt-5">
-    <form method="get" class="o_searchbar_form s_searchbar_input " action="http://localhost:8069/website/search" data-snippet="s_searchbar_input">
-            <div role="search" class="input-group input-group-lg">
-        <input type="search" name="search" class="search-query form-control oe_search_box border border-end-0 p-3 border-0 bg-light" placeholder="Rechercher…" data-search-type="all" data-limit="5" data-display-image="true" data-display-description="true" data-display-extra-link="true" data-display-detail="true" data-order-by="name asc" autocomplete="off">
-        <button type="submit" aria-label="Rechercher" title="Rechercher" class="btn oe_search_button border border-start-0 px-4 bg-o-color-4">
-            <i class="oi oi-search"></i>
-        </button>
-    </div>
-
-            <input name="order" type="hidden" class="o_search_order_by" data-oe-model="ir.ui.view" data-oe-id="637" data-oe-field="arch" data-oe-xpath="/data/xpath[3]/form/input[1]" value="name asc">
-            
-    
-        </form>
-                        </div>
-                    </div>
-                </div></div></main>
-                <footer id="bottom" data-anchor="true" data-name="Footer" class="o_footer o_colored_level o_cc ">
-                    <div id="footer" class="oe_structure oe_structure_solo" data-oe-id="1924" data-oe-xpath="/data/xpath/div" data-oe-model="ir.ui.view" data-oe-field="arch">
-            <section class="s_text_block pt0" data-snippet="s_text_block" data-name="Text">
-                <div class="container s_allow_columns">
-                    <div class="s_social_media mb-4 o_not_editable text-center" data-snippet="s_social_media" data-name="Social Media">
-                        <h5 class="s_social_media_title d-none">Suivez-nous</h5>
-<a href="http://localhost:8069/website/social/linkedin" class="s_social_media_linkedin" target="_blank" aria-label="LinkedIn">
-                            <i class="fa fa-linkedin rounded-circle rounded shadow-sm o_editable_media"></i>
-                        </a>
-<a href="http://localhost:8069/website/social/youtube" class="s_social_media_youtube" target="_blank" aria-label="YouTube">
-                            <i class="fa shadow-sm o_editable_media fa-youtube rounded rounded-circle"></i>
-                        </a>
-<a href="http://localhost:8069/website/social/github" class="s_social_media_github" target="_blank" aria-label="GitHub">
-                            <i class="fa rounded-circle rounded shadow-sm o_editable_media fa-github"></i>
-                        </a>
-</div>
-                    <p class="text-center mb-1">Justin Vanwichelen - 2025</p>
-                    <ul class="list-inline text-center">
-                        <li class="list-inline-item mx-3"><i class="fa fa-1x fa-fw fa-phone me-2"></i><span class="o_force_ltr"><a href="tel:+32496/30.93.53">+32 496/30.93.53</a></span></li>
-                        <li class="list-inline-item mx-3"><i class="fa fa-1x fa-fw fa-envelope me-2"></i><a href="mailto:justinvanwichelen@gmail.com">justinvanwichelen@gmail.com</a></li>
-                    </ul>
-                </div>
-            </section>
-            
-        </div>
-                </footer>
-            </div>
-        
-        
-<deepl-input-controller translate="no"><template shadowrootmode="open"><link rel="stylesheet" href="chrome-extension://cofdbpoegempjloogbagkncekinflcnj/build/content.css"><div dir="ltr" style="visibility: initial !important;"><div class="dl-input-translation-container svelte-95aucy"><div></div></div></div></template></deepl-input-controller><div class="o-main-components-container"><div class="o-overlay-container"></div><div></div><div class="editor_notification_manager o_notification_manager o_upload_progress_toast"></div><div class="o_notification_manager"></div></div></body></html>
+<deepl-input-controller translate="no"><template shadowrootmode="open"><link rel="stylesheet" href="chrome-extension://cofdbpoegempjloogbagkncekinflcnj/build/content.css"><div dir="ltr" style="visibility: initial !important;"><div class="dl-input-translation-container svelte-95aucy"><div></div></div></div></template></deepl-input-controller><header class="o_navbar"><nav class="o_main_navbar d-print-none" data-command-category="disabled"><div class="o_navbar_apps_menu"><button data-hotkey="h" aria-expanded="false" class="o-dropdown dropdown-toggle dropdown" aria-label="Menu de la page d&#39;accueil" data-bs-original-title="Menu de la page d&#39;accueil" title="Menu de la page d&#39;accueil"><i class="oi oi-apps"></i></button></div><a class="o-dropdown-item dropdown-item o-navigable o_menu_brand d-flex" role="menuitem" tabindex="0" href="http://localhost:8069/odoo/website" data-menu-xmlid="website.menu_website_configuration" data-section="122">Site Web</a><div class="o_navbar_breadcrumbs d-contents"></div><div class="o_menu_sections d-flex flex-grow-1 flex-shrink-1 w-0" role="menu"><button data-hotkey="1" data-menu-xmlid="website.menu_site" aria-expanded="false" class="o-dropdown dropdown-toggle dropdown"><span data-section="123">Site</span></button><button data-hotkey="2" data-menu-xmlid="website.menu_reporting" aria-expanded="false" class="o-dropdown dropdown-toggle dropdown"><span data-section="132">Analyse</span></button><button data-hotkey="3" data-menu-xmlid="website.menu_website_global_configuration" aria-expanded="false" class="o-dropdown dropdown-toggle dropdown"><span data-section="139">Configuration</span></button></div><div class="o_menu_systray d-flex flex-shrink-0 ms-auto o_website_systray" role="menu"><div data-index="7"></div><div class="o_user_menu d-none d-md-block pe-0"><button class="py-1 py-lg-0 o-dropdown dropdown-toggle dropdown" aria-expanded="false"><img class="o_avatar o_user_avatar rounded" alt="Utilisateur" src="./index_files/Administrator.svg"><small class="oe_topbar_name d-none ms-2 text-start smaller lh-1 text-truncate" style="max-width: 200px">Administrator<mark class="d-block font-monospace text-truncate"><i class="fa fa-database oi-small me-1"></i>JVPortefolio</mark></small></button></div><div data-index="5"></div><div class="o_menu_systray_item o_website_publish_container d-flex ms-auto"><a href="http://localhost:8069/#" class="d-flex align-items-center mx-1 px-2 px-md-0" data-hotkey="p"><span class="o_nav_entry d-none d-md-block mx-0 pe-1">Publié</span><div class="o-checkbox form-check form-switch d-flex justify-content-center m-0 pe-none"><input type="checkbox" class="form-check-input" id="checkbox-comp-1"><label class="form-check-label" for="checkbox-comp-1"></label></div></a></div><div data-index="4"></div><div class="o_mobile_preview o_menu_systray_item d-none d-md-flex"><a href="http://localhost:8069/#" class="o_nav_entry mx-1 px-3" data-hotkey="v"><span role="img" aria-label="Mobile preview" class="fa fa-lg fa-mobile" data-bs-original-title="Aperçu mobile" title="Aperçu mobile"></span></a></div><div data-index="2"></div><div class="o_menu_systray_item o_new_content_container d-none d-md-flex"><a href="http://localhost:8069/#" class="o-website-btn-custo-secondary btn d-flex align-items-center rounded-0 border-0 px-3" data-hotkey="c">Nouveau</a></div><div data-index="1"></div><div class="o_menu_systray_item o_edit_website_container d-none d-md-flex"><a href="http://localhost:8069/#" class="o-website-btn-custo-primary btn position-relative d-flex align-items-center rounded-0 border-0 px-3" data-hotkey="a"><span class="opacity-100">Modifier</span></a></div><div data-index="0"></div><div class="d-flex" xml:space="preserve"><button class="o_mobile_menu_toggle o_nav_entry o-no-caret d-md-none border-0 pe-3" aria-label="Toggle menu" data-bs-original-title="Basculer le menu" title="Basculer le menu"><img class="o_burger_menu_avatar o_image_24_cover rounded" alt="Menu" src="./index_files/Administrator(1).svg"></button></div></div></nav></header><div class="o_action_manager"><div class="o_website_preview border-top" data-view-xmlid="website.homepage"><div class="o_iframe_container"><iframe class="o_ignore_in_tour" src="./index_files/iframefallback.html"></iframe><iframe class="o_iframe" is-ready="true" src="./index_files/1.html" data-load-wysiwyg="true"></iframe></div></div></div><div class="o-main-components-container"><div class="o-overlay-container"><div class="o-overlay-item"></div></div><div></div><div class="editor_notification_manager o_notification_manager o_upload_progress_toast"></div><div class="o_fullscreen_indication"><p>Appuyez sur <span>esc</span> pour&nbsp;quitter&nbsp;le mode&nbsp;plein&nbsp;écran</p></div><div class="o-mail-ChatHub"><div class="o-mail-ChatHub-bubbles position-fixed end-0 d-flex flex-column align-content-start justify-content-end align-items-center bottom-0" style=""><div class="d-flex flex-column align-content-start justify-content-end align-items-center gap-1"></div></div></div><div class="o_notification_manager"></div></div></body></html>
