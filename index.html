@@ -182,13 +182,29 @@ Blend in. Speak like an AI… or be eliminated.</p>
         <iframe src="https://www.youtube.com/embed/Pxlf2Nk--HQ" allowfullscreen></iframe>
       </div>
     </div>
-    <div class="text-beside-video" id="my-journey">
+    <div class="text-beside-video">
       <h2 data-translate-key="rpgLLMSectionTitle">Where every game tells a new story</h2>
       <p data-translate-key="rpgLLMSectionP">Immerse yourself in a real-time AI-generated RPG, where each adventure is unique, immersive and shaped by your choices. Discover how AI become a true game master.</p>
       <button class="btn project-modal-trigger"
               data-modal-id="rpg-with-llm"
               data-translate-key="rpgLLMSectionBtn"
       >Learn more</button>
+    </div>
+  </div>
+    <div class="section-projet-en-avant">
+    <div class="overlay-container">
+      <img src="./index_files/img_WhoIsLying_Header.webp" alt="Coming Soon" class="custom-image" />
+      <div class="video-overlay">
+      <img src="./index_files/img_miniatureWhoIsLying_ComingSoon.webp" alt="Coming Soon" class="custom-image" />
+      </div>
+    </div>
+    <div class="text-beside-video" id="my-journey">
+      <h2 data-translate-key="whoIsLyingSectionTitle">They know how to lie. Will you be able to doubt them?</h2>
+      <p data-translate-key="whoIsLyingSectionP">Who is Lying is a narrative investigation game where each suspect is embodied by an AI capable of lying, contradicting itself, or revealing its secrets based on your questions. Analyze, interrogate, confront... and discover who is lying.</p>
+      <button class="btn project-modal-trigger"
+              data-modal-id="who-is-lying"
+              data-translate-key="whoIsLyingSectionBtn"
+      >I want to see more</button>
     </div>
   </div>
   <!-- My Journey Section -->
@@ -398,35 +414,42 @@ Blend in. Speak like an AI… or be eliminated.</p>
   <div class="o_container_small"> 
     <h2 class="games-section-title" data-translate-key="allGamesSectionTitle">All Games</h2> 
     <div class="games-grid-container">
-      <!-- Placeholder Game Card 1 -->
+      <!-- The Human Variable -->
       <div class="game-card" data-modal-id="the-human-variable">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureHumanVariable.webp" alt="The Human Variable" class="game-cover-image">
         </div>
         <h3 class="game-title" data-translate-key="gameHumanVariableTitle">The Human Variable</h3>
       </div>
-      <!-- Placeholder Game Card 2 -->
+      <!-- RPG with LLM -->
       <div class="game-card" data-modal-id="rpg-with-llm">
         <div class="game-image-wrapper">
           <img src="./index_files/img_RpgWithLLM.webp" alt="RPG with LLM" class="game-cover-image">
         </div>
         <h3 class="game-title" data-translate-key="gameRpgLLMTitle">RPG with LLM</h3>
       </div>
-      <!-- Placeholder Game Card 3 -->
+      <!-- Loki-->
       <div class="game-card" data-modal-id="loki">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureLoki.webp" alt="Loki" class="game-cover-image">
         </div>
         <h3 class="game-title" data-translate-key="gameLokiTitle">Loki</h3>
       </div>
-      <!-- Placeholder Game Card 4 -->
+      <!-- Who is Lying -->
+      <div class="game-card" data-modal-id="who-is-lying">
+        <div class="game-image-wrapper">
+          <img src="./index_files/img_miniatureWhoIsLying.webp" alt="Who is Lying" class="game-cover-image">
+        </div>
+        <h3 class="game-title" data-translate-key="gameWhoIsLyingTitle">Who is Lying</h3>
+      </div>
+      <!-- Diablo Cyberpunk -->
       <div class="game-card" data-modal-id="diablo-cyberpunk">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureDiabloCyberpunk.webp" alt="Diablo cyberpunk" class="game-cover-image">
         </div>
         <h3 class="game-title" data-translate-key="gameDiabloCyberpunkTitle">Diablo Cyberpunk</h3>
       </div>
-      <!-- Placeholder Game Card 5 -->
+      <!-- Stalk and Ruin -->
       <div class="game-card" data-modal-id="stalk-and-ruin">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureStalkAndRuin.webp" alt="Stalk and Ruin" class="game-cover-image">
@@ -851,6 +874,25 @@ Blend in. Speak like an AI… or be eliminated.</p>
         "./index_files/img_OneWayTrip_Show_06.webp"
       ],
       "playUrl": ""
+    },
+    "who-is-lying": {
+      "titleKey": "modal_whoislying_title",
+      "imageUrl": "./index_files/img_whoislying_Show_01.webp",
+      "descriptionKey": "modal_whoislying_description",
+      "badges": [
+        {"icon": "fa-solid fa-user", "textKey": "modal_whoislying_badge_alone"},
+        {"icon": "fa-regular fa-calendar-alt", "textKey": "modal_whoislying_badge_date"},
+        {"icon": "fa-regular fa-clock", "textKey": "modal_whoislying_badge_dev_time"},
+        {"icon": "fa-solid fa-gear", "textKey": "modal_whoislying_badge_role"},
+        {"icon": "fa-brands fa-unity", "textKey": "modal_whoislying_badge_engine"}
+      ],
+      "gallery": [
+        "./index_files/img_whoislying_Show_02.webp",
+        "./index_files/img_whoislying_Show_03.webp",
+        "./index_files/img_whoislying_Show_04.webp",
+        "./index_files/img_whoislying_Show_05.webp"
+      ],
+      "playUrl": ""
     }
   }
   </script>
@@ -871,6 +913,7 @@ Blend in. Speak like an AI… or be eliminated.</p>
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen>
               </iframe>
+              <img src="" alt="Project image" id="modal-image-element" style="display: none; width: 100%; height: auto; object-fit: cover;">
             </div>
             <img src="" alt="Hovered gallery image" id="modal-hover-image" class="modal-hover-image-style">
           </div>

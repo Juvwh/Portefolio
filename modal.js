@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalTitleElement = modalOverlay ? modalOverlay.querySelector('.modal-title') : null;
   const modalDescriptionElement = modalOverlay ? modalOverlay.querySelector('.modal-description') : null;
   const modalVideoIframe = modalOverlay ? modalOverlay.querySelector('.modal-video-container iframe') : null;
+  const modalImageElement = modalOverlay ? modalOverlay.querySelector('#modal-image-element') : null;
   const modalVideoContainer = modalOverlay ? modalOverlay.querySelector('.modal-video-container') : null; 
   const modalHoverImageElement = modalOverlay ? modalOverlay.querySelector('#modal-hover-image') : null; 
   const modalGalleryElement = modalOverlay ? modalOverlay.querySelector('.modal-gallery') : null;
@@ -69,8 +70,22 @@ document.addEventListener('DOMContentLoaded', () => {
       modalDescriptionElement.textContent = "Description not available.";
     }
 
-    if (modalVideoIframe) {
-      modalVideoIframe.src = data.videoUrl || "https://www.youtube.com/embed/dQw4w9WgXcQ"; 
+    if (modalVideoIframe && modalImageElement) {
+        if (data.imageUrl) {
+            modalVideoIframe.style.display = 'none';
+            modalVideoIframe.src = ''; 
+            modalImageElement.style.display = 'block';
+            modalImageElement.src = data.imageUrl;
+        } else if (data.videoUrl) {
+            modalImageElement.style.display = 'none';
+            modalImageElement.src = '';
+            modalVideoIframe.style.display = 'block';
+            modalVideoIframe.src = data.videoUrl;
+        } else {
+            modalImageElement.style.display = 'none';
+            modalVideoIframe.style.display = 'block';
+            modalVideoIframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ";
+        }
     }
     
     if (modalBadgesContainer) {
@@ -156,12 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /**
-   * Opens the modal and populates it with data based on the trigger button.
-   * It first tries to get data from the centralized JSON store using `data-modal-id`.
-   * If that fails, it falls back to reading individual `data-modal-*` attributes from the button.
-   * @param {HTMLElement} triggerButton - The button that triggered the modal.
-   */
   function openModal(triggerButton) {
     if (!modalOverlay) {
       console.error("Modal overlay element not found. Cannot open modal.");
@@ -357,7 +366,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  // --- Swipe Functionality (Mobile) ---
   let touchstartX = 0;
   let touchendX = 0;
 
@@ -395,9 +403,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     lastWheelTime = currentTime;
 
-    if (event.deltaY > 0 || event.deltaX > 0) { // Scroll down or right
+    if (event.deltaY > 0 || event.deltaX > 0) { 
         showNextImage();
-    } else if (event.deltaY < 0 || event.deltaX < 0) { // Scroll up or left
+    } else if (event.deltaY < 0 || event.deltaX < 0) {
         showPrevImage();
     }
     event.preventDefault();
@@ -411,7 +419,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let lightboxJustClosed = false; 
 
-  // Global Escape key listener
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       if (lightbox.classList.contains('active')) {
@@ -427,5 +434,4 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
   console.log("Modal and Lightbox scripts initialized.");
-  // --- End of DOMContentLoaded ---
 });

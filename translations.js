@@ -56,6 +56,11 @@ const translations = {
     humanVariableSectionP: "You're the only human among five androids. The others are driven by real LLMs : GPT, Mistral, LLaMA, and Gemma. Each round, a question is asked. Everyone answers. Then, they vote: who felt too human? Too emotional? Too real? Blend in. Speak like an AI… or be eliminated.",
     humanVariableSectionBtn: "I want to see more",
 
+        // Custom image + video + text section (WhoIsLying)
+    whoIsLyingSectionTitle: "They know how to lie. Will you be able to doubt them?",
+    whoIsLyingSectionP: "Who is Lying is a narrative investigation game where each suspect is embodied by an AI capable of lying, contradicting itself, or revealing its secrets based on your questions. Analyze, interrogate, confront... and discover who is lying.",
+    whoIsLyingSectionBtn: "Learn more",
+
     // Custom image + video + text section (RPG with LLM)
     rpgLLMSectionTitle: "Where every game tells a new story",
     rpgLLMSectionP: "Immerse yourself in a real-time AI-generated RPG, where each adventure is unique, immersive and shaped by your choices. Discover how AI become a true game master.",
@@ -150,6 +155,14 @@ const translations = {
     modal_loki_badge_dev_time: "Dev: 3 months",
     modal_loki_badge_role: "Technical Artist, UI designer",
     modal_loki_badge_engine: "Unreal Engine 4",
+    // -- Who is lying (Modal)
+    modal_whoislying_title: "Who is lying ? <lower>(in progress)</lower>",
+    modal_whoislying_description:"<strong>Who is Lying</strong> is an innovative investigative game where you play as a detective tasked with solving complex cases by interrogating suspects… who aren’t just scripted characters, but actual <strong>artificial intelligences capable of answering any question freely</strong>.<br></br>Each suspect comes with their own <strong>memory</strong>, <strong>personality</strong>, <strong>secrets</strong>, and <strong>alibis</strong>, generated and driven by LLMs (Large Language Models), making every interrogation <strong>unique, unpredictable, and believable</strong>.<br></br>The player speaks through a microphone, just like in a real interrogation, and can choose to <strong>dig, confront, manipulate, or simply observe</strong>… but beware: <strong>these AIs can lie, contradict themselves, or slip up</strong>.<br></br>The core innovation of <strong>Who is Lying</strong> lies in its <strong>systemic architecture</strong>: each response is contextualized, consistent with the character’s memories, and evolves based on the ongoing conversation.<br></br>Every session becomes a <strong>living investigation</strong>, where the truth hides in the shadows, silences, and contradictions.<br></br>With a <strong>modular AI integration system</strong>, <strong>Who is Lying</strong> is both a narrative game, an <strong>experimental experience in conversational AI</strong>, and a showcase of my skills in <strong>interactive design, software architecture, storytelling, and UX</strong>.",
+    modal_whoislying_badge_alone: "Made alone",
+    modal_whoislying_badge_date: "Aug 2025",
+    modal_whoislying_badge_dev_time: "In progress",
+    modal_whoislying_badge_role: "Technical Artist, UI designer, Game Dev",
+    modal_whoislying_badge_engine: "Unity 6",
     // -- Diablo Cyberpunk (Modal)
     modal_diablo_title: "Diablo Like : Cyberpunk (Bachelor's work)",
     modal_diablo_description: "A <strong>cyberpunk remake of Diablo III</strong> where every visual effect (<strong>explosions</strong>, <strong>attacks</strong>, <strong>dash</strong>, <strong>summons</strong>) has been designed entirely by hand.<br><br>⚡️🔥 An intense <strong>solo project</strong> created during the <strong>second year of game design school</strong>, where <strong>VFX</strong> brings <strong>futuristic gameplay</strong> to life. <strong>Come and take a closer look!</strong>",
@@ -233,6 +246,10 @@ const translations = {
     humanVariableSectionTitle: "Cinq androïdes. Un imposteur. Vous.",
     humanVariableSectionP: "Vous êtes le seul humain parmi cinq androïdes. Les autres sont pilotés par de vrais LLMs : GPT, Mistral, LLaMA, et Gemma. À chaque tour, une question est posée. Tout le monde répond. Ensuite, chacun vote : qui a semblé trop humain ? Trop émotionnel ? Trop réel ? Fondez-vous dans la masse. Parlez comme une IA… ou vous serez éliminé.",
     humanVariableSectionBtn: "Je veux voir plus",
+    // Custom image + video + text section (WhoIsLying)
+    whoIsLyingSectionTitle: "Ils savent mentir. Saurez-vous douter ?",
+    whoIsLyingSectionP: "Who is Lying est un jeu d’enquête narratif où chaque suspect est incarné par une IA capable de mentir, se contredire ou révéler ses secrets selon vos questions. Analysez, interrogez, confrontez... et découvrez qui ment.",
+    whoIsLyingSectionBtn: "En savoir plus",
     // Section personnalisée image + vidéo + texte (RPG avec LLM)
     rpgLLMSectionTitle: "Où chaque partie raconte une nouvelle histoire.",
     rpgLLMSectionP: "Plongez-vous dans un RPG généré par IA en temps réel, où chaque aventure est unique, immersive et façonnée par vos choix. Au travers de ce mémoire de master, nous avons découvert comment l'IA peut devenir un vrai maître de jeu.",
@@ -319,6 +336,16 @@ const translations = {
     modal_loki_badge_dev_time: "Dev : 3 mois",
     modal_loki_badge_role: "Technical Art., Designer UI",
     modal_loki_badge_engine: "Unreal Engine 4",
+
+    // -- Who is lying (Modal)
+    modal_whoislying_title: "Who is lying ? <lower>(en développement)</lower>",
+    modal_whoislying_description: "<strong>Who is Lying</strong> est un jeu d'enquête innovant où le joueur incarne un inspecteur chargé d’élucider des affaires complexes en interrogeant des suspects... qui ne sont pas de simples personnages scriptés, mais de véritables <strong>intelligences artificielles capables de répondre librement à toutes les questions posées</strong>.<br></br>Chaque suspect possède sa propre <strong>mémoire</strong>, <strong>personnalité</strong>, <strong>secrets</strong> et <strong>alibis</strong>, générés et animés par des LLMs (Large Language Models), ce qui rend chaque interrogation <strong>unique, imprévisible et crédible</strong>.<br></br>Le joueur parle dans son micro comme il le ferait dans un vrai interrogatoire, et peut <strong>creuser, confronter, manipuler ou simplement écouter</strong>… mais attention : <strong>mentir, se contredire ou se trahir est aussi possible pour ces IA</strong>.<br></br>L’innovation majeure de <strong>Who is Lying</strong> réside dans son <strong>architecture systémique</strong> : les réponses sont contextualisées, cohérentes avec les souvenirs du personnage, et évoluent en fonction des échanges.<br></br>Chaque partie devient ainsi une <strong>enquête vivante</strong>, où la vérité se cache derrière les zones d’ombre, les silences et les contradictions.<br></br>Avec un <strong>système modulaire d’intégration d’IA</strong>, <strong>Who is Lying</strong> est à la fois un jeu narratif, une <strong>expérience expérimentale sur les IA conversationnelles</strong>, et un démonstrateur de mes compétences en <strong>design interactif, architecture logicielle, storytelling et UX</strong>.",
+    modal_whoislying_badge_alone: "Réalisé seul",
+    modal_whoislying_badge_date: "Août 2025",
+    modal_whoislying_badge_dev_time: "En développement",
+    modal_whoislying_badge_role: "Technical Artist, UI designer, Game Dev",
+    modal_whoislying_badge_engine: "Unity 6",
+
     // -- Diablo Cyberpunk (Modale)
     modal_diablo_title: "Diablo Like : Cyberpunk (Travail de Licence)",
     modal_diablo_description: "Un <strong>remake cyberpunk de Diablo III</strong> où chaque effet visuel (<strong>explosions</strong>, <strong>attaques</strong>, <strong>dash</strong>, <strong>invocations</strong>) a été conçu entièrement à la main.<br><br>⚡️🔥 Un projet <strong>solo intense</strong> créé pendant la <strong>deuxième année d'école de design de jeux</strong>, où les <strong>VFX</strong> donnent vie à un <strong>gameplay futuriste</strong>. <strong>Venez jeter un coup d'œil !</strong>",
@@ -350,8 +377,4 @@ const translations = {
 }
 
 };
-// Note: Some badge texts like "UE 5", "Unity" for engines are kept as is, assuming they are proper names/brands.
-// Dates like "2024" are also kept as is.
-// HTML tags within strings (like <strong>) are preserved.
-// For long descriptions in modals, I've used a "(full description placeholder)" for FR to keep this initial file manageable.
-// You will need to replace these "FR: ..." placeholders with actual French translations.
+
