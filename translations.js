@@ -17,6 +17,7 @@ const translations = {
     navCv: "CV",
     switchToDarkMode: "Switch to Dark Mode",
     switchToLightMode: "Switch to Light Mode",
+    themeToggle : "Switch to Light Mode",
 
     // Hero Section
     heroGreeting: "HI ALL, I'M <strong>JUSTIN 👋</strong>",
@@ -115,6 +116,7 @@ const translations = {
     gameDiabloCyberpunkTitle: "Diablo Cyberpunk",
     gameStalkAndRuinTitle: "Stalk and Ruin",
     gameOneWayTripTitle: "One way trip",
+    gameWhoIsLyingTitle: "Who is Lying ?",
 
     // Footer
     footerCvDownload: "Download CV",
@@ -211,6 +213,7 @@ const translations = {
     navCv: "CV",
     switchToDarkMode: "Activer le mode sombre",
     switchToLightMode: "Activer le mode clair",
+    themeToggle : "Activer le mode clair",
     // Section Hero
     heroGreeting: "SALUT! JE SUIS <strong>JUSTIN 👋</strong>",
     heroP1: "Formé en tant que <strong>Technical Artist</strong>, suivi d'un <strong>Master en Informatique</strong> avec une spécialisation en <strong>Intelligence Artificielle</strong>, je me passionne pour la <strong>programmation gameplay</strong> et le développement de systèmes interactifs. Mon sens créatif, combiné à mes compétences techniques, me permet de concevoir des <strong>expériences immersives et intelligentes</strong>.",
@@ -299,6 +302,7 @@ const translations = {
     gameDiabloCyberpunkTitle: "Diablo Cyberpunk",
     gameStalkAndRuinTitle: "Stalk and Ruin",
     gameOneWayTripTitle: "One Way Trip",
+    gameWhoIsLyingTitle: "Who is Lying ?",
     // Pied de page
     footerCvDownload: "Télécharger mon CV",
     footerCvAriaLabel: "Télécharger mon CV",
