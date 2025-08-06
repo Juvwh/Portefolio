@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalHoverImageElement = modalOverlay ? modalOverlay.querySelector('#modal-hover-image') : null; 
   const modalGalleryElement = modalOverlay ? modalOverlay.querySelector('.modal-gallery') : null;
   const modalBadgesContainer = modalOverlay ? modalOverlay.querySelector('.modal-badges') : null;
-  const modalPlayButton = modalOverlay ? modalOverlay.querySelector('.modal-play-btn') : null;
+  const modalButtonsContainer = modalOverlay ? modalOverlay.querySelector('.modal-buttons-container') : null;
+
 
   const lightbox = document.getElementById('gallery-lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
@@ -154,19 +155,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    if (modalPlayButton) {
+     if (modalButtonsContainer) {
+        modalButtonsContainer.innerHTML = ''; // Clear existing buttons
+
+        // "Play the Demo" button
         if (data.playUrl) {
-            modalPlayButton.style.display = '';
-            modalPlayButton.onclick = () => {
-                if (data.playUrl.startsWith('#')) { 
-                    window.location.hash = data.playUrl;
-                } else { 
-                    window.open(data.playUrl, '_blank');
-                }
-                closeModal(); 
+            const playButton = document.createElement('button');
+            playButton.className = 'btn modal-play-btn';
+            playButton.textContent = window.getTranslationForKey('modalPlayButton') || 'Play';
+            playButton.onclick = () => {
+                window.open(data.playUrl, '_blank');
+                closeModal();
             };
-        } else {
-            modalPlayButton.style.display = 'none'; 
+            modalButtonsContainer.appendChild(playButton);
+        }
+
+        // "View Report" button
+        if (data.reportUrl) {
+            const reportButton = document.createElement('button');
+            reportButton.className = 'btn';
+            reportButton.textContent = "View Report";
+            reportButton.onclick = () => {
+                window.open(data.reportUrl, '_blank');
+            };
+            modalButtonsContainer.appendChild(reportButton);
+        }
+
+        // "Read Thesis" button
+        if (data.thesisUrl) {
+            const thesisButton = document.createElement('button');
+            thesisButton.className = 'btn';
+            thesisButton.textContent = "Read Thesis";
+            thesisButton.onclick = () => {
+                window.open(data.thesisUrl, '_blank');
+            };
+            modalButtonsContainer.appendChild(thesisButton);
         }
     }
   }
@@ -432,6 +455,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
+
+  /**
+   * Checks the URL hash on page load and opens the corresponding modal.
+   */
+  function openModalFromUrl() {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      const triggerElement = document.querySelector(`[data-modal-id="${hash}"]`);
+      if (triggerElement) {
+        console.log(`URL hash found: #${hash}. Opening corresponding modal.`);
+        openModal(triggerElement);
+      } else {
+        console.warn(`URL hash #${hash} found, but no corresponding modal trigger element could be found.`);
+      }
+    }
+  }
+
+  // Check for a URL hash to determine if a modal should be opened on page load.
+  openModalFromUrl();
 
   console.log("Modal and Lightbox scripts initialized.");
 });
