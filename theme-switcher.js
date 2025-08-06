@@ -6,16 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const LIGHT_THEME_CLASS = 'light-theme';
   const DARK_THEME_CLASS = 'dark-theme';
 
-  window.updateThemeButtonAppearance = function() {
-    if (!themeToggleBtn) return; 
-
+  // Function to update button text/icon based on current theme
+  function updateButtonAppearance() {
     if (body.classList.contains(LIGHT_THEME_CLASS)) {
-      themeToggleBtn.textContent = window.getTranslationForKey ? window.getTranslationForKey('switchToDarkMode') : 'Switch to Dark Mode'; // 🌙
+      themeToggleBtn.textContent = 'Switch to Dark Mode'; // Or use an icon like '🌙'
     } else {
-      themeToggleBtn.textContent = window.getTranslationForKey ? window.getTranslationForKey('switchToLightMode') : 'Switch to Light Mode'; //☀️
+      themeToggleBtn.textContent = 'Switch to Light Mode'; // Or use an icon like '☀️'
     }
   }
 
+  // Function to apply a specific theme
   function applyTheme(theme) {
     if (theme === 'light') {
       body.classList.add(LIGHT_THEME_CLASS);
@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.remove(LIGHT_THEME_CLASS);
     }
     localStorage.setItem(THEME_KEY, theme);
-    window.updateThemeButtonAppearance();
+    updateButtonAppearance();
   }
 
+  // Event listener for the toggle button
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
       if (body.classList.contains(LIGHT_THEME_CLASS)) {
@@ -38,11 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Load and apply saved theme preference on script load
   const savedTheme = localStorage.getItem(THEME_KEY);
   if (savedTheme) {
     applyTheme(savedTheme);
   } else {
-    window.updateThemeButtonAppearance();
+    // If no saved theme, ensure current body class matches button state
+    // The body already has 'dark-theme' by default from HTML
+    updateButtonAppearance();
   }
 
   console.log("Theme switcher script initialized.");

@@ -472,7 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Check for a URL hash to determine if a modal should be opened on page load.
+  // On load, check if a modal needs to be opened from the URL hash.
   openModalFromUrl();
 
   console.log("Modal and Lightbox scripts initialized.");
