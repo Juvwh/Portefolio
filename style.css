@@ -318,6 +318,15 @@ iframe {
   .hero-text p {
     font-size: 0.9rem; 
   }
+  .carousel-header {
+    font-size: 1.3rem;
+    margin-top: 2rem;
+  }
+  .card {
+    width: 85vw;
+    max-width: 320px;
+    height: auto;
+  }
 }
 #theme-toggle-btn {
   position: fixed;
@@ -686,14 +695,18 @@ iframe {
   }
   .arrow {
     margin: 0 5px; 
-    font-size: 1.5rem; 
-    padding: 0.5rem;
+    font-size: 1.2rem; 
+    padding: 0.4rem;
   }
   .card {
-    width: 90vw; 
-    max-width: 400px; 
+    width: 80vw; 
+    max-width: 350px; 
     height: auto; 
     margin: 0 10px; 
+  }
+  .carousel-header {
+    font-size: 1.5rem;
+    margin-top: 3rem;
   }
 }
 my-journey { 
