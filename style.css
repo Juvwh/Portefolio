@@ -199,6 +199,10 @@ iframe {
   align-self: center;
 }
 .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
   background: var(--arrow-bg-color);
   border: none;
   color: var(--arrow-text-color);
@@ -207,7 +211,12 @@ iframe {
   pointer-events: auto;
   padding: 0.5rem 1rem;
   border-radius: 1rem;
-  margin: 0 10px; 
+}
+.arrow.left {
+  left: 10px;
+}
+.arrow.right {
+  right: 10px;
 }
 .custom-section {
   position: relative;
