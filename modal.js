@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- MODAL ELEMENTS ---
-  const modalTriggerButtons = document.querySelectorAll('.section-projet-en-avant .btn, .project-modal-trigger, .game-card'); 
   const modalOverlay = document.getElementById('project-modal');
   const modalCloseBtn = document.getElementById('modal-close-btn');
   
@@ -258,11 +257,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  modalTriggerButtons.forEach(button => {
-    button.addEventListener('click', (event) => {
-      event.preventDefault(); 
-      openModal(button);
-    });
+  document.body.addEventListener('click', function(event) {
+    const triggerButton = event.target.closest('.section-projet-en-avant .btn, .project-modal-trigger, .game-card');
+
+    if (triggerButton) {
+      event.preventDefault();
+      openModal(triggerButton);
+    }
   });
 
   if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
