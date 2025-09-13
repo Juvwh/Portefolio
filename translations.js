@@ -258,7 +258,7 @@ const translations = {
     whoIsLyingSectionP: "Who is Lying est un jeu d'enquête narratif où chaque suspect est incarné par une IA capable de mentir, se contredire ou révéler ses secrets selon vos questions. Analysez, interrogez, confrontez... et découvrez qui ment.",
     whoIsLyingSectionBtn: "En savoir plus",
     // Section personnalisée image + vidéo + texte (RPG avec LLM)
-    rpgLLMSectionTitle: "Où chaque partie raconte une nouvelle histoire.",
+    rpgLLMSectionTitle: "Chaque partie raconte une nouvelle histoire.",
     rpgLLMSectionP: "Plongez-vous dans un RPG généré par IA en temps réel, où chaque aventure est unique, immersive et façonnée par vos choix. Au travers de ce mémoire de master, nous avons découvert comment l'IA peut devenir un vrai maître de jeu.",
     rpgLLMSectionBtn: "En savoir plus",
     // Section Mon Parcours / Chronologie
@@ -282,7 +282,7 @@ const translations = {
     itCompilerYear: "2024",
     itCompilerDesc: "Codage d'un compilateur complet qui transforme un langage inventé en bytecode Java, de l'analyse lexicale du code à sa traduction en instructions exécutables.",
     // -- Carte IT 3
-    itMachineLearningTitle: "Apprentissage automatique",
+    itMachineLearningTitle: "Machine Learning",
     itMachineLearningYear: "2024",
     itMachineLearningDesc: "Nous avons abordé une tâche de classification binaire en utilisant un ensemble de données industriel réel qui était diversifié et mal nettoyé, réparti sur plusieurs fichiers CSV avec de nombreuses variables mais peu d'observations. Nous pouvions utiliser toutes les techniques d'apprentissage automatique que nous voulions.",
     // -- Carte IT 4
