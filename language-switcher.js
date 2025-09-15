@@ -50,8 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateMetaTag('meta[name="keywords"]', 'content', 'metaKeywords');
     updateMetaTag('meta[property="og:title"]', 'content', 'ogTitle');
     updateMetaTag('meta[property="og:description"]', 'content', 'ogDescription');
+    updateMetaTag('meta[property="og:locale"]', 'content', 'ogLocale');
     updateMetaTag('meta[name="twitter:title"]', 'content', 'twitterTitle');
     updateMetaTag('meta[name="twitter:description"]', 'content', 'twitterDescription');
+    updateMetaTag('link[rel="canonical"]', 'href', 'canonicalUrl');
 
 
     document.querySelectorAll('[data-translate-key]').forEach(element => {

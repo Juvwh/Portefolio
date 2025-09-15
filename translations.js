@@ -2,6 +2,8 @@ const translations = {
   en: {
     // Meta Titles and Descriptions
     docTitle: "Justin Vanwichelen's Portfolio - Developer",
+    canonicalUrl: "https://justinvanwichelen.be/",
+    ogLocale: "en_US",
     metaDescription: "Explore the portfolio of Justin Vanwichelen, showcasing projects in game development, AI, and technical art.",
     metaKeywords: "Justin Vanwichelen, Portfolio, Technical Artist, Game Developer, AI, Computer Science, Unreal Engine, Unity, HEAJ, UCLouvain, Game Development, Interactive Systems, Gameplay Programming, Technical Art, AI in Games, Game Design, Game Projects, IT Projects",
     ogTitle: "Justin Vanwichelen's Portfolio - Developer",
@@ -203,6 +205,8 @@ const translations = {
   fr: {
     // Titres et descriptions méta
     docTitle: "Portfolio de Justin Vanwichelen - Développeur",
+    canonicalUrl: "https://justinvanwichelen.be/?lang=fr",
+    ogLocale: "fr_FR",
     metaDescription: "Explorez le portfolio de Justin Vanwichelen, présentant des projets en développement de jeux, en IA et en technical artist.",
     metaKeywords: "Justin Vanwichelen, Portfolio, Technical Artist, Développeur de Jeux, IA, Informatique, Unreal Engine, Unity, HEAJ, UCLouvain, Développement de Jeux, Systèmes Interactifs, Programmation de Gameplay, Art Technique, IA dans les Jeux, Conception de Jeux, Projets de Jeux, Projets IT",
     ogTitle: "Portfolio de Justin Vanwichelen - Développeur",
