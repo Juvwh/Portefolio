@@ -11,11 +11,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set canvas size
     canvas.width = window.innerWidth;
-    canvas.height = document.querySelector('.hero-section').offsetHeight;
+    // Ensure the hero-section has a determined height when we measure it
+    requestAnimationFrame(() => {
+        const heroSection = document.querySelector('.hero-section');
+        if (heroSection) {
+            canvas.height = heroSection.offsetHeight;
+        } else {
+            canvas.height = window.innerHeight; // Fallback
+        }
+        init();
+        animate();
+    });
+
 
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
-        canvas.height = document.querySelector('.hero-section').offsetHeight;
+        const heroSection = document.querySelector('.hero-section');
+        if (heroSection) {
+            canvas.height = heroSection.offsetHeight;
+        } else {
+            canvas.height = window.innerHeight; // Fallback
+        }
         init();
     });
 
@@ -44,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.color = color;
             this.baseX = this.x;
             this.baseY = this.y;
-            this.density = (Math.random() * 30) + 1;
+            this.density = (Math.random() * 40) + 5;
         }
 
         draw() {
@@ -70,15 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.x -= directionX;
                 this.y -= directionY;
             } else {
-                // Return to original position
-                if (this.x !== this.baseX) {
-                    let dx = this.x - this.baseX;
-                    this.x -= dx / 10;
+                 // Wall collision
+                if (this.x + this.size > canvas.width || this.x - this.size < 0) {
+                    this.directionX = -this.directionX;
                 }
-                if (this.y !== this.baseY) {
-                    let dy = this.y - this.baseY;
-                    this.y -= dy / 10;
+                if (this.y + this.size > canvas.height || this.y - this.size < 0) {
+                    this.directionY = -this.directionY;
                 }
+                // Move particle
+                this.x += this.directionX;
+                this.y += this.directionY;
             }
 
             this.draw();
@@ -87,18 +104,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function init() {
         particles = [];
-        const heroSection = document.querySelector('.hero-section');
         const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
-        const particleColor = theme === 'light' ? 'rgba(0, 42, 179, 0.5)' : 'rgba(239, 198, 52, 0.5)';
+        const particleColor = theme === 'light' ? 'rgba(0, 42, 179, 0.5)' : 'rgba(255, 255, 255, 0.8)';
 
         for (let i = 0; i < particleCount; i++) {
-            let size = (Math.random() * 2) + 1;
+            let size = (Math.random() * 2.5) + 1;
             let x = (Math.random() * ((canvas.width - size * 2) - (size * 2)) + size * 2);
             let y = (Math.random() * ((canvas.height - size * 2) - (size * 2)) + size * 2);
-            let directionX = (Math.random() * .2) - .1;
-            let directionY = (Math.random() * .2) - .1;
+            let directionX = (Math.random() * 0.4) - 0.2;
+            let directionY = (Math.random() * 0.4) - 0.2;
 
             particles.push(new Particle(x, y, directionX, directionY, size, particleColor));
+        }
+    }
+
+    function connect() {
+        let opacityValue = 1;
+        for (let a = 0; a < particles.length; a++) {
+            for (let b = a; b < particles.length; b++) {
+                let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x))
+                             + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+
+                if (distance < (canvas.width/7) * (canvas.height/7)) {
+                    opacityValue = 1 - (distance/20000);
+                    ctx.strokeStyle = particles[a].color.replace(/[\d\.]+\)$/g, `${opacityValue})`);
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[a].x, particles[a].y);
+                    ctx.lineTo(particles[b].x, particles[b].y);
+                    ctx.stroke();
+                }
+            }
         }
     }
 
@@ -109,10 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < particles.length; i++) {
             particles[i].update();
         }
+        connect();
     }
-
-    init();
-    animate();
 
     // Re-initialize particles on theme change
     const themeToggleBtn = document.getElementById('theme-toggle-btn');
