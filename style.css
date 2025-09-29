@@ -340,13 +340,13 @@ iframe {
 .hero-section {
   position: relative;
   overflow: hidden;
-  padding: clamp(5rem, 8vw, 7.5rem) clamp(1.5rem, 6vw, 5rem) clamp(3.5rem, 6vw, 5rem);
+  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 4rem) clamp(2.5rem, 5vw, 4rem);
   background: var(--hero-section-bg-color);
   color: var(--hero-section-text-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(560px, 80vh, 900px);
+  min-height: clamp(480px, 68vh, 760px);
 }
 
 .hero-background {
@@ -394,7 +394,7 @@ iframe {
   display: grid;
   grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
   align-items: center;
-  gap: clamp(2rem, 5vw, 6rem);
+  gap: clamp(1.5rem, 4vw, 4rem);
 }
 
 .hero-portrait {
@@ -464,12 +464,18 @@ iframe {
 }
 
 .hero-text h2 {
-  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  font-size: clamp(2.4rem, 5.4vw, 4rem);
   font-weight: bold;
   color: var(--hero-title-text-color);
   margin-bottom: 1rem;
   text-align: left;
   font-family: 'AdamCGPro', sans-serif;
+}
+
+@media (min-width: 900px) {
+  .hero-text h2 {
+    white-space: nowrap;
+  }
 }
 
 .hero-text strong {
@@ -610,7 +616,7 @@ iframe {
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: clamp(4rem, 10vw, 6rem) clamp(1rem, 5vw, 3rem) clamp(2.5rem, 8vw, 4rem);
+    padding: clamp(3.2rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem) clamp(2rem, 6vw, 3.5rem);
   }
   .hero-text p {
     font-size: 0.95rem;
@@ -629,7 +635,7 @@ iframe {
 
 @media (max-width: 480px) {
   .hero-text h2 {
-    font-size: clamp(2.3rem, 9vw, 2.7rem);
+    font-size: clamp(2rem, 8vw, 2.4rem);
   }
   .hero-text p {
     font-size: 0.9rem;

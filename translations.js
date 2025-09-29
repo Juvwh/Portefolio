@@ -29,7 +29,7 @@ const translations = {
     heroP3: "My Master's thesis explores how AI, particularly <strong>Large Language Models (LLMs)</strong>, can enhance interactivity and narrative depth in role-playing games. I've also applied AI in healthcare through a health informatics course, broadening my perspective on its cross-industry impact.",
     heroScrollCue: "Scroll to explore my universes",
     heroCtaProjects: "Explore my game projects",
-    heroCtaCv: "Download my CV",
+    heroCtaCv: "Mes projets IT",
 
     // Highlighted Projects Carousel
     carouselHeader: "Highlighted projects",
@@ -234,7 +234,7 @@ const translations = {
     heroP3: "Mon mémoire de Master explore comment l'IA, en particulier les <strong>Large Language Models (LLMs)</strong>, peut enrichir l'interactivité et la narration dans les jeux de rôle. J'ai également pu appliquer l'IA au secteur médical, à travers un projet en Health Informatics, ce qui m'a permis d'en percevoir le potentiel dans d'autres domaines.",
     heroScrollCue: "Faites défiler pour explorer mes univers",
     heroCtaProjects: "Voir mes projets de jeux",
-    heroCtaCv: "Télécharger mon CV",
+    heroCtaCv: "Mes projets IT",
     // Carrousel des projets mis en avant
     carouselHeader: "Projets mis en avant",
     // -- Carte : The Human Variable (Carrousel)
