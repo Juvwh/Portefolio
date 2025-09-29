@@ -338,6 +338,33 @@ iframe {
   color: var(--hero-section-text-color);
 }
 
+.hero-section--nebula {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section--nebula .hero-canvas {
+  position: absolute;
+  inset: -15%;
+  width: 130%;
+  height: 130%;
+  pointer-events: none;
+  opacity: 0.8;
+  filter: blur(6px) saturate(1.15);
+  z-index: 0;
+}
+
+.hero-section--nebula > *:not(.hero-canvas) {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section--nebula .hero-canvas {
+    display: none;
+  }
+}
+
 .hero-cta-group {
   margin-top: 1.5rem;
   display: flex;
