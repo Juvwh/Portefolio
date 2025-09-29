@@ -1838,3 +1838,21 @@ my-journey {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    transition: none;
+    transform: none;
+  }
+}
