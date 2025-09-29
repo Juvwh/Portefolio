@@ -128,14 +128,18 @@ body {
 .carousel-header {
   text-align: center;
   color: var(--header-text-color);
-  margin-top: 4rem;
+  margin-top: clamp(2rem, 6vh, 3.5rem);
   font-family: 'AdamCGPro', sans-serif;
   font-size: 1.7rem;
+}
+
+.hero-section + .carousel-header {
+  margin-top: clamp(1.5rem, 4vh, 2.5rem);
 }
 .carousel-container {
   position: relative;
   width: 100%;
-  padding: 2rem 1rem; 
+  padding: clamp(1.25rem, 4vh, 2rem) 1rem clamp(2rem, 5vh, 2.75rem);
   max-width: 1600px; 
   margin: auto;
   display: flex; 
@@ -144,8 +148,8 @@ body {
 }
 .carousel-wrapper {
   overflow: hidden;
-    padding-bottom: 30px;
-    padding-top: 30px;
+  padding-bottom: 22px;
+  padding-top: 22px;
 }
 .carousel-track {
   display: flex;
@@ -340,13 +344,13 @@ iframe {
 .hero-section {
   position: relative;
   overflow: hidden;
-  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 7vw, 6rem);
+  padding: clamp(3.25rem, 5.5vw, 5rem) clamp(1.5rem, 5vw, 4rem) clamp(2.75rem, 5vw, 4.5rem);
   background: var(--hero-section-bg-color);
   color: var(--hero-section-text-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(480px, 68vh, 760px);
+  min-height: clamp(420px, 58vh, 700px);
 }
 
 .hero-background {
@@ -483,13 +487,13 @@ iframe {
 }
 
 .hero-text p {
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.75rem, 1.6vw, 1rem);
   color: var(--hero-section-text-color);
   opacity: 0.9;
 }
 
 .hero-cta-group {
-  margin-top: 2rem;
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -515,7 +519,7 @@ iframe {
 .hero-scroll-indicator {
   position: absolute;
   left: 50%;
-  bottom: clamp(0.75rem, 3vw, 2rem);
+  bottom: clamp(0.5rem, 2.5vw, 1.5rem);
   transform: translate(-50%, 0);
   display: inline-flex;
   align-items: center;
@@ -545,6 +549,13 @@ iframe {
 
 .hero-section.is-reduced-motion .hero-canvas {
   display: none;
+}
+
+@media (min-width: 1200px) {
+  .hero-section {
+    min-height: clamp(420px, 52vh, 640px);
+    padding-bottom: clamp(2.25rem, 4vw, 3.75rem);
+  }
 }
 
 @keyframes heroGlow {
@@ -610,13 +621,13 @@ iframe {
     justify-content: center;
   }
   .hero-scroll-indicator {
-    bottom: clamp(0.5rem, 6vw, 2rem);
+    bottom: clamp(0.4rem, 5vw, 1.5rem);
   }
 }
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: clamp(3.2rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem) clamp(3.5rem, 9vw, 5rem);
+    padding: clamp(3rem, 8vw, 4.5rem) clamp(1rem, 5vw, 3rem) clamp(2.75rem, 8vw, 4.25rem);
   }
   .hero-text p {
     font-size: 0.95rem;
