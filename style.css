@@ -338,6 +338,28 @@ iframe {
   color: var(--hero-section-text-color);
 }
 
+.hero-section--vortex {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section--vortex > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section--vortex > .hero-vfx {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(0.25px);
+}
+
+.hero-vfx.is-static {
+  display: none;
+}
+
 .hero-cta-group {
   margin-top: 1.5rem;
   display: flex;
