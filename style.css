@@ -338,6 +338,63 @@ iframe {
   color: var(--hero-section-text-color);
 }
 
+.hero-section--parallax {
+  position: relative;
+  perspective: 1200px;
+  overflow: hidden;
+}
+
+.hero-section--parallax .hero-halo {
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(95, 145, 255, 0.25), transparent 60%),
+    radial-gradient(circle at 80% 60%, rgba(143, 107, 255, 0.25), transparent 65%);
+  filter: blur(12px);
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.45s ease, transform 0.6s ease;
+}
+
+.hero-section--parallax:hover .hero-halo,
+.hero-section--parallax:focus-within .hero-halo {
+  opacity: 0.92;
+  transform: scale(1.08) translate3d(0, -2%, 0);
+}
+
+.hero-section--parallax > *:not(.hero-halo) {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section--parallax [data-depth] {
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+}
+
+.hero-section--parallax .hero-image {
+  filter: drop-shadow(0 18px 45px rgba(0, 0, 0, 0.35));
+}
+
+@media (pointer: coarse) {
+  .hero-section--parallax [data-depth] {
+    transition-duration: 0.6s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section--parallax [data-depth] {
+    transition: none;
+    transform: none !important;
+  }
+
+  .hero-section--parallax .hero-halo {
+    display: none;
+  }
+}
+
 .hero-cta-group {
   margin-top: 1.5rem;
   display: flex;
