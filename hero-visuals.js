@@ -32,7 +32,10 @@ const initHeroOrbit = () => {
 
     colorConfig.core = getValue('--hero-particle-core', colorConfig.core);
     colorConfig.trail = getValue('--hero-particle-trail', colorConfig.trail);
-    colorConfig.highlight = getValue('--hero-particle-highlight', colorConfig.highlight);
+    colorConfig.highlight = getValue(
+      '--hero-pointer-highlight',
+      getValue('--hero-particle-highlight', colorConfig.highlight),
+    );
   };
 
   const rgba = (color, alpha) => `rgba(${color}, ${alpha})`;
