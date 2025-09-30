@@ -340,7 +340,7 @@ iframe {
 .hero-section {
   position: relative;
   overflow: hidden;
-  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 7vw, 6rem);
+  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 4rem) clamp(2.5rem, 5vw, 4rem);
   background: var(--hero-section-bg-color);
   color: var(--hero-section-text-color);
   display: flex;
@@ -515,7 +515,7 @@ iframe {
 .hero-scroll-indicator {
   position: absolute;
   left: 50%;
-  bottom: clamp(0.75rem, 3vw, 2rem);
+  bottom: clamp(1.5rem, 4vw, 3rem);
   transform: translate(-50%, 0);
   display: inline-flex;
   align-items: center;
@@ -610,13 +610,13 @@ iframe {
     justify-content: center;
   }
   .hero-scroll-indicator {
-    bottom: clamp(0.5rem, 6vw, 2rem);
+    bottom: clamp(1.2rem, 8vw, 2.8rem);
   }
 }
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: clamp(3.2rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem) clamp(3.5rem, 9vw, 5rem);
+    padding: clamp(3.2rem, 8vw, 5rem) clamp(1rem, 5vw, 3rem) clamp(2rem, 6vw, 3.5rem);
   }
   .hero-text p {
     font-size: 0.95rem;
