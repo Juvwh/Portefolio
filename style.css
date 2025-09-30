@@ -369,9 +369,9 @@ iframe {
   content: "";
   position: absolute;
   inset: -35% -20% -25% -20%;
-  background: radial-gradient(circle at 20% 20%, rgba(var(--hero-particle-trail), 0.38), transparent 55%),
-              radial-gradient(circle at 80% 30%, rgba(var(--hero-particle-core), 0.3), transparent 60%),
-              radial-gradient(circle at 50% 85%, rgba(var(--hero-particle-highlight), 0.25), transparent 65%);
+  background: radial-gradient(circle at 20% 20%, rgba(var(--hero-particle-trail), 0.38), transparent 10%),
+              radial-gradient(circle at 80% 30%, rgba(var(--hero-particle-core), 0.3), transparent 10%),
+              radial-gradient(circle at 50% 85%, rgba(var(--hero-particle-highlight), 0.25), transparent 10%);
   filter: blur(0);
   transform-origin: center;
 }
