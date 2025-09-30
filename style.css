@@ -87,14 +87,14 @@
   --arrow-text-color: #007AFF;
   --video-overlay-shadow-color: rgba(0,0,0,0.1);
   --hero-section-bg-color: #FFFFFF;
-  --hero-section-text-color: #333333;
-  --hero-title-text-color: #000000;
-  --hero-strong-text-color: #002ab3;
-  --hero-cta-secondary-bg: rgba(0, 42, 179, 0.08);
-  --hero-cta-secondary-border: rgba(0, 42, 179, 0.35);
-  --hero-cta-secondary-text: #002ab3;
-  --hero-cta-secondary-glow: rgba(0, 42, 179, 0.2);
-  --hero-cta-focus-ring: rgba(0, 42, 179, 0.25);
+  --hero-section-text-color: #1d263b;
+  --hero-title-text-color: #0b132b;
+  --hero-strong-text-color: #0058ff;
+  --hero-cta-secondary-bg: rgba(0, 88, 255, 0.12);
+  --hero-cta-secondary-border: rgba(0, 88, 255, 0.45);
+  --hero-cta-secondary-text: #0058ff;
+  --hero-cta-secondary-glow: rgba(0, 88, 255, 0.22);
+  --hero-cta-focus-ring: rgba(0, 88, 255, 0.28);
   --navbar-bg-color-light: #002ab3;
   --navbar-text-color-light: #ffffff;
   --navbar-outline-color-light: #DDDDDD;
@@ -103,9 +103,9 @@
   --timeline-accent-light: #007AFF;
   --timeline-text-light: #333333;
   --timeline-line-light: #DDDDDD;
-  --hero-particle-core: 0, 42, 179;
-  --hero-particle-trail: 90, 141, 255;
-  --hero-particle-highlight: 239, 198, 52;
+  --hero-particle-core: 0, 88, 255;
+  --hero-particle-trail: 92, 158, 255;
+  --hero-particle-highlight: 0, 0, 255;
 }
 * {
   box-sizing: border-box;
