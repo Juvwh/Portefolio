@@ -457,7 +457,7 @@ iframe {
   border: 1px solid rgba(var(--hero-particle-highlight), 0.55);
   color: var(--hero-strong-text-color);
   font-weight: 600;
-  margin-bottom: clamp(0.35rem, 1.4vw, 0.65rem);
+  margin-bottom: 1rem;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 14px 35px rgba(0, 0, 0, 0.18);
   backdrop-filter: blur(6px);
 }
