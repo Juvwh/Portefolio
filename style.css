@@ -131,19 +131,18 @@ body {
 .carousel-header {
   text-align: center;
   color: var(--header-text-color);
-  margin-top: clamp(1rem, 3vh, 2rem);
-  margin-bottom: 0.5rem;
+  margin-top: clamp(2rem, 6vh, 3.5rem);
   font-family: 'AdamCGPro', sans-serif;
   font-size: 1.7rem;
 }
 
 .hero-section + .carousel-header {
-  margin-top: clamp(0.75rem, 2vh, 0.5rem);
+  margin-top: clamp(1.5rem, 4vh, 2.5rem);
 }
 .carousel-container {
   position: relative;
   width: 100%;
-  padding: clamp(0.5rem, 2vh, 1rem) 1rem clamp(1.5rem, 4vh, 2rem);
+  padding: clamp(1.25rem, 4vh, 2rem) 1rem clamp(2rem, 5vh, 2.75rem);
   max-width: 1600px; 
   margin: auto;
   display: flex; 
@@ -372,7 +371,7 @@ iframe {
   inset: -35% -20% -25% -20%;
   background: radial-gradient(circle at 20% 20%, rgba(var(--hero-particle-trail), 0.38), transparent 10%),
               radial-gradient(circle at 80% 30%, rgba(var(--hero-particle-core), 0.3), transparent 10%),
-              radial-gradient(circle at 50% 85%, rgba(var(--hero-particle-highlight), 0.25), transparent 0%);
+              radial-gradient(circle at 50% 85%, rgba(var(--hero-particle-highlight), 0.25), transparent 10%);
   filter: blur(0);
   transform-origin: center;
 }

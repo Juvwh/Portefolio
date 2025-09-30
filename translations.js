@@ -22,7 +22,7 @@ const translations = {
     themeToggle : "Switch to Light Mode",
 
     // Hero Section
-    heroRoleChip: "Game Developer • AI Storycrafter",
+    heroRoleChip: "Technical Game Developer • AI Storycrafter",
     heroGreeting: "HI ALL, I'M <strong>JUSTIN 👋</strong>",
     heroP1: "With a background as a <strong>Technical Artist</strong> and a <strong>Master's degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I focus on <strong>gameplay programming</strong> and interactive systems development. My strong creative instincts, paired with my technical skills, allow me to design <strong>immersive and intelligent experiences</strong>.",
     heroP2: "I enjoy <strong>blending logic with aesthetics</strong>. I'm proficient in <strong>Photoshop</strong> and love crafting detailed visual assets, especially during prototyping and early design phases.",
@@ -227,7 +227,7 @@ const translations = {
     switchToLightMode: "Activer le mode clair",
     themeToggle : "Activer le mode clair",
     // Section Hero
-    heroRoleChip: "Game developer • Créateur d'univers IA",
+    heroRoleChip: "Game developer technique • Créateur d'univers IA",
     heroGreeting: "SALUT! JE SUIS <strong>JUSTIN 👋</strong>",
     heroP1: "Formé en tant que <strong>Technical Artist</strong>, suivi d'un <strong>Master en Informatique</strong> avec une spécialisation en <strong>Intelligence Artificielle</strong>, je me passionne pour la <strong>programmation gameplay</strong> et le développement de systèmes interactifs. Mon sens créatif, combiné à mes compétences techniques, me permet de concevoir des <strong>expériences immersives et intelligentes</strong>.",
     heroP2: "J'aime <strong>mélanger logique et esthétique</strong>. À l'aise avec <strong>Photoshop</strong>, je prends plaisir à créer des visuels détaillés, notamment lors des phases de prototypage et de conception.",
