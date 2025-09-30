@@ -6,12 +6,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const LIGHT_THEME_CLASS = 'light-theme';
   const DARK_THEME_CLASS = 'dark-theme';
 
+  const DEFAULT_LABELS = {
+    switchToDarkMode: 'Switch to Dark Mode',
+    switchToLightMode: 'Switch to Light Mode',
+  };
+
+  function getTranslatedLabel(key) {
+    const translationGetter = typeof window.getTranslationForKey === 'function'
+      ? window.getTranslationForKey
+      : null;
+
+    if (translationGetter) {
+      const translation = translationGetter(key);
+      if (translation && !translation.startsWith('MissingKey')) {
+        return translation;
+      }
+    }
+
+    return DEFAULT_LABELS[key];
+  }
+
+  function setButtonLabel(key) {
+    if (!themeToggleBtn) {
+      return;
+    }
+
+    themeToggleBtn.setAttribute('data-translate-key', key);
+    themeToggleBtn.textContent = getTranslatedLabel(key) || DEFAULT_LABELS[key];
+  }
+
   // Function to update button text/icon based on current theme
   function updateButtonAppearance() {
+    if (!themeToggleBtn) {
+      return;
+    }
+
     if (body.classList.contains(LIGHT_THEME_CLASS)) {
-      themeToggleBtn.textContent = 'Switch to Dark Mode'; // Or use an icon like '🌙'
+      setButtonLabel('switchToDarkMode');
     } else {
-      themeToggleBtn.textContent = 'Switch to Light Mode'; // Or use an icon like '☀️'
+      setButtonLabel('switchToLightMode');
     }
   }
 
@@ -48,6 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // The body already has 'dark-theme' by default from HTML
     updateButtonAppearance();
   }
+
+  window.updateThemeButtonAppearance = updateButtonAppearance;
 
   console.log("Theme switcher script initialized.");
 });
