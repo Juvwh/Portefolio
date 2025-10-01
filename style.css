@@ -112,6 +112,7 @@ html {
   src: url('./font/adam.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 body {
   margin: 0;
@@ -368,12 +369,19 @@ iframe {
 }
 
 .hero-background::before {
-  animation: heroGlow 28s ease-in-out infinite alternate;
+  animation: heroGlow 42s ease-in-out infinite alternate;
 }
 
 .hero-background::after {
-  animation: heroGlowReverse 34s ease-in-out infinite alternate;
+  animation: heroGlowReverse 54s ease-in-out infinite alternate;
   opacity: 0.45;
+}
+
+@media (max-width: 600px) {
+  .hero-background::before,
+  .hero-background::after {
+    display: none;
+  }
 }
 
 .light-theme .hero-background {
@@ -444,6 +452,29 @@ iframe {
   margin-top: 0;
   font-family: 'Montserrat', sans-serif;
   text-align: left;
+}
+
+.hero-section [data-animate] {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: heroFadeIn 0.75s ease forwards;
+  animation-delay: var(--hero-animation-delay, 0s);
+}
+
+.hero-section [data-animate-step="1"] {
+  --hero-animation-delay: 0s;
+}
+
+.hero-section [data-animate-step="2"] {
+  --hero-animation-delay: 0.12s;
+}
+
+.hero-section [data-animate-step="3"] {
+  --hero-animation-delay: 0.22s;
+}
+
+.hero-section [data-animate-step="4"] {
+  --hero-animation-delay: 0.32s;
 }
 
 .hero-role-chip {
@@ -610,6 +641,18 @@ iframe {
   }
 }
 
+@keyframes heroFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-background::before,
   .hero-background::after,
@@ -617,6 +660,12 @@ iframe {
   .hero-scroll-indicator,
   .hero-scroll-indicator__icon {
     animation: none !important;
+  }
+
+  .hero-section [data-animate] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
