@@ -27,7 +27,9 @@ const translations = {
     heroP2: "I enjoy <strong>blending logic with aesthetics</strong>. I'm proficient in <strong>Photoshop</strong> and love crafting detailed visual assets, especially during prototyping and early design phases.",
     heroP3: "My Master's thesis explores how AI, particularly <strong>Large Language Models (LLMs)</strong>, can enhance interactivity and narrative depth in role-playing games. I've also applied AI in healthcare through a health informatics course, broadening my perspective on its cross-industry impact.",
     heroCtaProjects: "Explore my game projects",
+    heroCtaItProjects: "See my IT projects",
     heroCtaCv: "Download my CV",
+    heroScrollCue: "Scroll to explore my universes",
 
     // Highlighted Projects Carousel
     carouselHeader: "Highlighted projects",
@@ -230,7 +232,9 @@ const translations = {
     heroP2: "J'aime <strong>mélanger logique et esthétique</strong>. À l'aise avec <strong>Photoshop</strong>, je prends plaisir à créer des visuels détaillés, notamment lors des phases de prototypage et de conception.",
     heroP3: "Mon mémoire de Master explore comment l'IA, en particulier les <strong>Large Language Models (LLMs)</strong>, peut enrichir l'interactivité et la narration dans les jeux de rôle. J'ai également pu appliquer l'IA au secteur médical, à travers un projet en Health Informatics, ce qui m'a permis d'en percevoir le potentiel dans d'autres domaines.",
     heroCtaProjects: "Voir mes projets de jeux",
+    heroCtaItProjects: "Voir mes projets IT",
     heroCtaCv: "Télécharger mon CV",
+    heroScrollCue: "Faites défiler pour explorer mes univers",
     // Carrousel des projets mis en avant
     carouselHeader: "Projets mis en avant",
     // -- Carte : The Human Variable (Carrousel)

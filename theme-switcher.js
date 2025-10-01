@@ -5,18 +5,48 @@ document.addEventListener('DOMContentLoaded', () => {
   const THEME_KEY = 'selected_theme';
   const LIGHT_THEME_CLASS = 'light-theme';
   const DARK_THEME_CLASS = 'dark-theme';
+  const VALID_THEMES = new Set(['light', 'dark']);
 
-  // Function to update button text/icon based on current theme
-  function updateButtonAppearance() {
-    if (body.classList.contains(LIGHT_THEME_CLASS)) {
-      themeToggleBtn.textContent = 'Switch to Dark Mode'; // Or use an icon like '🌙'
-    } else {
-      themeToggleBtn.textContent = 'Switch to Light Mode'; // Or use an icon like '☀️'
-    }
+  if (!themeToggleBtn) {
+    console.warn('Theme toggle button not found.');
+    return;
   }
 
-  // Function to apply a specific theme
-  function applyTheme(theme) {
+  const getCurrentLanguage = () => document.documentElement.lang || 'en';
+
+  const getTranslation = (key) => {
+    const lang = getCurrentLanguage();
+    const fallback = key === 'switchToDarkMode' ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+
+    if (typeof window.getTranslationForKey === 'function') {
+      const translation = window.getTranslationForKey(key, lang);
+      if (translation && !String(translation).startsWith('MissingKey')) {
+        return translation;
+      }
+    }
+
+    if (typeof translations !== 'undefined') {
+      return translations?.[lang]?.[key] || fallback;
+    }
+
+    return fallback;
+  };
+
+  function updateThemeButtonAppearance() {
+    const isLightTheme = body.classList.contains(LIGHT_THEME_CLASS);
+    const translationKey = isLightTheme ? 'switchToDarkMode' : 'switchToLightMode';
+
+    themeToggleBtn.setAttribute('data-translate-key', translationKey);
+    themeToggleBtn.textContent = getTranslation(translationKey);
+  }
+
+  function applyTheme(theme, { persist = true } = {}) {
+    if (!VALID_THEMES.has(theme)) {
+      console.warn(`Ignored invalid theme value: ${theme}`);
+      updateThemeButtonAppearance();
+      return;
+    }
+
     if (theme === 'light') {
       body.classList.add(LIGHT_THEME_CLASS);
       body.classList.remove(DARK_THEME_CLASS);
@@ -24,30 +54,41 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.add(DARK_THEME_CLASS);
       body.classList.remove(LIGHT_THEME_CLASS);
     }
-    localStorage.setItem(THEME_KEY, theme);
-    updateButtonAppearance();
+    if (persist) {
+      localStorage.setItem(THEME_KEY, theme);
+    }
+    updateThemeButtonAppearance();
   }
 
-  // Event listener for the toggle button
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      if (body.classList.contains(LIGHT_THEME_CLASS)) {
-        applyTheme('dark');
-      } else {
-        applyTheme('light');
-      }
-    });
-  }
+  themeToggleBtn.addEventListener('click', () => {
+    if (body.classList.contains(LIGHT_THEME_CLASS)) {
+      applyTheme('dark');
+    } else {
+      applyTheme('light');
+    }
+  });
 
-  // Load and apply saved theme preference on script load
   const savedTheme = localStorage.getItem(THEME_KEY);
-  if (savedTheme) {
+  if (VALID_THEMES.has(savedTheme)) {
     applyTheme(savedTheme);
   } else {
-    // If no saved theme, ensure current body class matches button state
-    // The body already has 'dark-theme' by default from HTML
-    updateButtonAppearance();
+    updateThemeButtonAppearance();
   }
 
-  console.log("Theme switcher script initialized.");
+  document.addEventListener('languagechange', updateThemeButtonAppearance);
+
+  window.addEventListener('storage', (event) => {
+    if (event.key === THEME_KEY) {
+      const newTheme = event.newValue;
+      if (VALID_THEMES.has(newTheme)) {
+        applyTheme(newTheme, { persist: false });
+      } else if (!newTheme) {
+        updateThemeButtonAppearance();
+      }
+    }
+  });
+
+  window.updateThemeButtonAppearance = updateThemeButtonAppearance;
+
+  console.log('Theme switcher script initialized.');
 });
