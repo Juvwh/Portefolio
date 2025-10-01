@@ -616,6 +616,7 @@ iframe {
   .hero-scroll-indicator {
     font-size: 0.7rem;
     letter-spacing: 0.16em;
+    bottom: clamp(-1.25rem, -5vw, -0.75rem);
   }
   .carousel-header {
     font-size: 1.3rem;
