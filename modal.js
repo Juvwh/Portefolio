@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // "Play the Demo" button
         if (data.playUrl) {
             const playButton = document.createElement('button');
-            playButton.className = 'btn modal-play-btn';
+            playButton.className = 'button modal-play-btn';
             playButton.textContent = window.getTranslationForKey('modalPlayButton') || 'Play';
             playButton.onclick = () => {
                 window.open(data.playUrl, '_blank');
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // "View Report" button
         if (data.reportUrl) {
             const reportButton = document.createElement('button');
-            reportButton.className = 'btn';
+            reportButton.className = 'button';
             reportButton.textContent = "View Report";
             reportButton.onclick = () => {
                 window.open(data.reportUrl, '_blank');
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // "Read Thesis" button
         if (data.thesisUrl) {
             const thesisButton = document.createElement('button');
-            thesisButton.className = 'btn';
+            thesisButton.className = 'button';
             thesisButton.textContent = "Read Thesis";
             thesisButton.onclick = () => {
                 window.open(data.thesisUrl, '_blank');
@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.body.addEventListener('click', function(event) {
-    const triggerButton = event.target.closest('.section-projet-en-avant .btn, .project-modal-trigger, .game-card');
+    const triggerButton = event.target.closest('.feature-highlight .button, .project-modal-trigger, .game-card');
 
     if (triggerButton) {
       event.preventDefault();

@@ -57,7 +57,16 @@
   <!-- Favicon -->
   <link rel="icon" href="./index_files/icon_JustinVanwichelen.ico" type="image/x-icon">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/css/critical.css">
+  <link
+    rel="preload"
+    href="assets/css/main.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  >
+  <noscript>
+    <link rel="stylesheet" href="assets/css/main.css">
+  </noscript>
   <link
     rel="preload"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -68,333 +77,333 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   </noscript>
 </head>
-<body id="home">
+<body id="home" class="dark-theme">
   <!-- Navbar Section -->
-  <nav class="navbar">
-    <ul>
-      <button class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
-        <span class="hamburger-menu__line"></span>
-        <span class="hamburger-menu__line"></span>
-        <span class="hamburger-menu__line"></span>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="site-nav__inner">
+      <button class="site-nav__toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+        <span class="site-nav__toggle-line"></span>
+        <span class="site-nav__toggle-line"></span>
+        <span class="site-nav__toggle-line"></span>
       </button>
-      <div class="nav-links-group">
-        <li><a href="#home" data-translate-key="navHome">Home</a></li>
-        <li><a href="#all-games-section" data-translate-key="navGameProjects">Game projects</a></li>
-        <li><a href="#it-projects-section" data-translate-key="navItProjects">IT projects</a></li>
-        <li><a href="#my-journey" data-translate-key="navMyJourney">My Journey</a></li>
-        <!-- CV link opens in a new tab and downloads the resume -->
-        <li><a href="./index_files/JustinVanwichelen_Resume.pdf" target="_blank" download data-translate-key="navCv">CV</a></li>
+      <div class="site-nav__links" data-nav-links>
+        <a class="site-nav__link" href="#home" data-translate-key="navHome">Home</a>
+        <a class="site-nav__link" href="#all-games-section" data-translate-key="navGameProjects">Game projects</a>
+        <a class="site-nav__link" href="#it-projects-section" data-translate-key="navItProjects">IT projects</a>
+        <a class="site-nav__link" href="#my-journey" data-translate-key="navMyJourney">My Journey</a>
+        <a class="site-nav__link" href="./index_files/JustinVanwichelen_Resume.pdf" target="_blank" download data-translate-key="navCv">CV</a>
       </div>
-      <li class="theme-toggle-item"><button id="theme-toggle-btn" data-translate-key="switchToLightMode">Switch to Light Mode</button></li>
-      <li class="language-switcher">
-        <button id="lang-en" data-lang="en">EN</button>
-        <span>/</span>
-        <button id="lang-fr" data-lang="fr">FR</button>
-      </li>
-    </ul>
-  </nav>
-  <header>
-    <!-- Hero Section  -->
-    <div class="hero-section">
-      <div class="hero-background" aria-hidden="true"></div>
-      <div class="hero-content">
-        <div class="hero-portrait" data-animate data-animate-step="1">
-          <img
-            src="index_files/cv_photo2.svg"
-            alt="Portrait of Justin Vanwichelen"
-            class="hero-image"
-            width="360"
-            height="360"
-            decoding="async"
-            fetchpriority="high"
-          >
+      <div class="site-nav__actions">
+        <button class="button site-nav__theme-toggle" id="theme-toggle-btn" data-translate-key="switchToLightMode">Switch to Light Mode</button>
+        <div class="language-switcher" role="group" aria-label="Language selector">
+          <button class="language-switcher__btn" id="lang-en" type="button" data-lang="en">EN</button>
+          <span class="language-switcher__separator" aria-hidden="true">/</span>
+          <button class="language-switcher__btn" id="lang-fr" type="button" data-lang="fr">FR</button>
         </div>
-        <div class="hero-text" data-animate data-animate-step="2">
-          <p class="hero-role-chip" data-translate-key="heroRoleChip">Game Developer • AI Storycrafter</p>
-          <h2 data-translate-key="heroGreeting">HI ALL, I'M <STRong>JUSTIN 👋</STRong></h2>
-          <p data-translate-key="heroP1">With a background as a <strong>Technical Artist</strong> and a <strong>Master's degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I focus on <strong>gameplay programming</strong> and interactive systems development. My strong creative instincts, paired with my technical skills, allow me to design <strong>immersive and intelligent experiences</strong>.</p>
-          <p data-translate-key="heroP2">I enjoy <strong>blending logic with aesthetics</strong>. I'm proficient in <strong>Photoshop</strong> and love crafting detailed visual assets, especially during prototyping and early design phases.</p>
-          <p data-translate-key="heroP3">My Master's thesis explores how AI, particularly <strong>Large Language Models (LLMs)</strong>, can enhance interactivity and narrative depth in role-playing games. I've also applied AI in healthcare through a health informatics course, broadening my perspective on its cross-industry impact.</p>
-          <div class="hero-cta-group" data-animate data-animate-step="3">
-            <a class="btn-cta-primary" href="#all-games-section" data-translate-key="heroCtaProjects">See my game projects</a>
-            <a class="btn-cta-secondary" href="#it-projects-section" rel="noopener" data-translate-key="heroCtaItProjects">See my IT projects</a>
-          </div>
-        </div>
-      </div>
-      <div class="hero-scroll-indicator" data-animate data-animate-step="4">
-        <span data-translate-key="heroScrollCue">Scroll to explore my universes</span>
-        <svg class="hero-scroll-indicator__icon" viewBox="0 0 24 24" role="presentation" aria-hidden="true">
-          <path d="M12 16.5a1 1 0 0 1-.7-.3l-6-6a1 1 0 0 1 1.4-1.4L12 14.09l5.3-5.29a1 1 0 0 1 1.4 1.42l-6 6a1 1 0 0 1-.7.28Z" fill="currentColor"/>
-        </svg>
       </div>
     </div>
+  </nav>
+  <header class="hero" role="banner">
+    <div class="hero__background" aria-hidden="true"></div>
+    <div class="hero__layout">
+      <div class="hero__portrait" data-animate data-animate-step="1">
+        <img
+          src="index_files/cv_photo2.svg"
+          alt="Portrait of Justin Vanwichelen"
+          class="hero__image"
+          width="360"
+          height="360"
+          decoding="async"
+          fetchpriority="high"
+        >
+      </div>
+      <div class="hero__content" data-animate data-animate-step="2">
+        <p class="hero__role-chip" data-translate-key="heroRoleChip">Game Developer • AI Storycrafter</p>
+        <h2 class="hero__title" data-translate-key="heroGreeting">HI ALL, I'M <strong>JUSTIN 👋</strong></h2>
+        <p class="hero__description" data-translate-key="heroP1">With a background as a <strong>Technical Artist</strong> and a <strong>Master's degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I focus on <strong>gameplay programming</strong> and interactive systems development. My strong creative instincts, paired with my technical skills, allow me to design <strong>immersive and intelligent experiences</strong>.</p>
+        <p class="hero__description" data-translate-key="heroP2">I enjoy <strong>blending logic with aesthetics</strong>. I'm proficient in <strong>Photoshop</strong> and love crafting detailed visual assets, especially during prototyping and early design phases.</p>
+        <p class="hero__description" data-translate-key="heroP3">My Master's thesis explores how AI, particularly <strong>Large Language Models (LLMs)</strong>, can enhance interactivity and narrative depth in role-playing games. I've also applied AI in healthcare through a health informatics course, broadening my perspective on its cross-industry impact.</p>
+        <div class="hero__actions" data-animate data-animate-step="3">
+          <a class="button button--primary" href="#all-games-section" data-translate-key="heroCtaProjects">See my game projects</a>
+          <a class="button button--secondary" href="#it-projects-section" rel="noopener" data-translate-key="heroCtaItProjects">See my IT projects</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero__scroll" data-animate data-animate-step="4">
+      <span data-translate-key="heroScrollCue">Scroll to explore my universes</span>
+      <svg class="hero__scroll-icon" viewBox="0 0 24 24" role="presentation" aria-hidden="true">
+        <path d="M12 16.5a1 1 0 0 1-.7-.3l-6-6a1 1 0 0 1 1.4-1.4L12 14.09l5.3-5.29a1 1 0 0 1 1.4 1.42l-6 6a1 1 0 0 1-.7.28Z" fill="currentColor"/>
+      </svg>
+    </div>
   </header>
-
-
-
-    <!-- Highlighted projects Section  -->
-  <h2 class="carousel-header" data-translate-key="carouselHeader">Highlighted projects</h2>
-  <div class="carousel-container">
-    <button class="arrow nav left" id="prev-btn"><i class="fas fa-chevron-left"></i></button>
-    <div class="carousel-wrapper">
-      <div class="carousel-track" id="carousel-track">
+  <section class="project-carousel" aria-label="Highlighted projects">
+    <h2 class="section-title project-carousel__title" data-translate-key="carouselHeader">Highlighted projects</h2>
+    <div class="project-carousel__container">
+      <button class="project-carousel__nav project-carousel__nav--prev" id="prev-btn" type="button" aria-label="Previous highlighted project">
+        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <div class="project-carousel__viewport">
+        <div class="project-carousel__track" id="carousel-track">
         <!-- Card -- The Human Variable -->
-        <div class="card">
+        <div class="project-card">
           <iframe src="https://www.youtube.com/embed/pe3qw_5mj6E?rel=0&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;controls=0&amp;loop=1&amp;playlist=pe3qw_5mj6E" allowfullscreen></iframe>
-          <div class="card-content">
+          <div class="project-card__content">
             <h3 data-translate-key="humanVariableTitleCarousel">The Human Variable (2025)</h3>
-            <div class="badges">
-            <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="humanVariableBadgeMadeAlone">Made alone</span></span>
-            <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="humanVariableBadge2Weeks">2 weeks</span></span>
-            <span class="badge">
-              <img src="index_files/img_ue_icon.webp" alt="Unreal Engine" class="icon-ue">UE 5
-            </span>
+            <div class="badge-list">
+              <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="humanVariableBadgeMadeAlone">Made alone</span></span>
+              <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="humanVariableBadge2Weeks">2 weeks</span></span>
+              <span class="badge">
+                <img src="index_files/img_ue_icon.webp" alt="Unreal Engine" class="badge__icon">UE 5
+              </span>
             </div>
-            <p class="description" data-translate-key="humanVariableDescriptionCarousel">You're the only human among four androids...
+            <p class="project-card__description" data-translate-key="humanVariableDescriptionCarousel">You're the only human among four androids...
               Each round, answer a deep question and vote for who seems too human.
               The twist? The androids are real AIs. And they're trying to find you.</p>
-              <button class="btn project-modal-trigger"
+              <button class="button button--primary project-modal-trigger" type="button"
                 data-modal-id="the-human-variable"
                 data-translate-key="humanVariableBtnLearnMore"
               >Learn More</button>
           </div>
         </div>
         <!-- Card -- RPG --  -->
-      <div class="card">
-        <iframe src="https://www.youtube.com/embed/WDQ9-HO_ciI?rel=0&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;controls=0&amp;loop=1&amp;playlist=WDQ9-HO_ciI" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <div class="card-content">
-          <h3 data-translate-key="rpgLLMTitleCarousel">ROLES PLAY GAME WITH LLM (2025)</h3>
-          <div class="badges">
-            <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="rpgLLMBadgeBy2">By 2 people</span></span>
-            <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="rpgLLMBadge7Months">7 months</span></span>
-            <span class="badge"><i class="fa-brands fa-unity"></i>Unity</span>
-          </div>
-            <p class="description" data-translate-key="rpgLLMDescriptionCarousel">Immerse yourself in a real-time AI-generated RPG, where each adventure is unique, immersive and shaped by your choices.</p>
-            <button class="btn project-modal-trigger" data-modal-id="rpg-with-llm" data-translate-key="rpgLLMBtnSeeMore">I want to see more</button>
+        <div class="project-card">
+          <iframe src="https://www.youtube.com/embed/WDQ9-HO_ciI?rel=0&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;controls=0&amp;loop=1&amp;playlist=WDQ9-HO_ciI" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <div class="project-card__content">
+            <h3 data-translate-key="rpgLLMTitleCarousel">ROLES PLAY GAME WITH LLM (2025)</h3>
+            <div class="badge-list">
+              <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="rpgLLMBadgeBy2">By 2 people</span></span>
+              <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="rpgLLMBadge7Months">7 months</span></span>
+              <span class="badge"><i class="fa-brands fa-unity"></i>Unity</span>
+            </div>
+            <p class="project-card__description" data-translate-key="rpgLLMDescriptionCarousel">Immerse yourself in a real-time AI-generated RPG, where each adventure is unique, immersive and shaped by your choices.</p>
+            <button class="button button--primary project-modal-trigger" type="button" data-modal-id="rpg-with-llm" data-translate-key="rpgLLMBtnSeeMore">I want to see more</button>
           </div>
         </div>
         <!-- Card -- LOKI --  -->
-        <div class="card">
+        <div class="project-card">
           <iframe src="https://www.youtube.com/embed/1EbfonuRipw?rel=0&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;controls=0&amp;loop=1&amp;playlist=1EbfonuRipw" allowfullscreen></iframe>
-          <div class="card-content">
+          <div class="project-card__content">
             <h3 data-translate-key="lokiTitleCarousel">LOKI GAME (2022)</h3>
-            <div class="badges">
-            <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="lokiBadgeBy8">By 8 people</span></span>
-            <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="lokiBadge3Months">3 months</span></span>
-            <span class="badge">
-              <img src="index_files/img_ue_icon.webp" alt="Unreal Engine" class="icon-ue">UE 4
-            </span>
+            <div class="badge-list">
+              <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="lokiBadgeBy8">By 8 people</span></span>
+              <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="lokiBadge3Months">3 months</span></span>
+              <span class="badge">
+                <img src="index_files/img_ue_icon.webp" alt="Unreal Engine" class="badge__icon">UE 4
+              </span>
             </div>
-            <p class="description" data-translate-key="lokiDescriptionCarousel">Signy have the power to take the form of anyone or any animal. From a strong brute to a stealthy cat, each transformation opens new paths to infiltrate, deceive, and climb the social ladder.</p>
-            <button class="btn project-modal-trigger" data-modal-id="loki" data-translate-key="lokiBtnCurious">I'm as curious as a cat</button>
+            <p class="project-card__description" data-translate-key="lokiDescriptionCarousel">Signy have the power to take the form of anyone or any animal. From a strong brute to a stealthy cat, each transformation opens new paths to infiltrate, deceive, and climb the social ladder.</p>
+            <button class="button button--primary project-modal-trigger" type="button" data-modal-id="loki" data-translate-key="lokiBtnCurious">I'm as curious as a cat</button>
           </div>
         </div>
         <!-- Card -- DIABLO --  -->
-        <div class="card">
+        <div class="project-card">
           <iframe src="https://www.youtube.com/embed/rfodBcYEb9I?rel=0&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;controls=0&amp;loop=1&amp;playlist=rfodBcYEb9I" allowfullscreen></iframe>
-          <div class="card-content">
+          <div class="project-card__content">
             <h3 data-translate-key="diabloTitleCarousel">DIABOLO III CYBERPUNK (2021)</h3>
-            <div class="badges">
-            <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="diabloBadgeMadeAlone">Made alone</span></span>
-            <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="diabloBadge3MonthsCarousel">3 months</span></span>
-            <span class="badge"><i class="fa-brands fa-unity"></i>Unity</span>
+            <div class="badge-list">
+              <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="diabloBadgeMadeAlone">Made alone</span></span>
+              <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="diabloBadge3MonthsCarousel">3 months</span></span>
+              <span class="badge"><i class="fa-brands fa-unity"></i>Unity</span>
             </div>
-            <p class="description" data-translate-key="diabloDescriptionCarousel">I've recreated a cyberpunk version of Diablo III, complete with homemade gameplay, VFX, animations and HUD. Combat, puzzles and futuristic powers await you.</p>
-            <button class="btn project-modal-trigger" data-modal-id="diablo-cyberpunk" data-translate-key="diabloBtnTellMeMore">Tell me more</button>
+            <p class="project-card__description" data-translate-key="diabloDescriptionCarousel">I've recreated a cyberpunk version of Diablo III, complete with homemade gameplay, VFX, animations and HUD. Combat, puzzles and futuristic powers await you.</p>
+            <button class="button button--primary project-modal-trigger" type="button" data-modal-id="diablo-cyberpunk" data-translate-key="diabloBtnTellMeMore">Tell me more</button>
           </div>
         </div>
+        </div>
       </div>
+      <button class="project-carousel__nav project-carousel__nav--next" id="next-btn" type="button" aria-label="Next highlighted project">
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+      </button>
     </div>
-    <button class="arrow nav right" id="next-btn"><i class="fas fa-chevron-right"></i></button>
-  </div>
+  </section>
 
-  <!-- Projet en avant (yeah it's french word) -->
-  <div class="section-projet-en-avant">
-    <div class="overlay-container">
-      <img src="./index_files/img_TheHumanVariable_Header.webp" alt="Demo Image" class="custom-image" />
-      <div class="video-overlay">
-      <iframe src="https://www.youtube.com/embed/WcRbn2vzCbg" allowfullscreen></iframe>
+  <!-- Featured project spotlights -->
+  <section class="feature-highlight">
+    <div class="feature-highlight__media">
+      <img src="./index_files/img_TheHumanVariable_Header.webp" alt="Demo Image" class="feature-highlight__image" />
+      <div class="feature-highlight__overlay">
+        <iframe src="https://www.youtube.com/embed/WcRbn2vzCbg" allowfullscreen></iframe>
       </div>
     </div>
-    <div class="text-beside-video">
-      <h2 data-translate-key="humanVariableSectionTitle">Five androids. One impostor. You.</h2>
-      <p data-translate-key="humanVariableSectionP">You're the only human among five androids. The others are driven by real LLMs : GPT, Mistral, LLaMA, and Gemma.
+    <div class="feature-highlight__content">
+      <h2 class="feature-highlight__title" data-translate-key="humanVariableSectionTitle">Five androids. One impostor. You.</h2>
+      <p class="feature-highlight__description" data-translate-key="humanVariableSectionP">You're the only human among five androids. The others are driven by real LLMs : GPT, Mistral, LLaMA, and Gemma.
 Each round, a question is asked. Everyone answers. Then, they vote: who felt too human? Too emotional? Too real?
 Blend in. Speak like an AI… or be eliminated.</p>
-      <button class="btn project-modal-trigger"
+      <button class="button button--primary project-modal-trigger"
+              type="button"
               data-modal-id="the-human-variable"
               data-translate-key="humanVariableSectionBtn"
       >I want to see more</button>
     </div>
-  </div>
-  <div class="section-projet-en-avant section-projet-en-avant--reversed">
-    <div class="overlay-container">
-      <img src="./index_files/img_RPGwithLLM_Header.webp" alt="Demo Image" class="custom-image" />
-      <div class="video-overlay">
+  </section>
+  <section class="feature-highlight feature-highlight--reverse">
+    <div class="feature-highlight__media">
+      <img src="./index_files/img_RPGwithLLM_Header.webp" alt="Demo Image" class="feature-highlight__image" />
+      <div class="feature-highlight__overlay">
         <iframe src="https://www.youtube.com/embed/Pxlf2Nk--HQ" allowfullscreen></iframe>
       </div>
     </div>
-    <div class="text-beside-video">
-      <h2 data-translate-key="rpgLLMSectionTitle">Where every game tells a new story</h2>
-      <p data-translate-key="rpgLLMSectionP">Immerse yourself in a real-time AI-generated RPG, where each adventure is unique, immersive and shaped by your choices. Discover how AI become a true game master.</p>
-      <button class="btn project-modal-trigger"
+    <div class="feature-highlight__content">
+      <h2 class="feature-highlight__title" data-translate-key="rpgLLMSectionTitle">Where every game tells a new story</h2>
+      <p class="feature-highlight__description" data-translate-key="rpgLLMSectionP">Immerse yourself in a real-time AI-generated RPG, where each adventure is unique, immersive and shaped by your choices. Discover how AI become a true game master.</p>
+      <button class="button button--primary project-modal-trigger"
+              type="button"
               data-modal-id="rpg-with-llm"
               data-translate-key="rpgLLMSectionBtn"
       >Learn more</button>
     </div>
-  </div>
-    <div class="section-projet-en-avant">
-    <div class="overlay-container">
-      <img src="./index_files/img_WhoIsLying_Header.webp" alt="Coming Soon" class="custom-image" />
-      <div class="video-overlay">
-      <img src="./index_files/img_miniatureWhoIsLying_ComingSoon.webp" alt="Coming Soon" class="custom-image" />
+  </section>
+  <section class="feature-highlight">
+    <div class="feature-highlight__media">
+      <img src="./index_files/img_WhoIsLying_Header.webp" alt="Coming Soon" class="feature-highlight__image" />
+      <div class="feature-highlight__overlay">
+        <img src="./index_files/img_miniatureWhoIsLying_ComingSoon.webp" alt="Coming Soon" class="feature-highlight__image" />
       </div>
     </div>
-    <div class="text-beside-video" id="my-journey">
-      <h2 data-translate-key="whoIsLyingSectionTitle">They know how to lie. Will you be able to doubt them?</h2>
-      <p data-translate-key="whoIsLyingSectionP">Who is Lying is a narrative investigation game where each suspect is embodied by an AI capable of lying, contradicting itself, or revealing its secrets based on your questions. Analyze, interrogate, confront... and discover who is lying.</p>
-      <button class="btn project-modal-trigger"
+    <div class="feature-highlight__content" id="my-journey">
+      <h2 class="feature-highlight__title" data-translate-key="whoIsLyingSectionTitle">They know how to lie. Will you be able to doubt them?</h2>
+      <p class="feature-highlight__description" data-translate-key="whoIsLyingSectionP">Who is Lying is a narrative investigation game where each suspect is embodied by an AI capable of lying, contradicting itself, or revealing its secrets based on your questions. Analyze, interrogate, confront... and discover who is lying.</p>
+      <button class="button button--primary project-modal-trigger"
+              type="button"
               data-modal-id="who-is-lying"
               data-translate-key="whoIsLyingSectionBtn"
       >I want to see more</button>
     </div>
-  </div>
+  </section>
   <!-- My Journey Section -->
-  <div>
-    <div class="timeline" style="--items: 7;">
-        <ul>
-         <li class="reveal-on-scroll" style="--index: 1">
+  <section class="timeline" style="--items: 7;" aria-labelledby="timeline-heading">
+    <h2 class="section-title timeline__title" id="timeline-heading" data-translate-key="navMyJourney">My Journey</h2>
+    <ul class="timeline__list">
+      <li class="timeline__item reveal-on-scroll" style="--index: 1">
           <h3>
            Nov 2019 - Jun 2025
           </h3>
           <p data-translate-key="timelineJobSucrerie">
            Starts working as a student at &lsquo;La Sucrerie&rsquo;. In contact with customers.
           </p>
-          <div class="timeline-image-wrapper">
-           <div class="o_we_shape timeline_wavy_background"></div>
-           <img alt="Sucrerie" class="timeline-icon" loading="lazy" src="./index_files/logo_LaSucrerue.webp" style=""/>
+          <div class="timeline__icon-wrapper">
+           <div class="timeline__icon-background"></div>
+           <img alt="Sucrerie" class="timeline__icon" loading="lazy" src="./index_files/logo_LaSucrerue.webp" />
           </div>
           <p>
           </p>
-         </li>
-         <li class="reveal-on-scroll" style="--index: 2">
+      </li>
+      <li class="timeline__item reveal-on-scroll" style="--index: 2">
           <h3>
            Feb-May 2022
           </h3>
           <p data-translate-key="timelineInternAppeals">
            Intern as a technical artist at Appeals Studio. Working on the development of Outcast 2.
           </p>
-          <div class="timeline-image-wrapper">
-           <div class="o_we_shape timeline_wavy_background"></div>
-           <img alt="Appeals" class="timeline-icon" loading="lazy" src="./index_files/appealLogo.webp" style=""/>
+          <div class="timeline__icon-wrapper">
+           <div class="timeline__icon-background"></div>
+           <img alt="Appeals" class="timeline__icon" loading="lazy" src="./index_files/appealLogo.webp" />
           </div>
           <p>
           </p>
-         </li>
-         <li class="reveal-on-scroll" style="--index: 3">
+      </li>
+      <li class="timeline__item reveal-on-scroll" style="--index: 3">
           <h3>
            Jun 2022
           </h3>
           <p data-translate-key="timelineGradHeaj">
            Graduates as a Technical Artist from the Haute Ecole Albert-Jacquard
           </p>
-          <div class="timeline-image-wrapper">
-           <div class="o_we_shape timeline_wavy_background"></div>
-           <img alt="HEAJ" class="timeline-icon" loading="lazy" src="./index_files/HeajLogo.webp" style=""/>
+          <div class="timeline__icon-wrapper">
+           <div class="timeline__icon-background"></div>
+           <img alt="HEAJ" class="timeline__icon" loading="lazy" src="./index_files/HeajLogo.webp" />
           </div>
           <p>
           </p>
-         </li>
-         <li class="reveal-on-scroll" style="--index: 4">
+      </li>
+      <li class="timeline__item reveal-on-scroll" style="--index: 4">
           <h3>
            Sept-Dec 2024
           </h3>
           <p data-translate-key="timelineTutorUcl">
            IT tutor for around forty students in the first year of a bachelor's degree in IT (at UCLouvain)
           </p>
-          <div class="timeline-image-wrapper">
-           <div class="o_we_shape timeline_wavy_background"></div>
-           <img alt="Tutor" class="timeline-icon" loading="lazy" src="./index_files/UclLouvainLogo.webp" style=""/>
+          <div class="timeline__icon-wrapper">
+           <div class="timeline__icon-background"></div>
+           <img alt="Tutor" class="timeline__icon" loading="lazy" src="./index_files/UclLouvainLogo.webp" />
           </div>
           <p>
           </p>
-         </li>
-         <li class="reveal-on-scroll" style="--index: 5">
+      </li>
+      <li class="timeline__item reveal-on-scroll" style="--index: 5">
           <h3>
            Jun 2025
           </h3>
           <p data-translate-key="timelineGradUcl">
            Master's degree graduates in computer science from the Catholic University of Louvain-La-Neuve
           </p>
-          <div class="timeline-image-wrapper">
-           <div class="o_we_shape timeline_wavy_background"></div>
-           <img alt="UCLouvain" class="timeline-icon" loading="lazy" src="./index_files/UclLouvainLogo.webp" style=""/>
+          <div class="timeline__icon-wrapper">
+           <div class="timeline__icon-background"></div>
+           <img alt="UCLouvain" class="timeline__icon" loading="lazy" src="./index_files/UclLouvainLogo.webp" />
           </div>
           <p>
           </p>
-         </li>
-         <li class="reveal-on-scroll" style="--index: 6">
+      </li>
+      <li class="timeline__item reveal-on-scroll" style="--index: 6">
           <h3>
            Next
           </h3>
           <p data-translate-key="timelineNext">
            Maybe with you ... ?
           </p>
-          <div class="timeline-image-wrapper">
-           <div class="o_we_shape timeline_wavy_background"></div>
-           <img alt="UCLouvain" class="timeline-icon" loading="lazy" src="./index_files/logo_MaybeWithYou.webp" style=""/>
+          <div class="timeline__icon-wrapper">
+           <div class="timeline__icon-background"></div>
+           <img alt="Maybe with you" class="timeline__icon" loading="lazy" src="./index_files/logo_MaybeWithYou.webp" />
           </div>
           <p>
           </p>
-         </li>
-        </ul>
-    </div>
-  </div>
+      </li>
+    </ul>
+  </section>
   <!--    -->
-<section class="icon-gallery o_colored_level o_spc-small pb168 pt0">
-  <div class="o_we_shape gallery_wavy_background">
-    <!-- -->
-  </div>
-  <div class="o_container_small">
-    <h2 class="icon-gallery-title" data-translate-key="toolsTechTitle">Tools & Technologies</h2> 
-    <div class="icon-grid">
+<section class="icon-collection" aria-labelledby="tools-tech-heading">
+  <div class="icon-collection__background" aria-hidden="true"></div>
+  <div class="layout-container">
+    <h2 class="section-title icon-collection__title" id="tools-tech-heading" data-translate-key="toolsTechTitle">Tools & Technologies</h2>
+    <div class="icon-collection__grid">
       <!-- Row 1 -->
-      <div class="icon-item">
-        <img alt="C#" class="img img-fluid" src="./index_files/logo_Csharp.webp"/>
+      <div class="icon-collection__item">
+        <img alt="C#" class="icon-collection__image" src="./index_files/logo_Csharp.webp"/>
       </div>
-      <div class="icon-item">
-        <img alt="Python" class="img img-fluid" src="./index_files/logo_Python.webp"/>
+      <div class="icon-collection__item">
+        <img alt="Python" class="icon-collection__image" src="./index_files/logo_Python.webp"/>
       </div>
-      <div class="icon-item">
-        <img alt="Unity" class="img img-fluid" src="./index_files/logo_Unity.webp"/>
+      <div class="icon-collection__item">
+        <img alt="Unity" class="icon-collection__image" src="./index_files/logo_Unity.webp"/>
       </div>
-      <div class="icon-item">
-        <img alt="Unreal Engine" class="img img-fluid" src="./index_files/logo_UnrealEngine.webp"/>
+      <div class="icon-collection__item">
+        <img alt="Unreal Engine" class="icon-collection__image" src="./index_files/logo_UnrealEngine.webp"/>
       </div>
-      <div class="icon-item">
-        <img alt="GDevelop" class="img img-fluid" src="./index_files/Gdevelop.webp"/>
+      <div class="icon-collection__item">
+        <img alt="GDevelop" class="icon-collection__image" src="./index_files/Gdevelop.webp"/>
       </div>
-      <div class="icon-item">
-        <img alt="Photoshop" class="img img-fluid" src="./index_files/logo_Photoshop.webp"/>
+      <div class="icon-collection__item">
+        <img alt="Photoshop" class="icon-collection__image" src="./index_files/logo_Photoshop.webp"/>
       </div>
       <!-- Row 2 -->
-      <div class="icon-item">
-        <img alt="Premiere Pro" class="img img-fluid" src="./index_files/logo_premiere.webp"/>
+      <div class="icon-collection__item">
+        <img alt="Premiere Pro" class="icon-collection__image" src="./index_files/logo_premiere.webp"/>
       </div>
-      <div class="icon-item">
-        <img alt="Git" class="img img-fluid" src="./index_files/logo_git.webp"/>
+      <div class="icon-collection__item">
+        <img alt="Git" class="icon-collection__image" src="./index_files/logo_git.webp"/>
       </div>
-      <div class="icon-item">
-        <img alt="Perforce" class="img img-fluid" src="./index_files/logo_perforce.webp"/>
+      <div class="icon-collection__item">
+        <img alt="Perforce" class="icon-collection__image" src="./index_files/logo_perforce.webp"/>
       </div>
-      <div class="icon-item">
-        <img alt="Visual Studio" class="img img-fluid" src="./index_files/logo_Visual.webp"/>
+      <div class="icon-collection__item">
+        <img alt="Visual Studio" class="icon-collection__image" src="./index_files/logo_Visual.webp"/>
       </div>
-      <div class="icon-item">
-        <img alt="IntelliJ" class="img img-fluid" src="./index_files/logo_intelligi.webp"/>
+      <div class="icon-collection__item">
+        <img alt="IntelliJ" class="icon-collection__image" src="./index_files/logo_intelligi.webp"/>
       </div>
-      <div class="icon-item">
-        <img alt="Embergen" class="img img-fluid" src="./index_files/logo_embergen.webp"/>
+      <div class="icon-collection__item">
+        <img alt="Embergen" class="icon-collection__image" src="./index_files/logo_embergen.webp"/>
       </div>
     </div>
   </div>
@@ -402,119 +411,119 @@ Blend in. Speak like an AI… or be eliminated.</p>
 
 <!-- IT Projects Section - START -->
 <!--
-  To change the content of each card, modify the following attributes/text:
-  - Card Image: Update the `src` attribute of the `<img>` tag.
-  - Card Title: Change the text content of the `<h3>` tag.
-  - Card Year: Change the text content of the `<p class="it-project-year">` tag.
-  - Card Description: Change the text content of the `<p class="it-project-description">` tag.
-  To change where the "IT projects" menu item scrolls to, edit the id attribute of the section tag below.
+  To update a card:
+  - Replace the project image by editing the `src` attribute of `<img class="it-projects__icon">`.
+  - Edit the project title inside `<h3 class="it-projects__card-title">`.
+  - Edit the year inside `<p class="it-projects__card-meta">`.
+  - Edit the description inside `<p class="it-projects__card-description">`.
+  Adjust the section ID if you need to change the anchor used by the navigation menu.
   -- Justin
 -->
-<section id="it-projects-section" class="it-projects-gallery">
-  <div class="o_container_small"> <!-- Using o_container_small for consistency with icon-gallery -->
-    <h2 class="it-projects-section-title" data-translate-key="itProjectsSectionTitle">IT Projects</h2>
-    <div class="it-cards-container">
+<section id="it-projects-section" class="it-projects">
+  <div class="layout-container">
+    <h2 class="section-title it-projects__title" data-translate-key="itProjectsSectionTitle">IT Projects</h2>
+    <div class="it-projects__grid">
       <!-- Card 1 -->
-      <div class="it-project-card reveal-on-scroll">
-        <img src="./index_files/Img_IT_CP2.webp" alt="Constraint programming Icon" class="it-project-icon">
-        <h3 data-translate-key="itConstraintProgrammingTitle">Constraint programming</h3>
-        <p class="it-project-year" data-translate-key="itConstraintProgrammingYear">2024</p>
-        <p class="it-project-description" data-translate-key="itConstraintProgrammingDesc">Modelling and solving instances of a logistics and transport problem using constraint programming.</p>
-      </div>
+      <article class="it-projects__card reveal-on-scroll">
+        <img src="./index_files/Img_IT_CP2.webp" alt="Constraint programming Icon" class="it-projects__icon">
+        <h3 class="it-projects__card-title" data-translate-key="itConstraintProgrammingTitle">Constraint programming</h3>
+        <p class="it-projects__card-meta" data-translate-key="itConstraintProgrammingYear">2024</p>
+        <p class="it-projects__card-description" data-translate-key="itConstraintProgrammingDesc">Modelling and solving instances of a logistics and transport problem using constraint programming.</p>
+      </article>
       <!-- Card 2 -->
-      <div class="it-project-card reveal-on-scroll">
-        <img src="./index_files/Img_IT_Compiler.webp" alt="Compiler Icon" class="it-project-icon">
-        <h3 data-translate-key="itCompilerTitle">Compiler<br><br></h3>
-        <p class="it-project-year" data-translate-key="itCompilerYear">2024</p>
-        <p class="it-project-description" data-translate-key="itCompilerDesc">Coding a complet compiler that transforms an invented language into Java bytecode, from lexical analysis in the code to translating it into executable instructions.</p>
-      </div>
+      <article class="it-projects__card reveal-on-scroll">
+        <img src="./index_files/Img_IT_Compiler.webp" alt="Compiler Icon" class="it-projects__icon">
+        <h3 class="it-projects__card-title" data-translate-key="itCompilerTitle">Compiler<br><br></h3>
+        <p class="it-projects__card-meta" data-translate-key="itCompilerYear">2024</p>
+        <p class="it-projects__card-description" data-translate-key="itCompilerDesc">Coding a complet compiler that transforms an invented language into Java bytecode, from lexical analysis in the code to translating it into executable instructions.</p>
+      </article>
       <!-- Card 3 -->
-      <div class="it-project-card reveal-on-scroll">
-        <img src="./index_files/Img_IT_MachineLearning.webp" alt="Machine learning Icon" class="it-project-icon">
-        <h3 data-translate-key="itMachineLearningTitle">Machine learning</h3>
-        <p class="it-project-year" data-translate-key="itMachineLearningYear">2024</p>
-        <p class="it-project-description" data-translate-key="itMachineLearningDesc">We tackled a binary classification task using a real industrial dataset that was diverse and poorly cleaned, spread across multiple CSV files with many variables but few observations. We could use any machine learning techniques we wanted.​</p>
-      </div>
+      <article class="it-projects__card reveal-on-scroll">
+        <img src="./index_files/Img_IT_MachineLearning.webp" alt="Machine learning Icon" class="it-projects__icon">
+        <h3 class="it-projects__card-title" data-translate-key="itMachineLearningTitle">Machine learning</h3>
+        <p class="it-projects__card-meta" data-translate-key="itMachineLearningYear">2024</p>
+        <p class="it-projects__card-description" data-translate-key="itMachineLearningDesc">We tackled a binary classification task using a real industrial dataset that was diverse and poorly cleaned, spread across multiple CSV files with many variables but few observations. We could use any machine learning techniques we wanted.​</p>
+      </article>
       <!-- Card 4 -->
-      <div class="it-project-card reveal-on-scroll">
-        <img src="./index_files/img_IT_RepairPal.webp" alt="Car Damage APP Icon" class="it-project-icon">
-        <h3 data-translate-key="itCarDamageAppTitle">Car Damage APP</h3>
-        <p class="it-project-year" data-translate-key="itCarDamageAppYear">2023</p>
-        <p class="it-project-description" data-translate-key="itCarDamageAppDesc">For my Software course, I worded on the Car Damage App (RepairPal) (by NRB)  to enable quick damage detection and repair cost estimates after accidents, aiding users and insurers.</p>
-      </div>
+      <article class="it-projects__card reveal-on-scroll">
+        <img src="./index_files/img_IT_RepairPal.webp" alt="Car Damage APP Icon" class="it-projects__icon">
+        <h3 class="it-projects__card-title" data-translate-key="itCarDamageAppTitle">Car Damage APP</h3>
+        <p class="it-projects__card-meta" data-translate-key="itCarDamageAppYear">2023</p>
+        <p class="it-projects__card-description" data-translate-key="itCarDamageAppDesc">For my Software course, I worded on the Car Damage App (RepairPal) (by NRB)  to enable quick damage detection and repair cost estimates after accidents, aiding users and insurers.</p>
+      </article>
       <!-- Card 5 -->
-      <div class="it-project-card reveal-on-scroll">
-        <img src="./index_files/img_IT_SRv6b.webp" alt="SRV6 - TRAFFIC ENGINEERING Icon" class="it-project-icon">
-        <h3 data-translate-key="itSRV6Title">SRV6 - TRAFFIC ENGINEERING</h3>
-        <p class="it-project-year" data-translate-key="itSRV6Year">2023</p>
-        <p class="it-project-description" data-translate-key="itSRV6Desc">I utilized Containerlab and FRRouting to simulate a 14-node network topology, assessing Traffic Engineering by adding artificial delays to optimize data routing across various paths.</p>
-      </div>
+      <article class="it-projects__card reveal-on-scroll">
+        <img src="./index_files/img_IT_SRv6b.webp" alt="SRV6 - TRAFFIC ENGINEERING Icon" class="it-projects__icon">
+        <h3 class="it-projects__card-title" data-translate-key="itSRV6Title">SRV6 - TRAFFIC ENGINEERING</h3>
+        <p class="it-projects__card-meta" data-translate-key="itSRV6Year">2023</p>
+        <p class="it-projects__card-description" data-translate-key="itSRV6Desc">I utilized Containerlab and FRRouting to simulate a 14-node network topology, assessing Traffic Engineering by adding artificial delays to optimize data routing across various paths.</p>
+      </article>
       <!-- Card 6 -->
-      <div class="it-project-card reveal-on-scroll">
-        <img src="./index_files/img_IT_OZ.webp" alt="Text preacher Icon" class="it-project-icon">
-        <h3 data-translate-key="itTextPreacherTitle">Text preacher<br><br></h3>
-        <p class="it-project-year" data-translate-key="itTextPreacherYear">2023</p>
-        <p class="it-project-description" data-translate-key="itTextPreacherDesc">A text preacher trained on Twitter datas (X now),  created using Oz language (no loops and single assignment).</p>
-      </div>
+      <article class="it-projects__card reveal-on-scroll">
+        <img src="./index_files/img_IT_OZ.webp" alt="Text preacher Icon" class="it-projects__icon">
+        <h3 class="it-projects__card-title" data-translate-key="itTextPreacherTitle">Text preacher<br><br></h3>
+        <p class="it-projects__card-meta" data-translate-key="itTextPreacherYear">2023</p>
+        <p class="it-projects__card-description" data-translate-key="itTextPreacherDesc">A text preacher trained on Twitter datas (X now),  created using Oz language (no loops and single assignment).</p>
+      </article>
     </div>
   </div>
 </section>
 <!-- IT Projects Section - END -->
 
 <!-- All Games Section - START -->
-<section id="all-games-section" class="games-gallery">
-  <div class="o_container_small"> 
-    <h2 class="games-section-title" data-translate-key="allGamesSectionTitle">All Games</h2> 
-    <div class="games-grid-container">
+<section id="all-games-section" class="game-collection">
+  <div class="layout-container">
+    <h2 class="section-title game-collection__title" data-translate-key="allGamesSectionTitle">All Games</h2>
+    <div class="game-collection__grid">
       <!-- The Human Variable -->
-      <div class="game-card" data-modal-id="the-human-variable">
-        <div class="game-image-wrapper">
-          <img src="./index_files/img_miniatureHumanVariable.webp" alt="The Human Variable" class="game-cover-image">
+      <article class="game-card" data-modal-id="the-human-variable" role="button" tabindex="0">
+        <div class="game-card__media">
+          <img src="./index_files/img_miniatureHumanVariable.webp" alt="The Human Variable" class="game-card__image">
         </div>
-        <h3 class="game-title" data-translate-key="gameHumanVariableTitle">The Human Variable</h3>
-      </div>
+        <h3 class="game-card__title" data-translate-key="gameHumanVariableTitle">The Human Variable</h3>
+      </article>
       <!-- RPG with LLM -->
-      <div class="game-card" data-modal-id="rpg-with-llm">
-        <div class="game-image-wrapper">
-          <img src="./index_files/img_RpgWithLLM.webp" alt="RPG with LLM" class="game-cover-image">
+      <article class="game-card" data-modal-id="rpg-with-llm" role="button" tabindex="0">
+        <div class="game-card__media">
+          <img src="./index_files/img_RpgWithLLM.webp" alt="RPG with LLM" class="game-card__image">
         </div>
-        <h3 class="game-title" data-translate-key="gameRpgLLMTitle">RPG with LLM</h3>
-      </div>
+        <h3 class="game-card__title" data-translate-key="gameRpgLLMTitle">RPG with LLM</h3>
+      </article>
       <!-- Loki-->
-      <div class="game-card" data-modal-id="loki">
-        <div class="game-image-wrapper">
-          <img src="./index_files/img_miniatureLoki.webp" alt="Loki" class="game-cover-image">
+      <article class="game-card" data-modal-id="loki" role="button" tabindex="0">
+        <div class="game-card__media">
+          <img src="./index_files/img_miniatureLoki.webp" alt="Loki" class="game-card__image">
         </div>
-        <h3 class="game-title" data-translate-key="gameLokiTitle">Loki</h3>
-      </div>
+        <h3 class="game-card__title" data-translate-key="gameLokiTitle">Loki</h3>
+      </article>
       <!-- Who is Lying -->
-      <div class="game-card" data-modal-id="who-is-lying">
-        <div class="game-image-wrapper">
-          <img src="./index_files/img_miniatureWhoIsLying.webp" alt="Who is Lying" class="game-cover-image">
+      <article class="game-card" data-modal-id="who-is-lying" role="button" tabindex="0">
+        <div class="game-card__media">
+          <img src="./index_files/img_miniatureWhoIsLying.webp" alt="Who is Lying" class="game-card__image">
         </div>
-        <h3 class="game-title" data-translate-key="gameWhoIsLyingTitle">Who is Lying</h3>
-      </div>
+        <h3 class="game-card__title" data-translate-key="gameWhoIsLyingTitle">Who is Lying</h3>
+      </article>
       <!-- Diablo Cyberpunk -->
-      <div class="game-card" data-modal-id="diablo-cyberpunk">
-        <div class="game-image-wrapper">
-          <img src="./index_files/img_miniatureDiabloCyberpunk.webp" alt="Diablo cyberpunk" class="game-cover-image">
+      <article class="game-card" data-modal-id="diablo-cyberpunk" role="button" tabindex="0">
+        <div class="game-card__media">
+          <img src="./index_files/img_miniatureDiabloCyberpunk.webp" alt="Diablo cyberpunk" class="game-card__image">
         </div>
-        <h3 class="game-title" data-translate-key="gameDiabloCyberpunkTitle">Diablo Cyberpunk</h3>
-      </div>
+        <h3 class="game-card__title" data-translate-key="gameDiabloCyberpunkTitle">Diablo Cyberpunk</h3>
+      </article>
       <!-- Stalk and Ruin -->
-      <div class="game-card" data-modal-id="stalk-and-ruin">
-        <div class="game-image-wrapper">
-          <img src="./index_files/img_miniatureStalkAndRuin.webp" alt="Stalk and Ruin" class="game-cover-image">
+      <article class="game-card" data-modal-id="stalk-and-ruin" role="button" tabindex="0">
+        <div class="game-card__media">
+          <img src="./index_files/img_miniatureStalkAndRuin.webp" alt="Stalk and Ruin" class="game-card__image">
         </div>
-        <h3 class="game-title" data-translate-key="gameStalkAndRuinTitle">Stalk and Ruin</h3>
-      </div>
+        <h3 class="game-card__title" data-translate-key="gameStalkAndRuinTitle">Stalk and Ruin</h3>
+      </article>
       <!-- Placeholder Game Card 6 -->
-      <div class="game-card" data-modal-id="one-way-trip">
-        <div class="game-image-wrapper">
-          <img src="./index_files/img_miniatureOneWayTrip.webp" alt="One Way Trip" class="game-cover-image">
+      <article class="game-card" data-modal-id="one-way-trip" role="button" tabindex="0">
+        <div class="game-card__media">
+          <img src="./index_files/img_miniatureOneWayTrip.webp" alt="One Way Trip" class="game-card__image">
         </div>
-        <h3 class="game-title" data-translate-key="gameOneWayTripTitle">One way trip</h3>
-      </div>
+        <h3 class="game-card__title" data-translate-key="gameOneWayTripTitle">One way trip</h3>
+      </article>
       <!-- Add more game cards here as needed -->
     </div>
   </div>
@@ -625,7 +634,7 @@ Blend in. Speak like an AI… or be eliminated.</p>
       track = document.getElementById('carousel-track');
       leftBtn = document.getElementById('prev-btn');
       rightBtn = document.getElementById('next-btn');
-      carouselWrapper = document.querySelector('.carousel-wrapper'); 
+      carouselWrapper = document.querySelector('.project-carousel__viewport');
 
       if (!track || !leftBtn || !rightBtn || !carouselWrapper) {
         console.error('Carousel elements not found. Check IDs and classes.');
