@@ -57,7 +57,16 @@
   <!-- Favicon -->
   <link rel="icon" href="./index_files/icon_JustinVanwichelen.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link
+    rel="preload"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    as="style"
+    crossorigin
+    onload="this.rel='stylesheet'"
+  >
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </noscript>
 </head>
 <body id="home">
   <!-- Navbar Section -->
@@ -87,12 +96,20 @@
   <header>
     <!-- Hero Section  -->
     <div class="hero-section">
-      <div class="hero-background" aria-hidden="true">
-        <canvas id="hero-orbit" class="hero-canvas"></canvas>
-      </div>
       <div class="hero-content">
-        <div class="hero-portrait reveal-on-scroll">
-          <img src="index_files/cv_photo2.svg" alt="Portrait of Justin Vanwichelen" class="hero-image">
+        <div class="hero-media reveal-on-scroll">
+          <picture>
+            <img
+              src="index_files/cv_photo2.svg"
+              alt="Portrait of Justin Vanwichelen"
+              class="hero-image"
+              width="360"
+              height="360"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            >
+          </picture>
         </div>
         <div class="hero-text reveal-on-scroll">
           <p class="hero-role-chip" data-translate-key="heroRoleChip">Game Developer • AI Storycrafter</p>
@@ -106,9 +123,11 @@
           </div>
         </div>
       </div>
-      <div class="hero-scroll-indicator reveal-on-scroll">
+      <div class="hero-scroll-indicator reveal-on-scroll" aria-hidden="true">
         <span data-translate-key="heroScrollCue">Scroll to explore my universes</span>
-        <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+        <svg class="hero-scroll-icon" viewBox="0 0 24 24" role="presentation" focusable="false">
+          <path d="M12 16.75a1 1 0 0 1-.7-.29l-6-6a1 1 0 1 1 1.4-1.42L12 14.34l5.3-5.3a1 1 0 0 1 1.4 1.42l-6 6a1 1 0 0 1-.7.29Z"/>
+        </svg>
       </div>
     </div>
   </header>
@@ -741,7 +760,6 @@ Blend in. Speak like an AI… or be eliminated.</p>
     });
   </script>
   <script src="translations.js?v=4"></script>
-  <script src="hero-visuals.js" defer></script>
   <script src="language-switcher.js" defer></script>
   <script src="theme-switcher.js" defer></script>
   <script src="navbar.js" defer></script>

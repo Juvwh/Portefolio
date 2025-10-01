@@ -121,6 +121,7 @@ html {
   src: url('./font/adam.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 body {
   margin: 0;
@@ -349,7 +350,9 @@ iframe {
   position: relative;
   overflow: hidden;
   padding: clamp(3.25rem, 5.5vw, 5rem) clamp(1.5rem, 5vw, 4rem) clamp(2.75rem, 5vw, 4.5rem);
-  background: var(--hero-section-bg-color);
+  background: radial-gradient(circle at 15% 20%, rgba(var(--hero-particle-trail), 0.25), transparent 55%),
+              radial-gradient(circle at 80% 15%, rgba(var(--hero-particle-highlight), 0.18), transparent 60%),
+              var(--hero-section-bg-color);
   color: var(--hero-section-text-color);
   display: flex;
   align-items: center;
@@ -357,42 +360,14 @@ iframe {
   min-height: clamp(420px, 58vh, 700px);
 }
 
-.hero-background {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.hero-background::before,
-.hero-background::after {
+.hero-section::before {
   content: "";
   position: absolute;
-  inset: -35% -20% -25% -20%;
-  background: radial-gradient(circle at 20% 20%, rgba(var(--hero-particle-trail), 0.38), transparent 10%),
-              radial-gradient(circle at 80% 30%, rgba(var(--hero-particle-core), 0.3), transparent 10%),
-              radial-gradient(circle at 50% 85%, rgba(var(--hero-particle-highlight), 0.25), transparent 0%);
+  inset: -35% -10% auto -10%;
+  height: 140%;
+  background: radial-gradient(circle at 30% 40%, rgba(var(--hero-particle-core), 0.28), transparent 60%);
   filter: blur(0);
-  transform-origin: center;
-}
-
-.hero-background::before {
-  animation: heroGlow 32s linear infinite;
-  mix-blend-mode: screen;
-}
-
-.hero-background::after {
-  animation: heroGlowReverse 38s linear infinite;
-  opacity: 0.55;
-}
-
-.hero-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
+  opacity: 0.75;
 }
 
 .hero-content {
@@ -405,39 +380,33 @@ iframe {
   gap: clamp(1.5rem, 4vw, 4rem);
 }
 
-.hero-portrait {
+.hero-media {
   position: relative;
   display: grid;
   place-items: center;
-    margin-top: 0;
   border-radius: 50%;
-  isolation: isolate;
+  padding: clamp(0.5rem, 1.5vw, 1rem);
+  background: linear-gradient(135deg, rgba(var(--hero-particle-highlight), 0.6), rgba(var(--hero-particle-core), 0.45));
+  box-shadow: 0 25px 55px rgba(13, 27, 63, 0.45);
 }
 
-.hero-portrait::before,
-.hero-portrait::after {
+.hero-media::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: clamp(-0.85rem, -2vw, -0.65rem);
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(var(--hero-particle-highlight), 0.85), rgba(var(--hero-particle-core), 0.75));
-  filter: blur(0);
-  opacity: 0.9;
-  z-index: -2;
-}
-
-.hero-portrait::after {
-  inset: clamp(-1.2rem, -2vw, -0.8rem);
-  opacity: 0.35;
-  filter: blur(30px);
+  background: rgba(var(--hero-particle-core), 0.2);
+  filter: blur(24px);
+  z-index: -1;
 }
 
 .hero-image {
-  max-width: min(320px, 68vw);
+  display: block;
+  width: min(18.75rem, 64vw);
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
-  padding: 0;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
-  animation: heroFloat 12s ease-in-out infinite;
+  object-fit: cover;
+  box-shadow: 0 18px 45px rgba(11, 19, 43, 0.45);
 }
 
 .hero-text {
@@ -458,7 +427,7 @@ iframe {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   background: rgba(var(--hero-particle-core), 0.12);
-  border: 1px solid rgba(var(--hero-particle-highlight), 0.55);
+  border: 1px solid rgba(var(--hero-particle-highlight), 0.5);
   color: var(--hero-strong-text-color);
   font-weight: 600;
   margin-bottom: 0;
@@ -505,7 +474,7 @@ iframe {
   justify-content: flex-start;
 }
 
-.hero-portrait.reveal-on-scroll {
+.hero-media.reveal-on-scroll {
   transition-delay: 0.05s;
 }
 
@@ -524,92 +493,41 @@ iframe {
 .hero-scroll-indicator {
   position: absolute;
   left: 50%;
-  bottom: clamp(0.5rem, 2.5vw, 1.5rem);
-  transform: translate(-50%, 0);
+  bottom: clamp(0.75rem, 3vw, 1.75rem);
+  transform: translateX(-50%);
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.65rem;
   font-size: 0.95rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(var(--hero-pointer-highlight), 0.8);
+  color: rgba(var(--hero-pointer-highlight), 0.82);
   font-weight: 600;
   z-index: 1;
-  animation: heroScrollHint 3.2s ease-in-out infinite;
+  padding: 0.6rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--hero-pointer-highlight), 0.25);
+  background: rgba(var(--hero-pointer-highlight), 0.08);
 }
 
-.hero-scroll-indicator i {
-  font-size: 1.1rem;
-  color: currentColor;
-  animation: heroScrollIcon 1.8s ease-in-out infinite;
+.hero-scroll-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
 }
 
-.hero-section.is-reduced-motion .hero-background::before,
-.hero-section.is-reduced-motion .hero-background::after,
-.hero-section.is-reduced-motion .hero-scroll-indicator,
-.hero-section.is-reduced-motion .hero-scroll-indicator i,
-.hero-section.is-reduced-motion .hero-image {
+.hero-section.is-reduced-motion .hero-scroll-indicator {
   animation: none;
 }
 
-.hero-section.is-reduced-motion .hero-canvas {
-  display: none;
+.hero-section.is-reduced-motion .hero-image {
+  animation: none;
 }
 
 @media (min-width: 1200px) {
   .hero-section {
     min-height: clamp(420px, 52vh, 640px);
     padding-bottom: clamp(2.25rem, 4vw, 3.75rem);
-  }
-}
-
-@keyframes heroGlow {
-  from {
-    transform: rotate(0deg) scale(1.05);
-  }
-  to {
-    transform: rotate(360deg) scale(1.05);
-  }
-}
-
-@keyframes heroGlowReverse {
-  from {
-    transform: rotate(360deg) scale(1.05);
-  }
-  to {
-    transform: rotate(0deg) scale(1.05);
-  }
-}
-
-@keyframes heroFloat {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-14px);
-  }
-}
-
-@keyframes heroScrollHint {
-  0%,
-  100% {
-    opacity: 0.55;
-    transform: translate(-50%, 0px);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -12px);
-  }
-}
-
-@keyframes heroScrollIcon {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(6px);
   }
 }
 
@@ -641,7 +559,7 @@ iframe {
     font-size: 0.75rem;
     letter-spacing: 0.12em;
   }
-  .hero-portrait::after {
+  .hero-media::after {
     inset: clamp(-0.8rem, -4vw, -0.6rem);
   }
   .hero-scroll-indicator {
@@ -672,11 +590,7 @@ iframe {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-background::before,
-  .hero-background::after,
-  .hero-scroll-indicator,
-  .hero-scroll-indicator i,
-  .hero-image {
+  .hero-scroll-indicator {
     animation: none !important;
   }
 }
