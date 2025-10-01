@@ -92,7 +92,15 @@
       </div>
       <div class="hero-content">
         <div class="hero-portrait reveal-on-scroll">
-          <img src="index_files/cv_photo2.svg" alt="Portrait of Justin Vanwichelen" class="hero-image">
+          <img
+            src="index_files/cv_photo2.svg"
+            alt="Portrait of Justin Vanwichelen"
+            class="hero-image"
+            width="360"
+            height="360"
+            decoding="async"
+            fetchpriority="high"
+          >
         </div>
         <div class="hero-text reveal-on-scroll">
           <p class="hero-role-chip" data-translate-key="heroRoleChip">Game Developer • AI Storycrafter</p>
@@ -108,7 +116,9 @@
       </div>
       <div class="hero-scroll-indicator reveal-on-scroll">
         <span data-translate-key="heroScrollCue">Scroll to explore my universes</span>
-        <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+        <svg class="hero-scroll-indicator__icon" viewBox="0 0 24 24" role="presentation" aria-hidden="true">
+          <path d="M12 16.5a1 1 0 0 1-.7-.3l-6-6a1 1 0 0 1 1.4-1.4L12 14.09l5.3-5.29a1 1 0 0 1 1.4 1.42l-6 6a1 1 0 0 1-.7.28Z" fill="currentColor"/>
+        </svg>
       </div>
     </div>
   </header>

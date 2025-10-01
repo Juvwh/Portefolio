@@ -52,7 +52,10 @@ const initHeroOrbit = () => {
   let animationFrame;
   let width = 0;
   let height = 0;
-  let dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+  const MAX_DPR = 1.5;
+  let dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
+  const FRAME_INTERVAL = 1000 / 30;
+  let lastFrameTime = 0;
 
   class Particle {
     constructor() {
@@ -104,7 +107,7 @@ const initHeroOrbit = () => {
   const resizeCanvas = () => {
     width = heroSection.offsetWidth;
     height = heroSection.offsetHeight;
-    dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+    dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
 
     canvas.width = width * dpr;
     canvas.height = height * dpr;
@@ -114,10 +117,10 @@ const initHeroOrbit = () => {
   };
 
   const determineTargetParticleCount = () => {
-    const baseCount = window.innerWidth < 768 ? 45 : 90;
+    const baseCount = window.innerWidth < 768 ? 18 : 32;
     const areaFactor = Math.sqrt((width * height) / (1200 * 700));
-    const scaled = Math.round(baseCount * Math.min(1.6, Math.max(0.65, areaFactor)));
-    return Math.max(35, Math.min(140, scaled));
+    const scaled = Math.round(baseCount * Math.min(1.3, Math.max(0.75, areaFactor)));
+    return Math.max(16, Math.min(48, scaled));
   };
 
   const syncParticleCount = () => {
@@ -133,12 +136,13 @@ const initHeroOrbit = () => {
   };
 
   const drawConnections = () => {
-    const maxDistance = Math.min(180, Math.max(110, Math.max(width, height) * 0.18));
+    const maxDistance = Math.min(140, Math.max(90, Math.max(width, height) * 0.14));
     const maxDistanceSq = maxDistance * maxDistance;
 
     for (let i = 0; i < particles.length; i += 1) {
       const p1 = particles[i];
-      for (let j = i + 1; j < particles.length; j += 1) {
+      const neighborLimit = Math.min(particles.length, i + 14);
+      for (let j = i + 1; j < neighborLimit; j += 1) {
         const p2 = particles[j];
         const dx = p1.x - p2.x;
         const dy = p1.y - p2.y;
@@ -212,6 +216,11 @@ const initHeroOrbit = () => {
     }
 
     animationFrame = requestAnimationFrame(render);
+    const now = performance.now();
+    if (now - lastFrameTime < FRAME_INTERVAL) {
+      return;
+    }
+    lastFrameTime = now;
     ctx.clearRect(0, 0, width, height);
 
     particles.forEach((particle) => particle.update());
@@ -251,6 +260,7 @@ const initHeroOrbit = () => {
     }
 
     stopAnimation();
+    lastFrameTime = 0;
     render();
   };
 
