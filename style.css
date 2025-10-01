@@ -354,35 +354,7 @@ iframe {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(52, 92, 181, 0.18), rgba(11, 27, 63, 0.75));
-}
-
-.hero-background::before,
-.hero-background::after {
-  content: "";
-  position: absolute;
-  inset: -18% -10%;
-  background: linear-gradient(120deg, rgba(90, 141, 255, 0.18), rgba(143, 107, 255, 0.12));
-  opacity: 0.8;
-  transform-origin: center;
-}
-
-.hero-background::before {
-  animation: heroGlow 28s ease-in-out infinite alternate;
-}
-
-.hero-background::after {
-  animation: heroGlowReverse 34s ease-in-out infinite alternate;
-  opacity: 0.45;
-}
-
-.light-theme .hero-background {
-  background: linear-gradient(135deg, rgba(0, 88, 255, 0.14), rgba(0, 40, 179, 0.08));
-}
-
-.light-theme .hero-background::before,
-.light-theme .hero-background::after {
-  background: linear-gradient(120deg, rgba(0, 88, 255, 0.16), rgba(92, 158, 255, 0.1));
+  background: var(--hero-section-bg-color);
 }
 
 .hero-content {
@@ -545,8 +517,6 @@ iframe {
   animation: heroScrollIcon 1.8s ease-in-out infinite;
 }
 
-.hero-section.is-reduced-motion .hero-background::before,
-.hero-section.is-reduced-motion .hero-background::after,
 .hero-section.is-reduced-motion .hero-scroll-indicator,
 .hero-section.is-reduced-motion .hero-scroll-indicator__icon,
 .hero-section.is-reduced-motion .hero-image {
@@ -557,24 +527,6 @@ iframe {
   .hero-section {
     min-height: clamp(420px, 52vh, 640px);
     padding-bottom: clamp(2.25rem, 4vw, 3.75rem);
-  }
-}
-
-@keyframes heroGlow {
-  from {
-    transform: rotate(0deg) scale(1.05);
-  }
-  to {
-    transform: rotate(360deg) scale(1.05);
-  }
-}
-
-@keyframes heroGlowReverse {
-  from {
-    transform: rotate(360deg) scale(1.05);
-  }
-  to {
-    transform: rotate(0deg) scale(1.05);
   }
 }
 
@@ -611,8 +563,6 @@ iframe {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-background::before,
-  .hero-background::after,
   .hero-image,
   .hero-scroll-indicator,
   .hero-scroll-indicator__icon {
@@ -679,8 +629,6 @@ iframe {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-background::before,
-  .hero-background::after,
   .hero-scroll-indicator,
   .hero-scroll-indicator i,
   .hero-image {
