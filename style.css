@@ -112,6 +112,7 @@ html {
   src: url('./font/adam.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 body {
   margin: 0;
@@ -421,7 +422,6 @@ iframe {
 .hero-portrait::after {
   inset: clamp(-0.9rem, -1.5vw, -0.65rem);
   opacity: 0.3;
-  filter: blur(18px);
 }
 
 .light-theme .hero-portrait::before,
@@ -562,19 +562,19 @@ iframe {
 
 @keyframes heroGlow {
   from {
-    transform: rotate(0deg) scale(1.05);
+    opacity: 0.8;
   }
   to {
-    transform: rotate(360deg) scale(1.05);
+    opacity: 1;
   }
 }
 
 @keyframes heroGlowReverse {
   from {
-    transform: rotate(360deg) scale(1.05);
+    opacity: 1;
   }
   to {
-    transform: rotate(0deg) scale(1.05);
+    opacity: 0.8;
   }
 }
 
