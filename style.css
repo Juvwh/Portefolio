@@ -613,10 +613,15 @@ iframe {
   .hero-text p {
     font-size: 0.9rem;
   }
+  .hero-section {
+    overflow: visible;
+    z-index: 2;
+  }
   .hero-scroll-indicator {
     font-size: 0.7rem;
     letter-spacing: 0.16em;
     bottom: clamp(-1.25rem, -5vw, -0.75rem);
+    z-index: 3;
   }
   .carousel-header {
     font-size: 1.3rem;
