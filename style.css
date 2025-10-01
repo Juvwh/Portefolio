@@ -1175,7 +1175,7 @@ my-journey {
     overflow: visible; 
     display: flex; 
     flex-direction: column; 
-    align-items: center; 
+    align-items: flex-start;
   }
   .timeline ul li:after {
     content: '';
@@ -1224,13 +1224,13 @@ my-journey {
   }
   .timeline ul li h3 {
     order: 1; 
-    text-align: center; 
+    text-align: left;
     margin-bottom: 8px; 
     width: 100%; 
   }
   .timeline ul li p:first-of-type { 
     order: 2; 
-    text-align: center; 
+    text-align: left;
     margin-bottom: 10px; 
     width: 100%; 
   }
