@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-labelledby="title desc">
+  <title id="title">Stylised portrait of Justin Vanwichelen</title>
+  <desc id="desc">Flat illustration used as a lightweight placeholder portrait.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4b6aff" />
+      <stop offset="100%" stop-color="#0b1b3f" />
+    </linearGradient>
+  </defs>
+  <rect width="360" height="360" rx="180" fill="url(#bg)" />
+  <circle cx="180" cy="150" r="70" fill="#f3d9b1" />
+  <path d="M120 260c20-32 60-48 120 0v36H120z" fill="#1d263b" />
+  <path d="M120 140c8-50 112-52 120 0c-16-18-92-22-120 0z" fill="#1d263b" />
+  <circle cx="150" cy="150" r="6" fill="#1d263b" />
+  <circle cx="210" cy="150" r="6" fill="#1d263b" />
+  <path d="M150 190c18 20 42 20 60 0" stroke="#1d263b" stroke-width="6" stroke-linecap="round" fill="none" />
+</svg>

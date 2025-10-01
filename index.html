@@ -56,6 +56,7 @@
 
   <!-- Favicon -->
   <link rel="icon" href="./index_files/icon_JustinVanwichelen.ico" type="image/x-icon">
+  <link rel="preload" href="font/adam.otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -86,39 +87,31 @@
   </nav>
   <header>
     <!-- Hero Section  -->
-    <div class="hero-section">
-      <div class="hero-background" aria-hidden="true"></div>
-      <div class="hero-content">
-        <div class="hero-portrait reveal-on-scroll">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__media reveal-on-scroll">
+        <picture>
           <img
-            src="index_files/cv_photo2.svg"
-            alt="Portrait of Justin Vanwichelen"
-            class="hero-image"
+            src="index_files/justin-portrait.svg"
+            alt="Stylised portrait of Justin Vanwichelen"
             width="360"
             height="360"
             decoding="async"
             fetchpriority="high"
           >
-        </div>
-        <div class="hero-text reveal-on-scroll">
-          <p class="hero-role-chip" data-translate-key="heroRoleChip">Game Developer • AI Storycrafter</p>
-          <h2 data-translate-key="heroGreeting">HI ALL, I'M <STRong>JUSTIN 👋</STRong></h2>
-          <p data-translate-key="heroP1">With a background as a <strong>Technical Artist</strong> and a <strong>Master's degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I focus on <strong>gameplay programming</strong> and interactive systems development. My strong creative instincts, paired with my technical skills, allow me to design <strong>immersive and intelligent experiences</strong>.</p>
-          <p data-translate-key="heroP2">I enjoy <strong>blending logic with aesthetics</strong>. I'm proficient in <strong>Photoshop</strong> and love crafting detailed visual assets, especially during prototyping and early design phases.</p>
-          <p data-translate-key="heroP3">My Master's thesis explores how AI, particularly <strong>Large Language Models (LLMs)</strong>, can enhance interactivity and narrative depth in role-playing games. I've also applied AI in healthcare through a health informatics course, broadening my perspective on its cross-industry impact.</p>
-          <div class="hero-cta-group reveal-on-scroll">
-            <a class="btn-cta-primary" href="#all-games-section" data-translate-key="heroCtaProjects">See my game projects</a>
-            <a class="btn-cta-secondary" href="#it-projects-section" rel="noopener" data-translate-key="heroCtaCv">Mes projets IT</a>
-          </div>
+        </picture>
+      </div>
+      <div class="hero__content reveal-on-scroll">
+        <p class="hero__role" data-translate-key="heroRoleChip">Game Developer • AI Storycrafter</p>
+        <h2 id="hero-title" data-translate-key="heroGreeting">HI ALL, I'M <strong>JUSTIN 👋</strong></h2>
+        <p data-translate-key="heroP1">With a background as a <strong>Technical Artist</strong> and a <strong>Master's degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I focus on <strong>gameplay programming</strong> and interactive systems development. My strong creative instincts, paired with my technical skills, allow me to design <strong>immersive and intelligent experiences</strong>.</p>
+        <p data-translate-key="heroP2">I enjoy <strong>blending logic with aesthetics</strong>. I'm proficient in <strong>Photoshop</strong> and love crafting detailed visual assets, especially during prototyping and early design phases.</p>
+        <p data-translate-key="heroP3">My Master's thesis explores how AI, particularly <strong>Large Language Models (LLMs)</strong>, can enhance interactivity and narrative depth in role-playing games. I've also applied AI in healthcare through a health informatics course, broadening my perspective on its cross-industry impact.</p>
+        <div class="hero__cta reveal-on-scroll">
+          <a class="btn-cta-primary" href="#all-games-section" data-translate-key="heroCtaProjects">See my game projects</a>
+          <a class="btn-cta-secondary" href="#it-projects-section" rel="noopener" data-translate-key="heroCtaCv">Mes projets IT</a>
         </div>
       </div>
-      <div class="hero-scroll-indicator reveal-on-scroll">
-        <span data-translate-key="heroScrollCue">Scroll to explore my universes</span>
-        <svg class="hero-scroll-indicator__icon" viewBox="0 0 24 24" role="presentation" aria-hidden="true">
-          <path d="M12 16.5a1 1 0 0 1-.7-.3l-6-6a1 1 0 0 1 1.4-1.4L12 14.09l5.3-5.29a1 1 0 0 1 1.4 1.42l-6 6a1 1 0 0 1-.7.28Z" fill="currentColor"/>
-        </svg>
-      </div>
-    </div>
+    </section>
   </header>
 
 
