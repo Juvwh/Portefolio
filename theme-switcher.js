@@ -6,16 +6,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const LIGHT_THEME_CLASS = 'light-theme';
   const DARK_THEME_CLASS = 'dark-theme';
 
-  // Function to update button text/icon based on current theme
-  function updateButtonAppearance() {
-    if (body.classList.contains(LIGHT_THEME_CLASS)) {
-      themeToggleBtn.textContent = 'Switch to Dark Mode'; // Or use an icon like '🌙'
-    } else {
-      themeToggleBtn.textContent = 'Switch to Light Mode'; // Or use an icon like '☀️'
-    }
+  if (!themeToggleBtn) {
+    console.warn('Theme toggle button not found.');
+    return;
   }
 
-  // Function to apply a specific theme
+  const getCurrentLanguage = () => document.documentElement.lang || 'en';
+
+  const getTranslation = (key) => {
+    const lang = getCurrentLanguage();
+    const fallback = key === 'switchToDarkMode' ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+
+    if (typeof window.getTranslationForKey === 'function') {
+      const translation = window.getTranslationForKey(key, lang);
+      if (translation && !String(translation).startsWith('MissingKey')) {
+        return translation;
+      }
+    }
+
+    if (typeof translations !== 'undefined') {
+      return translations?.[lang]?.[key] || fallback;
+    }
+
+    return fallback;
+  };
+
+  function updateThemeButtonAppearance() {
+    const isLightTheme = body.classList.contains(LIGHT_THEME_CLASS);
+    const translationKey = isLightTheme ? 'switchToDarkMode' : 'switchToLightMode';
+
+    themeToggleBtn.setAttribute('data-translate-key', translationKey);
+    themeToggleBtn.textContent = getTranslation(translationKey);
+  }
+
   function applyTheme(theme) {
     if (theme === 'light') {
       body.classList.add(LIGHT_THEME_CLASS);
@@ -25,29 +48,25 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.remove(LIGHT_THEME_CLASS);
     }
     localStorage.setItem(THEME_KEY, theme);
-    updateButtonAppearance();
+    updateThemeButtonAppearance();
   }
 
-  // Event listener for the toggle button
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      if (body.classList.contains(LIGHT_THEME_CLASS)) {
-        applyTheme('dark');
-      } else {
-        applyTheme('light');
-      }
-    });
-  }
+  themeToggleBtn.addEventListener('click', () => {
+    if (body.classList.contains(LIGHT_THEME_CLASS)) {
+      applyTheme('dark');
+    } else {
+      applyTheme('light');
+    }
+  });
 
-  // Load and apply saved theme preference on script load
   const savedTheme = localStorage.getItem(THEME_KEY);
   if (savedTheme) {
     applyTheme(savedTheme);
   } else {
-    // If no saved theme, ensure current body class matches button state
-    // The body already has 'dark-theme' by default from HTML
-    updateButtonAppearance();
+    updateThemeButtonAppearance();
   }
 
-  console.log("Theme switcher script initialized.");
+  window.updateThemeButtonAppearance = updateThemeButtonAppearance;
+
+  console.log('Theme switcher script initialized.');
 });
