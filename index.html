@@ -56,8 +56,13 @@
 
   <!-- Favicon -->
   <link rel="icon" href="./index_files/icon_JustinVanwichelen.ico" type="image/x-icon">
+  <link rel="preload" href="style.css" as="style">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preload" as="image" href="index_files/hero-portrait.svg" imagesrcset="index_files/hero-portrait.svg 1x">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </noscript>
 </head>
 <body id="home">
   <!-- Navbar Section -->
@@ -87,11 +92,10 @@
   <header>
     <!-- Hero Section  -->
     <div class="hero-section">
-      <div class="hero-background" aria-hidden="true"></div>
       <div class="hero-content">
-        <div class="hero-portrait reveal-on-scroll">
+        <figure class="hero-portrait reveal-on-scroll">
           <img
-            src="index_files/cv_photo2.svg"
+            src="index_files/hero-portrait.svg"
             alt="Portrait of Justin Vanwichelen"
             class="hero-image"
             width="360"
@@ -99,7 +103,7 @@
             decoding="async"
             fetchpriority="high"
           >
-        </div>
+        </figure>
         <div class="hero-text reveal-on-scroll">
           <p class="hero-role-chip" data-translate-key="heroRoleChip">Game Developer • AI Storycrafter</p>
           <h2 data-translate-key="heroGreeting">HI ALL, I'M <STRong>JUSTIN 👋</STRong></h2>
