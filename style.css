@@ -28,9 +28,6 @@
   --navbar-bg-color-dark: #0e1528;
   --navbar-outline-color-dark: white;
   --image-outline-color: #efc634;
-  --hero-particle-core: 143, 107, 255;
-  --hero-particle-trail: 90, 141, 255;
-  --hero-particle-highlight: 239, 198, 52;
   --hero-pointer-highlight: 239, 198, 52;
 }
 .dark-theme {
@@ -65,9 +62,6 @@
   --modal-card-bg-color-dark: #2c3e50;
   --modal-card-text-color-dark: #ecf0f1;
   --modal-title-text-color-dark: #ffffff;
-  --hero-particle-core: 143, 107, 255;
-  --hero-particle-trail: 90, 141, 255;
-  --hero-particle-highlight: 239, 198, 52;
   --hero-pointer-highlight: 239, 198, 52;
 }
 .light-theme {
@@ -105,9 +99,6 @@
   --timeline-accent-light: #007AFF;
   --timeline-text-light: #333333;
   --timeline-line-light: #DDDDDD;
-  --hero-particle-core: 0, 88, 255;
-  --hero-particle-trail: 92, 158, 255;
-  --hero-particle-highlight: 239, 198, 52;
   --hero-pointer-highlight: 0, 88, 255;
 }
 * {
@@ -363,36 +354,35 @@ iframe {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+  background: linear-gradient(135deg, rgba(52, 92, 181, 0.18), rgba(11, 27, 63, 0.75));
 }
 
 .hero-background::before,
 .hero-background::after {
   content: "";
   position: absolute;
-  inset: -35% -20% -25% -20%;
-  background: radial-gradient(circle at 20% 20%, rgba(var(--hero-particle-trail), 0.38), transparent 10%),
-              radial-gradient(circle at 80% 30%, rgba(var(--hero-particle-core), 0.3), transparent 10%),
-              radial-gradient(circle at 50% 85%, rgba(var(--hero-particle-highlight), 0.25), transparent 0%);
-  filter: blur(0);
+  inset: -18% -10%;
+  background: linear-gradient(120deg, rgba(90, 141, 255, 0.18), rgba(143, 107, 255, 0.12));
+  opacity: 0.8;
   transform-origin: center;
 }
 
 .hero-background::before {
-  animation: heroGlow 32s linear infinite;
-  mix-blend-mode: screen;
+  animation: heroGlow 28s ease-in-out infinite alternate;
 }
 
 .hero-background::after {
-  animation: heroGlowReverse 38s linear infinite;
-  opacity: 0.55;
+  animation: heroGlowReverse 34s ease-in-out infinite alternate;
+  opacity: 0.45;
 }
 
-.hero-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
+.light-theme .hero-background {
+  background: linear-gradient(135deg, rgba(0, 88, 255, 0.14), rgba(0, 40, 179, 0.08));
+}
+
+.light-theme .hero-background::before,
+.light-theme .hero-background::after {
+  background: linear-gradient(120deg, rgba(0, 88, 255, 0.16), rgba(92, 158, 255, 0.1));
 }
 
 .hero-content {
@@ -409,9 +399,11 @@ iframe {
   position: relative;
   display: grid;
   place-items: center;
-    margin-top: 0;
+  margin-top: 0;
   border-radius: 50%;
   isolation: isolate;
+  aspect-ratio: 1 / 1;
+  width: min(320px, 68vw);
 }
 
 .hero-portrait::before,
@@ -420,24 +412,30 @@ iframe {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(var(--hero-particle-highlight), 0.85), rgba(var(--hero-particle-core), 0.75));
+  background: linear-gradient(135deg, rgba(239, 198, 52, 0.85), rgba(143, 107, 255, 0.75));
   filter: blur(0);
   opacity: 0.9;
   z-index: -2;
 }
 
 .hero-portrait::after {
-  inset: clamp(-1.2rem, -2vw, -0.8rem);
-  opacity: 0.35;
-  filter: blur(30px);
+  inset: clamp(-0.9rem, -1.5vw, -0.65rem);
+  opacity: 0.3;
+  filter: blur(18px);
+}
+
+.light-theme .hero-portrait::before,
+.light-theme .hero-portrait::after {
+  background: linear-gradient(135deg, rgba(0, 88, 255, 0.78), rgba(95, 145, 255, 0.68));
 }
 
 .hero-image {
-  max-width: min(320px, 68vw);
+  width: 100%;
+  height: auto;
   border-radius: 50%;
   padding: 0;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
-  animation: heroFloat 12s ease-in-out infinite;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+  animation: heroFloat 18s ease-in-out infinite;
 }
 
 .hero-text {
@@ -457,8 +455,8 @@ iframe {
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: rgba(var(--hero-particle-core), 0.12);
-  border: 1px solid rgba(var(--hero-particle-highlight), 0.55);
+  background: rgba(90, 141, 255, 0.12);
+  border: 1px solid rgba(239, 198, 52, 0.55);
   color: var(--hero-strong-text-color);
   font-weight: 600;
   margin-bottom: 0;
@@ -467,7 +465,8 @@ iframe {
 }
 
 .light-theme .hero-role-chip {
-  border-color: rgba(var(--hero-particle-core), 0.45);
+  background: rgba(0, 88, 255, 0.12);
+  border-color: rgba(0, 88, 255, 0.45);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
@@ -538,8 +537,10 @@ iframe {
   animation: heroScrollHint 3.2s ease-in-out infinite;
 }
 
-.hero-scroll-indicator i {
-  font-size: 1.1rem;
+.hero-scroll-indicator__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
   color: currentColor;
   animation: heroScrollIcon 1.8s ease-in-out infinite;
 }
@@ -547,13 +548,9 @@ iframe {
 .hero-section.is-reduced-motion .hero-background::before,
 .hero-section.is-reduced-motion .hero-background::after,
 .hero-section.is-reduced-motion .hero-scroll-indicator,
-.hero-section.is-reduced-motion .hero-scroll-indicator i,
+.hero-section.is-reduced-motion .hero-scroll-indicator__icon,
 .hero-section.is-reduced-motion .hero-image {
   animation: none;
-}
-
-.hero-section.is-reduced-motion .hero-canvas {
-  display: none;
 }
 
 @media (min-width: 1200px) {
@@ -610,6 +607,16 @@ iframe {
   }
   50% {
     transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-background::before,
+  .hero-background::after,
+  .hero-image,
+  .hero-scroll-indicator,
+  .hero-scroll-indicator__icon {
+    animation: none !important;
   }
 }
 
