@@ -52,13 +52,14 @@ const initHeroOrbit = () => {
   let animationFrame;
   let width = 0;
   let height = 0;
-  let dpr = Math.min(window.devicePixelRatio || 1, 1.75);
-  let isInView = false;
-  let isAnimating = false;
+  const MAX_DPR = 1.5;
+  let dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
+  const FRAME_INTERVAL = 1000 / 30;
+  let lastFrameTime = 0;
 
   class Particle {
     constructor() {
-      this.size = Math.random() * 1.2 + 0.5;
+      this.size = Math.random() * 1.4 + 0.6;
       this.angle = Math.random() * Math.PI * 2;
       this.angleVelocity = 0.0025 + Math.random() * 0.0035;
       this.velocityScale = 0.15 + Math.random() * 0.25;
@@ -106,7 +107,7 @@ const initHeroOrbit = () => {
   const resizeCanvas = () => {
     width = heroSection.offsetWidth;
     height = heroSection.offsetHeight;
-    dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+    dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
 
     canvas.width = width * dpr;
     canvas.height = height * dpr;
@@ -116,10 +117,10 @@ const initHeroOrbit = () => {
   };
 
   const determineTargetParticleCount = () => {
-    const baseCount = window.innerWidth < 768 ? 32 : 58;
+    const baseCount = window.innerWidth < 768 ? 18 : 32;
     const areaFactor = Math.sqrt((width * height) / (1200 * 700));
-    const scaled = Math.round(baseCount * Math.min(1.35, Math.max(0.6, areaFactor)));
-    return Math.max(26, Math.min(92, scaled));
+    const scaled = Math.round(baseCount * Math.min(1.3, Math.max(0.75, areaFactor)));
+    return Math.max(16, Math.min(48, scaled));
   };
 
   const syncParticleCount = () => {
@@ -135,13 +136,13 @@ const initHeroOrbit = () => {
   };
 
   const drawConnections = () => {
-    const maxDistance = Math.min(160, Math.max(100, Math.max(width, height) * 0.16));
+    const maxDistance = Math.min(140, Math.max(90, Math.max(width, height) * 0.14));
     const maxDistanceSq = maxDistance * maxDistance;
 
     for (let i = 0; i < particles.length; i += 1) {
       const p1 = particles[i];
-      const neighborCap = Math.min(particles.length, i + 12);
-      for (let j = i + 1; j < neighborCap; j += 1) {
+      const neighborLimit = Math.min(particles.length, i + 14);
+      for (let j = i + 1; j < neighborLimit; j += 1) {
         const p2 = particles[j];
         const dx = p1.x - p2.x;
         const dy = p1.y - p2.y;
@@ -210,12 +211,16 @@ const initHeroOrbit = () => {
   };
 
   const render = () => {
-    if (isMotionDisabled || !isInView) {
-      isAnimating = false;
+    if (isMotionDisabled) {
       return;
     }
 
     animationFrame = requestAnimationFrame(render);
+    const now = performance.now();
+    if (now - lastFrameTime < FRAME_INTERVAL) {
+      return;
+    }
+    lastFrameTime = now;
     ctx.clearRect(0, 0, width, height);
 
     particles.forEach((particle) => particle.update());
@@ -246,16 +251,16 @@ const initHeroOrbit = () => {
       cancelAnimationFrame(animationFrame);
       animationFrame = undefined;
     }
-    isAnimating = false;
   };
 
   const startAnimation = () => {
-    if (isMotionDisabled || !isInView || isAnimating) {
+    if (isMotionDisabled) {
+      stopAnimation();
       return;
     }
 
     stopAnimation();
-    isAnimating = true;
+    lastFrameTime = 0;
     render();
   };
 
@@ -265,7 +270,7 @@ const initHeroOrbit = () => {
   };
 
   const handleVisibilityChange = () => {
-    if (document.hidden || isMotionDisabled || !isInView) {
+    if (document.hidden || isMotionDisabled) {
       stopAnimation();
     } else {
       startAnimation();
@@ -275,28 +280,7 @@ const initHeroOrbit = () => {
   readColorVariables();
   resizeCanvas();
   syncParticleCount();
-
-  const intersectionHandler = (entries) => {
-    entries.forEach((entry) => {
-      isInView = entry.isIntersecting;
-
-      if (isInView && !isMotionDisabled) {
-        startAnimation();
-      } else {
-        stopAnimation();
-      }
-    });
-  };
-
-  if ('IntersectionObserver' in window) {
-    const intersectionObserver = new IntersectionObserver(intersectionHandler, {
-      threshold: 0.18,
-    });
-    intersectionObserver.observe(heroSection);
-  } else {
-    isInView = true;
-    startAnimation();
-  }
+  startAnimation();
 
   const resizeObserver = 'ResizeObserver' in window ? new ResizeObserver(handleResize) : null;
   if (resizeObserver) {
@@ -336,9 +320,7 @@ const initHeroOrbit = () => {
       readColorVariables();
       resizeCanvas();
       syncParticleCount();
-      if (isInView) {
-        startAnimation();
-      }
+      startAnimation();
     }
   };
 

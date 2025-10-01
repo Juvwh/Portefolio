@@ -363,11 +363,27 @@ iframe {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(var(--hero-particle-trail), 0.32), transparent 55%),
-    radial-gradient(circle at 72% 28%, rgba(var(--hero-particle-core), 0.28), transparent 60%),
-    radial-gradient(circle at 48% 78%, rgba(var(--hero-particle-highlight), 0.22), transparent 62%),
-    linear-gradient(160deg, rgba(13, 28, 64, 0.85), rgba(6, 12, 32, 0.94));
+}
+
+.hero-background::before,
+.hero-background::after {
+  content: "";
+  position: absolute;
+  inset: -18% -10%;
+  background: radial-gradient(circle at 20% 25%, rgba(var(--hero-particle-trail), 0.26), transparent 55%),
+              radial-gradient(circle at 75% 30%, rgba(var(--hero-particle-core), 0.22), transparent 58%),
+              radial-gradient(circle at 50% 80%, rgba(var(--hero-particle-highlight), 0.18), transparent 60%);
+  opacity: 0.8;
+  transform-origin: center;
+}
+
+.hero-background::before {
+  animation: heroGlow 28s ease-in-out infinite alternate;
+}
+
+.hero-background::after {
+  animation: heroGlowReverse 34s ease-in-out infinite alternate;
+  opacity: 0.45;
 }
 
 .hero-canvas {
@@ -376,7 +392,6 @@ iframe {
   width: 100%;
   height: 100%;
   display: block;
-  opacity: 0.65;
 }
 
 .hero-content {
@@ -397,6 +412,7 @@ iframe {
   border-radius: 50%;
   isolation: isolate;
   aspect-ratio: 1 / 1;
+  width: min(320px, 68vw);
 }
 
 .hero-portrait::before,
@@ -405,25 +421,25 @@ iframe {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(var(--hero-particle-highlight), 0.65), rgba(var(--hero-particle-core), 0.55));
+  background: linear-gradient(135deg, rgba(var(--hero-particle-highlight), 0.85), rgba(var(--hero-particle-core), 0.75));
   filter: blur(0);
-  opacity: 0.7;
+  opacity: 0.9;
   z-index: -2;
 }
 
 .hero-portrait::after {
-  inset: clamp(-0.6rem, -1.5vw, -0.4rem);
-  opacity: 0.25;
+  inset: clamp(-0.9rem, -1.5vw, -0.65rem);
+  opacity: 0.3;
   filter: blur(18px);
 }
 
 .hero-image {
-  max-width: min(320px, 68vw);
   width: 100%;
   height: auto;
   border-radius: 50%;
   padding: 0;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+  animation: heroFloat 18s ease-in-out infinite;
 }
 
 .hero-text {
@@ -521,16 +537,21 @@ iframe {
   color: rgba(var(--hero-pointer-highlight), 0.8);
   font-weight: 600;
   z-index: 1;
+  animation: heroScrollHint 3.2s ease-in-out infinite;
 }
 
-.hero-scroll-icon {
-  width: 1.1rem;
-  height: 1.1rem;
+.hero-scroll-indicator__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
   color: currentColor;
-  flex-shrink: 0;
+  animation: heroScrollIcon 1.8s ease-in-out infinite;
 }
 
+.hero-section.is-reduced-motion .hero-background::before,
+.hero-section.is-reduced-motion .hero-background::after,
 .hero-section.is-reduced-motion .hero-scroll-indicator,
+.hero-section.is-reduced-motion .hero-scroll-indicator__icon,
 .hero-section.is-reduced-motion .hero-image {
   animation: none;
 }
@@ -543,6 +564,66 @@ iframe {
   .hero-section {
     min-height: clamp(420px, 52vh, 640px);
     padding-bottom: clamp(2.25rem, 4vw, 3.75rem);
+  }
+}
+
+@keyframes heroGlow {
+  from {
+    transform: rotate(0deg) scale(1.05);
+  }
+  to {
+    transform: rotate(360deg) scale(1.05);
+  }
+}
+
+@keyframes heroGlowReverse {
+  from {
+    transform: rotate(360deg) scale(1.05);
+  }
+  to {
+    transform: rotate(0deg) scale(1.05);
+  }
+}
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes heroScrollHint {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translate(-50%, 0px);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -12px);
+  }
+}
+
+@keyframes heroScrollIcon {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-background::before,
+  .hero-background::after,
+  .hero-image,
+  .hero-scroll-indicator,
+  .hero-scroll-indicator__icon {
+    animation: none !important;
   }
 }
 
