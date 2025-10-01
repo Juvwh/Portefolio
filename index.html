@@ -57,7 +57,8 @@
   <!-- Favicon -->
   <link rel="icon" href="./index_files/icon_JustinVanwichelen.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 </head>
 <body id="home">
   <!-- Navbar Section -->
@@ -92,7 +93,18 @@
       </div>
       <div class="hero-content">
         <div class="hero-portrait reveal-on-scroll">
-          <img src="index_files/cv_photo2.svg" alt="Portrait of Justin Vanwichelen" class="hero-image">
+          <picture>
+            <img
+              src="index_files/cv_photo2.svg"
+              alt="Portrait of Justin Vanwichelen"
+              class="hero-image"
+              width="320"
+              height="320"
+              decoding="async"
+              fetchpriority="high"
+              loading="eager"
+            >
+          </picture>
         </div>
         <div class="hero-text reveal-on-scroll">
           <p class="hero-role-chip" data-translate-key="heroRoleChip">Game Developer • AI Storycrafter</p>
@@ -108,7 +120,9 @@
       </div>
       <div class="hero-scroll-indicator reveal-on-scroll">
         <span data-translate-key="heroScrollCue">Scroll to explore my universes</span>
-        <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+        <svg class="hero-scroll-icon" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+          <path d="M12 16.5a1 1 0 0 1-.7-.29l-6-6a1 1 0 1 1 1.4-1.42L12 14.09l5.3-5.3a1 1 0 0 1 1.4 1.42l-6 6a1 1 0 0 1-.7.29z" fill="currentColor"/>
+        </svg>
       </div>
     </div>
   </header>
