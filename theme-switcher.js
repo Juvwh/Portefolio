@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const THEME_KEY = 'selected_theme';
   const LIGHT_THEME_CLASS = 'light-theme';
   const DARK_THEME_CLASS = 'dark-theme';
+  const VALID_THEMES = new Set(['light', 'dark']);
 
   if (!themeToggleBtn) {
     console.warn('Theme toggle button not found.');
@@ -39,7 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggleBtn.textContent = getTranslation(translationKey);
   }
 
-  function applyTheme(theme) {
+  function applyTheme(theme, { persist = true } = {}) {
+    if (!VALID_THEMES.has(theme)) {
+      console.warn(`Ignored invalid theme value: ${theme}`);
+      updateThemeButtonAppearance();
+      return;
+    }
+
     if (theme === 'light') {
       body.classList.add(LIGHT_THEME_CLASS);
       body.classList.remove(DARK_THEME_CLASS);
@@ -47,7 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.add(DARK_THEME_CLASS);
       body.classList.remove(LIGHT_THEME_CLASS);
     }
-    localStorage.setItem(THEME_KEY, theme);
+    if (persist) {
+      localStorage.setItem(THEME_KEY, theme);
+    }
     updateThemeButtonAppearance();
   }
 
@@ -60,11 +69,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const savedTheme = localStorage.getItem(THEME_KEY);
-  if (savedTheme) {
+  if (VALID_THEMES.has(savedTheme)) {
     applyTheme(savedTheme);
   } else {
     updateThemeButtonAppearance();
   }
+
+  document.addEventListener('languagechange', updateThemeButtonAppearance);
+
+  window.addEventListener('storage', (event) => {
+    if (event.key === THEME_KEY) {
+      const newTheme = event.newValue;
+      if (VALID_THEMES.has(newTheme)) {
+        applyTheme(newTheme, { persist: false });
+      } else if (!newTheme) {
+        updateThemeButtonAppearance();
+      }
+    }
+  });
 
   window.updateThemeButtonAppearance = updateThemeButtonAppearance;
 

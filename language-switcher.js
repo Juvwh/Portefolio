@@ -80,6 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof window.updateThemeButtonAppearance === 'function') {
       window.updateThemeButtonAppearance();
     }
+
+    setTimeout(() => {
+      document.dispatchEvent(
+        new CustomEvent('languagechange', {
+          detail: { language: currentLanguage }
+        })
+      );
+    }, 0);
   }
 
   function updateLanguageButtonStates() {

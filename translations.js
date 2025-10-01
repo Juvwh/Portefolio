@@ -29,6 +29,7 @@ const translations = {
     heroCtaProjects: "Explore my game projects",
     heroCtaItProjects: "See my IT projects",
     heroCtaCv: "Download my CV",
+    heroScrollCue: "Scroll to explore my universes",
 
     // Highlighted Projects Carousel
     carouselHeader: "Highlighted projects",
@@ -233,6 +234,7 @@ const translations = {
     heroCtaProjects: "Voir mes projets de jeux",
     heroCtaItProjects: "Voir mes projets IT",
     heroCtaCv: "Télécharger mon CV",
+    heroScrollCue: "Faites défiler pour explorer mes univers",
     // Carrousel des projets mis en avant
     carouselHeader: "Projets mis en avant",
     // -- Carte : The Human Variable (Carrousel)
