@@ -112,6 +112,7 @@ html {
   src: url('./font/adam.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 body {
   margin: 0;
@@ -340,49 +341,15 @@ iframe {
   position: relative;
   overflow: hidden;
   padding: clamp(3.25rem, 5.5vw, 5rem) clamp(1.5rem, 5vw, 4rem) clamp(2.75rem, 5vw, 4.5rem);
-  background: var(--hero-section-bg-color);
+  background:
+    radial-gradient(120% 100% at 85% 5%, rgba(143, 107, 255, 0.24), transparent 60%),
+    radial-gradient(100% 80% at 15% 20%, rgba(239, 198, 52, 0.18), transparent 65%),
+    var(--hero-section-bg-color);
   color: var(--hero-section-text-color);
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: clamp(420px, 58vh, 700px);
-}
-
-.hero-background {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-  background: linear-gradient(135deg, rgba(52, 92, 181, 0.18), rgba(11, 27, 63, 0.75));
-}
-
-.hero-background::before,
-.hero-background::after {
-  content: "";
-  position: absolute;
-  inset: -18% -10%;
-  background: linear-gradient(120deg, rgba(90, 141, 255, 0.18), rgba(143, 107, 255, 0.12));
-  opacity: 0.8;
-  transform-origin: center;
-}
-
-.hero-background::before {
-  animation: heroGlow 28s ease-in-out infinite alternate;
-}
-
-.hero-background::after {
-  animation: heroGlowReverse 34s ease-in-out infinite alternate;
-  opacity: 0.45;
-}
-
-.light-theme .hero-background {
-  background: linear-gradient(135deg, rgba(0, 88, 255, 0.14), rgba(0, 40, 179, 0.08));
-}
-
-.light-theme .hero-background::before,
-.light-theme .hero-background::after {
-  background: linear-gradient(120deg, rgba(0, 88, 255, 0.16), rgba(92, 158, 255, 0.1));
 }
 
 .hero-content {
@@ -399,43 +366,31 @@ iframe {
   position: relative;
   display: grid;
   place-items: center;
-  margin-top: 0;
+  margin: 0;
   border-radius: 50%;
-  isolation: isolate;
   aspect-ratio: 1 / 1;
   width: min(320px, 68vw);
+  background:
+    radial-gradient(75% 75% at 50% 35%, rgba(239, 198, 52, 0.35), transparent 70%),
+    rgba(255, 255, 255, 0.05);
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
 }
 
-.hero-portrait::before,
-.hero-portrait::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(239, 198, 52, 0.85), rgba(143, 107, 255, 0.75));
-  filter: blur(0);
-  opacity: 0.9;
-  z-index: -2;
-}
-
-.hero-portrait::after {
-  inset: clamp(-0.9rem, -1.5vw, -0.65rem);
-  opacity: 0.3;
-  filter: blur(18px);
-}
-
-.light-theme .hero-portrait::before,
-.light-theme .hero-portrait::after {
-  background: linear-gradient(135deg, rgba(0, 88, 255, 0.78), rgba(95, 145, 255, 0.68));
+.light-theme .hero-portrait {
+  background:
+    radial-gradient(75% 75% at 50% 35%, rgba(0, 88, 255, 0.35), transparent 70%),
+    rgba(255, 255, 255, 0.6);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
 }
 
 .hero-image {
   width: 100%;
   height: auto;
   border-radius: 50%;
-  padding: 0;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
-  animation: heroFloat 18s ease-in-out infinite;
+  display: block;
+  will-change: transform;
+  animation: heroFloat 16s ease-in-out infinite;
 }
 
 .hero-text {
@@ -456,18 +411,15 @@ iframe {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   background: rgba(90, 141, 255, 0.12);
-  border: 1px solid rgba(239, 198, 52, 0.55);
+  border: 1px solid rgba(239, 198, 52, 0.45);
   color: var(--hero-strong-text-color);
   font-weight: 600;
   margin-bottom: 0;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 14px 35px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(6px);
 }
 
 .light-theme .hero-role-chip {
   background: rgba(0, 88, 255, 0.12);
   border-color: rgba(0, 88, 255, 0.45);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .hero-text h2 {
@@ -545,8 +497,6 @@ iframe {
   animation: heroScrollIcon 1.8s ease-in-out infinite;
 }
 
-.hero-section.is-reduced-motion .hero-background::before,
-.hero-section.is-reduced-motion .hero-background::after,
 .hero-section.is-reduced-motion .hero-scroll-indicator,
 .hero-section.is-reduced-motion .hero-scroll-indicator__icon,
 .hero-section.is-reduced-motion .hero-image {
@@ -557,24 +507,6 @@ iframe {
   .hero-section {
     min-height: clamp(420px, 52vh, 640px);
     padding-bottom: clamp(2.25rem, 4vw, 3.75rem);
-  }
-}
-
-@keyframes heroGlow {
-  from {
-    transform: rotate(0deg) scale(1.05);
-  }
-  to {
-    transform: rotate(360deg) scale(1.05);
-  }
-}
-
-@keyframes heroGlowReverse {
-  from {
-    transform: rotate(360deg) scale(1.05);
-  }
-  to {
-    transform: rotate(0deg) scale(1.05);
   }
 }
 
@@ -611,8 +543,6 @@ iframe {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-background::before,
-  .hero-background::after,
   .hero-image,
   .hero-scroll-indicator,
   .hero-scroll-indicator__icon {
@@ -679,8 +609,6 @@ iframe {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-background::before,
-  .hero-background::after,
   .hero-scroll-indicator,
   .hero-scroll-indicator i,
   .hero-image {
@@ -703,11 +631,10 @@ iframe {
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   background: var(--hero-cta-secondary-bg);
   border: 1px solid var(--hero-cta-secondary-border);
   color: var(--hero-cta-secondary-text);
-  backdrop-filter: blur(4px);
 }
 
 .btn-cta-secondary:hover,
