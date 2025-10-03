@@ -442,7 +442,7 @@ iframe {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
-.hero-text h2 {
+.hero-text h1 {
   font-size: clamp(2.4rem, 5.4vw, 4rem);
   font-weight: bold;
   color: var(--hero-title-text-color);
@@ -453,7 +453,7 @@ iframe {
 }
 
 @media (min-width: 900px) {
-  .hero-text h2 {
+  .hero-text h1 {
     white-space: nowrap;
   }
 }
@@ -607,7 +607,7 @@ iframe {
 }
 
 @media (max-width: 480px) {
-  .hero-text h2 {
+  .hero-text h1 {
     font-size: clamp(2rem, 8vw, 2.4rem);
   }
   .hero-text p {
@@ -958,7 +958,7 @@ iframe {
     max-width: min(520px, 100%);
     text-align: center;
   }
-  .hero-text h2 {
+  .hero-text h1 {
     text-align: center;
   }
   .hero-portrait {
