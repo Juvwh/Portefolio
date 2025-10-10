@@ -24,7 +24,7 @@ const translations = {
     // Hero Section
     heroGreeting: "HI ALL, I'M <strong>JUSTIN 👋</strong>",
     heroP1: "With a background as a <strong>Technical Artist</strong> and a <strong>Master's degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I focus on <strong>gameplay programming</strong> and interactive systems development. My strong creative instincts, paired with my technical skills, allow me to design <strong>immersive and intelligent experiences</strong>.",
-    heroP2: "I enjoy <strong>blending logic with aesthetics</strong>. I'm proficient in <strong>Photoshop</strong> and love crafting detailed visual assets, especially during prototyping and early design phases.",
+    heroP2: "I enjoy <strong>blending logic with aesthetics</strong>. Comfortable with <strong>Photoshop</strong>, I mainly use it to design clear and functional visual prototypes that help communicate ideas and concepts effectively.",
     heroP3: "My Master's thesis explores how AI, particularly <strong>Large Language Models (LLMs)</strong>, can enhance interactivity and narrative depth in role-playing games. I've also applied AI in healthcare through a health informatics course, broadening my perspective on its cross-industry impact.",
     heroCtaProjects: "Explore my game projects",
     heroCtaItProjects: "See my IT projects",
@@ -60,7 +60,7 @@ const translations = {
 
     // Custom image + video + text section (Human Variable)
     humanVariableSectionTitle: "Five androids. One impostor. You.",
-    humanVariableSectionP: "You're the only human among five androids. The others are driven by real LLMs : GPT, Mistral, LLaMA, and Gemma. Each round, a question is asked. Everyone answers. Then, they vote: who felt too human? Too emotional? Too real? Blend in. Speak like an AI… or be eliminated.",
+    humanVariableSectionP: "You're the only human among five androids. The others are driven by real LLMs: GPT, Mistral, LLaMA, and Gemma. Each round, a question is asked. Everyone answers. Then, they vote: who felt too human? Too emotional? Too real? Blend in. Speak like an AI… or be eliminated.<br><br>🧩 This is a <strong>reverse Turing test</strong>: instead of machines pretending to be human, <strong>you must convince the machines that you're one of them</strong>.",
     humanVariableSectionBtn: "I want to see more",
 
     // Custom image + video + text section (WhoIsLying)
@@ -143,8 +143,8 @@ const translations = {
 
     // Modal Data Store Content (prefixing with modal_ to avoid clashes)
     // -- The Human Variable (Modal)
-    modal_humanVariable_title: "The Human Variable",
-    modal_humanVariable_description: "You are the <strong>only human</strong> locked in a room with <strong>four androids</strong>, each powered by a different <strong> language model (LLM)</strong>: GPT, Mistral, LLaMA, and Gemma.<br><br>No one knows why they are here. All you're told is that <strong>a human is hiding among the machines</strong>, and they must be exposed.<br><br>Each round, an open-ended question is asked. One by one, each participant, AI and human alike, answers aloud. Then comes the vote: <strong>everyone chooses who they think the human is</strong>. The one with the most votes is eliminated. For ever.<br><br>Your mission?<br><strong>Answer like a machine</strong>. Think like a machine. And do everything you can to avoid getting voted out.<br><br>🤖 <strong>Real AIs, unique behaviors</strong><br>The androids do not follow scripts. They are powered in <strong>real time</strong> by actual language models. Both text and voice are generated on the fly. That means every game is unique and unpredictable. You are not playing against bots or prewritten scripts. <strong>You are playing against real artificial intelligences</strong>.",
+    modal_humanVariable_title: "The Human Variable - A Reverse Turing Test",
+    modal_humanVariable_description: "You are the <strong>only human</strong> locked in a room with <strong>four androids</strong>, each powered by a different <strong>language model (LLM)</strong>: GPT, Mistral, LLaMA, and Gemma.<br><br>No one knows why they are here. All you're told is that <strong>a human is hiding among the machines</strong>, and they must be exposed.<br><br>Each round, an open-ended question is asked. One by one, each participant, AI and human alike, answers aloud. Then comes the vote: <strong>everyone chooses who they think the human is</strong>. The one with the most votes is eliminated. For ever.<br><br>Your mission?<br><strong>Answer like a machine</strong>. Think like a machine. And do everything you can to avoid getting voted out.<br><br>🧩 This is not a classic Turing test. It’s a <strong>reverse Turing test</strong>: instead of machines trying to pass as human, <strong>you must pass as an AI</strong>.<br><br>🤖 <strong>Real AIs, unique behaviors</strong><br>The androids do not follow scripts. They are powered in <strong>real time</strong> by actual language models. Both text and voice are generated on the fly. That means every game is unique and unpredictable. You are not playing against bots or prewritten scripts. <strong>You are playing against real artificial intelligences</strong>.",
     modal_humanVariable_badge_made_alone: "Made alone",
     modal_humanVariable_badge_date: "Jul 2025",
     modal_humanVariable_badge_dev_time: "Dev: 2 Weeks",
@@ -200,6 +200,15 @@ const translations = {
     modal_oneWayTrip_badge_role: "Technical Artist, UI designer, Gameplay Designer",
     modal_oneWayTrip_badge_engine: "Unity Engine",
 
+    // -- Kart Color (Modale)
+    modal_kartColor_title: "Kart Color (quick project)",
+    modal_kartColor_description: "🚗💨 <strong>Kart Color</strong> is a <strong>fast-paced arcade game</strong> that I designed and developed in just <strong>7 days</strong>. The goal: drive your kart around a circular arena and <strong>cover more surface 🎨 than your opponent</strong> ⏱️.<br><br>🎮 <strong>Solo</strong>: face an autonomous bouncing ball that paints its own color and progress through levels.<br><br>👥 <strong>Local Multiplayer</strong>: challenge your friends across <strong>21 rounds of 10 seconds</strong> each.⭐ <strong>Power-ups & coins</strong>: grab items ⚡🛡️🎭 (speed boost, bigger trail, shield, duplication…) and collect 💰 to unlock <strong>new karts and colors</strong>.<br><br>✨ With a <strong>vibrant aesthetic</strong> and an <strong>energetic soundtrack</strong>, this project highlights my skills in <strong>game design</strong>, <strong>gameplay programming</strong>, <strong>UI/UX</strong>, and the integration of <strong>diverse systems</strong> (AI, multiplayer, shop).With its <strong>fast-paced action</strong> and <strong>colorful visuals 🌈</strong>, <strong>Kart Color</strong> showcases my ability to <strong>create a fun, polished, and replayable experience within a short timeframe</strong>.",
+    modal_kartColor_badge_alone: "Made alone",
+    modal_kartColor_badge_date: "Oct. 2025",
+    modal_kartColor_badge_dev_time: "Dev : 7 days",
+    modal_kartColor_badge_role: "Technical Art., UI Designer, Gameplay Designer, Sound Designer, Level Designer",
+    modal_kartColor_badge_engine: "Unity 6",
+
     // Lightbox
     lightboxPrevAriaLabel: "Previous image",
     lightboxNextAriaLabel: "Next image",
@@ -229,7 +238,7 @@ const translations = {
     // Section Hero
     heroGreeting: "SALUT! JE SUIS <strong>JUSTIN 👋</strong>",
     heroP1: "Formé en tant que <strong>Technical Artist</strong>, suivi d'un <strong>Master en Informatique</strong> avec une spécialisation en <strong>Intelligence Artificielle</strong>, je me passionne pour la <strong>programmation gameplay</strong> et le développement de systèmes interactifs. Mon sens créatif, combiné à mes compétences techniques, me permet de concevoir des <strong>expériences immersives et intelligentes</strong>.",
-    heroP2: "J'aime <strong>mélanger logique et esthétique</strong>. À l'aise avec <strong>Photoshop</strong>, je prends plaisir à créer des visuels détaillés, notamment lors des phases de prototypage et de conception.",
+    heroP2: "J'aime <strong>mélanger logique et esthétique</strong>. À l’aise avec <strong>Photoshop</strong>, je l’utilise principalement pour concevoir des prototypes visuels clairs et fonctionnels, facilitant la communication d’idées et de concepts.",
     heroP3: "Mon mémoire de Master explore comment l'IA, en particulier les <strong>Large Language Models (LLMs)</strong>, peut enrichir l'interactivité et la narration dans les jeux de rôle. J'ai également pu appliquer l'IA au secteur médical, à travers un projet en Health Informatics, ce qui m'a permis d'en percevoir le potentiel dans d'autres domaines.",
     heroCtaProjects: "Voir mes projets de jeux",
     heroCtaItProjects: "Voir mes projets IT",
@@ -263,7 +272,7 @@ const translations = {
     diabloBtnTellMeMore: "En savoir plus",
     // Section personnalisée image + vidéo + texte (The Human Variable)
     humanVariableSectionTitle: "Cinq androïdes. Un imposteur. Vous.",
-    humanVariableSectionP: "Vous êtes le seul humain parmi cinq androïdes. Les autres sont pilotés par de vrais LLMs : GPT, Mistral, LLaMA, et Gemma. À chaque tour, une question est posée. Tout le monde répond. Ensuite, chacun vote : qui a semblé trop humain ? Trop émotionnel ? Trop réel ? Fondez-vous dans la masse. Parlez comme une IA… ou vous serez éliminé.",
+    humanVariableSectionP: "Vous êtes le seul humain parmi cinq androïdes. Les autres sont pilotés par de vrais LLMs : GPT, Mistral, LLaMA, et Gemma. À chaque tour, une question est posée. Tout le monde répond. Ensuite, chacun vote : qui a semblé trop humain ? Trop émotionnel ? Trop réel ? Fondez-vous dans la masse. Parlez comme une IA… ou vous serez éliminé.<br><br>🧩 C'est un <strong>test de Turing inversé</strong> : au lieu de machines qui essaient de paraître humaines, <strong>c'est à vous de convaincre les machines que vous êtes l'une d'entre elles</strong>.",
     humanVariableSectionBtn: "Je veux voir plus",
     // Section personnalisée image + vidéo + texte  (WhoIsLying)
     whoIsLyingSectionTitle: "Ils savent mentir. Saurez-vous douter ?",
@@ -335,8 +344,8 @@ const translations = {
     modal_rpgLLM_btn_defence: "Voir la défense",
     // Contenu de la modale (préfixé avec modal_ pour éviter les conflits)
     // -- The Human Variable (Modale)
-    modal_humanVariable_title: "The Human Variable",
-    modal_humanVariable_description: "Vous êtes le <strong>seul humain</strong> enfermé dans une pièce avec <strong>quatre autres androïdes</strong>, chacun alimenté par un <strong>modèle de langage différent (LLM)</strong> : GPT, Mistral, LLaMA, et Gemma.<br><br>Personne ne sait pourquoi ils sont là. Tout ce qu'on vous dit, c'est qu'<strong>un humain se cache parmi les machines</strong>, et il doit être démasqué.<br><br>À chaque tour, une question ouverte est posée. Un par un, chaque participant, IA et humain, répond à voix haute. Puis vient le vote : <strong>chacun choisit qui il pense être l'humain</strong>. Celui qui a le plus de voix est éliminé. Pour toujours.<br><br>Votre mission ?<br><strong>Répondre comme une machine</strong>. Penser comme une machine. Et faire tout ce que vous pouvez pour éviter d'être découvert<br><br>🤖 <strong>De vraies IA, des comportements uniques</strong><br>Les androïdes ne suivent pas de scripts. Ils sont alimentés <strong>en temps réel</strong> par de vrais modèles de langage. Le texte et la voix sont générés à la volée. Cela signifie que chaque jeu est unique et imprévisible. Vous ne jouez pas contre des bots ou des scripts préécrits. <strong>Vous jouez contre de vraies intelligences artificielles</strong>.",
+    modal_humanVariable_title: "The Human Variable - Un test de Turing inversé",
+    modal_humanVariable_description: "Vous êtes le <strong>seul humain</strong> enfermé dans une pièce avec <strong>quatre autres androïdes</strong>, chacun alimenté par un <strong>modèle de langage différent (LLM)</strong> : GPT, Mistral, LLaMA, et Gemma.<br><br>Personne ne sait pourquoi ils sont là. Tout ce qu'on vous dit, c'est qu'<strong>un humain se cache parmi les machines</strong>, et il doit être démasqué.<br><br>À chaque tour, une question ouverte est posée. Un par un, chaque participant, IA et humain, répond à voix haute. Puis vient le vote : <strong>chacun choisit qui il pense être l'humain</strong>. Celui qui a le plus de voix est éliminé. Pour toujours.<br><br>Votre mission ?<br><strong>Répondre comme une machine</strong>. Penser comme une machine. Et faire tout ce que vous pouvez pour éviter d'être découvert.<br><br>🧩 Ce n'est pas un test de Turing classique. C'est un <strong>test de Turing inversé</strong> : au lieu de machines qui essaient de paraître humaines, <strong>c'est à vous de convaincre que vous êtes une IA</strong>.<br><br>🤖 <strong>De vraies IA, des comportements uniques</strong><br>Les androïdes ne suivent pas de scripts. Ils sont alimentés <strong>en temps réel</strong> par de vrais modèles de langage. Le texte et la voix sont générés à la volée. Cela signifie que chaque jeu est unique et imprévisible. Vous ne jouez pas contre des bots ou des scripts préécrits. <strong>Vous jouez contre de vraies intelligences artificielles</strong>.",
     modal_humanVariable_badge_made_alone: "Réalisé seul",
     modal_humanVariable_badge_date: "Juil. 2025",
     modal_humanVariable_badge_dev_time: "Dev : 2 semaines",
@@ -393,6 +402,14 @@ const translations = {
     modal_oneWayTrip_badge_dev_time: "Dev : 3 jours",
     modal_oneWayTrip_badge_role: "Technical Art., Designer UI, Gameplay Designer",
     modal_oneWayTrip_badge_engine: "Unity",
+    // -- Kart Color (Modale)
+    modal_kartColor_title: "Kart Color (projet rapide)",
+    modal_kartColor_description: "🚗💨 <strong>Kart Color</strong> est un <strong>jeu d’arcade compétitif</strong> que j’ai conçu et développé en seulement <strong>7 jours</strong>. Le but : contrôler un kart dans une arène circulaire et <strong>colorer plus de surface 🎨 que l’adversaire</strong> ⏱️.<br><br>🎮 <strong>Solo</strong> : affrontez une balle qui peint sa propre couleur et enchaînez les niveaux.<br><br>👥 <strong>Multijoueur local</strong> : défiez vos amis sur <strong>21 manches de 10 secondes</strong> intenses.⭐ <strong>Bonus & pièces</strong> : attrapez des power-ups ⚡🛡️🎭 (vitesse, grosse trace, bouclier, duplication…) et collectez des 💰 pour débloquer de <strong>nouveaux karts et couleurs</strong>.<br><br>✨ Avec une <strong>esthétique vibrante</strong> et une <strong>bande-son entraînante</strong>, ce projet démontre mes compétences en <strong>game design</strong>, <strong>programmation gameplay</strong>, <strong>UI/UX</strong> et intégration de <strong>systèmes variés</strong> (IA, multijoueur, boutique). Avec son <strong>rythme rapide</strong> et ses <strong>visuels colorés 🌈</strong>, <strong>Kart Color</strong> prouve ma capacité à <strong>créer une expérience fun, complète et rejouable en un temps limité</strong>.",
+    modal_kartColor_badge_alone: "Développé seul",
+    modal_kartColor_badge_date: "Oct. 2025",
+    modal_kartColor_badge_dev_time: "Dev : 7 jours",
+    modal_kartColor_badge_role: "Technical Art., Designer UI, Gameplay Designer, Sound Designer, Level Designer",
+    modal_kartColor_badge_engine: "Unity 6",
     // Lightbox
     lightboxPrevAriaLabel: "Image précédente",
     lightboxNextAriaLabel: "Image suivante",
