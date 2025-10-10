@@ -23,9 +23,10 @@ const translations = {
 
     // Hero Section
     heroGreeting: "HI ALL, I'M <strong>JUSTIN 👋</strong>",
-    heroP1: "With a background as a <strong>Technical Artist</strong> and a <strong>Master's degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I focus on <strong>gameplay programming</strong> and interactive systems development. My strong creative instincts, paired with my technical skills, allow me to design <strong>immersive and intelligent experiences</strong>.",
-    heroP2: "I enjoy <strong>blending logic with aesthetics</strong>. Comfortable with <strong>Photoshop</strong>, I mainly use it to design clear and functional visual prototypes that help communicate ideas and concepts effectively.",
-    heroP3: "My Master's thesis explores how AI, particularly <strong>Large Language Models (LLMs)</strong>, can enhance interactivity and narrative depth in role-playing games. I've also applied AI in healthcare through a health informatics course, broadening my perspective on its cross-industry impact.",
+    heroP1: "With a background as a <strong>Technical Artist</strong> and a <strong>Master’s degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I focus on <strong>gameplay programming</strong> and the development of interactive systems. My strong creative instincts, combined with solid technical expertise, enable me to craft <strong>immersive, dynamic, and intelligent experiences</strong>.",
+    heroP2: "I love <strong>blending logic with aesthetics</strong> to bring captivating worlds to life. Comfortable with <strong>Photoshop</strong>, I enjoy creating detailed visual assets and clear prototypes that help communicate ideas and concepts effectively.",
+    heroP3: "I’m particularly passionate about integrating <strong>Large Language Models (LLMs)</strong> into games to make interactions more natural, unpredictable, and engaging. <strong>My Master’s thesis</strong> explores how these technologies can enhance narrative depth and interactivity in role-playing games.",
+
     heroCtaProjects: "Explore my game projects",
     heroCtaItProjects: "See my IT projects",
     heroCtaCv: "Download my CV",
@@ -237,9 +238,9 @@ const translations = {
     themeToggle : "Activer le mode clair",
     // Section Hero
     heroGreeting: "SALUT! JE SUIS <strong>JUSTIN 👋</strong>",
-    heroP1: "Formé en tant que <strong>Technical Artist</strong>, suivi d'un <strong>Master en Informatique</strong> avec une spécialisation en <strong>Intelligence Artificielle</strong>, je me passionne pour la <strong>programmation gameplay</strong> et le développement de systèmes interactifs. Mon sens créatif, combiné à mes compétences techniques, me permet de concevoir des <strong>expériences immersives et intelligentes</strong>.",
-    heroP2: "J'aime <strong>mélanger logique et esthétique</strong>. À l’aise avec <strong>Photoshop</strong>, je l’utilise principalement pour concevoir des prototypes visuels clairs et fonctionnels, facilitant la communication d’idées et de concepts.",
-    heroP3: "Mon mémoire de Master explore comment l'IA, en particulier les <strong>Large Language Models (LLMs)</strong>, peut enrichir l'interactivité et la narration dans les jeux de rôle. J'ai également pu appliquer l'IA au secteur médical, à travers un projet en Health Informatics, ce qui m'a permis d'en percevoir le potentiel dans d'autres domaines.",
+    heroP1: "Formé en tant que <strong>Technical Artist</strong>, suivi d'un <strong>Master en Informatique</strong> avec une spécialisation en <strong>Intelligence Artificielle</strong>, je me passionne pour la <strong>programmation gameplay</strong> et le développement de systèmes interactifs. Mon sens créatif, combiné à mes compétences techniques, me permet de concevoir des <strong>expériences immersives, dynamiques et intelligentes</strong>.",
+    heroP2: "J'aime <strong>mêler logique et esthétique</strong> pour donner vie à des univers captivants. À l’aise avec <strong>Photoshop</strong>, je prends plaisir à créer des visuels détaillés, notamment lors des phases de prototypage et de conception.",
+    heroP3: "Je m’intéresse particulièrement à l’intégration de <strong>modèles de langage (LLMs)</strong> dans les jeux vidéo afin de rendre les interactions plus naturelles, imprévisibles et fascinantes. <strong>Mon mémoire de Master</strong> explore comment ces technologies peuvent enrichir la narration et l’interactivité dans les jeux de rôle.",
     heroCtaProjects: "Voir mes projets de jeux",
     heroCtaItProjects: "Voir mes projets IT",
     heroCtaCv: "Télécharger mon CV",
