@@ -44,6 +44,7 @@ const translations = {
     rpgLLMTitleCarousel: "ROLES PLAY GAME WITH LLM (2025)",
     rpgLLMBadgeBy2: "By 2 people",
     rpgLLMBadge7Months: "7 months",
+    rpgLLMBadgeAward: "2025 IEEE/ICTEAM Best Master’s Thesis Award",
     rpgLLMDescriptionCarousel: "Immerse yourself in a real-time AI-generated RPG, where each adventure is unique, immersive and shaped by your choices.",
     rpgLLMBtnSeeMore: "I want to see more",
     // -- Card: Loki (Carousel)
@@ -258,6 +259,7 @@ const translations = {
     rpgLLMTitleCarousel: "RPG with LLM (2025)",
     rpgLLMBadgeBy2: "Par 2 personnes",
     rpgLLMBadge7Months: "7 mois",
+    rpgLLMBadgeAward: "Prix du meilleur mémoire de master IEEE/ICTEAM 2025",
     rpgLLMDescriptionCarousel: "Plongez-vous dans un RPG généré par IA en temps réel, où chaque aventure est unique, immersive et façonnée par vos choix. Choisissez votre LLM préféré et laissez-le devenir un vrai maître de jeu.",
     rpgLLMBtnSeeMore: "Je veux voir plus",
     // -- Carte : Loki (Carrousel)
