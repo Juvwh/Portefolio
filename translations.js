@@ -160,6 +160,7 @@ const translations = {
     modal_rpgLLM_badge_core_tech: "Core: LLMs Tech",
     modal_rpgLLM_badge_engine: "Unity Engine",
     modal_rpgLLM_badge_language: "C#",
+    modal_rpgLLM_badge_award: "2025 IEEE/ICTEAM Best Master’s Thesis Award",
     // -- Loki (Modal)
     modal_loki_title: "Loki (Bachelor's Thesis)",
     modal_loki_description: "1350, in the shadowy alleys of Danelawgham.<br><br> <strong>Signy</strong>, a young orphan, becomes the reluctant champion of the trickster god Loki. Gifted with <strong>the power of shapeshifting</strong> : she can <strong>take the form of anyone</strong> or any creature whose personal item she possesses.<br><br>Signy uses <strong>strength, charm, and stealth</strong> to <strong>infiltrate</strong> forbidden places, <strong>manipulate</strong> nobles, and dismantle social barriers.From breaking down doors as a muscular guard to sneaking through cracks as a nimble cat, each form becomes a strategic tool.<br><br>In this narrative-driven game blending infiltration, identity theft, and divine mischief, players must uncover <strong>Signy's secret past</strong> and outwit a society that never saw her coming.",
@@ -361,6 +362,7 @@ const translations = {
     modal_rpgLLM_badge_core_tech: "LLMs",
     modal_rpgLLM_badge_engine: "Unity",
     modal_rpgLLM_badge_language: "C#",
+    modal_rpgLLM_badge_award: "Prix du meilleur mémoire de master IEEE/ICTEAM 2025",
     // -- Loki (Modale)
     modal_loki_title: "Loki (Mémoire de bachelier)",
     modal_loki_description: "1350, dans les ruelles ombragées de Danelawgham.<br><br><strong>Signy</strong>, une jeune orpheline, devient la championne du dieu farceur Loki. Dotée du <strong>pouvoir de métamorphose</strong> : elle peut <strong>prendre la forme de n'importe qui</strong> ou de n'importe quelle créature dont elle possède un objet personnel.<br><br>Signy utilise la <strong>force, le charme et la furtivité</strong> pour <strong>s'infiltrer</strong> dans des lieux interdits, <strong>manipuler</strong> les nobles et démanteler les barrières sociales. De l'enfonceur de portes en tant que garde musclé à la furtivité en tant que chat agile, chaque forme devient un outil stratégique.<br><br>Dans ce jeu narratif mêlant infiltration, vol d'identité et malice divine, les joueurs doivent découvrir <strong>le passé secret de Signy</strong> et déjouer une société qui ne l'a jamais vue venir.",

@@ -94,6 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
             data.badges.forEach(badgeData => {
                 const badgeEl = document.createElement('span');
                 badgeEl.className = 'badge';
+                if (badgeData.className) {
+                  const classNames = Array.isArray(badgeData.className) ? badgeData.className : [badgeData.className];
+                  classNames.filter(Boolean).forEach(cls => badgeEl.classList.add(cls));
+                }
                 let iconHTML = '';
                 if (badgeData.icon) {
                   iconHTML = `<i class="${badgeData.icon}"></i> `;

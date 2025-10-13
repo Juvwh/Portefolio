@@ -214,6 +214,18 @@ iframe {
   padding: 0.4rem 0.8rem;
   font-size: 0.8rem;
 }
+
+.badge.badge-award {
+  background: linear-gradient(135deg, #ffd700, #ffb347);
+  color: #2b1b00;
+  font-weight: 700;
+  box-shadow: 0 0.5rem 1.5rem rgba(255, 183, 0, 0.35);
+  border: 1px solid rgba(255, 215, 0, 0.65);
+}
+
+.dark-theme .badge.badge-award {
+  color: #120a00;
+}
 .badge i {
   font-size: 0.9rem;
 }
