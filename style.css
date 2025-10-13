@@ -1655,6 +1655,13 @@ my-journey {
   flex-wrap: wrap;
   gap: 0.5rem;
 }
+.modal-on-request-message {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: inherit;
+  opacity: 0.85;
+}
 .dark-theme .modal-card {
   background-color: var(--modal-card-bg-color-dark);
   color: var(--modal-card-text-color-dark);

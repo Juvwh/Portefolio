@@ -171,6 +171,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 closeModal();
             };
             modalButtonsContainer.appendChild(playButton);
+        } else if (data.playMessageKey) {
+            const playMessage = document.createElement('p');
+            playMessage.className = 'modal-on-request-message';
+            playMessage.textContent = window.getTranslationForKey(data.playMessageKey) || '';
+            modalButtonsContainer.appendChild(playMessage);
         }
 
         // "View Report" button
