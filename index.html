@@ -601,75 +601,56 @@ Blend in. Speak like an AI… or be eliminated.</p>
     let leftBtn;
     let rightBtn;
     let carouselWrapper; 
-    let originalCards = [];
     let numOriginalCards = 0;
-    let cardWidth = 0; 
+    let cardWidth = 0;
     let currentNumVisibleCards = 0;
-    let clonesToCreate = 0;
     let currentIndex = 0;
-    let currentOffset = 0;
     let isDragging = false;
     let startX = 0;
-    let dragInitialOffset = 0;
+    let isTransitioning = false;
     const BP_3_CARDS = 1598; // to show 3 cards
     const BP_2_CARDS = 1132; // to show 2 cards (else 1)
 
     function calculateCardWidth() {
-      if (originalCards.length === 0) return 0;
-      const cardStyle = window.getComputedStyle(originalCards[0]);
+      const referenceCard = track.querySelector('.card');
+      if (!referenceCard) return 0;
+      const cardStyle = window.getComputedStyle(referenceCard);
       const cardMarginLeft = parseFloat(cardStyle.marginLeft);
       const cardMarginRight = parseFloat(cardStyle.marginRight);
-      const cardClientWidth = originalCards[0].offsetWidth;
+      const cardClientWidth = referenceCard.offsetWidth;
       return cardClientWidth + cardMarginLeft + cardMarginRight;
     }
 
     function initializeCarousel() {
       console.log(`Initializing carousel with ${currentNumVisibleCards} visible cards.`);
 
-      if (!track || originalCards.length === 0 || cardWidth <= 0) {
-        console.error("Carousel cannot be initialized. Missing elements or card width.");
+      if (!track) {
+        console.error("Carousel cannot be initialized. Track element missing.");
         return;
       }
-      
 
+      numOriginalCards = track.querySelectorAll('.card').length;
+
+      if (numOriginalCards === 0) {
+        console.warn('No cards found in the carousel track.');
+        return;
+      }
+
+      cardWidth = calculateCardWidth();
+      if (cardWidth <= 0) {
+        console.error("Card width calculation resulted in zero or negative. Check card styling and rendering.");
+        return;
+      }
+
+      currentIndex = currentIndex % numOriginalCards;
       isDragging = false;
-
-      clonesToCreate = currentNumVisibleCards; 
-
-      track.innerHTML = ''; 
-
-      for (let i = 0; i < clonesToCreate; i++) {
-        const originalCardIndex = (numOriginalCards - clonesToCreate + i + numOriginalCards) % numOriginalCards;
-        const clone = originalCards[originalCardIndex].cloneNode(true);
-        clone.classList.add('clone-start');
-        if (clone.id) clone.removeAttribute('id'); 
-        track.appendChild(clone);
-      }
-
-      originalCards.forEach(cardNode => {
-        const clone = cardNode.cloneNode(true);
-        if (clone.id) clone.removeAttribute('id');
-        track.appendChild(clone);
-      });
-
-      for (let i = 0; i < clonesToCreate; i++) {
-        const originalCardIndex = i % numOriginalCards;
-        const clone = originalCards[originalCardIndex].cloneNode(true);
-        clone.classList.add('clone-end');
-        if (clone.id) clone.removeAttribute('id');
-        track.appendChild(clone);
-      }
-
-      currentIndex = 0; 
-      currentOffset = clonesToCreate * cardWidth;
-      
-      track.style.transition = 'none'; 
-      track.style.transform = `translateX(-${currentOffset}px)`;
+      isTransitioning = false;
+      track.style.transition = 'none';
+      track.style.transform = 'translateX(0)';
+      track.style.cursor = 'grab';
 
       requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-              track.style.transition = 'transform 0.5s ease';
-          });
+        track.style.transition = 'transform 0.5s ease';
       });
     }
 
@@ -685,14 +666,20 @@ Blend in. Speak like an AI… or be eliminated.</p>
         newNumVisibleCards = 1;
       }
 
-      if (newNumVisibleCards !== currentNumVisibleCards || currentNumVisibleCards === 0) {
+      const shouldReinitialize = newNumVisibleCards !== currentNumVisibleCards || currentNumVisibleCards === 0;
+
+      if (shouldReinitialize) {
         currentNumVisibleCards = newNumVisibleCards;
-        
-        if (carouselWrapper && cardWidth > 0) {
-          carouselWrapper.style.width = (currentNumVisibleCards * cardWidth) + 'px';
+        initializeCarousel();
+      } else {
+        const recalculatedCardWidth = calculateCardWidth();
+        if (recalculatedCardWidth > 0 && Math.abs(recalculatedCardWidth - cardWidth) > 0.5) {
+          cardWidth = recalculatedCardWidth;
         }
-        
-        initializeCarousel(); 
+      }
+
+      if (carouselWrapper && cardWidth > 0) {
+        carouselWrapper.style.width = (currentNumVisibleCards * cardWidth) + 'px';
       }
     }
     
@@ -708,125 +695,124 @@ Blend in. Speak like an AI… or be eliminated.</p>
       }
 
 
-      if (track.children.length > 0) {
-          originalCards = Array.from(track.children);
-          numOriginalCards = originalCards.length;
-      }
-      
-      if (numOriginalCards === 0) {
-        console.warn('No cards found in the carousel track.');
-        return;
-      }
+      updateCarouselLayout();
 
-      cardWidth = calculateCardWidth();
-      if (cardWidth <= 0) {
-          console.error("Card width calculation resulted in zero or negative. Check card styling and rendering.");
-          return;
-      }
-
-      updateCarouselLayout(); 
-
-
-      function moveTo(newIndex, animated = true) {
-        currentOffset = (clonesToCreate + newIndex) * cardWidth;
-        track.style.transition = animated ? 'transform 0.5s ease' : 'none';
-        track.style.transform = `translateX(-${currentOffset}px)`;
-        currentIndex = newIndex;
-      }
 
       rightBtn.addEventListener('click', () => {
-        if (currentIndex >= numOriginalCards -1 ) { 
-          moveTo(currentIndex + 1);
-          const transitionEndHandler = () => {
-            track.removeEventListener('transitionend', transitionEndHandler);
-            moveTo(0, false); 
-          };
-          track.addEventListener('transitionend', transitionEndHandler);
-        } else {
-          moveTo(currentIndex + 1);
-        }
+        if (isTransitioning || numOriginalCards <= 1) return;
+
+        isTransitioning = true;
+        track.style.transition = 'transform 0.5s ease';
+        track.style.transform = `translateX(-${cardWidth}px)`;
+
+        const handleTransitionEnd = () => {
+          track.removeEventListener('transitionend', handleTransitionEnd);
+          track.appendChild(track.firstElementChild);
+          track.style.transition = 'none';
+          track.style.transform = 'translateX(0)';
+          requestAnimationFrame(() => {
+            track.style.transition = 'transform 0.5s ease';
+            isTransitioning = false;
+          });
+          currentIndex = (currentIndex + 1) % numOriginalCards;
+        };
+
+        track.addEventListener('transitionend', handleTransitionEnd, { once: true });
       });
 
       leftBtn.addEventListener('click', () => {
-        if (currentIndex <= 0) { 
-          moveTo(currentIndex - 1);
-          const transitionEndHandler = () => {
-            track.removeEventListener('transitionend', transitionEndHandler);
-            moveTo(numOriginalCards - 1, false); 
-          };
-          track.addEventListener('transitionend', transitionEndHandler);
-        } else {
-          moveTo(currentIndex - 1);
-        }
+        if (isTransitioning || numOriginalCards <= 1) return;
+
+        isTransitioning = true;
+        track.style.transition = 'none';
+        track.insertBefore(track.lastElementChild, track.firstElementChild);
+        track.style.transform = `translateX(-${cardWidth}px)`;
+
+        requestAnimationFrame(() => {
+          track.style.transition = 'transform 0.5s ease';
+          track.style.transform = 'translateX(0)';
+        });
+
+        const handleTransitionEnd = () => {
+          track.removeEventListener('transitionend', handleTransitionEnd);
+          track.style.transition = 'none';
+          track.style.transform = 'translateX(0)';
+          requestAnimationFrame(() => {
+            track.style.transition = 'transform 0.5s ease';
+            isTransitioning = false;
+          });
+          currentIndex = (currentIndex - 1 + numOriginalCards) % numOriginalCards;
+        };
+
+        track.addEventListener('transitionend', handleTransitionEnd, { once: true });
       });
 
       let resizeTimeout;
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-          const newCalculatedCardWidth = calculateCardWidth();
-          if (newCalculatedCardWidth !== cardWidth && newCalculatedCardWidth > 0) {
-             cardWidth = newCalculatedCardWidth; 
-          }
           updateCarouselLayout();
-        }, 250); 
+        }, 250);
       });
 
       isDragging = false;
-      startX = 0; 
-      let dragInitialOffset = 0;
+      startX = 0;
+      let currentDragOffset = 0;
 
       track.addEventListener('mousedown', (e) => {
         if (e.target.closest('button, a, input, textarea')) {
             return;
         }
+        if (isTransitioning || numOriginalCards <= 1) {
+          return;
+        }
         isDragging = true;
         startX = e.pageX;
-        dragInitialOffset = currentOffset;
-        track.style.transition = 'none'; 
+        currentDragOffset = 0;
+        track.style.transition = 'none';
         track.style.cursor = 'grabbing';
-        e.preventDefault(); 
+        e.preventDefault();
       });
 
       document.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
         const dx = e.pageX - startX;
-        track.style.transform = `translateX(-${dragInitialOffset - dx}px)`;
+        currentDragOffset = dx;
+        track.style.transform = `translateX(${dx}px)`;
       });
 
       const handleDragEnd = (e) => {
         if (!isDragging) return;
         isDragging = false;
         track.style.cursor = 'grab';
-        track.style.transition = 'transform 0.5s ease';
-
-        const dx = e.pageX - startX;
-        const threshold = cardWidth / 4; 
+        const dx = currentDragOffset;
+        const threshold = cardWidth / 4;
 
         if (dx < -threshold) {
+            track.style.transition = 'none';
+            track.style.transform = 'translateX(0)';
             rightBtn.click();
-        } else if (dx > threshold) { 
+        } else if (dx > threshold) {
+            track.style.transition = 'none';
+            track.style.transform = 'translateX(0)';
             leftBtn.click();
         } else {
-          moveTo(currentIndex, true);
+          track.style.transition = 'transform 0.3s ease';
+          track.style.transform = 'translateX(0)';
+          const snapHandler = () => {
+            track.removeEventListener('transitionend', snapHandler);
+            track.style.transition = 'transform 0.5s ease';
+          };
+          track.addEventListener('transitionend', snapHandler, { once: true });
         }
+
+        currentDragOffset = 0;
       };
 
-      document.addEventListener('mouseup', handleDragEnd); 
-      track.addEventListener('mouseleave', (e) => { 
+      document.addEventListener('mouseup', handleDragEnd);
+      track.addEventListener('mouseleave', (e) => {
           if (isDragging) {
               handleDragEnd(e);
-          }
-      });
-
-      window.addEventListener('resize', () => {
-          const newCardClientWidth = originalCards[0].offsetWidth;
-          const newCardWidth = newCardClientWidth + cardMarginLeft + cardMarginRight;
-
-          if (newCardWidth !== cardWidth && newCardWidth > 0) {
-            console.log("Carousel card width changed on resize. For optimal experience, please refresh or implement full re-initialization.");
-            currentOffset = (clonesToCreate + currentIndex) * newCardWidth;
-            track.style.transform = `translateX(-${currentOffset}px)`;
           }
       });
 
