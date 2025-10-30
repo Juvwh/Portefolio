@@ -1226,7 +1226,7 @@ my-journey {
 @media (max-width: 568px) {
   .timeline ul {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     position: relative; 
     grid-template-columns: unset;
     grid-template-rows: unset;
@@ -1251,19 +1251,19 @@ my-journey {
     display: none; 
   }
   .timeline ul li {
-    grid-column: unset !important; 
-    grid-row: unset !important;    
-    height: auto; 
-    padding-bottom: 25px; 
+    grid-column: unset !important;
+    grid-row: unset !important;
+    height: auto;
+    padding-bottom: 25px;
     padding-top: 5px;
-    padding-left: calc(var(--circle-size) + 20px); 
+    padding-left: calc(var(--circle-size) + 20px);
     position: relative;
-    margin-top: 0; 
-    display: block; 
-    overflow: visible; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
+    margin-top: 0;
+    display: block;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
   .timeline ul li:after {
     content: '';
@@ -1279,11 +1279,9 @@ my-journey {
     z-index: 1; 
     border-radius: 50%; 
   }
-  .timeline ul li:nth-child(even) {  
-    padding-top: 5px; 
-    margin-top: 0; 
-    flex-direction: unset; 
-    align-items: unset; 
+  .timeline ul li:nth-child(even) {
+    padding-top: 5px;
+    margin-top: 0;
   }
   .timeline ul li:nth-child(odd) p:after,
   .timeline ul li:nth-child(even) h3:before {
@@ -1293,17 +1291,24 @@ my-journey {
     padding-left: 0; 
   }
   .timeline ul li h3 {
-    font-size: 1.2em; 
+    font-size: 1.2em;
     margin-bottom: 8px;
+    text-align: left;
+    width: 100%;
   }
   .timeline ul li p {
-    font-size: 0.85em; 
+    font-size: 0.85em;
     line-height: 1.5;
+    text-align: left;
+    width: 100%;
   }
-  .timeline .timeline-image-wrapper { 
+  .timeline .timeline-image-wrapper {
     margin-top: 8px;
-    text-align: left; 
     margin-bottom: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
   .timeline .timeline-icon { 
     width: 60px; 
@@ -1311,20 +1316,15 @@ my-journey {
     object-fit: contain;
   }
   .timeline ul li h3 {
-    order: 1; 
-    text-align: center; 
-    margin-bottom: 8px; 
-    width: 100%; 
+    order: 1;
   }
-  .timeline ul li p:first-of-type { 
-    order: 2; 
-    text-align: center; 
-    margin-bottom: 10px; 
-    width: 100%; 
+  .timeline ul li p:first-of-type {
+    order: 2;
+    margin-bottom: 10px;
   }
   .timeline ul li .timeline-image-wrapper {
-    order: 3; 
-    margin-bottom: 10px; 
+    order: 3;
+    margin-bottom: 10px;
   }
   .timeline ul li p:nth-of-type(2) {
     order: 4; 
