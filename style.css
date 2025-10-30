@@ -1265,6 +1265,9 @@ my-journey {
     flex-direction: column;
     align-items: stretch;
   }
+  .timeline ul li:nth-child(6) {
+    display: none;
+  }
   .timeline ul li:after {
     content: '';
     width: var(--circle-size);
