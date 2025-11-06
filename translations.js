@@ -249,7 +249,7 @@ const translations = {
     themeToggle : "Activer le mode clair",
     // Section Hero
     heroGreeting: "SALUT! JE SUIS <strong>JUSTIN 👋</strong>",
-    heroRoleChip: "• Développeur de jeux •",
+    heroRoleChip: "• Game Developer •",
     heroP1: "Formé en tant que <strong>Technical Artist</strong>, suivi d'un <strong>Master en Informatique</strong> avec une spécialisation en <strong>Intelligence Artificielle</strong>, je me passionne pour la <strong>programmation gameplay</strong> et le développement de systèmes interactifs. Mon sens créatif, combiné à mes compétences techniques, me permet de concevoir des <strong>expériences immersives, dynamiques et intelligentes</strong>.",
     heroP2: "J'aime <strong>mêler logique et esthétique</strong> pour donner vie à des univers captivants. À l’aise avec <strong>Photoshop</strong>, je prends plaisir à créer des visuels détaillés, notamment lors des phases de prototypage et de conception.",
     heroP3: "Je m’intéresse particulièrement à l’intégration de <strong>modèles de langage (LLMs)</strong> dans les jeux vidéo afin de rendre les interactions plus naturelles, imprévisibles et fascinantes. <strong>Mon mémoire de Master</strong> explore comment ces technologies peuvent enrichir la narration et l’interactivité dans les jeux de rôle.",
