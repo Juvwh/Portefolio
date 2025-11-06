@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- MODAL ELEMENTS ---
   const modalOverlay = document.getElementById('project-modal');
   const modalCloseBtn = document.getElementById('modal-close-btn');
-  
+  const modalCard = modalOverlay ? modalOverlay.querySelector('.modal-card') : null;
+
   const modalTitleElement = modalOverlay ? modalOverlay.querySelector('.modal-title') : null;
   const modalDescriptionElement = modalOverlay ? modalOverlay.querySelector('.modal-description') : null;
   const modalVideoIframe = modalOverlay ? modalOverlay.querySelector('.modal-video-container iframe') : null;
@@ -28,6 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalGalleryElement = modalOverlay ? modalOverlay.querySelector('.modal-gallery') : null;
   const modalBadgesContainer = modalOverlay ? modalOverlay.querySelector('.modal-badges') : null;
   const modalButtonsContainer = modalOverlay ? modalOverlay.querySelector('.modal-buttons-container') : null;
+
+  const modalIdSequence = Array.from(new Set(Array.from(document.querySelectorAll('[data-modal-id]'))
+    .map(element => element.dataset.modalId)
+    .filter(Boolean)));
+
+  let activeModalId = null;
 
 
   const lightbox = document.getElementById('gallery-lightbox');
@@ -249,21 +256,46 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (modalDataToDisplay) {
       populateModal(modalDataToDisplay);
-      modalOverlay.classList.add('active'); 
-      document.body.classList.add('modal-open'); 
+      modalOverlay.classList.add('active');
+      document.body.classList.add('modal-open');
+      activeModalId = modalId || null;
     } else {
       console.error("No data available to populate the modal for button:", triggerButton);
     }
   }
 
+  function openModalById(modalId) {
+    if (!modalOverlay || !modalId) {
+      return false;
+    }
+
+    if (allModalData[modalId]) {
+      populateModal(allModalData[modalId]);
+      modalOverlay.classList.add('active');
+      document.body.classList.add('modal-open');
+      activeModalId = modalId;
+      return true;
+    }
+
+    const fallbackTrigger = document.querySelector(`[data-modal-id="${modalId}"]`);
+    if (fallbackTrigger) {
+      openModal(fallbackTrigger);
+      return true;
+    }
+
+    console.warn(`Unable to open modal with id "${modalId}" because no data or trigger was found.`);
+    return false;
+  }
+
   function closeModal() {
-    if (!modalOverlay || !modalOverlay.classList.contains('active')) return; 
+    if (!modalOverlay || !modalOverlay.classList.contains('active')) return;
     modalOverlay.classList.remove('active');
     document.body.classList.remove('modal-open');
     if (modalVideoIframe) {
       const currentVideoSrc = modalVideoIframe.src;
-      modalVideoIframe.src = currentVideoSrc; 
+      modalVideoIframe.src = currentVideoSrc;
     }
+    activeModalId = null;
   }
 
   document.body.addEventListener('click', function(event) {
@@ -279,6 +311,58 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modalOverlay) modalOverlay.addEventListener('click', (event) => {
     if (event.target === modalOverlay) closeModal();
   });
+
+  const swipeTarget = modalCard || modalOverlay;
+  let touchStartX = null;
+  let touchStartY = null;
+  const SWIPE_THRESHOLD = 60;
+
+  function swipeInteractionsEnabled() {
+    if (!modalOverlay || !modalOverlay.classList.contains('active')) {
+      return false;
+    }
+    return window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 768;
+  }
+
+  if (swipeTarget) {
+    swipeTarget.addEventListener('touchstart', (event) => {
+      if (!swipeInteractionsEnabled() || event.touches.length > 1) {
+        return;
+      }
+      const touch = event.touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    }, { passive: true });
+
+    swipeTarget.addEventListener('touchend', (event) => {
+      if (!swipeInteractionsEnabled() || touchStartX === null || touchStartY === null) {
+        touchStartX = null;
+        touchStartY = null;
+        return;
+      }
+
+      const touch = event.changedTouches[0];
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+      touchStartX = null;
+      touchStartY = null;
+
+      if (Math.abs(deltaX) < SWIPE_THRESHOLD || Math.abs(deltaX) < Math.abs(deltaY)) {
+        return;
+      }
+
+      if (deltaX > 0) {
+        closeModal();
+      } else if (activeModalId) {
+        const currentIndex = modalIdSequence.indexOf(activeModalId);
+        if (currentIndex !== -1 && modalIdSequence.length > 0) {
+          const nextIndex = (currentIndex + 1) % modalIdSequence.length;
+          const nextModalId = modalIdSequence[nextIndex];
+          openModalById(nextModalId);
+        }
+      }
+    }, { passive: true });
+  }
 
 
   function showLightboxImage(index) {
