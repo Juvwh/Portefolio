@@ -23,6 +23,7 @@ const translations = {
 
     // Hero Section
     heroGreeting: "HI ALL, I'M <strong>JUSTIN 👋</strong>",
+    heroRoleChip: "• Game Developer •",
     heroP1: "With a background as a <strong>Technical Artist</strong> and a <strong>Master’s degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I focus on <strong>gameplay programming</strong> and the development of interactive systems. My strong creative instincts, combined with solid technical expertise, enable me to craft <strong>immersive, dynamic, and intelligent experiences</strong>.",
     heroP2: "I love <strong>blending logic with aesthetics</strong> to bring captivating worlds to life. Comfortable with <strong>Photoshop</strong>, I enjoy creating detailed visual assets and clear prototypes that help communicate ideas and concepts effectively.",
     heroP3: "I’m particularly passionate about integrating <strong>Large Language Models (LLMs)</strong> into games to make interactions more natural, unpredictable, and engaging. <strong>My Master’s thesis</strong> explores how these technologies can enhance narrative depth and interactivity in role-playing games.",
@@ -59,6 +60,12 @@ const translations = {
     diabloBadge3MonthsCarousel: "3 months", // Differentiate from other 3 months if needed
     diabloDescriptionCarousel: "I've recreated a cyberpunk version of Diablo III, complete with homemade gameplay, VFX, animations and HUD. Combat, puzzles and futuristic powers await you.",
     diabloBtnTellMeMore: "Tell me more",
+    // -- Card: Kart Color (Carousel)
+    kartColorTitleCarousel: "KART COLOR (2025)",
+    kartColorBadgeMadeAlone: "Made alone",
+    kartColorBadge3Months: "7 days",
+    kartColorDescriptionCarousel: "🚗💨 Kart Color is a fast-paced arcade battle where every second counts. Outsmart your rival, paint the arena, grab power-ups, and claim victory in a burst of colors and chaos.",
+    kartColorBtnTellMeMore: "Learn more",
 
     // Custom image + video + text section (Human Variable)
     humanVariableSectionTitle: "Five androids. One impostor. You.",
@@ -122,6 +129,7 @@ const translations = {
     gameRpgLLMTitle: "RPG with LLM",
     gameLokiTitle: "Loki",
     gameDiabloCyberpunkTitle: "Diablo Cyberpunk",
+    gameKartColorTitle: "Kart Color",
     gameStalkAndRuinTitle: "Stalk and Ruin",
     gameOneWayTripTitle: "One way trip",
     gameWhoIsLyingTitle: "Who is Lying ?",
@@ -241,6 +249,7 @@ const translations = {
     themeToggle : "Activer le mode clair",
     // Section Hero
     heroGreeting: "SALUT! JE SUIS <strong>JUSTIN 👋</strong>",
+    heroRoleChip: "• Développeur de jeux •",
     heroP1: "Formé en tant que <strong>Technical Artist</strong>, suivi d'un <strong>Master en Informatique</strong> avec une spécialisation en <strong>Intelligence Artificielle</strong>, je me passionne pour la <strong>programmation gameplay</strong> et le développement de systèmes interactifs. Mon sens créatif, combiné à mes compétences techniques, me permet de concevoir des <strong>expériences immersives, dynamiques et intelligentes</strong>.",
     heroP2: "J'aime <strong>mêler logique et esthétique</strong> pour donner vie à des univers captivants. À l’aise avec <strong>Photoshop</strong>, je prends plaisir à créer des visuels détaillés, notamment lors des phases de prototypage et de conception.",
     heroP3: "Je m’intéresse particulièrement à l’intégration de <strong>modèles de langage (LLMs)</strong> dans les jeux vidéo afin de rendre les interactions plus naturelles, imprévisibles et fascinantes. <strong>Mon mémoire de Master</strong> explore comment ces technologies peuvent enrichir la narration et l’interactivité dans les jeux de rôle.",
@@ -275,6 +284,12 @@ const translations = {
     diabloBadge3MonthsCarousel: "3 mois",
     diabloDescriptionCarousel: "J'ai recréé une version cyberpunk de Diablo III, complète avec un gameplay maison, des VFX, des animations et un HUD. Combats, énigmes et pouvoirs futuristes vous attendent.",
     diabloBtnTellMeMore: "En savoir plus",
+    // -- Carte : Kart Color (Carrousel)
+    kartColorTitleCarousel: "KART COLOR (2025)",
+    kartColorBadgeMadeAlone: "Réalisé seul",
+    kartColorBadge3Months: "7 jours",
+    kartColorDescriptionCarousel: "🚗💨 Kart Color est un jeu d’arcade effréné où chaque seconde compte. Dépasse ton adversaire, peins l’arène, récupère les bonus et remporte la victoire dans un tourbillon de couleurs et de chaos.",
+    kartColorBtnTellMeMore: "En savoir plus",
     // Section personnalisée image + vidéo + texte (The Human Variable)
     humanVariableSectionTitle: "Cinq androïdes. Un imposteur. Vous.",
     humanVariableSectionP: "Vous êtes le seul humain parmi cinq androïdes. Les autres sont pilotés par de vrais LLMs : GPT, Mistral, LLaMA, et Gemma. À chaque tour, une question est posée. Tout le monde répond. Ensuite, chacun vote : qui a semblé trop humain ? Trop émotionnel ? Trop réel ? Fondez-vous dans la masse. Parlez comme une IA… ou vous serez éliminé.<br><br>🧩 C'est un <strong>test de Turing inversé</strong> : au lieu de machines qui essaient de paraître humaines, <strong>c'est à vous de convaincre les machines que vous êtes l'une d'entre elles</strong>.",
@@ -330,6 +345,7 @@ const translations = {
     gameRpgLLMTitle: "RPG avec LLM",
     gameLokiTitle: "Loki",
     gameDiabloCyberpunkTitle: "Diablo Cyberpunk",
+    gameKartColorTitle: "Kart Color",
     gameStalkAndRuinTitle: "Stalk and Ruin",
     gameOneWayTripTitle: "One Way Trip",
     gameWhoIsLyingTitle: "Who is Lying ?",
