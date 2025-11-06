@@ -29,6 +29,9 @@
   --navbar-outline-color-dark: white;
   --image-outline-color: #efc634;
   --hero-pointer-highlight: 239, 198, 52;
+  --modal-close-bg-color: rgba(255, 255, 255, 0.92);
+  --modal-close-text-color: #1d263b;
+  --modal-close-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
 }
 .dark-theme {
   --body-bg-color: #0b1b3f;
@@ -63,6 +66,8 @@
   --modal-card-text-color-dark: #ecf0f1;
   --modal-title-text-color-dark: #ffffff;
   --hero-pointer-highlight: 239, 198, 52;
+  --modal-close-bg-color: rgba(24, 36, 63, 0.9);
+  --modal-close-text-color: #f4f6ff;
 }
 .light-theme {
   --body-bg-color: #FFFFFF;
@@ -100,6 +105,8 @@
   --timeline-text-light: #333333;
   --timeline-line-light: #DDDDDD;
   --hero-pointer-highlight: 0, 88, 255;
+  --modal-close-bg-color: rgba(0, 0, 0, 0.08);
+  --modal-close-text-color: #1d263b;
 }
 * {
   box-sizing: border-box;
@@ -1489,8 +1496,8 @@ my-journey {
   opacity: 1;
 }
 .modal-card {
-  background-color: var(--card-bg-color); 
-  color: var(--card-text-color); 
+  background-color: var(--card-bg-color);
+  color: var(--card-text-color);
   padding: 2rem;
   border-radius: 1rem; 
   box-shadow: 0 10px 30px var(--card-shadow-color); 
@@ -1504,22 +1511,45 @@ my-journey {
   opacity: 0; 
 }
 .modal-overlay.active .modal-card {
-  transform: scale(1) translateY(0); 
+  transform: scale(1) translateY(0);
   opacity: 1;
 }
 .modal-close-btn {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  font-size: 2rem;
-  color: var(--card-text-color); 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--modal-close-text-color);
+  background-color: var(--modal-close-bg-color);
+  border-radius: 999px;
   cursor: pointer;
   line-height: 1;
-  padding: 0.25rem 0.5rem;
-  transition: color 0.2s ease;
+  touch-action: manipulation;
+  box-shadow: var(--modal-close-shadow);
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  z-index: 5;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.dark-theme .modal-close-btn {
+  border-color: rgba(255, 255, 255, 0.15);
 }
 .modal-close-btn:hover {
-  color: var(--accent-color); 
+  transform: scale(1.05);
+  color: var(--accent-color);
+}
+.modal-close-btn:active {
+  transform: scale(0.95);
+}
+.modal-close-btn:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
 }
 .modal-content-wrapper {
   display: flex;
@@ -1683,8 +1713,15 @@ my-journey {
     width: 95%;
     max-height: 95vh;
   }
+  .modal-close-btn {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2.5rem;
+  }
   .modal-content-wrapper {
-    flex-direction: column; 
+    flex-direction: column;
     gap: 1.5rem;
   }
   .modal-left, .modal-right {
@@ -1710,9 +1747,18 @@ my-journey {
   margin: 0.5rem;
 }
   .modal-play-btn {
-    align-self: center; 
+    align-self: center;
     width: 100%;
     max-width: 300px;
+  }
+}
+@media (max-width: 480px) {
+  .modal-close-btn {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 3.25rem;
+    height: 3.25rem;
+    font-size: 2.65rem;
   }
 }
 :root {
