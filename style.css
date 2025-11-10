@@ -306,6 +306,10 @@ iframe {
   padding: 0.5rem 1rem;
   border-radius: 1rem;
 }
+.arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 .arrow.left {
   left: 10px;
 }

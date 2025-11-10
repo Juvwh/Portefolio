@@ -10,10 +10,12 @@
     cardWidth: 0,
     numOriginalCards: 0,
     numVisibleCards: 0,
+    maxIndex: 0,
     isDragging: false,
     isTransitioning: false,
     startX: 0,
     currentDragOffset: 0,
+    dragStartOffset: 0,
   };
   #isMounted = false;
   #resizeTimeoutId = null;
@@ -93,10 +95,12 @@
     this.#state.cardWidth = 0;
     this.#state.numOriginalCards = 0;
     this.#state.numVisibleCards = 0;
+    this.#state.maxIndex = 0;
     this.#state.isDragging = false;
     this.#state.isTransitioning = false;
     this.#state.startX = 0;
     this.#state.currentDragOffset = 0;
+    this.#state.dragStartOffset = 0;
 
     if (this.#resizeTimeoutId) {
       window.clearTimeout(this.#resizeTimeoutId);
@@ -194,6 +198,45 @@
     return normalized;
   }
 
+  #getCurrentOffset() {
+    return -(this.#state.currentIndex * this.#state.cardWidth);
+  }
+
+  #updateTrackPosition(useTransition = true) {
+    if (!this.#track) {
+      return;
+    }
+
+    const offset = this.#getCurrentOffset();
+
+    if (!useTransition) {
+      this.#track.style.transition = 'none';
+      this.#track.style.transform = `translateX(${offset}px)`;
+
+      window.requestAnimationFrame(() => {
+        this.#track.style.transition = 'transform 0.5s ease';
+      });
+
+      return;
+    }
+
+    this.#track.style.transform = `translateX(${offset}px)`;
+  }
+
+  #updateControls() {
+    if (!this.#prevButton || !this.#nextButton) {
+      return;
+    }
+
+    const totalCards = this.#state.numOriginalCards;
+    const visibleCards = this.#state.numVisibleCards;
+    const maxIndex = Math.max(0, totalCards - visibleCards);
+    const hasEnoughCards = totalCards > visibleCards;
+
+    this.#prevButton.disabled = !hasEnoughCards || this.#state.currentIndex <= 0;
+    this.#nextButton.disabled = !hasEnoughCards || this.#state.currentIndex >= maxIndex;
+  }
+
   #reinitializeTrack() {
     const cardSelector = this.#config.selectors.card;
     const cards = this.#track.querySelectorAll(cardSelector);
@@ -211,13 +254,18 @@
 
     this.#state.numOriginalCards = cardCount;
     this.#state.cardWidth = cardWidth;
-    this.#state.currentIndex %= cardCount;
+    this.#state.maxIndex = Math.max(0, cardCount - this.#state.numVisibleCards);
+    if (!Number.isFinite(this.#state.currentIndex) || this.#state.currentIndex < 0) {
+      this.#state.currentIndex = 0;
+    }
+    this.#state.currentIndex = Math.min(this.#state.currentIndex, this.#state.maxIndex);
     this.#state.isDragging = false;
     this.#state.isTransitioning = false;
     this.#state.currentDragOffset = 0;
+    this.#state.dragStartOffset = this.#getCurrentOffset();
 
     this.#track.style.transition = 'none';
-    this.#track.style.transform = 'translateX(0)';
+    this.#track.style.transform = `translateX(${this.#getCurrentOffset()}px)`;
     this.#track.style.cursor = 'grab';
 
     window.requestAnimationFrame(() => {
@@ -225,6 +273,7 @@
     });
 
     this.#updateWrapperWidth();
+    this.#updateControls();
 
     return true;
   }
@@ -259,6 +308,12 @@
       if (recalculatedWidth > 0 && Math.abs(recalculatedWidth - this.#state.cardWidth) > 0.5) {
         this.#state.cardWidth = recalculatedWidth;
       }
+
+      this.#state.maxIndex = Math.max(0, this.#state.numOriginalCards - this.#state.numVisibleCards);
+      this.#state.currentIndex = Math.min(this.#state.currentIndex, this.#state.maxIndex);
+      this.#state.dragStartOffset = this.#getCurrentOffset();
+      this.#updateTrackPosition(false);
+      this.#updateControls();
     }
 
     this.#updateWrapperWidth();
@@ -283,73 +338,58 @@
   }
 
   #moveToNextCard() {
-    if (this.#state.isTransitioning || this.#state.numOriginalCards <= 1) {
+    if (this.#state.isTransitioning || this.#state.numOriginalCards <= this.#state.numVisibleCards) {
+      return;
+    }
+
+    if (this.#state.currentIndex >= this.#state.maxIndex) {
       return;
     }
 
     this.#state.isTransitioning = true;
+    this.#state.currentIndex += 1;
     this.#track.style.transition = 'transform 0.5s ease';
-    this.#track.style.transform = `translateX(-${this.#state.cardWidth}px)`;
+    this.#updateTrackPosition();
 
     const onTransitionEnd = () => {
       this.#track.removeEventListener('transitionend', onTransitionEnd);
-      this.#track.appendChild(this.#track.firstElementChild);
-      this.#finalizeTransition('next');
+      this.#finalizeTransition();
     };
 
     this.#track.addEventListener('transitionend', onTransitionEnd, { once: true });
   }
 
   #moveToPreviousCard() {
-    if (this.#state.isTransitioning || this.#state.numOriginalCards <= 1) {
+    if (this.#state.isTransitioning || this.#state.numOriginalCards <= this.#state.numVisibleCards) {
       return;
     }
 
-    const lastCard = this.#track.lastElementChild;
-    if (!lastCard) {
+    if (this.#state.currentIndex <= 0) {
       return;
     }
 
     this.#state.isTransitioning = true;
-    this.#track.style.transition = 'none';
-    this.#track.insertBefore(lastCard, this.#track.firstElementChild);
-    this.#track.style.transform = `translateX(-${this.#state.cardWidth}px)`;
-
-    window.requestAnimationFrame(() => {
-      this.#track.style.transition = 'transform 0.5s ease';
-      this.#track.style.transform = 'translateX(0)';
-    });
+    this.#state.currentIndex -= 1;
+    this.#track.style.transition = 'transform 0.5s ease';
+    this.#updateTrackPosition();
 
     const onTransitionEnd = () => {
       this.#track.removeEventListener('transitionend', onTransitionEnd);
-      this.#finalizeTransition('prev');
+      this.#finalizeTransition();
     };
 
     this.#track.addEventListener('transitionend', onTransitionEnd, { once: true });
   }
 
-  #finalizeTransition(direction) {
-    this.#track.style.transition = 'none';
-    this.#track.style.transform = 'translateX(0)';
-
-    window.requestAnimationFrame(() => {
-      this.#track.style.transition = 'transform 0.5s ease';
-    });
-
-    const total = this.#state.numOriginalCards;
-    if (total > 0) {
-      if (direction === 'next') {
-        this.#state.currentIndex = (this.#state.currentIndex + 1) % total;
-      } else if (direction === 'prev') {
-        this.#state.currentIndex = (this.#state.currentIndex - 1 + total) % total;
-      }
-    }
-
+  #finalizeTransition() {
     this.#state.isTransitioning = false;
+    this.#state.currentDragOffset = 0;
+    this.#state.dragStartOffset = this.#getCurrentOffset();
+    this.#updateControls();
   }
 
   #handleTrackMouseDown(event) {
-    if (this.#state.isTransitioning || this.#state.numOriginalCards <= 1) {
+    if (this.#state.isTransitioning || this.#state.numOriginalCards <= this.#state.numVisibleCards) {
       return;
     }
 
@@ -362,6 +402,7 @@
     this.#state.isDragging = true;
     this.#state.startX = event.pageX;
     this.#state.currentDragOffset = 0;
+    this.#state.dragStartOffset = this.#getCurrentOffset();
     this.#track.style.transition = 'none';
     this.#track.style.cursor = 'grabbing';
 
@@ -375,7 +416,8 @@
 
     const dx = event.pageX - this.#state.startX;
     this.#state.currentDragOffset = dx;
-    this.#track.style.transform = `translateX(${dx}px)`;
+    const offset = this.#state.dragStartOffset + dx;
+    this.#track.style.transform = `translateX(${offset}px)`;
   }
 
   #handleDocumentMouseUp() {
@@ -400,22 +442,29 @@
     const threshold = this.#state.cardWidth * this.#config.drag.threshold;
     this.#state.currentDragOffset = 0;
 
-    if (dx < -threshold) {
+    const baseOffset = this.#getCurrentOffset();
+    this.#state.dragStartOffset = baseOffset;
+
+    if (dx < -threshold && this.#state.currentIndex < this.#state.maxIndex) {
       this.#track.style.transition = 'none';
-      this.#track.style.transform = 'translateX(0)';
-      this.#moveToNextCard();
+      this.#track.style.transform = `translateX(${baseOffset}px)`;
+      window.requestAnimationFrame(() => {
+        this.#moveToNextCard();
+      });
       return;
     }
 
-    if (dx > threshold) {
+    if (dx > threshold && this.#state.currentIndex > 0) {
       this.#track.style.transition = 'none';
-      this.#track.style.transform = 'translateX(0)';
-      this.#moveToPreviousCard();
+      this.#track.style.transform = `translateX(${baseOffset}px)`;
+      window.requestAnimationFrame(() => {
+        this.#moveToPreviousCard();
+      });
       return;
     }
 
     this.#track.style.transition = 'transform 0.3s ease';
-    this.#track.style.transform = 'translateX(0)';
+    this.#track.style.transform = `translateX(${baseOffset}px)`;
 
     const onSnapEnd = () => {
       this.#track.removeEventListener('transitionend', onSnapEnd);
