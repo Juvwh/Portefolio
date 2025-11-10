@@ -425,7 +425,7 @@
       imgEl.src = entry.src;
       const altText = entry.alt || (data.galleryCaptions?.[index]) || `Gallery image ${index + 1}`;
       imgEl.alt = altText;
-      imgEl.className = 'modal-gallery-img';
+      imgEl.className = 'modal-gallery-img modal__thumbnail';
 
       this.currentLightboxImages.push({ src: entry.src, alt: altText });
 
@@ -468,7 +468,7 @@
 
     if (data.playUrl) {
       const playButton = this.document.createElement('button');
-      playButton.className = 'btn modal-play-btn';
+      playButton.className = 'btn modal-play-btn button button--primary modal__play';
       playButton.textContent = this.getTranslationValue('modalPlayButton', 'Play');
       playButton.addEventListener('click', () => {
         this.window.open(data.playUrl, '_blank');
@@ -477,14 +477,14 @@
       this.modalButtonsContainer.appendChild(playButton);
     } else if (data.playMessageKey) {
       const playMessage = this.document.createElement('p');
-      playMessage.className = 'modal-on-request-message';
+      playMessage.className = 'modal-on-request-message modal__note';
       playMessage.textContent = this.getTranslationValue(data.playMessageKey, '');
       this.modalButtonsContainer.appendChild(playMessage);
     }
 
     if (data.reportUrl) {
       const reportButton = this.document.createElement('button');
-      reportButton.className = 'btn';
+      reportButton.className = 'btn button button--primary modal__play';
       reportButton.textContent = 'View Report';
       reportButton.addEventListener('click', () => {
         this.window.open(data.reportUrl, '_blank');
@@ -494,7 +494,7 @@
 
     if (data.thesisUrl) {
       const thesisButton = this.document.createElement('button');
-      thesisButton.className = 'btn';
+      thesisButton.className = 'btn button button--primary modal__play';
       thesisButton.textContent = data.thesisBtnKey ? this.getTranslationValue(data.thesisBtnKey, 'Read Thesis') : 'Read Thesis';
       thesisButton.addEventListener('click', () => {
         this.window.open(data.thesisUrl, '_blank');
@@ -504,7 +504,7 @@
 
     if (data.defenceUrl) {
       const defenceButton = this.document.createElement('button');
-      defenceButton.className = 'btn';
+      defenceButton.className = 'btn button button--primary modal__play';
       defenceButton.textContent = data.defenceBtnKey ? this.getTranslationValue(data.defenceBtnKey, 'View the defence') : 'View the defence';
       defenceButton.addEventListener('click', () => {
         this.window.open(data.defenceUrl, '_blank');
