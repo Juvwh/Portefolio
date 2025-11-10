@@ -1,24 +1,34 @@
-import { ModalManager } from './scripts/modals/modalManager.js';
-import * as modalDataRepository from './scripts/modals/modalDataRepository.js';
-import { LightboxController } from './scripts/modals/lightboxController.js';
-import { translate } from './scripts/i18n/translationService.js';
+(function initModalBootstrap(global) {
+  const translationService = global.translationService;
+  const modalDataRepository = global.modalDataRepository;
+  const LightboxController = global.LightboxController;
+  const ModalManager = global.ModalManager;
 
-function bootstrapModalSystem() {
-  modalDataRepository.loadFromDom('modalDataStore');
+  if (!translationService || !modalDataRepository || !LightboxController || !ModalManager) {
+    console.error('Modal system dependencies are not available.');
+    return;
+  }
 
-  const lightboxController = new LightboxController();
+  const { translate } = translationService;
 
-  const modalManager = new ModalManager({
-    dataRepository: modalDataRepository,
-    lightboxController,
-    translationProvider: translate
-  });
+  function bootstrapModalSystem() {
+    modalDataRepository.loadFromDom('modalDataStore');
 
-  modalManager.initialize();
-}
+    const lightboxController = new LightboxController();
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', bootstrapModalSystem, { once: true });
-} else {
-  bootstrapModalSystem();
-}
+    const modalManager = new ModalManager({
+      dataRepository: modalDataRepository,
+      lightboxController,
+      translationProvider: translate
+    });
+
+    modalManager.initialize();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootstrapModalSystem, { once: true });
+  } else {
+    bootstrapModalSystem();
+  }
+  global.bootstrapModalSystem = bootstrapModalSystem;
+})(typeof window !== 'undefined' ? window : this);

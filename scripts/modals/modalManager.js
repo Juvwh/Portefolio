@@ -1,4 +1,5 @@
-export class ModalManager {
+(function initModalManager(global) {
+  class ModalManager {
   constructor({
     dataRepository,
     lightboxController,
@@ -525,4 +526,7 @@ export class ModalManager {
       console.warn(`URL hash #${hash} found, but no corresponding modal trigger element could be found.`);
     }
   }
-}
+  }
+
+  global.ModalManager = ModalManager;
+})(typeof window !== 'undefined' ? window : this);

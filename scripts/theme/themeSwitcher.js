@@ -1,16 +1,23 @@
-import { translate, getActiveLanguage, onLanguageChange } from '../i18n/translationService.js';
+(function initThemeSwitcher(global) {
+  const translationService = global.translationService;
+  if (!translationService) {
+    console.error('Translation service is not available for theme switching.');
+    return;
+  }
 
-const THEME_STORAGE_KEY = 'selected_theme';
-const LIGHT_THEME_CLASS = 'light-theme';
-const DARK_THEME_CLASS = 'dark-theme';
-const VALID_THEMES = new Set(['light', 'dark']);
+  const { translate, getActiveLanguage, onLanguageChange } = translationService;
 
-const FALLBACK_LABELS = {
-  switchToDarkMode: 'Switch to Dark Mode',
-  switchToLightMode: 'Switch to Light Mode'
-};
+  const THEME_STORAGE_KEY = 'selected_theme';
+  const LIGHT_THEME_CLASS = 'light-theme';
+  const DARK_THEME_CLASS = 'dark-theme';
+  const VALID_THEMES = new Set(['light', 'dark']);
 
-export class ThemeSwitcher {
+  const FALLBACK_LABELS = {
+    switchToDarkMode: 'Switch to Dark Mode',
+    switchToLightMode: 'Switch to Light Mode'
+  };
+
+  class ThemeSwitcher {
   #buttonId;
   #storageKey;
   #themeToggleButton = null;
@@ -157,18 +164,20 @@ export class ThemeSwitcher {
       return null;
     }
   }
-}
+  }
 
-const defaultThemeSwitcher = new ThemeSwitcher();
+  const defaultThemeSwitcher = new ThemeSwitcher();
 
-function bootstrapThemeSwitcher() {
-  defaultThemeSwitcher.initialize();
-}
+  function bootstrapThemeSwitcher() {
+    defaultThemeSwitcher.initialize();
+  }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', bootstrapThemeSwitcher, { once: true });
-} else {
-  bootstrapThemeSwitcher();
-}
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootstrapThemeSwitcher, { once: true });
+  } else {
+    bootstrapThemeSwitcher();
+  }
 
-export default defaultThemeSwitcher;
+  global.ThemeSwitcher = ThemeSwitcher;
+  global.defaultThemeSwitcher = defaultThemeSwitcher;
+})(typeof window !== 'undefined' ? window : this);

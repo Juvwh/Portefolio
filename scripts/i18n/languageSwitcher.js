@@ -1,14 +1,21 @@
-import {
-  getActiveLanguage,
-  setActiveLanguage,
-  translate,
-  onLanguageChange,
-  getSupportedLanguages
-} from './translationService.js';
+(function initLanguageSwitcher(global) {
+  const translationService = global.translationService;
+  if (!translationService) {
+    console.error('Translation service is not available.');
+    return;
+  }
 
-const LANGUAGE_BUTTON_ACTIVE_CLASS = 'active-lang';
+  const {
+    getActiveLanguage,
+    setActiveLanguage,
+    translate,
+    onLanguageChange,
+    getSupportedLanguages
+  } = translationService;
 
-function isValidTranslation(value) {
+  const LANGUAGE_BUTTON_ACTIVE_CLASS = 'active-lang';
+
+  function isValidTranslation(value) {
   return value !== undefined && !String(value).startsWith('MissingKey');
 }
 
@@ -111,12 +118,12 @@ function bindLanguageButtons(buttons) {
   });
 }
 
-export function initializeLanguageSwitcher() {
-  const buttons = getLanguageButtons();
-  if (!buttons.length) {
-    console.error('Language switcher buttons not found.');
-    return;
-  }
+  function initializeLanguageSwitcher() {
+    const buttons = getLanguageButtons();
+    if (!buttons.length) {
+      console.error('Language switcher buttons not found.');
+      return;
+    }
 
   onLanguageChange((language) => handleLanguageChange(language, buttons));
 
@@ -127,12 +134,14 @@ export function initializeLanguageSwitcher() {
   setActiveLanguage(currentLanguage, { notify: true, force: true });
 }
 
-function bootstrapLanguageSwitcher() {
-  initializeLanguageSwitcher();
-}
+  function bootstrapLanguageSwitcher() {
+    initializeLanguageSwitcher();
+  }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', bootstrapLanguageSwitcher, { once: true });
-} else {
-  bootstrapLanguageSwitcher();
-}
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootstrapLanguageSwitcher, { once: true });
+  } else {
+    bootstrapLanguageSwitcher();
+  }
+  global.initializeLanguageSwitcher = initializeLanguageSwitcher;
+})(typeof window !== 'undefined' ? window : this);

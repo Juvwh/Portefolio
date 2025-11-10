@@ -1,6 +1,7 @@
-// Translation dictionary embedded directly to avoid module loading issues on static hosting.
-const translations = {
-  en: {
+(function initTranslationService(global) {
+  // Translation dictionary embedded directly to avoid module loading issues on static hosting.
+  const translations = {
+    en: {
     // Meta Titles and Descriptions
     docTitle: "Justin Vanwichelen's Portfolio - Developer",
     canonicalUrl: "https://justinvanwichelen.be/",
@@ -228,7 +229,7 @@ const translations = {
     lightboxCloseAriaLabel: "Close lightbox"
 
   },
-  fr: {
+    fr: {
     // Titres et descriptions méta
     docTitle: "Portfolio de Justin Vanwichelen - Développeur",
     canonicalUrl: "https://justinvanwichelen.be/?lang=fr",
@@ -440,146 +441,156 @@ const translations = {
     lightboxCloseAriaLabel: "Fermer la lightbox"
 }
 
-};
+  };
 
 
-const supportedLanguages = Object.freeze(Object.keys(translations));
+  const supportedLanguages = Object.freeze(Object.keys(translations));
 
-function hasTranslation(key, lang) {
-  return Object.prototype.hasOwnProperty.call(translations?.[lang] ?? {}, key);
-}
-function getTranslationDictionary() {
-  return translations;
-}
+  function hasTranslation(key, lang) {
+    return Object.prototype.hasOwnProperty.call((translations && translations[lang]) || {}, key);
+  }
+  function getTranslationDictionary() {
+    return translations;
+  }
 
-const LANGUAGE_STORAGE_KEY = 'preferredLanguage';
-const LANGUAGE_CHANGE_EVENT = 'i18n:language-changed';
+  const LANGUAGE_STORAGE_KEY = 'preferredLanguage';
+  const LANGUAGE_CHANGE_EVENT = 'i18n:language-changed';
 
-let activeLanguage = null;
-const languageChangeListeners = new Set();
+  let activeLanguage = null;
+  const languageChangeListeners = new Set();
 
-function readStoredLanguage() {
-  try {
-    return localStorage.getItem(LANGUAGE_STORAGE_KEY);
-  } catch (error) {
-    console.warn('Unable to access localStorage for language preferences.', error);
+  function readStoredLanguage() {
+    try {
+      return localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    } catch (error) {
+      console.warn('Unable to access localStorage for language preferences.', error);
+      return null;
+    }
+  }
+
+  function persistLanguage(lang) {
+    try {
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+    } catch (error) {
+      console.warn('Unable to persist language preference.', error);
+    }
+  }
+
+  function getBrowserLanguage() {
+    if (typeof navigator !== 'undefined' && navigator.language) {
+      return navigator.language.split('-')[0];
+    }
     return null;
   }
-}
 
-function persistLanguage(lang) {
-  try {
-    localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
-  } catch (error) {
-    console.warn('Unable to persist language preference.', error);
-  }
-}
+  function resolveInitialLanguage() {
+    const storedLanguage = readStoredLanguage();
+    if (storedLanguage && supportedLanguages.includes(storedLanguage)) {
+      return storedLanguage;
+    }
 
-function getBrowserLanguage() {
-  if (typeof navigator !== 'undefined' && navigator.language) {
-    return navigator.language.split('-')[0];
-  }
-  return null;
-}
+    const browserLanguage = getBrowserLanguage();
+    if (browserLanguage && supportedLanguages.includes(browserLanguage)) {
+      return browserLanguage;
+    }
 
-function resolveInitialLanguage() {
-  const storedLanguage = readStoredLanguage();
-  if (storedLanguage && supportedLanguages.includes(storedLanguage)) {
-    return storedLanguage;
+    return supportedLanguages[0] ?? 'en';
   }
 
-  const browserLanguage = getBrowserLanguage();
-  if (browserLanguage && supportedLanguages.includes(browserLanguage)) {
-    return browserLanguage;
+  function ensureActiveLanguage() {
+    if (!activeLanguage) {
+      activeLanguage = resolveInitialLanguage();
+    }
+    return activeLanguage;
   }
 
-  return supportedLanguages[0] ?? 'en';
-}
+  function emitLanguageChange() {
+    const currentLanguage = ensureActiveLanguage();
+    if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
+      const event = new CustomEvent(LANGUAGE_CHANGE_EVENT, {
+        detail: {
+          language: currentLanguage,
+        }
+      });
 
-function ensureActiveLanguage() {
-  if (!activeLanguage) {
-    activeLanguage = resolveInitialLanguage();
-  }
-  return activeLanguage;
-}
+      window.dispatchEvent(event);
+    }
 
-function emitLanguageChange() {
-  const currentLanguage = ensureActiveLanguage();
-  if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
-    const event = new CustomEvent(LANGUAGE_CHANGE_EVENT, {
-      detail: {
-        language: currentLanguage,
+    languageChangeListeners.forEach((listener) => {
+      try {
+        listener(currentLanguage);
+      } catch (error) {
+        console.error('Error in language change listener', error);
       }
     });
-
-    window.dispatchEvent(event);
   }
 
-  languageChangeListeners.forEach((listener) => {
-    try {
-      listener(currentLanguage);
-    } catch (error) {
-      console.error('Error in language change listener', error);
+  function getSupportedLanguages() {
+    return supportedLanguages;
+  }
+
+  function getActiveLanguage() {
+    return ensureActiveLanguage();
+  }
+
+  function setActiveLanguage(lang, { notify = true, persist = true, force = false } = {}) {
+    if (!supportedLanguages.includes(lang)) {
+      console.error(`Language ${lang} is not supported.`);
+      return;
     }
-  });
-}
 
-export function getSupportedLanguages() {
-  return supportedLanguages;
-}
+    const previousLanguage = ensureActiveLanguage();
+    const hasChanged = previousLanguage !== lang;
 
-export function getActiveLanguage() {
-  return ensureActiveLanguage();
-}
+    if (hasChanged) {
+      activeLanguage = lang;
+      if (persist) {
+        persistLanguage(lang);
+      }
+    }
 
-export function setActiveLanguage(lang, { notify = true, persist = true, force = false } = {}) {
-  if (!supportedLanguages.includes(lang)) {
-    console.error(`Language ${lang} is not supported.`);
-    return;
-  }
-
-  const previousLanguage = ensureActiveLanguage();
-  const hasChanged = previousLanguage !== lang;
-
-  if (hasChanged) {
-    activeLanguage = lang;
-    if (persist) {
-      persistLanguage(lang);
+    if (notify && (hasChanged || force)) {
+      emitLanguageChange();
     }
   }
 
-  if (notify && (hasChanged || force)) {
-    emitLanguageChange();
-  }
-}
+  function translate(key, lang = ensureActiveLanguage()) {
+    const languageTranslations = translations[lang];
 
-export function translate(key, lang = ensureActiveLanguage()) {
-  const languageTranslations = translations[lang];
+    if (!languageTranslations) {
+      console.warn(`Translations for language '${lang}' not found.`);
+      return `MissingKey: ${key}`;
+    }
 
-  if (!languageTranslations) {
-    console.warn(`Translations for language '${lang}' not found.`);
-    return `MissingKey: ${key}`;
-  }
+    const translation = languageTranslations[key];
+    if (translation === undefined) {
+      console.warn(`Translation not found for key: ${key} in language: ${lang}`);
+      return `MissingKey: ${key}`;
+    }
 
-  const translation = languageTranslations[key];
-  if (translation === undefined) {
-    console.warn(`Translation not found for key: ${key} in language: ${lang}`);
-    return `MissingKey: ${key}`;
+    return translation;
   }
 
-  return translation;
-}
+  function onLanguageChange(listener) {
+    languageChangeListeners.add(listener);
+    return () => languageChangeListeners.delete(listener);
+  }
 
-export function onLanguageChange(listener) {
-  languageChangeListeners.add(listener);
-  return () => languageChangeListeners.delete(listener);
-}
+  function hasTranslationForLang(key, lang) {
+    return hasTranslation(key, lang);
+  }
 
-export { LANGUAGE_CHANGE_EVENT, getTranslationDictionary };
+  // Initialize active language immediately to keep state consistent.
+  ensureActiveLanguage();
 
-export function hasTranslationForLang(key, lang) {
-  return hasTranslation(key, lang);
-}
-
-// Initialize active language immediately to keep state consistent.
-ensureActiveLanguage();
+  global.translationService = {
+    getSupportedLanguages,
+    getActiveLanguage,
+    setActiveLanguage,
+    translate,
+    onLanguageChange,
+    LANGUAGE_CHANGE_EVENT,
+    getTranslationDictionary,
+    hasTranslationForLang,
+  };
+})(typeof window !== 'undefined' ? window : this);
