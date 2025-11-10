@@ -48,7 +48,7 @@
 
     if (this.lightbox) {
       this.lightbox.setOnClose(() => {
-        if (this.modalOverlay?.classList.contains('active')) {
+        if (this.modalOverlay?.classList.contains('modal--active')) {
           this.document.body.classList.add('modal-open');
         }
         this.lightboxJustClosed = true;
@@ -79,22 +79,22 @@
   cacheDomReferences() {
     this.modalOverlay = this.document.getElementById('project-modal');
     this.modalCloseBtn = this.document.getElementById('modal-close-btn');
-    this.modalCard = this.modalOverlay ? this.modalOverlay.querySelector('.modal-card') : null;
+    this.modalCard = this.modalOverlay ? this.modalOverlay.querySelector('.modal__card') : null;
 
     if (!this.modalOverlay) {
       console.error('Modal overlay element not found. Modal functionality disabled.');
       return;
     }
 
-    this.modalTitleElement = this.modalOverlay.querySelector('.modal-title');
-    this.modalDescriptionElement = this.modalOverlay.querySelector('.modal-description');
-    this.modalVideoIframe = this.modalOverlay.querySelector('.modal-video-container iframe');
+    this.modalTitleElement = this.modalOverlay.querySelector('.modal__title');
+    this.modalDescriptionElement = this.modalOverlay.querySelector('.modal__description');
+    this.modalVideoIframe = this.modalOverlay.querySelector('.modal__video iframe');
     this.modalImageElement = this.modalOverlay.querySelector('#modal-image-element');
-    this.modalVideoContainer = this.modalOverlay.querySelector('.modal-video-container');
+    this.modalVideoContainer = this.modalOverlay.querySelector('.modal__video');
     this.modalHoverImageElement = this.modalOverlay.querySelector('#modal-hover-image');
-    this.modalGalleryElement = this.modalOverlay.querySelector('.modal-gallery');
-    this.modalBadgesContainer = this.modalOverlay.querySelector('.modal-badges');
-    this.modalButtonsContainer = this.modalOverlay.querySelector('.modal-buttons-container');
+    this.modalGalleryElement = this.modalOverlay.querySelector('.modal__gallery');
+    this.modalBadgesContainer = this.modalOverlay.querySelector('.modal__badges');
+    this.modalButtonsContainer = this.modalOverlay.querySelector('.modal__actions');
   }
 
   computeModalSequence() {
@@ -124,7 +124,7 @@
   }
 
   handleBodyClick(event) {
-    const triggerButton = event.target.closest('.section-projet-en-avant .btn, .project-modal-trigger, .game-card');
+    const triggerButton = event.target.closest('[data-modal-id]');
     if (!triggerButton) {
       return;
     }
@@ -145,7 +145,7 @@
         return;
       }
 
-      if (this.modalOverlay?.classList.contains('active')) {
+      if (this.modalOverlay?.classList.contains('modal--active')) {
         if (this.lightboxJustClosed) {
           this.lightboxJustClosed = false;
         } else {
@@ -195,7 +195,7 @@
   }
 
   swipeInteractionsEnabled() {
-    if (!this.modalOverlay || !this.modalOverlay.classList.contains('active')) {
+    if (!this.modalOverlay || !this.modalOverlay.classList.contains('modal--active')) {
       return false;
     }
 
@@ -226,7 +226,7 @@
 
     if (modalDataToDisplay) {
       this.populateModal(modalDataToDisplay);
-      this.modalOverlay.classList.add('active');
+      this.modalOverlay.classList.add('modal--active');
       this.document.body.classList.add('modal-open');
       this.activeModalId = modalId || null;
     } else {
@@ -281,7 +281,7 @@
     const data = this.dataRepository?.getModalData?.(modalId);
     if (data) {
       this.populateModal(data);
-      this.modalOverlay.classList.add('active');
+      this.modalOverlay.classList.add('modal--active');
       this.document.body.classList.add('modal-open');
       this.activeModalId = modalId;
       return true;
@@ -298,11 +298,11 @@
   }
 
   closeModal() {
-    if (!this.modalOverlay || !this.modalOverlay.classList.contains('active')) {
+    if (!this.modalOverlay || !this.modalOverlay.classList.contains('modal--active')) {
       return;
     }
 
-    this.modalOverlay.classList.remove('active');
+    this.modalOverlay.classList.remove('modal--active');
     this.document.body.classList.remove('modal-open');
 
     if (this.modalVideoIframe) {
@@ -425,7 +425,7 @@
       imgEl.src = entry.src;
       const altText = entry.alt || (data.galleryCaptions?.[index]) || `Gallery image ${index + 1}`;
       imgEl.alt = altText;
-      imgEl.className = 'modal-gallery-img';
+      imgEl.className = 'modal__gallery-image';
 
       this.currentLightboxImages.push({ src: entry.src, alt: altText });
 
@@ -468,7 +468,7 @@
 
     if (data.playUrl) {
       const playButton = this.document.createElement('button');
-      playButton.className = 'btn modal-play-btn';
+      playButton.className = 'button modal__play-button';
       playButton.textContent = this.getTranslationValue('modalPlayButton', 'Play');
       playButton.addEventListener('click', () => {
         this.window.open(data.playUrl, '_blank');
@@ -477,14 +477,14 @@
       this.modalButtonsContainer.appendChild(playButton);
     } else if (data.playMessageKey) {
       const playMessage = this.document.createElement('p');
-      playMessage.className = 'modal-on-request-message';
+      playMessage.className = 'modal__note';
       playMessage.textContent = this.getTranslationValue(data.playMessageKey, '');
       this.modalButtonsContainer.appendChild(playMessage);
     }
 
     if (data.reportUrl) {
       const reportButton = this.document.createElement('button');
-      reportButton.className = 'btn';
+      reportButton.className = 'button';
       reportButton.textContent = 'View Report';
       reportButton.addEventListener('click', () => {
         this.window.open(data.reportUrl, '_blank');
@@ -494,7 +494,7 @@
 
     if (data.thesisUrl) {
       const thesisButton = this.document.createElement('button');
-      thesisButton.className = 'btn';
+      thesisButton.className = 'button';
       thesisButton.textContent = data.thesisBtnKey ? this.getTranslationValue(data.thesisBtnKey, 'Read Thesis') : 'Read Thesis';
       thesisButton.addEventListener('click', () => {
         this.window.open(data.thesisUrl, '_blank');
@@ -504,7 +504,7 @@
 
     if (data.defenceUrl) {
       const defenceButton = this.document.createElement('button');
-      defenceButton.className = 'btn';
+      defenceButton.className = 'button';
       defenceButton.textContent = data.defenceBtnKey ? this.getTranslationValue(data.defenceBtnKey, 'View the defence') : 'View the defence';
       defenceButton.addEventListener('click', () => {
         this.window.open(data.defenceUrl, '_blank');
