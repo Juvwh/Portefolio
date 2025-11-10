@@ -3,14 +3,22 @@ import * as modalDataRepository from './scripts/modals/modalDataRepository.js';
 import { LightboxController } from './scripts/modals/lightboxController.js';
 import { translate } from './scripts/i18n/translationService.js';
 
-modalDataRepository.loadFromDom('modalDataStore');
+function bootstrapModalSystem() {
+  modalDataRepository.loadFromDom('modalDataStore');
 
-const lightboxController = new LightboxController();
+  const lightboxController = new LightboxController();
 
-const modalManager = new ModalManager({
-  dataRepository: modalDataRepository,
-  lightboxController,
-  translationProvider: translate
-});
+  const modalManager = new ModalManager({
+    dataRepository: modalDataRepository,
+    lightboxController,
+    translationProvider: translate
+  });
 
-modalManager.initialize();
+  modalManager.initialize();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootstrapModalSystem, { once: true });
+} else {
+  bootstrapModalSystem();
+}
