@@ -13,7 +13,7 @@
   }
 
   const track = document.querySelector('#carousel-track');
-  const wrapper = document.querySelector('.carousel-wrapper');
+  const wrapper = document.querySelector('.project-carousel__viewport');
   const prevButton = document.querySelector('#prev-btn');
   const nextButton = document.querySelector('#next-btn');
 

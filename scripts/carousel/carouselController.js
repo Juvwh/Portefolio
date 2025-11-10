@@ -37,10 +37,10 @@
         { minWidth: 1132, cards: 2 },
       ],
       selectors: {
-        wrapper: '.carousel-wrapper',
+        wrapper: '.project-carousel__viewport',
         prevButton: '#prev-btn',
         nextButton: '#next-btn',
-        card: '.card',
+        card: '.project-card',
       },
       drag: {
         threshold: 0.25,
