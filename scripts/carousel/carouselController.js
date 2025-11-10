@@ -10,6 +10,7 @@
     cardWidth: 0,
     numOriginalCards: 0,
     numVisibleCards: 0,
+    leftCloneCount: 0,
     isDragging: false,
     isTransitioning: false,
     startX: 0,
@@ -73,6 +74,8 @@
       throw new Error('CarouselController could not locate required controls.');
     }
 
+    this.#state.numVisibleCards = this.#resolveVisibleCards(window.innerWidth);
+
     if (!this.#reinitializeTrack()) {
       return;
     }
@@ -92,6 +95,7 @@
     this.#state.currentIndex = 0;
     this.#state.cardWidth = 0;
     this.#state.numOriginalCards = 0;
+    this.#state.leftCloneCount = 0;
     this.#state.numVisibleCards = 0;
     this.#state.isDragging = false;
     this.#state.isTransitioning = false;
@@ -110,6 +114,7 @@
     this.#track.style.cursor = '';
     this.#track.style.transition = '';
     this.#track.style.transform = '';
+    this.#removeLegacyClones();
 
     this.#wrapper = null;
     this.#prevButton = null;
@@ -134,6 +139,15 @@
     document.removeEventListener('mouseup', this.#onDocumentMouseUp);
     this.#track.removeEventListener('mouseleave', this.#onTrackMouseLeave);
     window.removeEventListener('resize', this.#onResize);
+  }
+
+  #removeLegacyClones() {
+    if (!this.#track) {
+      return;
+    }
+
+    const clones = this.#track.querySelectorAll('[data-carousel-clone="true"]');
+    clones.forEach((clone) => clone.remove());
   }
 
   #createThrottledResizeHandler() {
@@ -194,8 +208,25 @@
     return normalized;
   }
 
+  #updateControls() {
+    if (!this.#prevButton || !this.#nextButton) {
+      return;
+    }
+
+    const totalCards = this.#state.numOriginalCards;
+    const visibleCards = this.#state.numVisibleCards;
+    const hasEnoughCards = totalCards > visibleCards;
+
+    this.#prevButton.disabled = !hasEnoughCards;
+    this.#nextButton.disabled = !hasEnoughCards;
+  }
+
   #reinitializeTrack() {
     const cardSelector = this.#config.selectors.card;
+    const normalizedIndex = this.#resolveNormalizedCurrentIndex();
+
+    this.#removeLegacyClones();
+
     const cards = this.#track.querySelectorAll(cardSelector);
     const cardCount = cards.length;
 
@@ -211,20 +242,32 @@
 
     this.#state.numOriginalCards = cardCount;
     this.#state.cardWidth = cardWidth;
-    this.#state.currentIndex %= cardCount;
+    this.#state.leftCloneCount = 0;
+    this.#state.currentIndex = 0;
     this.#state.isDragging = false;
     this.#state.isTransitioning = false;
     this.#state.currentDragOffset = 0;
 
+    const canLoop = this.#state.numOriginalCards > this.#state.numVisibleCards;
+
+    if (canLoop) {
+      const cloneCount = this.#createClones(Array.from(cards));
+      this.#state.leftCloneCount = cloneCount;
+
+      const safeIndex = Math.min(normalizedIndex, this.#state.numOriginalCards - 1);
+      this.#state.currentIndex = this.#state.leftCloneCount + safeIndex;
+    }
+
     this.#track.style.transition = 'none';
-    this.#track.style.transform = 'translateX(0)';
-    this.#track.style.cursor = 'grab';
+    this.#setTrackTransform();
+    this.#track.style.cursor = canLoop ? 'grab' : 'default';
 
     window.requestAnimationFrame(() => {
-      this.#track.style.transition = 'transform 0.5s ease';
+      this.#setDefaultTransition();
     });
 
     this.#updateWrapperWidth();
+    this.#updateControls();
 
     return true;
   }
@@ -243,6 +286,22 @@
     return card.offsetWidth + marginLeft + marginRight;
   }
 
+  #resolveNormalizedCurrentIndex() {
+    if (!this.#state.numOriginalCards) {
+      return 0;
+    }
+
+    const total = this.#state.numOriginalCards;
+    const relativeIndex = this.#state.currentIndex - this.#state.leftCloneCount;
+    let normalized = relativeIndex % total;
+
+    if (normalized < 0) {
+      normalized += total;
+    }
+
+    return normalized;
+  }
+
   #updateCarouselLayout() {
     const visibleCards = this.#resolveVisibleCards(window.innerWidth);
     const shouldReinitialize =
@@ -259,6 +318,16 @@
       if (recalculatedWidth > 0 && Math.abs(recalculatedWidth - this.#state.cardWidth) > 0.5) {
         this.#state.cardWidth = recalculatedWidth;
       }
+
+      this.#track.style.transition = 'none';
+      const normalizedIndex = this.#resolveNormalizedCurrentIndex();
+      const safeIndex = Math.min(normalizedIndex, this.#state.numOriginalCards - 1);
+      this.#state.currentIndex = this.#state.leftCloneCount + safeIndex;
+      this.#setTrackTransform();
+      window.requestAnimationFrame(() => {
+        this.#setDefaultTransition();
+      });
+      this.#updateControls();
     }
 
     this.#updateWrapperWidth();
@@ -282,74 +351,143 @@
     return 1;
   }
 
-  #moveToNextCard() {
-    if (this.#state.isTransitioning || this.#state.numOriginalCards <= 1) {
-      return;
+  #createClones(cards) {
+    if (!Array.isArray(cards) || !cards.length) {
+      return 0;
     }
 
-    this.#state.isTransitioning = true;
-    this.#track.style.transition = 'transform 0.5s ease';
-    this.#track.style.transform = `translateX(-${this.#state.cardWidth}px)`;
+    const cloneCount = Math.min(this.#state.numVisibleCards, cards.length);
 
-    const onTransitionEnd = () => {
-      this.#track.removeEventListener('transitionend', onTransitionEnd);
-      this.#track.appendChild(this.#track.firstElementChild);
-      this.#finalizeTransition('next');
-    };
+    if (!cloneCount) {
+      return 0;
+    }
 
-    this.#track.addEventListener('transitionend', onTransitionEnd, { once: true });
+    const leftFragment = document.createDocumentFragment();
+    const rightFragment = document.createDocumentFragment();
+
+    for (let i = cards.length - cloneCount; i < cards.length; i += 1) {
+      const clone = cards[i].cloneNode(true);
+      clone.dataset.carouselClone = 'true';
+      leftFragment.appendChild(clone);
+    }
+
+    for (let i = 0; i < cloneCount; i += 1) {
+      const clone = cards[i].cloneNode(true);
+      clone.dataset.carouselClone = 'true';
+      rightFragment.appendChild(clone);
+    }
+
+    this.#track.insertBefore(leftFragment, this.#track.firstChild);
+    this.#track.appendChild(rightFragment);
+
+    return cloneCount;
   }
 
-  #moveToPreviousCard() {
-    if (this.#state.isTransitioning || this.#state.numOriginalCards <= 1) {
-      return;
-    }
-
-    const lastCard = this.#track.lastElementChild;
-    if (!lastCard) {
-      return;
-    }
-
-    this.#state.isTransitioning = true;
-    this.#track.style.transition = 'none';
-    this.#track.insertBefore(lastCard, this.#track.firstElementChild);
-    this.#track.style.transform = `translateX(-${this.#state.cardWidth}px)`;
-
-    window.requestAnimationFrame(() => {
-      this.#track.style.transition = 'transform 0.5s ease';
+  #setTrackTransform(additionalOffset = 0) {
+    if (!this.#state.cardWidth) {
       this.#track.style.transform = 'translateX(0)';
-    });
-
-    const onTransitionEnd = () => {
-      this.#track.removeEventListener('transitionend', onTransitionEnd);
-      this.#finalizeTransition('prev');
-    };
-
-    this.#track.addEventListener('transitionend', onTransitionEnd, { once: true });
-  }
-
-  #finalizeTransition(direction) {
-    this.#track.style.transition = 'none';
-    this.#track.style.transform = 'translateX(0)';
-
-    window.requestAnimationFrame(() => {
-      this.#track.style.transition = 'transform 0.5s ease';
-    });
-
-    const total = this.#state.numOriginalCards;
-    if (total > 0) {
-      if (direction === 'next') {
-        this.#state.currentIndex = (this.#state.currentIndex + 1) % total;
-      } else if (direction === 'prev') {
-        this.#state.currentIndex = (this.#state.currentIndex - 1 + total) % total;
-      }
+      return;
     }
 
-    this.#state.isTransitioning = false;
+    const baseOffset = -this.#state.currentIndex * this.#state.cardWidth;
+    const totalOffset = baseOffset + additionalOffset;
+    this.#track.style.transform = `translateX(${totalOffset}px)`;
+  }
+
+  #setDefaultTransition() {
+    this.#track.style.transition = 'transform 0.5s ease-in-out';
+  }
+
+  #jumpToIndex(index) {
+    this.#state.currentIndex = index;
+    this.#state.currentDragOffset = 0;
+    this.#track.style.transition = 'none';
+    this.#setTrackTransform();
+    void this.#track.offsetWidth;
+    this.#setDefaultTransition();
+  }
+
+  #moveToNextCard(options = {}) {
+    if (
+      this.#state.isTransitioning ||
+      this.#state.numOriginalCards <= this.#state.numVisibleCards ||
+      !this.#state.cardWidth
+    ) {
+      return;
+    }
+
+    const duration = options.fromDrag ? 0.3 : 0.5;
+    this.#state.isTransitioning = true;
+    this.#track.style.transition = `transform ${duration}s ease-in-out`;
+    this.#state.currentIndex += 1;
+    this.#setTrackTransform();
+
+    const onTransitionEnd = (event) => {
+      if (event.target !== this.#track || event.propertyName !== 'transform') {
+        return;
+      }
+
+      this.#track.removeEventListener('transitionend', onTransitionEnd);
+
+      const maxIndex = this.#state.leftCloneCount + this.#state.numOriginalCards;
+      if (this.#state.currentIndex >= maxIndex) {
+        this.#jumpToIndex(this.#state.leftCloneCount);
+      } else {
+        this.#state.currentDragOffset = 0;
+        this.#setDefaultTransition();
+      }
+
+      this.#state.isTransitioning = false;
+      this.#updateControls();
+    };
+
+    this.#track.addEventListener('transitionend', onTransitionEnd);
+  }
+
+  #moveToPreviousCard(options = {}) {
+    if (
+      this.#state.isTransitioning ||
+      this.#state.numOriginalCards <= this.#state.numVisibleCards ||
+      !this.#state.cardWidth
+    ) {
+      return;
+    }
+
+    const duration = options.fromDrag ? 0.3 : 0.5;
+    this.#state.isTransitioning = true;
+    this.#track.style.transition = `transform ${duration}s ease-in-out`;
+    this.#state.currentIndex -= 1;
+    this.#setTrackTransform();
+
+    const onTransitionEnd = (event) => {
+      if (event.target !== this.#track || event.propertyName !== 'transform') {
+        return;
+      }
+
+      this.#track.removeEventListener('transitionend', onTransitionEnd);
+
+      if (this.#state.currentIndex < this.#state.leftCloneCount) {
+        const lastIndex =
+          this.#state.leftCloneCount + this.#state.numOriginalCards - 1;
+        this.#jumpToIndex(lastIndex);
+      } else {
+        this.#state.currentDragOffset = 0;
+        this.#setDefaultTransition();
+      }
+
+      this.#state.isTransitioning = false;
+      this.#updateControls();
+    };
+
+    this.#track.addEventListener('transitionend', onTransitionEnd);
   }
 
   #handleTrackMouseDown(event) {
-    if (this.#state.isTransitioning || this.#state.numOriginalCards <= 1) {
+    if (
+      this.#state.isTransitioning ||
+      this.#state.numOriginalCards <= this.#state.numVisibleCards ||
+      !this.#state.cardWidth
+    ) {
       return;
     }
 
@@ -363,6 +501,7 @@
     this.#state.startX = event.pageX;
     this.#state.currentDragOffset = 0;
     this.#track.style.transition = 'none';
+    this.#setTrackTransform();
     this.#track.style.cursor = 'grabbing';
 
     event.preventDefault();
@@ -375,7 +514,7 @@
 
     const dx = event.pageX - this.#state.startX;
     this.#state.currentDragOffset = dx;
-    this.#track.style.transform = `translateX(${dx}px)`;
+    this.#setTrackTransform(dx);
   }
 
   #handleDocumentMouseUp() {
@@ -394,32 +533,39 @@
     }
 
     this.#state.isDragging = false;
-    this.#track.style.cursor = 'grab';
+    this.#track.style.cursor =
+      this.#state.numOriginalCards > this.#state.numVisibleCards ? 'grab' : 'default';
 
     const dx = this.#state.currentDragOffset;
     const threshold = this.#state.cardWidth * this.#config.drag.threshold;
     this.#state.currentDragOffset = 0;
 
-    if (dx < -threshold) {
-      this.#track.style.transition = 'none';
-      this.#track.style.transform = 'translateX(0)';
-      this.#moveToNextCard();
+    if (dx < -threshold && this.#state.numOriginalCards > this.#state.numVisibleCards) {
+      window.requestAnimationFrame(() => {
+        this.#moveToNextCard({ fromDrag: true });
+      });
       return;
     }
 
-    if (dx > threshold) {
-      this.#track.style.transition = 'none';
-      this.#track.style.transform = 'translateX(0)';
-      this.#moveToPreviousCard();
+    if (dx > threshold && this.#state.numOriginalCards > this.#state.numVisibleCards) {
+      window.requestAnimationFrame(() => {
+        this.#moveToPreviousCard({ fromDrag: true });
+      });
       return;
     }
 
-    this.#track.style.transition = 'transform 0.3s ease';
-    this.#track.style.transform = 'translateX(0)';
+    if (Math.abs(dx) < 1) {
+      this.#setDefaultTransition();
+      this.#setTrackTransform();
+      return;
+    }
+
+    this.#track.style.transition = 'transform 0.3s ease-in-out';
+    this.#setTrackTransform();
 
     const onSnapEnd = () => {
       this.#track.removeEventListener('transitionend', onSnapEnd);
-      this.#track.style.transition = 'transform 0.5s ease';
+      this.#setDefaultTransition();
     };
 
     this.#track.addEventListener('transitionend', onSnapEnd, { once: true });
