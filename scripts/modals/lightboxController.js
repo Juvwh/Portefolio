@@ -64,7 +64,7 @@
   }
 
   isOpen() {
-    return Boolean(this.lightbox?.classList.contains('active'));
+    return Boolean(this.lightbox?.classList.contains('lightbox--active'));
   }
 
   show(images, startIndex = 0) {
@@ -76,7 +76,7 @@
     this.currentIndex = Math.max(0, Math.min(startIndex, images.length - 1));
 
     this.document.body.classList.add('modal-open');
-    this.lightbox.classList.add('active');
+    this.lightbox.classList.add('lightbox--active');
     this.showImage(this.currentIndex);
 
     this.document.addEventListener('keydown', this.handleKeydown);
@@ -87,7 +87,7 @@
       return;
     }
 
-    this.lightbox.classList.remove('active');
+    this.lightbox.classList.remove('lightbox--active');
     this.document.body.classList.remove('modal-open');
 
     if (this.imageElement) {
