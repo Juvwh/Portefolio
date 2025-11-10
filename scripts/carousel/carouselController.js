@@ -387,6 +387,12 @@
     const onTransitionEnd = () => {
       this.#track.removeEventListener('transitionend', onTransitionEnd);
       this.#track.style.transition = 'none';
+      // Force the transition removal to take effect before we mutate the DOM and
+      // reset the transform. Without the reflow the browser can keep the
+      // previous transition settings for the following transform change, which
+      // results in an extra slide animation to the right after the expected
+      // leftward motion completes.
+      void this.#track.offsetWidth;
       this.#appendFirstCardToEnd();
       this.#track.style.transform = 'translateX(0)';
       this.#state.currentIndex = this.#normalizeIndex(this.#state.currentIndex + 1);
