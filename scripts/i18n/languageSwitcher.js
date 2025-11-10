@@ -13,7 +13,7 @@
     getSupportedLanguages
   } = translationService;
 
-  const LANGUAGE_BUTTON_ACTIVE_CLASS = 'active-lang';
+  const LANGUAGE_BUTTON_ACTIVE_CLASS = 'site-nav__language-button--active';
 
   function isValidTranslation(value) {
   return value !== undefined && !String(value).startsWith('MissingKey');
@@ -98,7 +98,7 @@ function handleLanguageChange(language, buttons) {
 }
 
 function getLanguageButtons() {
-  return Array.from(document.querySelectorAll('.language-switcher [data-lang]'));
+  return Array.from(document.querySelectorAll('.site-nav__language [data-lang]'));
 }
 
 function bindLanguageButtons(buttons) {
