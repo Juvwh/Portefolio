@@ -1,15 +1,16 @@
-const DEFAULT_OPTIONS = {
-  overlayId: 'gallery-lightbox',
-  imageId: 'lightbox-img',
-  captionId: 'lightbox-caption',
-  closeButtonId: 'lightbox-close-btn',
-  prevButtonId: 'lightbox-prev-btn',
-  nextButtonId: 'lightbox-next-btn',
-  prevZoneId: 'lightbox-prev-zone',
-  nextZoneId: 'lightbox-next-zone'
-};
+(function initLightboxController(global) {
+  const DEFAULT_OPTIONS = {
+    overlayId: 'gallery-lightbox',
+    imageId: 'lightbox-img',
+    captionId: 'lightbox-caption',
+    closeButtonId: 'lightbox-close-btn',
+    prevButtonId: 'lightbox-prev-btn',
+    nextButtonId: 'lightbox-next-btn',
+    prevZoneId: 'lightbox-prev-zone',
+    nextZoneId: 'lightbox-next-zone'
+  };
 
-export class LightboxController {
+  class LightboxController {
   constructor({ documentRef = document, options = {}, onClose } = {}) {
     this.document = documentRef;
     this.onClose = onClose;
@@ -278,4 +279,7 @@ export class LightboxController {
     }
     event.preventDefault();
   }
-}
+  }
+
+  global.LightboxController = LightboxController;
+})(typeof window !== 'undefined' ? window : this);

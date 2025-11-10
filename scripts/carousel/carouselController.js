@@ -1,4 +1,5 @@
-export class CarouselController {
+(function initCarouselController(global) {
+  class CarouselController {
   #track;
   #config;
   #wrapper = null;
@@ -423,4 +424,7 @@ export class CarouselController {
 
     this.#track.addEventListener('transitionend', onSnapEnd, { once: true });
   }
-}
+  }
+
+  global.CarouselController = CarouselController;
+})(typeof window !== 'undefined' ? window : this);

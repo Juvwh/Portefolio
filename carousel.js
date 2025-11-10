@@ -1,8 +1,13 @@
-import { CarouselController } from './scripts/carousel/carouselController.js';
+(function initCarousel(global) {
+  const CarouselController = global.CarouselController;
+  if (!CarouselController) {
+    console.error('CarouselController is not available.');
+    return;
+  }
 
-let carouselInstance = null;
+  let carouselInstance = null;
 
-function initializeCarousel() {
+  function initializeCarousel() {
   if (carouselInstance) {
     return carouselInstance;
   }
@@ -37,21 +42,28 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', handleDOMContentLoaded, { once: true });
 } else {
   handleDOMContentLoaded();
-}
+  }
 
-export function getCarouselController() {
-  return carouselInstance;
-}
+  function getCarouselController() {
+    return carouselInstance;
+  }
 
-export function destroyCarousel() {
+  function destroyCarousel() {
   if (!carouselInstance) {
     return;
   }
 
   carouselInstance.destroy();
   carouselInstance = null;
-}
+  }
 
-export function mountCarousel() {
-  return initializeCarousel();
-}
+  function mountCarousel() {
+    return initializeCarousel();
+  }
+
+  global.carouselApi = {
+    getCarouselController,
+    destroyCarousel,
+    mountCarousel,
+  };
+})(typeof window !== 'undefined' ? window : this);
