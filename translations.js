@@ -1,4 +1,4 @@
-const translations = {
+export const translations = {
   en: {
     // Meta Titles and Descriptions
     docTitle: "Justin Vanwichelen's Portfolio - Developer",
@@ -440,3 +440,11 @@ const translations = {
 }
 
 };
+
+export function hasTranslation(key, lang) {
+  return Object.prototype.hasOwnProperty.call(translations?.[lang] ?? {}, key);
+}
+
+export function getTranslationDictionary() {
+  return translations;
+}
