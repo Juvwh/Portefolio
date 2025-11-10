@@ -10,12 +10,12 @@
     cardWidth: 0,
     numOriginalCards: 0,
     numVisibleCards: 0,
-    maxIndex: 0,
     isDragging: false,
     isTransitioning: false,
     startX: 0,
     currentDragOffset: 0,
     dragStartOffset: 0,
+    leadingCloneCount: 0,
   };
   #isMounted = false;
   #resizeTimeoutId = null;
@@ -75,6 +75,8 @@
       throw new Error('CarouselController could not locate required controls.');
     }
 
+    this.#state.numVisibleCards = this.#resolveVisibleCards(window.innerWidth);
+
     if (!this.#reinitializeTrack()) {
       return;
     }
@@ -95,12 +97,12 @@
     this.#state.cardWidth = 0;
     this.#state.numOriginalCards = 0;
     this.#state.numVisibleCards = 0;
-    this.#state.maxIndex = 0;
     this.#state.isDragging = false;
     this.#state.isTransitioning = false;
     this.#state.startX = 0;
     this.#state.currentDragOffset = 0;
     this.#state.dragStartOffset = 0;
+    this.#state.leadingCloneCount = 0;
 
     if (this.#resizeTimeoutId) {
       window.clearTimeout(this.#resizeTimeoutId);
@@ -110,6 +112,8 @@
     if (this.#wrapper) {
       this.#wrapper.style.width = '';
     }
+
+    this.#removeClones();
 
     this.#track.style.cursor = '';
     this.#track.style.transition = '';
@@ -138,6 +142,25 @@
     document.removeEventListener('mouseup', this.#onDocumentMouseUp);
     this.#track.removeEventListener('mouseleave', this.#onTrackMouseLeave);
     window.removeEventListener('resize', this.#onResize);
+  }
+
+  #removeClones() {
+    const clones = this.#track.querySelectorAll('[data-carousel-clone="true"]');
+    clones.forEach((clone) => clone.remove());
+  }
+
+  #normalizeIndex(index) {
+    const total = this.#state.numOriginalCards;
+    if (total <= 0) {
+      return 0;
+    }
+
+    let normalized = index % total;
+    if (normalized < 0) {
+      normalized += total;
+    }
+
+    return normalized;
   }
 
   #createThrottledResizeHandler() {
@@ -199,7 +222,8 @@
   }
 
   #getCurrentOffset() {
-    return -(this.#state.currentIndex * this.#state.cardWidth);
+    const indexWithClones = this.#state.currentIndex + this.#state.leadingCloneCount;
+    return -(indexWithClones * this.#state.cardWidth);
   }
 
   #updateTrackPosition(useTransition = true) {
@@ -230,15 +254,16 @@
 
     const totalCards = this.#state.numOriginalCards;
     const visibleCards = this.#state.numVisibleCards;
-    const maxIndex = Math.max(0, totalCards - visibleCards);
     const hasEnoughCards = totalCards > visibleCards;
 
-    this.#prevButton.disabled = !hasEnoughCards || this.#state.currentIndex <= 0;
-    this.#nextButton.disabled = !hasEnoughCards || this.#state.currentIndex >= maxIndex;
+    this.#prevButton.disabled = !hasEnoughCards;
+    this.#nextButton.disabled = !hasEnoughCards;
   }
 
   #reinitializeTrack() {
     const cardSelector = this.#config.selectors.card;
+    this.#removeClones();
+
     const cards = this.#track.querySelectorAll(cardSelector);
     const cardCount = cards.length;
 
@@ -254,18 +279,47 @@
 
     this.#state.numOriginalCards = cardCount;
     this.#state.cardWidth = cardWidth;
-    this.#state.maxIndex = Math.max(0, cardCount - this.#state.numVisibleCards);
-    if (!Number.isFinite(this.#state.currentIndex) || this.#state.currentIndex < 0) {
-      this.#state.currentIndex = 0;
-    }
-    this.#state.currentIndex = Math.min(this.#state.currentIndex, this.#state.maxIndex);
+    this.#state.currentIndex = this.#normalizeIndex(
+      Number.isFinite(this.#state.currentIndex) ? this.#state.currentIndex : 0,
+    );
     this.#state.isDragging = false;
     this.#state.isTransitioning = false;
     this.#state.currentDragOffset = 0;
+    this.#state.leadingCloneCount = 0;
+
+    if (cardCount > this.#state.numVisibleCards) {
+      const cloneCount = Math.max(1, Math.min(this.#state.numVisibleCards, cardCount));
+      const cardArray = Array.from(cards);
+
+      const prependFragment = document.createDocumentFragment();
+      const appendFragment = document.createDocumentFragment();
+
+      const lastCards = cardArray.slice(-cloneCount);
+      for (const card of lastCards) {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('data-carousel-clone', 'true');
+        prependFragment.appendChild(clone);
+      }
+
+      const firstCards = cardArray.slice(0, cloneCount);
+      for (const card of firstCards) {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('data-carousel-clone', 'true');
+        appendFragment.appendChild(clone);
+      }
+
+      this.#track.insertBefore(prependFragment, this.#track.firstChild);
+      this.#track.appendChild(appendFragment);
+
+      this.#state.leadingCloneCount = cloneCount;
+    } else {
+      this.#state.currentIndex = 0;
+    }
+
     this.#state.dragStartOffset = this.#getCurrentOffset();
 
     this.#track.style.transition = 'none';
-    this.#track.style.transform = `translateX(${this.#getCurrentOffset()}px)`;
+    this.#track.style.transform = `translateX(${this.#state.dragStartOffset}px)`;
     this.#track.style.cursor = 'grab';
 
     window.requestAnimationFrame(() => {
@@ -309,8 +363,7 @@
         this.#state.cardWidth = recalculatedWidth;
       }
 
-      this.#state.maxIndex = Math.max(0, this.#state.numOriginalCards - this.#state.numVisibleCards);
-      this.#state.currentIndex = Math.min(this.#state.currentIndex, this.#state.maxIndex);
+      this.#state.currentIndex = this.#normalizeIndex(this.#state.currentIndex);
       this.#state.dragStartOffset = this.#getCurrentOffset();
       this.#updateTrackPosition(false);
       this.#updateControls();
@@ -342,10 +395,6 @@
       return;
     }
 
-    if (this.#state.currentIndex >= this.#state.maxIndex) {
-      return;
-    }
-
     this.#state.isTransitioning = true;
     this.#state.currentIndex += 1;
     this.#track.style.transition = 'transform 0.5s ease';
@@ -364,10 +413,6 @@
       return;
     }
 
-    if (this.#state.currentIndex <= 0) {
-      return;
-    }
-
     this.#state.isTransitioning = true;
     this.#state.currentIndex -= 1;
     this.#track.style.transition = 'transform 0.5s ease';
@@ -382,6 +427,20 @@
   }
 
   #finalizeTransition() {
+    const total = this.#state.numOriginalCards;
+
+    if (total > 0) {
+      if (this.#state.currentIndex >= total) {
+        this.#state.currentIndex = 0;
+        this.#state.dragStartOffset = this.#getCurrentOffset();
+        this.#updateTrackPosition(false);
+      } else if (this.#state.currentIndex < 0) {
+        this.#state.currentIndex = total - 1;
+        this.#state.dragStartOffset = this.#getCurrentOffset();
+        this.#updateTrackPosition(false);
+      }
+    }
+
     this.#state.isTransitioning = false;
     this.#state.currentDragOffset = 0;
     this.#state.dragStartOffset = this.#getCurrentOffset();
@@ -445,7 +504,7 @@
     const baseOffset = this.#getCurrentOffset();
     this.#state.dragStartOffset = baseOffset;
 
-    if (dx < -threshold && this.#state.currentIndex < this.#state.maxIndex) {
+    if (dx < -threshold && this.#state.numOriginalCards > this.#state.numVisibleCards) {
       this.#track.style.transition = 'none';
       this.#track.style.transform = `translateX(${baseOffset}px)`;
       window.requestAnimationFrame(() => {
@@ -454,7 +513,7 @@
       return;
     }
 
-    if (dx > threshold && this.#state.currentIndex > 0) {
+    if (dx > threshold && this.#state.numOriginalCards > this.#state.numVisibleCards) {
       this.#track.style.transition = 'none';
       this.#track.style.transform = `translateX(${baseOffset}px)`;
       window.requestAnimationFrame(() => {
