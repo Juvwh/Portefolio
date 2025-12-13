@@ -141,6 +141,26 @@
       </li>
     </ul>
   </nav>
+  <div class="quest-hud" aria-live="polite">
+    <div id="quest-toast-stack" class="quest-toast-stack" aria-live="assertive" aria-atomic="true"></div>
+    <button class="quest-toggle" id="quest-toggle" aria-controls="quest-panel" aria-expanded="false">
+      <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+      <span>Quest log</span>
+      <span class="quest-toggle__pill">New</span>
+    </button>
+    <div class="quest-panel" id="quest-panel" hidden tabindex="-1">
+      <div class="quest-panel__header">
+        <div>
+          <p class="quest-panel__eyebrow">Gamification layer</p>
+          <p class="quest-panel__title">Unlock achievements while exploring.</p>
+        </div>
+        <div class="quest-progress" aria-hidden="true">
+          <div class="quest-progress__bar" id="quest-progress-bar"></div>
+        </div>
+      </div>
+      <ul class="quest-list" id="quest-list" aria-live="polite"></ul>
+    </div>
+  </div>
   <header>
     <!-- Hero Section  -->
     <div class="hero-section">
@@ -604,6 +624,7 @@ Blend in. Speak like an AI… or be eliminated.</p>
   <script src="scripts/modals/modalDataRepository.js" defer></script>
   <script src="scripts/modals/lightboxController.js" defer></script>
   <script src="scripts/modals/modalManager.js" defer></script>
+  <script src="scripts/quest/questSystem.js" defer></script>
   <script src="modal.js" defer></script>
   <script src="navbar.js" defer></script>
   <script src="scroll-animations.js" defer></script>
