@@ -403,6 +403,13 @@
       const badgeText = badgeData.textKey ? this.getTranslationValue(badgeData.textKey, '') : (badgeData.text || '');
       badgeEl.innerHTML = `${iconHTML}${badgeText}`;
 
+      if (badgeData.techName) {
+        badgeEl.dataset.tech = badgeData.techName;
+        if (!badgeEl.getAttribute('title')) {
+          badgeEl.setAttribute('title', badgeData.techName);
+        }
+      }
+
       this.modalBadgesContainer.appendChild(badgeEl);
     });
   }
