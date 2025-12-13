@@ -2225,3 +2225,134 @@ my-journey {
     transform: none;
   }
 }
+/* Quest System */
+.quest-toast-container {
+  position: fixed;
+  top: 1.25rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 9999;
+  pointer-events: none;
+  max-width: min(360px, 92vw);
+}
+
+.quest-toast {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 14px;
+  background: linear-gradient(120deg, rgba(239, 198, 52, 0.12), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(239, 198, 52, 0.4);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  color: var(--body-text-color);
+  transform: translateX(22px) translateY(6px);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease;
+  backdrop-filter: blur(8px);
+  pointer-events: auto;
+}
+
+.light-theme .quest-toast {
+  background: linear-gradient(120deg, rgba(0, 122, 255, 0.12), rgba(255, 255, 255, 0.9));
+  border-color: rgba(0, 122, 255, 0.35);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.quest-toast.is-visible {
+  transform: translateX(0) translateY(0);
+  opacity: 1;
+}
+
+.quest-toast__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 25% 25%, rgba(239, 198, 52, 0.3), rgba(239, 198, 52, 0.08));
+  color: var(--accent-color);
+  font-size: 1.15rem;
+  box-shadow: inset 0 0 0 1px rgba(239, 198, 52, 0.25);
+}
+
+.light-theme .quest-toast__icon {
+  background: radial-gradient(circle at 25% 25%, rgba(0, 122, 255, 0.25), rgba(0, 122, 255, 0.05));
+  color: #0058c9;
+  box-shadow: inset 0 0 0 1px rgba(0, 122, 255, 0.24);
+}
+
+.quest-toast__content {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.quest-toast__label {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.light-theme .quest-toast__label {
+  color: #3a3a3a;
+}
+
+.quest-toast__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--header-text-color);
+}
+
+.quest-toast__description {
+  margin: 0;
+  color: var(--body-text-color);
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.quest-toast__close {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--body-text-color);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.light-theme .quest-toast__close {
+  border-color: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.04);
+  color: #2d2d2d;
+}
+
+.quest-toast__close:hover {
+  background: rgba(239, 198, 52, 0.15);
+  transform: scale(1.05);
+}
+
+.light-theme .quest-toast__close:hover {
+  background: rgba(0, 122, 255, 0.12);
+}
+
+@media (max-width: 768px) {
+  .quest-toast-container {
+    top: auto;
+    bottom: 1rem;
+    right: 0.75rem;
+    left: 0.75rem;
+    max-width: unset;
+  }
+
+  .quest-toast {
+    transform: translateY(12px);
+  }
+}

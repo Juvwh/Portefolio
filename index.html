@@ -131,7 +131,7 @@
         <li><a href="#it-projects-section" data-translate-key="navItProjects">IT projects</a></li>
         <li><a href="#my-journey" data-translate-key="navMyJourney">My Journey</a></li>
         <!-- CV link opens in a new tab and downloads the resume -->
-        <li><a href="./index_files/JustinVanwichelen_Resume.pdf" target="_blank" download data-translate-key="navCv">CV</a></li>
+        <li><a href="./index_files/JustinVanwichelen_Resume.pdf" target="_blank" download data-translate-key="navCv" data-quest="cv-download">CV</a></li>
       </div>
       <li class="theme-toggle-item"><button id="theme-toggle-btn" data-translate-key="switchToLightMode">Switch to Light Mode</button></li>
       <li class="language-switcher">
@@ -195,7 +195,7 @@
             <div class="badges">
             <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="humanVariableBadgeMadeAlone">Made alone</span></span>
             <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="humanVariableBadge2Weeks">2 weeks</span></span>
-            <span class="badge">
+            <span class="badge" data-tech="Unreal Engine 5">
               <img src="index_files/img_ue_icon.webp" alt="Unreal Engine" class="icon-ue">UE 5
             </span>
             </div>
@@ -220,7 +220,7 @@
             </span>
             <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="rpgLLMBadgeBy2">By 2 people</span></span>
             <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="rpgLLMBadge7Months">7 months</span></span>
-            <span class="badge"><i class="fa-brands fa-unity"></i>Unity</span>
+            <span class="badge" data-tech="Unity"><i class="fa-brands fa-unity"></i>Unity</span>
           </div>
             <p class="description" data-translate-key="rpgLLMDescriptionCarousel">Immerse yourself in a <strong>real-time AI-generated RPG</strong>, where each adventure is unique, immersive and shaped by your choices.</p>
             <button class="btn project-modal-trigger" data-modal-id="rpg-with-llm" data-translate-key="rpgLLMBtnSeeMore">I want to see more</button>
@@ -234,7 +234,7 @@
             <div class="badges">
             <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="lokiBadgeBy8">By 8 people</span></span>
             <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="lokiBadge3Months">3 months</span></span>
-            <span class="badge">
+            <span class="badge" data-tech="Unreal Engine 4">
               <img src="index_files/img_ue_icon.webp" alt="Unreal Engine" class="icon-ue">UE 4
             </span>
             </div>
@@ -250,7 +250,7 @@
             <div class="badges">
             <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="kartColorBadgeMadeAlone">Made alone</span></span>
             <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="kartColorBadge3Months">7 days</span></span>
-            <span class="badge"><i class="fa-brands fa-unity"></i>Unity</span>
+            <span class="badge" data-tech="Unity"><i class="fa-brands fa-unity"></i>Unity</span>
             </div>
             <p class="description" data-translate-key="kartColorDescriptionCarousel">🚗💨 <strong>Kart Color</strong> is a fast-paced arcade battle where every second counts. Outsmart your rival, <strong>paint the arena</strong>, grab power-ups and claim victory in a burst of colors and chaos.</p>
             <button class="btn project-modal-trigger" data-modal-id="kart-color" data-translate-key="kartColorBtnTellMeMore">Waw</button>
@@ -265,7 +265,7 @@
             <div class="badges">
             <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="diabloBadgeMadeAlone">Made alone</span></span>
             <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="diabloBadge3MonthsCarousel">3 months</span></span>
-            <span class="badge"><i class="fa-brands fa-unity"></i>Unity</span>
+            <span class="badge" data-tech="Unity"><i class="fa-brands fa-unity"></i>Unity</span>
             </div>
             <p class="description" data-translate-key="diabloDescriptionCarousel">I've recreated a cyberpunk version of Diablo III, complete with homemade gameplay, VFX, animations and HUD. Combat, puzzles and futuristic powers await you.</p>
             <button class="btn project-modal-trigger" data-modal-id="diablo-cyberpunk" data-translate-key="diabloBtnTellMeMore">Tell me more</button>
@@ -607,6 +607,7 @@ Blend in. Speak like an AI… or be eliminated.</p>
   <script src="modal.js" defer></script>
   <script src="navbar.js" defer></script>
   <script src="scroll-animations.js" defer></script>
+  <script src="scripts/quests/questSystem.js" defer></script>
 
   <!-- Footer Section -->
      <footer id="contact" class="site-footer"> <!-- Example id="contact" if you want a "Contact" link to scroll here -->
@@ -624,7 +625,7 @@ Blend in. Speak like an AI… or be eliminated.</p>
       </div>
 
       <div class="footer-cv-download">
-        <a href="./index_files/JustinVanwichelen_Resume.pdf" class="btn btn-cv" data-translate-aria-label-key="footerCvAriaLabel" aria-label="Download my CV" download target="_blank" data-translate-key="footerCvDownload">Download CV</a>
+        <a href="./index_files/JustinVanwichelen_Resume.pdf" class="btn btn-cv" data-translate-aria-label-key="footerCvAriaLabel" aria-label="Download my CV" download target="_blank" data-translate-key="footerCvDownload" data-quest="cv-download">Download CV</a>
       </div>
       
       <div class="footer-email">
@@ -647,8 +648,8 @@ Blend in. Speak like an AI… or be eliminated.</p>
         {"icon": "fa-solid fa-user", "textKey": "modal_humanVariable_badge_made_alone"},
         {"icon": "fa-regular fa-calendar-alt", "textKey": "modal_humanVariable_badge_date"},
         {"icon": "fa-regular fa-clock", "textKey": "modal_humanVariable_badge_dev_time"},
-        {"icon": "fa-solid fa-brain", "textKey": "modal_humanVariable_badge_core_tech"},
-        {"icon": "fa-solid fa-code", "textKey": "modal_humanVariable_badge_engine"}
+        {"icon": "fa-solid fa-brain", "textKey": "modal_humanVariable_badge_core_tech", "techName": "IA générative"},
+        {"icon": "fa-solid fa-code", "textKey": "modal_humanVariable_badge_engine", "techName": "Unreal Engine 5"}
       ],
       "gallery": [
         "./index_files/img_TheHumanVariable_Show_01.webp",
@@ -669,9 +670,9 @@ Blend in. Speak like an AI… or be eliminated.</p>
         {"icon": "fa-solid fa-user", "textKey": "modal_rpgLLM_badge_by_2"},
         {"icon": "fa-regular fa-calendar-alt", "textKey": "modal_rpgLLM_badge_date"},
         {"icon": "fa-regular fa-clock", "textKey": "modal_rpgLLM_badge_dev_time"},
-        {"icon": "fa-solid fa-brain", "textKey": "modal_rpgLLM_badge_core_tech"},
-        {"icon": "fa-brands fa-unity", "textKey": "modal_rpgLLM_badge_engine"},
-        {"icon": "fa-solid fa-code", "textKey": "modal_rpgLLM_badge_language"}
+        {"icon": "fa-solid fa-brain", "textKey": "modal_rpgLLM_badge_core_tech", "techName": "LLM orchestration"},
+        {"icon": "fa-brands fa-unity", "textKey": "modal_rpgLLM_badge_engine", "techName": "Unity"},
+        {"icon": "fa-solid fa-code", "textKey": "modal_rpgLLM_badge_language", "techName": "C#"}
       ],
       "gallery": [
         "./index_files/img_RpgWithLLM_Show_01.webp",
@@ -696,7 +697,7 @@ Blend in. Speak like an AI… or be eliminated.</p>
         {"icon": "fa-regular fa-calendar-alt", "textKey": "modal_loki_badge_date"},
         {"icon": "fa-regular fa-clock", "textKey": "modal_loki_badge_dev_time"},
         {"icon": "fa-solid fa-gear", "textKey": "modal_loki_badge_role"},
-        {"icon": "fa-solid fa-code", "textKey": "modal_loki_badge_engine"}
+        {"icon": "fa-solid fa-code", "textKey": "modal_loki_badge_engine", "techName": "Unreal Engine 4"}
       ],
       "gallery": [
         "./index_files/img_Loki_Show_00.webp",
@@ -722,7 +723,7 @@ Blend in. Speak like an AI… or be eliminated.</p>
         {"icon": "fa-regular fa-calendar-alt", "textKey": "modal_diablo_badge_date"},
         {"icon": "fa-regular fa-clock", "textKey": "modal_diablo_badge_dev_time"},
         {"icon": "fa-solid fa-gear", "textKey": "modal_diablo_badge_role"},
-        {"icon": "fa-brands fa-unity", "textKey": "modal_diablo_badge_engine"}
+        {"icon": "fa-brands fa-unity", "textKey": "modal_diablo_badge_engine", "techName": "Unity"}
       ],
       "gallery": [
         "./index_files/img_DiabloCyberpunk_Show_01.webp",
@@ -744,7 +745,7 @@ Blend in. Speak like an AI… or be eliminated.</p>
         {"icon": "fa-regular fa-calendar-alt", "textKey": "modal_stalkRuin_badge_date"},
         {"icon": "fa-regular fa-clock", "textKey": "modal_stalkRuin_badge_dev_time"},
         {"icon": "fa-solid fa-gear", "textKey": "modal_stalkRuin_badge_role"},
-        {"icon": "fa-solid fa-code", "textKey": "modal_stalkRuin_badge_engine"}
+        {"icon": "fa-solid fa-code", "textKey": "modal_stalkRuin_badge_engine", "techName": "Unity"}
       ],
       "gallery": [
         "./index_files/img_StalkAndRuin_Show_01.webp",
@@ -765,7 +766,7 @@ Blend in. Speak like an AI… or be eliminated.</p>
         {"icon": "fa-regular fa-calendar-alt", "textKey": "modal_oneWayTrip_badge_date"},
         {"icon": "fa-regular fa-clock", "textKey": "modal_oneWayTrip_badge_dev_time"},
         {"icon": "fa-solid fa-gear", "textKey": "modal_oneWayTrip_badge_role"},
-        {"icon": "fa-brands fa-unity", "textKey": "modal_oneWayTrip_badge_engine"}
+        {"icon": "fa-brands fa-unity", "textKey": "modal_oneWayTrip_badge_engine", "techName": "Unity"}
       ],
       "gallery": [
         "./index_files/img_OneWayTrip_Show_01.webp",
