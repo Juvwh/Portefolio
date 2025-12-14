@@ -2225,3 +2225,315 @@ my-journey {
     transform: none;
   }
 }
+
+/* Quest Gamification */
+.quest-floating-button {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 1200;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(135deg, rgba(95, 145, 255, 0.32), rgba(239, 198, 52, 0.35));
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.quest-floating-button__icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.25);
+}
+
+.quest-floating-button__label {
+  font-size: 0.95rem;
+}
+
+.quest-floating-button__progress {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.quest-floating-button:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.32), 0 0 0 1px rgba(255, 255, 255, 0.09);
+  background: linear-gradient(135deg, rgba(95, 145, 255, 0.4), rgba(239, 198, 52, 0.45));
+}
+
+.quest-floating-button:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+.quest-journal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 7, 14, 0.55);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 1190;
+}
+
+.quest-journal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.quest-journal {
+  width: min(480px, 90vw);
+  max-height: 85vh;
+  margin: 1.25rem;
+  padding: 1.2rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(145deg, rgba(18, 28, 52, 0.78), rgba(47, 70, 112, 0.75));
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: #f2f5ff;
+  overflow-y: auto;
+}
+
+.quest-journal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.quest-journal__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 0.7rem;
+  opacity: 0.75;
+  margin: 0 0 0.2rem;
+}
+
+.quest-journal__title {
+  margin: 0;
+  font-size: 1.35rem;
+  color: #fff;
+}
+
+.quest-journal__close {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.quest-journal__close:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: rotate(6deg);
+}
+
+.quest-journal__progress {
+  margin-bottom: 1rem;
+}
+
+.quest-journal__progress-text {
+  margin: 0 0 0.4rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.quest-journal__progress-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.quest-journal__progress-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #62d5ff, #a36bff, #efc634);
+  box-shadow: 0 6px 16px rgba(95, 145, 255, 0.35);
+  transition: width 0.3s ease;
+}
+
+.quest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quest-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  padding: 0.9rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f4f7ff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.quest-card__icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #efc634;
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.quest-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.quest-card__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.quest-card__title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.quest-card__status {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #dbe4ff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.quest-card__description {
+  margin: 0;
+  color: rgba(244, 247, 255, 0.85);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.quest-card.completed {
+  border-color: rgba(98, 213, 255, 0.45);
+  background: linear-gradient(135deg, rgba(98, 213, 255, 0.08), rgba(163, 107, 255, 0.08));
+  box-shadow: 0 10px 24px rgba(98, 213, 255, 0.15);
+}
+
+.quest-card.completed .quest-card__status {
+  background: rgba(98, 213, 255, 0.16);
+  border-color: rgba(98, 213, 255, 0.4);
+  color: #7febff;
+}
+
+.quest-card.completed .quest-card__icon {
+  color: #7febff;
+  background: rgba(98, 213, 255, 0.12);
+}
+
+.quest-toast-container,
+#quest-toast-container {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  z-index: 1210;
+}
+
+.quest-toast {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.95rem;
+  background: linear-gradient(120deg, rgba(19, 32, 58, 0.92), rgba(52, 81, 135, 0.9));
+  color: #f8fbff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 28px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.quest-toast.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quest-toast__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  background: rgba(98, 213, 255, 0.16);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #7febff;
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.12);
+}
+
+.quest-toast__eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.68rem;
+  opacity: 0.8;
+}
+
+.quest-toast__message {
+  margin: 0;
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .quest-floating-button {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .quest-journal {
+    width: min(520px, 96vw);
+    margin: 1rem auto;
+  }
+
+  .quest-toast-container,
+  #quest-toast-container {
+    right: 1rem;
+    left: 1rem;
+  }
+}

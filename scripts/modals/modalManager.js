@@ -229,6 +229,7 @@
       this.modalOverlay.classList.add('active');
       this.document.body.classList.add('modal-open');
       this.activeModalId = modalId || null;
+      this.document.dispatchEvent(new CustomEvent('projectModalOpened', { detail: { modalId: this.activeModalId } }));
     } else {
       console.error('No data available to populate the modal for button:', triggerButton);
     }
@@ -284,6 +285,7 @@
       this.modalOverlay.classList.add('active');
       this.document.body.classList.add('modal-open');
       this.activeModalId = modalId;
+      this.document.dispatchEvent(new CustomEvent('projectModalOpened', { detail: { modalId } }));
       return true;
     }
 
