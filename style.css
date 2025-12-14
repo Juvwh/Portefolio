@@ -2238,7 +2238,7 @@ my-journey {
   padding: 0.9rem 1.2rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.16);
-  background: linear-gradient(135deg, rgba(95, 145, 255, 0.32), rgba(239, 198, 52, 0.35));
+  background: linear-gradient(135deg, #5a8dff, #8f6bff);
   color: #fff;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -2277,7 +2277,7 @@ my-journey {
 .quest-floating-button:hover {
   transform: translateY(-2px) scale(1.01);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.32), 0 0 0 1px rgba(255, 255, 255, 0.09);
-  background: linear-gradient(135deg, rgba(95, 145, 255, 0.4), rgba(239, 198, 52, 0.45));
+  background: linear-gradient(135deg, #6a9bff, #a180ff);
 }
 
 .quest-floating-button:focus-visible {
@@ -2286,16 +2286,16 @@ my-journey {
 }
 
 .light-theme .quest-floating-button {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(236, 244, 255, 0.95));
-  color: #0f172a;
-  border-color: rgba(15, 23, 42, 0.1);
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.05);
+  background: linear-gradient(135deg, #0058ff, #2f7bff);
+  color: #f8fbff;
+  border-color: rgba(0, 88, 255, 0.2);
+  box-shadow: 0 12px 30px rgba(0, 40, 120, 0.25), 0 0 0 1px rgba(0, 88, 255, 0.1);
 }
 
 .light-theme .quest-floating-button__icon {
-  background: rgba(15, 23, 42, 0.08);
-  color: #0f172a;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.16);
+  color: #f8fbff;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
 .quest-journal-overlay {
@@ -2335,10 +2335,10 @@ my-journey {
 }
 
 .light-theme .quest-journal {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(236, 244, 255, 0.96));
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.75);
-  color: #0f172a;
+  background: linear-gradient(145deg, rgba(0, 88, 255, 0.9), rgba(0, 122, 255, 0.92));
+  border: 1px solid rgba(0, 88, 255, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 40, 120, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  color: #f8fbff;
 }
 
 .quest-journal__header {
@@ -2364,7 +2364,7 @@ my-journey {
 }
 
 .light-theme .quest-journal__title {
-  color: #0f172a;
+  color: #ffffff;
 }
 
 .quest-journal__close {
@@ -2387,13 +2387,13 @@ my-journey {
 }
 
 .light-theme .quest-journal__close {
-  background: rgba(15, 23, 42, 0.06);
-  border-color: rgba(15, 23, 42, 0.12);
-  color: #0f172a;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #f8fbff;
 }
 
 .light-theme .quest-journal__close:hover {
-  background: rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .quest-journal__progress {
@@ -2407,7 +2407,7 @@ my-journey {
 }
 
 .light-theme .quest-journal__progress-text {
-  color: rgba(15, 23, 42, 0.8);
+  color: rgba(248, 251, 255, 0.9);
 }
 
 .quest-journal__progress-bar {
@@ -2420,8 +2420,8 @@ my-journey {
 }
 
 .light-theme .quest-journal__progress-bar {
-  background: rgba(15, 23, 42, 0.08);
-  border-color: rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .quest-journal__progress-fill {
