@@ -2248,6 +2248,12 @@ my-journey {
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
+.quest-floating-button.is-hidden {
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  pointer-events: none;
+}
+
 .quest-floating-button__icon {
   width: 2.25rem;
   height: 2.25rem;
@@ -2279,6 +2285,19 @@ my-journey {
   outline-offset: 3px;
 }
 
+.light-theme .quest-floating-button {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(236, 244, 255, 0.95));
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.05);
+}
+
+.light-theme .quest-floating-button__icon {
+  background: rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.65);
+}
+
 .quest-journal-overlay {
   position: fixed;
   inset: 0;
@@ -2298,6 +2317,10 @@ my-journey {
   pointer-events: auto;
 }
 
+.light-theme .quest-journal-overlay {
+  background: rgba(255, 255, 255, 0.7);
+}
+
 .quest-journal {
   width: min(480px, 90vw);
   max-height: 85vh;
@@ -2309,6 +2332,13 @@ my-journey {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   color: #f2f5ff;
   overflow-y: auto;
+}
+
+.light-theme .quest-journal {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(236, 244, 255, 0.96));
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  color: #0f172a;
 }
 
 .quest-journal__header {
@@ -2333,6 +2363,10 @@ my-journey {
   color: #fff;
 }
 
+.light-theme .quest-journal__title {
+  color: #0f172a;
+}
+
 .quest-journal__close {
   width: 2.5rem;
   height: 2.5rem;
@@ -2352,6 +2386,16 @@ my-journey {
   transform: rotate(6deg);
 }
 
+.light-theme .quest-journal__close {
+  background: rgba(15, 23, 42, 0.06);
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #0f172a;
+}
+
+.light-theme .quest-journal__close:hover {
+  background: rgba(15, 23, 42, 0.12);
+}
+
 .quest-journal__progress {
   margin-bottom: 1rem;
 }
@@ -2362,6 +2406,10 @@ my-journey {
   font-size: 0.95rem;
 }
 
+.light-theme .quest-journal__progress-text {
+  color: rgba(15, 23, 42, 0.8);
+}
+
 .quest-journal__progress-bar {
   width: 100%;
   height: 10px;
@@ -2369,6 +2417,11 @@ my-journey {
   background: rgba(255, 255, 255, 0.08);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.light-theme .quest-journal__progress-bar {
+  background: rgba(15, 23, 42, 0.08);
+  border-color: rgba(15, 23, 42, 0.12);
 }
 
 .quest-journal__progress-fill {
@@ -2399,6 +2452,13 @@ my-journey {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
+.light-theme .quest-card {
+  background: rgba(255, 255, 255, 0.86);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  color: #0f172a;
+}
+
 .quest-card__icon {
   width: 3rem;
   height: 3rem;
@@ -2410,6 +2470,12 @@ my-journey {
   font-size: 1.2rem;
   color: #efc634;
   box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+.light-theme .quest-card__icon {
+  background: rgba(15, 23, 42, 0.06);
+  color: #0f172a;
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.65);
 }
 
 .quest-card__content {
@@ -2439,6 +2505,12 @@ my-journey {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.light-theme .quest-card__status {
+  background: rgba(15, 23, 42, 0.06);
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
 .quest-card__description {
   margin: 0;
   color: rgba(244, 247, 255, 0.85);
@@ -2446,10 +2518,20 @@ my-journey {
   line-height: 1.4;
 }
 
+.light-theme .quest-card__description {
+  color: rgba(15, 23, 42, 0.75);
+}
+
 .quest-card.completed {
   border-color: rgba(98, 213, 255, 0.45);
   background: linear-gradient(135deg, rgba(98, 213, 255, 0.08), rgba(163, 107, 255, 0.08));
   box-shadow: 0 10px 24px rgba(98, 213, 255, 0.15);
+}
+
+.light-theme .quest-card.completed {
+  background: linear-gradient(135deg, rgba(98, 213, 255, 0.12), rgba(163, 107, 255, 0.12));
+  border-color: rgba(98, 213, 255, 0.5);
+  box-shadow: 0 10px 24px rgba(98, 213, 255, 0.2);
 }
 
 .quest-card.completed .quest-card__status {
@@ -2461,6 +2543,11 @@ my-journey {
 .quest-card.completed .quest-card__icon {
   color: #7febff;
   background: rgba(98, 213, 255, 0.12);
+}
+
+.light-theme .quest-card.completed .quest-card__icon {
+  color: #0f172a;
+  background: rgba(98, 213, 255, 0.2);
 }
 
 .quest-toast-container,
@@ -2489,6 +2576,13 @@ my-journey {
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
+.light-theme .quest-toast {
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.96), rgba(236, 244, 255, 0.96));
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 15px 28px rgba(15, 23, 42, 0.16);
+}
+
 .quest-toast.visible {
   opacity: 1;
   transform: translateY(0);
@@ -2504,6 +2598,12 @@ my-journey {
   justify-content: center;
   color: #7febff;
   box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.12);
+}
+
+.light-theme .quest-toast__icon {
+  background: rgba(98, 213, 255, 0.22);
+  color: #0f172a;
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.65);
 }
 
 .quest-toast__eyebrow {

@@ -242,8 +242,8 @@
     questThemeMageDescription: "Toggle between the light and dark themes.",
     questPolyglotTitle: "Polyglot",
     questPolyglotDescription: "Switch the website language.",
-    questKonamiTitle: "The Cheat Code",
-    questKonamiDescription: "Enter the famous Konami Code to reveal the easter egg.",
+    questFPatternTitle: "F-pattern breaker",
+    questFPatternDescription: "Scroll past the fold to explore beyond the first screen.",
 
     // Lightbox
     lightboxPrevAriaLabel: "Previous image",
@@ -477,8 +477,8 @@
     questThemeMageDescription: "Bascule entre le mode clair et le mode sombre.",
     questPolyglotTitle: "Polyglotte",
     questPolyglotDescription: "Change la langue du site.",
-    questKonamiTitle: "Le cheat code",
-    questKonamiDescription: "Saisis le fameux Konami Code pour révéler la surprise.",
+    questFPatternTitle: "Briseur de F-pattern",
+    questFPatternDescription: "Descends sous la ligne de flottaison pour explorer le reste de la page.",
 
     // Lightbox
     lightboxPrevAriaLabel: "Image précédente",

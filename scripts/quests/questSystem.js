@@ -44,12 +44,12 @@
       fallbackDescription: 'Change the website language.'
     },
     {
-      id: 'konami',
-      titleKey: 'questKonamiTitle',
-      descriptionKey: 'questKonamiDescription',
-      icon: 'fa-solid fa-keyboard',
-      fallbackTitle: 'The Cheat Code',
-      fallbackDescription: 'Enter the famous Konami Code on your keyboard.'
+      id: 'f-pattern-breaker',
+      titleKey: 'questFPatternTitle',
+      descriptionKey: 'questFPatternDescription',
+      icon: 'fa-solid fa-arrow-down-short-wide',
+      fallbackTitle: 'F-pattern breaker',
+      fallbackDescription: 'Scroll past the fold to explore beyond the first screen.'
     }
   ];
 
@@ -57,8 +57,6 @@
     constructor() {
       this.state = this.loadState();
       this.totalQuests = QUEST_DEFINITIONS.length;
-      this.konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-      this.konamiIndex = 0;
       this.currentTheme = this.getCurrentTheme();
       this.currentLanguage = translationService?.getActiveLanguage?.() ?? 'en';
       this.lastLanguage = this.currentLanguage;
@@ -188,6 +186,7 @@
       const shouldOpen = typeof forceState === 'boolean' ? forceState : !this.journalOverlay.classList.contains('active');
       this.journalOverlay.classList.toggle('active', shouldOpen);
       this.triggerButton?.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+      this.triggerButton?.classList.toggle('is-hidden', shouldOpen);
 
       if (shouldOpen) {
         document.addEventListener('keydown', this.boundCloseOnEscape);
@@ -197,13 +196,12 @@
     }
 
     registerEventListeners() {
-      document.addEventListener('keydown', (event) => this.handleKonamiInput(event));
-
       this.bindCvDownloads();
       this.bindSocialLinks();
       this.bindModalOpenEvents();
       this.observeThemeChanges();
       this.observeLanguageChanges();
+      this.bindScrollBeyondFold();
     }
 
     bindCvDownloads() {
@@ -257,17 +255,21 @@
       });
     }
 
-    handleKonamiInput(event) {
-      const expectedKey = this.konamiSequence[this.konamiIndex];
-      if (event.key === expectedKey) {
-        this.konamiIndex += 1;
-        if (this.konamiIndex === this.konamiSequence.length) {
-          this.completeQuest('konami');
-          this.konamiIndex = 0;
+    bindScrollBeyondFold() {
+      const onScroll = () => {
+        if (this.state.completed['f-pattern-breaker']) {
+          window.removeEventListener('scroll', onScroll);
+          return;
         }
-      } else {
-        this.konamiIndex = 0;
-      }
+
+        if (window.scrollY > window.innerHeight * 0.9) {
+          this.completeQuest('f-pattern-breaker');
+          window.removeEventListener('scroll', onScroll);
+        }
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
     }
 
     completeQuest(questId) {
