@@ -473,7 +473,7 @@
     questToastUnlocked: "Quête débloquée",
     questToastTitle: "Succès obtenu",
     questRecruiterLootTitle: "Vous êtes formidable",
-    questRecruiterLootDescription: "Ne partez pas les mains vides ; télécharger mon CV, c'est gratuit !",
+    questRecruiterLootDescription: "Ne partez pas les mains vides ; téléchargez mon CV, c'est gratuit !",
     questDiverTitle: "Curiosité professionnelle",
     questDiverDescription: "Cliquez sur un projet. C’est comme lire le README, mais en mieux.",
     questDetectiveTitle: "Stalker 2.0",

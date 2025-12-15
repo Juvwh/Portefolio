@@ -2666,20 +2666,15 @@ my-journey {
 }
 
 @media (max-width: 720px) {
-  .quest-floating-button {
-    bottom: 1rem;
-    right: 1rem;
-    padding: 0.75rem 1rem;
+  .quest-floating-button,
+  .quest-journal-overlay,
+  .quest-toast-container,
+  #quest-toast-container {
+    display: none !important;
   }
 
   .quest-journal {
     width: min(520px, 96vw);
     margin: 1rem auto;
-  }
-
-  .quest-toast-container,
-  #quest-toast-container {
-    right: 1rem;
-    left: 1rem;
   }
 }
