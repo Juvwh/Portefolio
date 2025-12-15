@@ -4,62 +4,75 @@
 
   const QUEST_DEFINITIONS = [
     {
-      id: 'recruiter-loot',
-      titleKey: 'questRecruiterLootTitle',
-      descriptionKey: 'questRecruiterLootDescription',
-      icon: 'fa-solid fa-briefcase',
-      fallbackTitle: "Recruiter's Loot",
-      fallbackDescription: 'Download the CV to claim the recruiter loot.'
-    },
-    {
-      id: 'diver',
-      titleKey: 'questDiverTitle',
-      descriptionKey: 'questDiverDescription',
-      icon: 'fa-solid fa-water',
-      fallbackTitle: 'Diver',
-      fallbackDescription: 'Open a project modal to dive deeper.'
-    },
-    {
-      id: 'detective',
-      titleKey: 'questDetectiveTitle',
-      descriptionKey: 'questDetectiveDescription',
-      icon: 'fa-solid fa-user-secret',
-      fallbackTitle: 'Private Investigator',
-      fallbackDescription: 'Visit the social links to investigate further.'
-    },
-    {
-      id: 'theme-mage',
-      titleKey: 'questThemeMageTitle',
-      descriptionKey: 'questThemeMageDescription',
-      icon: 'fa-solid fa-wand-sparkles',
-      fallbackTitle: 'Theme Sorcerer',
-      fallbackDescription: 'Swap the site theme between light and dark.'
+      id: 'f-pattern-breaker',
+      titleKey: 'questFPatternTitle',
+      descriptionKey: 'questFPatternDescription',
+      icon: 'fa-solid fa-arrow-down-short-wide',
+      fallbackTitle: 'F-pattern breaker',
+      fallbackDescription: 'Scroll deeper than 80% of visitors.'
     },
     {
       id: 'polyglot',
       titleKey: 'questPolyglotTitle',
       descriptionKey: 'questPolyglotDescription',
       icon: 'fa-solid fa-language',
-      fallbackTitle: 'Polyglot',
-      fallbackDescription: 'Change the website language.'
+      fallbackTitle: 'Flex international',
+      fallbackDescription: 'Switch the site language like a proud bilingual visitor.'
     },
     {
-      id: 'f-pattern-breaker',
-      titleKey: 'questFPatternTitle',
-      descriptionKey: 'questFPatternDescription',
-      icon: 'fa-solid fa-arrow-down-short-wide',
-      fallbackTitle: 'F-pattern breaker',
-      fallbackDescription: 'Scroll past the fold to explore beyond the first screen.'
+      id: 'theme-mage',
+      titleKey: 'questThemeMageTitle',
+      descriptionKey: 'questThemeMageDescription',
+      icon: 'fa-solid fa-wand-sparkles',
+      fallbackTitle: 'Jour / Nuit',
+      fallbackDescription: 'Swap the lighting for a better circadian rhythm.'
+    },
+    {
+      id: 'recruiter-loot',
+      titleKey: 'questRecruiterLootTitle',
+      descriptionKey: 'questRecruiterLootDescription',
+      icon: 'fa-solid fa-briefcase',
+      fallbackTitle: "Vous êtes formidable",
+      fallbackDescription: 'Grab the CV before leaving—totally free!'
+    },
+    {
+      id: 'detective',
+      titleKey: 'questDetectiveTitle',
+      descriptionKey: 'questDetectiveDescription',
+      icon: 'fa-brands fa-linkedin',
+      fallbackTitle: 'Stalker 2.0',
+      fallbackDescription: 'Drop by the LinkedIn profile (no premium stalk alerts promised).'
+    },
+    {
+      id: 'diver',
+      titleKey: 'questDiverTitle',
+      descriptionKey: 'questDiverDescription',
+      icon: 'fa-solid fa-water',
+      fallbackTitle: 'Curiosité professionnelle',
+      fallbackDescription: 'Click into a project—better than just skimming the README.'
+    },
+    {
+      id: 'secret-bonus',
+      titleKey: 'questSecretTitle',
+      descriptionKey: 'questSecretDescription',
+      icon: 'fa-solid fa-star',
+      fallbackTitle: 'Quête secrète (bonus)',
+      fallbackDescription: 'Hire me to unlock the good ending. Only shows up for the most motivated recruiters.',
+      isBonus: true
     }
   ];
 
   class QuestSystem {
     constructor() {
       this.state = this.loadState();
-      this.totalQuests = QUEST_DEFINITIONS.length;
+      this.state.bonusUnlocked = this.state.bonusUnlocked || Boolean(this.state.completed['secret-bonus']);
+      this.totalQuests = QUEST_DEFINITIONS.filter((quest) => !quest.isBonus).length;
       this.currentTheme = this.getCurrentTheme();
       this.currentLanguage = translationService?.getActiveLanguage?.() ?? 'en';
       this.lastLanguage = this.currentLanguage;
+
+      this.confettiTimer = null;
+      this.audioContext = null;
 
       this.journalOverlay = null;
       this.progressBar = null;
@@ -83,6 +96,7 @@
       this.renderUI();
       this.registerEventListeners();
       this.updateUI();
+      this.maybeUnlockSecretQuest();
     }
 
     loadState() {
@@ -91,13 +105,17 @@
         if (stored) {
           const parsed = JSON.parse(stored);
           if (parsed && typeof parsed === 'object') {
-            return parsed;
+            return {
+              completed: parsed.completed || {},
+              bonusUnlocked: Boolean(parsed.bonusUnlocked),
+              confettiShown: Boolean(parsed.confettiShown)
+            };
           }
         }
       } catch (error) {
         console.warn('Unable to load quest progress from storage.', error);
       }
-      return { completed: {} };
+      return { completed: {}, bonusUnlocked: false, confettiShown: false };
     }
 
     persistState() {
@@ -199,6 +217,7 @@
       this.bindCvDownloads();
       this.bindSocialLinks();
       this.bindModalOpenEvents();
+      this.bindProjectClicks();
       this.observeThemeChanges();
       this.observeLanguageChanges();
       this.bindScrollBeyondFold();
@@ -212,11 +231,7 @@
     }
 
     bindSocialLinks() {
-      const selectors = [
-        'a[href*="linkedin.com"]',
-        'a[href*="github.com"]'
-      ];
-      const links = document.querySelectorAll(selectors.join(','));
+      const links = document.querySelectorAll('a[href*="linkedin.com"]');
       links.forEach((link) => {
         link.addEventListener('click', () => this.completeQuest('detective'));
       });
@@ -224,6 +239,13 @@
 
     bindModalOpenEvents() {
       document.addEventListener('projectModalOpened', () => this.completeQuest('diver'));
+    }
+
+    bindProjectClicks() {
+      const projectTriggers = document.querySelectorAll('.project-card, [data-project], [data-bs-target^="#project"]');
+      projectTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', () => this.completeQuest('diver'));
+      });
     }
 
     observeThemeChanges() {
@@ -262,7 +284,10 @@
           return;
         }
 
-        if (window.scrollY > window.innerHeight * 0.9) {
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolledRatio = scrollableHeight <= 0 ? 1 : Math.min((window.scrollY || window.pageYOffset) / scrollableHeight, 1);
+
+        if (scrolledRatio >= 0.8) {
           this.completeQuest('f-pattern-breaker');
           window.removeEventListener('scroll', onScroll);
         }
@@ -281,6 +306,8 @@
       this.persistState();
       this.updateUI();
       this.showToast(questId);
+      this.playSuccessSound();
+      this.maybeUnlockSecretQuest();
     }
 
     updateUI() {
@@ -339,9 +366,13 @@
       this.questList.innerHTML = '';
 
       QUEST_DEFINITIONS.forEach((quest) => {
+        if (quest.isBonus && !this.state.bonusUnlocked && !this.state.completed[quest.id]) {
+          return;
+        }
+
         const isCompleted = Boolean(this.state.completed[quest.id]);
         const questItem = document.createElement('article');
-        questItem.className = `quest-card${isCompleted ? ' completed' : ''}`;
+        questItem.className = `quest-card${isCompleted ? ' completed' : ''}${quest.isBonus ? ' quest-card--bonus' : ''}`;
 
         const title = this.translate(quest.titleKey, quest.fallbackTitle);
         const description = this.translate(quest.descriptionKey, quest.fallbackDescription);
@@ -396,7 +427,89 @@
     }
 
     getCompletedCount() {
-      return Object.keys(this.state.completed || {}).length;
+      const completed = this.state.completed || {};
+      return QUEST_DEFINITIONS.filter((quest) => !quest.isBonus && completed[quest.id]).length;
+    }
+
+    maybeUnlockSecretQuest() {
+      const allMainComplete = this.getCompletedCount() === this.totalQuests;
+      const bonusQuest = QUEST_DEFINITIONS.find((quest) => quest.isBonus);
+      if (!allMainComplete || !bonusQuest || this.state.completed[bonusQuest.id]) {
+        return;
+      }
+
+      this.state.bonusUnlocked = true;
+      this.state.completed[bonusQuest.id] = Date.now();
+      this.state.confettiShown = true;
+      this.persistState();
+      this.updateUI();
+      this.showToast(bonusQuest.id);
+      this.playSuccessSound();
+      this.triggerConfetti();
+    }
+
+    triggerConfetti() {
+      const existing = document.querySelector('.quest-confetti-container');
+      if (existing) {
+        existing.remove();
+      }
+
+      const container = document.createElement('div');
+      container.className = 'quest-confetti-container';
+
+      const colors = ['#7febff', '#a36bff', '#ffd166', '#2ec4b6', '#ff6b6b'];
+      const pieceCount = 80;
+      for (let i = 0; i < pieceCount; i += 1) {
+        const piece = document.createElement('span');
+        piece.className = 'quest-confetti-piece';
+        const color = colors[i % colors.length];
+        const duration = 3000 + Math.random() * 1200;
+        const delay = Math.random() * 200;
+        const translateX = (Math.random() - 0.5) * 80;
+
+        piece.style.setProperty('--confetti-color', color);
+        piece.style.setProperty('--confetti-duration', `${duration}ms`);
+        piece.style.setProperty('--confetti-delay', `${delay}ms`);
+        piece.style.setProperty('--confetti-translate-x', `${translateX}px`);
+        piece.style.left = `${Math.random() * 100}%`;
+
+        container.appendChild(piece);
+      }
+
+      document.body.appendChild(container);
+      this.confettiTimer = setTimeout(() => container.remove(), 4500);
+    }
+
+    playSuccessSound() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) {
+          return;
+        }
+
+        if (!this.audioContext) {
+          this.audioContext = new AudioCtx();
+        }
+
+        const ctx = this.audioContext;
+        const oscillator = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        oscillator.type = 'triangle';
+        oscillator.frequency.setValueAtTime(880, ctx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(1320, ctx.currentTime + 0.18);
+
+        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+
+        oscillator.connect(gain);
+        gain.connect(ctx.destination);
+
+        oscillator.start();
+        oscillator.stop(ctx.currentTime + 0.35);
+      } catch (error) {
+        console.warn('Unable to play quest sound', error);
+      }
     }
   }
 

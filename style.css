@@ -2545,6 +2545,18 @@ my-journey {
   background: rgba(98, 213, 255, 0.12);
 }
 
+.quest-card--bonus {
+  border-style: dashed;
+  border-color: rgba(255, 209, 102, 0.5);
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.12), rgba(163, 107, 255, 0.08));
+}
+
+.quest-card--bonus .quest-card__status {
+  background: rgba(255, 209, 102, 0.16);
+  border-color: rgba(255, 209, 102, 0.4);
+  color: #ffd166;
+}
+
 .light-theme .quest-card.completed .quest-card__icon {
   color: #0f172a;
   background: rgba(98, 213, 255, 0.2);
@@ -2617,6 +2629,40 @@ my-journey {
 .quest-toast__message {
   margin: 0;
   font-weight: 700;
+}
+
+.quest-confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1300;
+}
+
+.quest-confetti-piece {
+  position: absolute;
+  top: -5%;
+  width: 10px;
+  height: 16px;
+  background: var(--confetti-color, #ffd166);
+  transform: translateX(var(--confetti-translate-x, 0)) rotate(0deg);
+  opacity: 0.9;
+  border-radius: 3px;
+  animation: quest-confetti-fall var(--confetti-duration, 3600ms) ease-out var(--confetti-delay, 0ms) forwards;
+}
+
+@keyframes quest-confetti-fall {
+  0% {
+    transform: translateY(-10vh) translateX(var(--confetti-translate-x, 0)) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(110vh) translateX(calc(var(--confetti-translate-x, 0) * 1.5)) rotate(260deg);
+    opacity: 0;
+  }
 }
 
 @media (max-width: 720px) {
