@@ -65,7 +65,10 @@
   class QuestSystem {
     constructor() {
       this.state = this.loadState();
-      this.state.bonusUnlocked = this.state.bonusUnlocked || Boolean(this.state.completed['secret-bonus']);
+      if (this.state.completed && this.state.completed['secret-bonus']) {
+        this.state.bonusUnlocked = this.state.bonusUnlocked || true;
+        delete this.state.completed['secret-bonus'];
+      }
       this.totalQuests = QUEST_DEFINITIONS.filter((quest) => !quest.isBonus).length;
       this.currentTheme = this.getCurrentTheme();
       this.currentLanguage = translationService?.getActiveLanguage?.() ?? 'en';
@@ -366,19 +369,24 @@
       this.questList.innerHTML = '';
 
       QUEST_DEFINITIONS.forEach((quest) => {
-        if (quest.isBonus && !this.state.bonusUnlocked && !this.state.completed[quest.id]) {
-          return;
-        }
-
         const isCompleted = Boolean(this.state.completed[quest.id]);
         const questItem = document.createElement('article');
         questItem.className = `quest-card${isCompleted ? ' completed' : ''}${quest.isBonus ? ' quest-card--bonus' : ''}`;
 
         const title = this.translate(quest.titleKey, quest.fallbackTitle);
-        const description = this.translate(quest.descriptionKey, quest.fallbackDescription);
-        const statusLabel = isCompleted
-          ? this.translate('questStatusCompleted', 'Completed')
-          : this.translate('questStatusLocked', 'Locked');
+        const description = quest.isBonus && !this.state.bonusUnlocked
+          ? this.translate('questSecretLockedHint', 'Finish the other quests to reveal this secret objective.')
+          : this.translate(quest.descriptionKey, quest.fallbackDescription);
+        let statusLabel;
+        if (quest.isBonus) {
+          statusLabel = this.state.bonusUnlocked
+            ? this.translate('questStatusBonus', 'Bonus')
+            : this.translate('questStatusLocked', 'Locked');
+        } else {
+          statusLabel = isCompleted
+            ? this.translate('questStatusCompleted', 'Completed')
+            : this.translate('questStatusLocked', 'Locked');
+        }
 
         questItem.innerHTML = `
           <div class="quest-card__icon" aria-hidden="true"><i class="${quest.icon}"></i></div>
@@ -434,12 +442,11 @@
     maybeUnlockSecretQuest() {
       const allMainComplete = this.getCompletedCount() === this.totalQuests;
       const bonusQuest = QUEST_DEFINITIONS.find((quest) => quest.isBonus);
-      if (!allMainComplete || !bonusQuest || this.state.completed[bonusQuest.id]) {
+      if (!allMainComplete || !bonusQuest || this.state.bonusUnlocked) {
         return;
       }
 
       this.state.bonusUnlocked = true;
-      this.state.completed[bonusQuest.id] = Date.now();
       this.state.confettiShown = true;
       this.persistState();
       this.updateUI();

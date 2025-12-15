@@ -230,6 +230,7 @@
     questCloseLabel: "Close quest journal",
     questStatusLocked: "Locked",
     questStatusCompleted: "Completed",
+    questStatusBonus: "Bonus",
     questToastUnlocked: "Quest unlocked",
     questToastTitle: "Achievement unlocked",
     questRecruiterLootTitle: "You’re wonderful",
@@ -246,6 +247,7 @@
     questFPatternDescription: "Scroll deeper than 80% of visitors.",
     questSecretTitle: "Secret quest (bonus)",
     questSecretDescription: "Hire me to unlock the good ending. Only appears for the most motivated recruiters.",
+    questSecretLockedHint: "Complete the other quests to reveal this bonus objective.",
 
     // Lightbox
     lightboxPrevAriaLabel: "Previous image",
@@ -467,6 +469,7 @@
     questCloseLabel: "Fermer le journal",
     questStatusLocked: "Verrouillée",
     questStatusCompleted: "Terminée",
+    questStatusBonus: "Bonus",
     questToastUnlocked: "Quête débloquée",
     questToastTitle: "Succès obtenu",
     questRecruiterLootTitle: "Vous êtes formidable",
@@ -483,6 +486,7 @@
     questFPatternDescription: "Scrolles plus bas que 80% des visiteurs.",
     questSecretTitle: "Quête secrète (bonus)",
     questSecretDescription: "Engagez-moi pour débloquer la bonne fin. Cette quête n’apparaît que pour les recruteurs très motivés.",
+    questSecretLockedHint: "Termine les autres quêtes pour dévoiler cette quête cachée.",
 
     // Lightbox
     lightboxPrevAriaLabel: "Image précédente",
