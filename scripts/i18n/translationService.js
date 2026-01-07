@@ -56,6 +56,9 @@
     lokiBadge3Months: "3 months",
     lokiDescriptionCarousel: "Signy have the power to take the form of anyone or any animal. From a strong brute to a stealthy cat, each transformation opens new paths to infiltrate, deceive, and climb the social ladder.",
     lokiBtnCurious: "I'm as curious as a cat",
+    lokiSectionTitle: "Change your appearances and cause chaos.",
+    lokiSectionP: "Signy has the power to take the form of anyone or any animal. From a strong brute to a stealthy cat, each transformation opens new paths to infiltrate, deceive, and climb the social ladder.",
+    lokiSectionBtn: "I'm as curious as a cat",
     // -- Card: Diablo Cyberpunk (Carousel)
     diabloTitleCarousel: "DIABOLO III CYBERPUNK (2021)",
     diabloBadgeMadeAlone: "Made alone",
@@ -306,6 +309,9 @@
     lokiBadge3Months: "3 mois",
     lokiDescriptionCarousel: "Signy a le pouvoir de prendre la forme de n'importe qui ou de n'importe quel animal. D'une brute puissante à un chat furtif, chaque transformation ouvre de nouveaux chemins pour s'infiltrer, tromper et gravir l'échelle sociale.",
     lokiBtnCurious: "Je suis aussi curieux qu'un chat",
+    lokiSectionTitle: "Changez d'apparence et semez le chaos.",
+    lokiSectionP: "Signy a le pouvoir de prendre la forme de n'importe qui ou de n'importe quel animal. D'une brute puissante à un chat furtif, chaque transformation ouvre de nouveaux chemins pour s'infiltrer, tromper et gravir l'échelle sociale.",
+    lokiSectionBtn: "Je suis aussi curieux qu'un chat!",
     // -- Carte : Diablo Cyberpunk (Carrousel)
     diabloTitleCarousel: "DIABLO III CYBERPUNK (2021)",
     diabloBadgeMadeAlone: "Réalisé seul",
