@@ -5,7 +5,6 @@
   const ModalManager = global.ModalManager;
 
   if (!translationService || !modalDataRepository || !LightboxController || !ModalManager) {
-    console.error('Modal system dependencies are not available.');
     return;
   }
 
