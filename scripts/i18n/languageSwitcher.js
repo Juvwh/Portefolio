@@ -42,23 +42,25 @@ function updateDocumentTitle(language) {
 }
 
 function applyTranslationsToDom(language) {
-  document.querySelectorAll('[data-translate-key]').forEach((element) => {
-    const key = element.getAttribute('data-translate-key');
-    const translation = translate(key, language);
-    if (isValidTranslation(translation)) {
-      element.innerHTML = translation;
-    } else {
-      console.warn(`Translation not found for key: ${key} in language: ${language}`);
+  document.querySelectorAll('[data-translate-key], [data-translate-aria-label-key]').forEach((element) => {
+    const innerHTMLKey = element.getAttribute('data-translate-key');
+    if (innerHTMLKey) {
+      const translation = translate(innerHTMLKey, language);
+      if (isValidTranslation(translation)) {
+        element.innerHTML = translation;
+      } else {
+        console.warn(`Translation not found for key: ${innerHTMLKey} in language: ${language}`);
+      }
     }
-  });
 
-  document.querySelectorAll('[data-translate-aria-label-key]').forEach((element) => {
-    const key = element.getAttribute('data-translate-aria-label-key');
-    const translation = translate(key, language);
-    if (isValidTranslation(translation)) {
-      element.setAttribute('aria-label', translation);
-    } else {
-      console.warn(`ARIA label translation not found for key: ${key} in language: ${language}`);
+    const ariaLabelKey = element.getAttribute('data-translate-aria-label-key');
+    if (ariaLabelKey) {
+      const translation = translate(ariaLabelKey, language);
+      if (isValidTranslation(translation)) {
+        element.setAttribute('aria-label', translation);
+      } else {
+        console.warn(`ARIA label translation not found for key: ${ariaLabelKey} in language: ${language}`);
+      }
     }
   });
 }
