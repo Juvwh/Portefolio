@@ -170,8 +170,85 @@ iframe {
 }
 
 /* =========================================
-   3. COMPONENTS: BUTTONS
+   3. SHARED COMPONENTS & UTILITIES
    ========================================= */
+/* Titles */
+.gallery__title,
+.it-projects__title,
+.games-gallery__title {
+  text-align: center;
+  font-family: 'AdamCGPro', sans-serif;
+  font-size: 2rem;
+  color: var(--header-text-color);
+  margin-bottom: 2.5rem;
+}
+
+/* Cards Base */
+.card,
+.it-card {
+  background: var(--card-bg-color);
+  color: var(--card-text-color);
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px var(--card-shadow-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover,
+.it-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 0 3px var(--accent-color);
+}
+
+/* Overlays (Modal & Lightbox) */
+.modal,
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  z-index: 2000;
+}
+
+.modal--active,
+.lightbox--active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal__close,
+.lightbox__close {
+  position: absolute;
+  top: 15px; /* Normalized to 15px/1rem */
+  right: 25px; /* Normalized */
+  cursor: pointer;
+  z-index: 2002;
+}
+
+/* Navigation Buttons (Carousel & Lightbox) */
+.carousel__nav,
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -611,18 +688,13 @@ iframe {
 }
 
 .carousel__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
+  /* Inherits shared .carousel__nav properties */
   background: var(--arrow-bg-color);
-  border: none;
   color: var(--arrow-text-color);
   font-size: 2rem;
-  cursor: pointer;
-  pointer-events: auto;
   padding: 0.5rem 1rem;
   border-radius: 1rem;
+  pointer-events: auto;
 }
 
 .carousel__nav:disabled {
@@ -641,28 +713,17 @@ iframe {
 /* =========================================
    8. COMPONENTS: CARDS (GAMES)
    ========================================= */
+/* .card inherits from Shared Components .card */
 .card {
-  background: var(--card-bg-color);
-  border-radius: 1rem;
-  box-shadow: 0 10px 15px var(--card-shadow-color);
   width: 450px;
   min-height: 500px;
   margin: 0 0.5rem;
   flex-shrink: 0;
-  display: flex;
   z-index: 1;
-  flex-direction: column;
-  color: var(--card-text-color);
-  transition: transform 0.5s ease, box-shadow 0.2s ease;
   padding: 0;
   overflow: hidden;
   align-items: stretch;
-  text-align: center;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 0 3px var(--accent-color);
+  transition: transform 0.5s ease, box-shadow 0.2s ease;
 }
 
 .card > iframe {
@@ -792,6 +853,10 @@ iframe {
 /* =========================================
    10. SECTIONS: TIMELINE (MY JOURNEY)
    ========================================= */
+#my-journey {
+  scroll-margin-top: 5rem;
+}
+
 .timeline {
   background: var(--timeline-bg-color);
   color: var(--timeline-text-color);
@@ -918,6 +983,7 @@ iframe {
    11. SECTIONS: GALLERY (TOOLS & TECH)
    ========================================= */
 .gallery {
+  /* .gallery__title moved to Shared Components */
   position: relative; 
   padding: 1rem 1rem; 
   background-color: var(--body-bg-color); 
@@ -969,14 +1035,6 @@ iframe {
   padding: 1rem;
 }
 
-.gallery__title {
-  text-align: center;
-  font-family: 'AdamCGPro', sans-serif;
-  font-size: 2rem;
-  color: var(--header-text-color);
-  margin-bottom: 2.5rem;
-}
-
 .gallery__grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr); 
@@ -1014,6 +1072,7 @@ iframe {
    12. SECTIONS: IT PROJECTS
    ========================================= */
 .it-projects {
+  /* .it-projects__title moved to Shared Components */
   padding: 0rem 1rem;
   background-color: var(--body-bg-color);
   scroll-margin-top: 5rem;
@@ -1025,14 +1084,6 @@ iframe {
   padding: 1rem;
 }
 
-.it-projects__title {
-  text-align: center;
-  font-family: 'AdamCGPro', sans-serif;
-  font-size: 2rem;
-  color: var(--header-text-color);
-  margin-bottom: 2.5rem;
-}
-
 .it-projects__grid {
   display: flex;
   flex-wrap: wrap;
@@ -1040,18 +1091,11 @@ iframe {
   gap: 1.5rem;
 }
 
+/* .it-card inherits from Shared Components */
 .it-card {
-  background-color: var(--card-bg-color);
-  color: var(--card-text-color);
-  border-radius: 1rem;
   padding: 1.5rem;
-  box-shadow: 0 5px 15px var(--card-shadow-color);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: calc((100% / 6) - 1.5rem);
   min-width: 220px;
-  display: flex;
-  flex-direction: column;
 }
 
 .it-card:hover {
@@ -1097,6 +1141,7 @@ iframe {
    13. SECTIONS: ALL GAMES
    ========================================= */
 .games-gallery {
+  /* .games-gallery__title moved to Shared Components */
   padding: 2rem 1rem;
   background-color: var(--body-bg-color);
 }
@@ -1105,14 +1150,6 @@ iframe {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
-}
-
-.games-gallery__title {
-  text-align: center;
-  font-family: 'AdamCGPro', sans-serif;
-  font-size: 2rem;
-  color: var(--header-text-color);
-  margin-bottom: 2.5rem;
 }
 
 .games-grid {
@@ -1212,26 +1249,7 @@ iframe {
 /* =========================================
    14. COMPONENTS: MODALS
    ========================================= */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); 
-  display: none; 
-  align-items: center;
-  justify-content: center;
-  z-index: 2000; 
-  opacity: 0;
-  transition: opacity 0.3s ease-out; 
-}
-
-.modal--active {
-  display: flex; 
-  opacity: 1;
-}
-
+/* .modal inherits shared Overlay properties */
 .modal__content {
   background-color: var(--modal-bg-color);
   color: var(--modal-text-color);
@@ -1253,8 +1271,8 @@ iframe {
   opacity: 1;
 }
 
+/* .modal__close inherits Shared Close Button properties */
 .modal__close {
-  position: absolute;
   top: 1rem;
   right: 1rem;
   display: inline-flex;
@@ -1267,12 +1285,10 @@ iframe {
   color: var(--modal-close-text);
   background-color: var(--modal-close-bg);
   border-radius: 999px;
-  cursor: pointer;
   line-height: 1;
   touch-action: manipulation;
   box-shadow: var(--modal-close-shadow);
   transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-  z-index: 5;
   backdrop-filter: blur(6px);
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
@@ -1451,27 +1467,7 @@ iframe {
 /* =========================================
    15. COMPONENTS: LIGHTBOX
    ========================================= */
-.lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--lightbox-overlay-bg);
-  display: none; 
-  align-items: center;
-  justify-content: center;
-  z-index: 2001; 
-  opacity: 0;
-  transition: opacity 0.4s ease-in-out; 
-  -webkit-tap-highlight-color: transparent; 
-}
-
-.lightbox--active {
-  display: flex; 
-  opacity: 1;
-}
-
+/* .lightbox inherits shared Overlay properties */
 .lightbox__content {
   position: relative;
   display: flex;
@@ -1516,18 +1512,14 @@ iframe {
   transform: translateY(0);
 }
 
+/* .lightbox__close inherits Shared Close Button properties */
 .lightbox__close {
-  position: absolute;
-  top: 15px;
-  right: 25px;
-  font-size: 2.5rem;
   background: none;
   border: none;
-  cursor: pointer;
+  font-size: 2.5rem;
   line-height: 1;
   padding: 5px;
   transition: color 0.2s ease, transform 0.2s ease;
-  z-index: 2002; 
   color: var(--lightbox-controls-color);
 }
 
@@ -1536,24 +1528,15 @@ iframe {
   color: #fff;
 }
 
+/* .lightbox__nav inherits Shared Nav properties */
 .lightbox__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: transparent;
-  border: none;
   font-size: 3rem;
-  cursor: pointer;
   padding: 10px;
   transition: background-color 0.2s ease, color 0.2s ease;
   z-index: 2002; 
   border-radius: 50%; 
   width: 50px; 
   height: 50px; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1; 
   color: var(--lightbox-controls-color);
 }
 
@@ -1781,6 +1764,7 @@ iframe {
   color: #ffffff;
 }
 
+/* .quest-journal__close inherits Shared Close Button properties via specificity but has unique styling too */
 .quest-journal__close {
   width: 2.5rem;
   height: 2.5rem;
@@ -2167,9 +2151,6 @@ iframe {
     left: 50px;
     width: 500px;
   }
-  .it-card {
-    width: calc((100% / 3) - 1.5rem);
-  }
   .it-projects__container {
     max-width: 900px;
   }
@@ -2223,10 +2204,6 @@ iframe {
   .highlight-project--reversed .highlight-project__video {
     right: auto;
     left: auto;
-  }
-  .gallery__title {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
   }
   .gallery__grid {
     grid-template-columns: repeat(4, 1fr);
@@ -2391,10 +2368,6 @@ iframe {
   .gallery {
     padding: 3rem 1rem;
   }
-  .gallery__title {
-    font-size: 1.6rem;
-    margin-bottom: 1.5rem;
-  }
   .gallery__grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -2474,9 +2447,6 @@ iframe {
   }
   .lightbox__nav-zone {
     width: 30%;
-  }
-  .it-card {
-    width: calc((100% / 2) - 1.5rem);
   }
   .it-projects__container {
     max-width: 650px;
