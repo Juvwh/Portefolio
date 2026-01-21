@@ -85,7 +85,7 @@
       this.toastContainer = null;
 
       this.boundCloseOnEscape = (event) => {
-        if (event.key === 'Escape' && this.journalOverlay?.classList.contains('active')) {
+        if (event.key === 'Escape' && this.journalOverlay?.classList.contains('quest-journal-overlay--active')) {
           this.toggleJournal(false);
         }
       };
@@ -116,7 +116,7 @@
           }
         }
       } catch (error) {
-        console.warn('Unable to load quest progress from storage.', error);
+        // Ignored
       }
       return { completed: {}, bonusUnlocked: false, confettiShown: false };
     }
@@ -125,7 +125,7 @@
       try {
         localStorage.setItem(QUEST_STORAGE_KEY, JSON.stringify(this.state));
       } catch (error) {
-        console.warn('Unable to persist quest progress to storage.', error);
+        // Ignored
       }
     }
 
@@ -143,24 +143,25 @@
     }
 
     getCurrentTheme() {
-      return document.body.classList.contains('light-theme') ? 'light' : 'dark';
+      return document.body.classList.contains('theme--light') ? 'light' : 'dark';
     }
 
     renderUI() {
       this.toastContainer = document.createElement('div');
       this.toastContainer.id = 'quest-toast-container';
+      this.toastContainer.className = 'quest-toast-container';
       this.toastContainer.setAttribute('aria-live', 'polite');
       document.body.appendChild(this.toastContainer);
 
       this.triggerButton = document.createElement('button');
-      this.triggerButton.className = 'quest-floating-button';
+      this.triggerButton.className = 'quest-btn';
       this.triggerButton.type = 'button';
       this.triggerButton.setAttribute('aria-expanded', 'false');
       this.triggerButton.setAttribute('aria-controls', 'quest-journal-panel');
       this.triggerButton.innerHTML = `
-        <span class="quest-floating-button__icon" aria-hidden="true"><i class="fa-solid fa-scroll"></i></span>
-        <span class="quest-floating-button__label"></span>
-        <span class="quest-floating-button__progress"></span>
+        <span class="quest-btn__icon" aria-hidden="true"><i class="fa-solid fa-scroll"></i></span>
+        <span class="quest-btn__label"></span>
+        <span class="quest-btn__progress"></span>
       `;
       document.body.appendChild(this.triggerButton);
 
@@ -178,7 +179,7 @@
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
-          <div class="quest-journal__progress">
+          <div class="quest-journal__progress-box">
             <div class="quest-journal__progress-text"></div>
             <div class="quest-journal__progress-bar">
               <span class="quest-journal__progress-fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></span>
@@ -204,10 +205,10 @@
     }
 
     toggleJournal(forceState) {
-      const shouldOpen = typeof forceState === 'boolean' ? forceState : !this.journalOverlay.classList.contains('active');
-      this.journalOverlay.classList.toggle('active', shouldOpen);
+      const shouldOpen = typeof forceState === 'boolean' ? forceState : !this.journalOverlay.classList.contains('quest-journal-overlay--active');
+      this.journalOverlay.classList.toggle('quest-journal-overlay--active', shouldOpen);
       this.triggerButton?.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
-      this.triggerButton?.classList.toggle('is-hidden', shouldOpen);
+      this.triggerButton?.classList.toggle('quest-btn--hidden', shouldOpen);
 
       if (shouldOpen) {
         document.addEventListener('keydown', this.boundCloseOnEscape);
@@ -227,7 +228,7 @@
     }
 
     bindCvDownloads() {
-      const cvLinks = document.querySelectorAll('a[download][href*="Resume"], a.btn-cv');
+      const cvLinks = document.querySelectorAll('a[download][href*="Resume"], a.footer__btn');
       cvLinks.forEach((link) => {
         link.addEventListener('click', () => this.completeQuest('recruiter-loot'));
       });
@@ -245,7 +246,7 @@
     }
 
     bindProjectClicks() {
-      const projectTriggers = document.querySelectorAll('.project-card, [data-project], [data-bs-target^="#project"]');
+      const projectTriggers = document.querySelectorAll('.game-card, .it-card, [data-project], [data-bs-target^="#project"]');
       projectTriggers.forEach((trigger) => {
         trigger.addEventListener('click', () => this.completeQuest('diver'));
       });
@@ -325,8 +326,8 @@
       const questTitle = this.translate('questLogTitle', 'Quest Journal');
       const buttonProgress = `${completedCount}/${this.totalQuests}`;
 
-      const buttonLabelElement = this.triggerButton?.querySelector('.quest-floating-button__label');
-      const buttonProgressElement = this.triggerButton?.querySelector('.quest-floating-button__progress');
+      const buttonLabelElement = this.triggerButton?.querySelector('.quest-btn__label');
+      const buttonProgressElement = this.triggerButton?.querySelector('.quest-btn__progress');
 
       if (buttonLabelElement) {
         buttonLabelElement.textContent = buttonLabel;
@@ -371,7 +372,7 @@
       QUEST_DEFINITIONS.forEach((quest) => {
         const isCompleted = Boolean(this.state.completed[quest.id]);
         const questItem = document.createElement('article');
-        questItem.className = `quest-card${isCompleted ? ' completed' : ''}${quest.isBonus ? ' quest-card--bonus' : ''}`;
+        questItem.className = `quest-card${isCompleted ? ' quest-card--completed' : ''}${quest.isBonus ? ' quest-card--bonus' : ''}`;
 
         const title = this.translate(quest.titleKey, quest.fallbackTitle);
         const description = quest.isBonus && !this.state.bonusUnlocked
@@ -395,7 +396,7 @@
               <h4 class="quest-card__title">${title}</h4>
               <span class="quest-card__status">${statusLabel}</span>
             </div>
-            <p class="quest-card__description">${description}</p>
+            <p class="quest-card__desc">${description}</p>
           </div>
         `;
 
@@ -425,11 +426,11 @@
       this.toastContainer.appendChild(toast);
 
       requestAnimationFrame(() => {
-        toast.classList.add('visible');
+        toast.classList.add('quest-toast--visible');
       });
 
       setTimeout(() => {
-        toast.classList.remove('visible');
+        toast.classList.remove('quest-toast--visible');
         setTimeout(() => toast.remove(), 300);
       }, 3500);
     }
@@ -456,19 +457,19 @@
     }
 
     triggerConfetti() {
-      const existing = document.querySelector('.quest-confetti-container');
+      const existing = document.querySelector('.confetti-container');
       if (existing) {
         existing.remove();
       }
 
       const container = document.createElement('div');
-      container.className = 'quest-confetti-container';
+      container.className = 'confetti-container';
 
       const colors = ['#7febff', '#a36bff', '#ffd166', '#2ec4b6', '#ff6b6b'];
       const pieceCount = 80;
       for (let i = 0; i < pieceCount; i += 1) {
         const piece = document.createElement('span');
-        piece.className = 'quest-confetti-piece';
+        piece.className = 'confetti-piece';
         const color = colors[i % colors.length];
         const duration = 3000 + Math.random() * 1200;
         const delay = Math.random() * 200;
@@ -515,7 +516,7 @@
         oscillator.start();
         oscillator.stop(ctx.currentTime + 0.35);
       } catch (error) {
-        console.warn('Unable to play quest sound', error);
+        // Ignored
       }
     }
   }

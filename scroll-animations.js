@@ -1,12 +1,12 @@
 const initScrollAnimations = () => {
-  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  const revealElements = document.querySelectorAll('.reveal');
 
   if (revealElements.length === 0) {
     return;
   }
 
   const showElement = (element) => {
-    element.classList.add('is-visible');
+    element.classList.add('reveal--visible');
   };
 
   if (!('IntersectionObserver' in window)) {
@@ -17,9 +17,9 @@ const initScrollAnimations = () => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
+        entry.target.classList.add('reveal--visible');
       } else {
-        entry.target.classList.remove('is-visible');
+        entry.target.classList.remove('reveal--visible');
       }
     });
   }, {
