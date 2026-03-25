@@ -130,8 +130,8 @@
         <li><a href="#all-games-section" data-translate-key="navGameProjects">Game projects</a></li>
         <li><a href="#it-projects-section" data-translate-key="navItProjects">IT projects</a></li>
         <li><a href="#my-journey" data-translate-key="navMyJourney">My Journey</a></li>
-        <!-- CV link opens in a new tab and downloads the resume -->
-        <li><a href="./index_files/JustinVanwichelen_Resume.pdf" target="_blank" download data-translate-key="navCv">CV</a></li>
+        <!-- CV link opens the CV Modal -->
+        <li><a href="#" id="nav-cv-link" data-translate-key="navCv">CV</a></li>
       </div>
       <li class="theme-toggle-item"><button id="theme-toggle-btn" data-translate-key="switchToLightMode">Switch to Light Mode</button></li>
       <li class="language-switcher">
@@ -622,6 +622,7 @@
   <script src="scripts/modals/modalDataRepository.js" defer></script>
   <script src="scripts/modals/lightboxController.js" defer></script>
   <script src="scripts/modals/modalManager.js" defer></script>
+  <script src="scripts/modals/cvModalController.js" defer></script>
   <script src="modal.js" defer></script>
   <script src="navbar.js" defer></script>
   <script src="scroll-animations.js" defer></script>
@@ -884,6 +885,35 @@
           <div class="modal-buttons-container">
             <button class="btn modal-play-btn" data-translate-key="modalPlayButton">Play</button>
           </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CV Modal Structure -->
+  <div class="modal-overlay" id="cv-modal">
+    <div class="modal-card cv-modal-card">
+      <span class="modal-close-btn" id="cv-modal-close-btn" aria-label="Close CV Modal">&times;</span>
+      <div class="cv-modal-content-wrapper">
+        <!-- Controls Bar -->
+        <div class="cv-modal-controls">
+          <div class="cv-modal-controls__group">
+            <button class="btn cv-modal-btn cv-modal-btn--lang" id="cv-lang-en" data-lang="en">EN</button>
+            <button class="btn cv-modal-btn cv-modal-btn--lang" id="cv-lang-fr" data-lang="fr">FR</button>
+          </div>
+          <div class="cv-modal-controls__group">
+            <button class="btn cv-modal-btn cv-modal-btn--theme" id="cv-theme-light" data-theme="light">Light</button>
+            <button class="btn cv-modal-btn cv-modal-btn--theme" id="cv-theme-dark" data-theme="dark">Dark</button>
+          </div>
+          <div class="cv-modal-controls__download">
+            <a href="#" class="btn btn-cta-primary cv-modal-btn--download" id="cv-download-btn" download>
+              <i class="fas fa-download"></i> <span id="cv-download-text">Download</span>
+            </a>
+          </div>
+        </div>
+        <!-- PDF Viewer -->
+        <div class="cv-modal-viewer">
+          <iframe id="cv-iframe" src="" title="CV PDF Viewer" frameborder="0"></iframe>
+        </div>
       </div>
     </div>
   </div>
