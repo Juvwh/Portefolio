@@ -20,18 +20,13 @@
   let currentCvTheme = CV_THEMES.Dark;
 
   // DOM Elements
-  const cvModal = document.getElementById('cv-modal');
-  const cvModalCloseBtn = document.getElementById('cv-modal-close-btn');
-  const cvModalThemeBtn = document.getElementById('cv-modal-theme-btn');
-  const cvModalLangBtn = document.getElementById('cv-modal-lang-btn');
-  const cvModalDownloadBtn = document.getElementById('cv-modal-download-btn');
-  const cvModalIframe = document.getElementById('cv-modal-iframe');
-  const cvModalTriggers = document.querySelectorAll('.cv-modal-trigger');
-
-  if (!cvModal) {
-    console.error('CV Modal element not found');
-    return;
-  }
+  let cvModal;
+  let cvModalCloseBtn;
+  let cvModalThemeBtn;
+  let cvModalLangBtn;
+  let cvModalDownloadBtn;
+  let cvModalIframe;
+  let cvModalTriggers;
 
   // --- Handlers ---
   function getCvFileName() {
@@ -164,31 +159,54 @@
     }
   }
 
-  // --- Event Listeners ---
-  cvModalThemeBtn.addEventListener('click', toggleTheme);
-  cvModalLangBtn.addEventListener('click', toggleLang);
-  cvModalCloseBtn.addEventListener('click', closeModal);
+  function initElementsAndListeners() {
+    cvModal = document.getElementById('cv-modal');
+    cvModalCloseBtn = document.getElementById('cv-modal-close-btn');
+    cvModalThemeBtn = document.getElementById('cv-modal-theme-btn');
+    cvModalLangBtn = document.getElementById('cv-modal-lang-btn');
+    cvModalDownloadBtn = document.getElementById('cv-modal-download-btn');
+    cvModalIframe = document.getElementById('cv-modal-iframe');
+    cvModalTriggers = document.querySelectorAll('.cv-modal-trigger');
 
-  cvModal.addEventListener('click', (e) => {
-    if (e.target === cvModal) {
-      closeModal();
+    if (!cvModal) {
+      console.error('CV Modal element not found');
+      return;
     }
-  });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && cvModal.classList.contains('active')) {
-      closeModal();
-    }
-  });
+    // --- Event Listeners ---
+    cvModalThemeBtn.addEventListener('click', toggleTheme);
+    cvModalLangBtn.addEventListener('click', toggleLang);
+    cvModalCloseBtn.addEventListener('click', closeModal);
 
-  cvModalTriggers.forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal();
+    cvModal.addEventListener('click', (e) => {
+      if (e.target === cvModal) {
+        closeModal();
+      }
     });
-  });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && cvModal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    // Also use event delegation just in case triggers are dynamic
+    document.body.addEventListener('click', (e) => {
+      const trigger = e.target.closest('.cv-modal-trigger');
+      if (trigger) {
+        e.preventDefault();
+        openModal();
+      }
+    });
+
+    checkDirectDownload();
+  }
 
   // Run on load
-  document.addEventListener('DOMContentLoaded', checkDirectDownload);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initElementsAndListeners);
+  } else {
+    initElementsAndListeners();
+  }
 
 })();
