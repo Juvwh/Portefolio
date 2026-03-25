@@ -21,6 +21,8 @@
     navCv: "CV",
     switchToDarkMode: "Switch to Dark Mode",
     switchToLightMode: "Switch to Light Mode",
+    cvModalTitle: "My Resume",
+    cvModalDownloadBtn: "Download",
     themeToggle : "Switch to Light Mode",
 
     // Hero Section
@@ -277,6 +279,8 @@
     navCv: "CV",
     switchToDarkMode: "Activer le mode sombre",
     switchToLightMode: "Activer le mode clair",
+    cvModalTitle: "Mon CV",
+    cvModalDownloadBtn: "Télécharger",
     themeToggle : "Activer le mode clair",
     // Section Hero
     heroGreeting: "SALUT! JE SUIS <strong>JUSTIN 👋</strong>",
