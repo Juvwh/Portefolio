@@ -37,7 +37,9 @@
       if (this.closeBtn) {
         this.closeBtn.addEventListener('click', this.handleCloseClick);
       }
-      this.modal.addEventListener('click', this.handleOverlayClick);
+      if (this.modal) {
+        this.modal.addEventListener('click', this.handleOverlayClick);
+      }
       document.addEventListener('keydown', this.handleEscape);
 
       this.langButtons.forEach(btn => btn.addEventListener('click', this.handleLangChange));
@@ -46,6 +48,14 @@
       const navCvLink = document.getElementById('nav-cv-link');
       if (navCvLink) {
         navCvLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.openModal();
+        });
+      }
+
+      const footerCvLink = document.querySelector('.footer-cv-download .btn-cv');
+      if (footerCvLink) {
+        footerCvLink.addEventListener('click', (e) => {
           e.preventDefault();
           this.openModal();
         });
