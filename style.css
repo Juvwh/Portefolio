@@ -1475,7 +1475,7 @@ my-journey {
   transition: opacity 0.3s ease-out; 
 }
 .modal-overlay.active {
-  display: flex; 
+  display: flex !important;
   opacity: 1;
 }
 .modal-card {
@@ -2683,5 +2683,98 @@ my-journey {
   .quest-journal {
     width: min(520px, 96vw);
     margin: 1rem auto;
+  }
+}
+/* CV Modal specific styles */
+.cv-modal-card {
+  max-width: 900px;
+  width: 90%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.cv-modal-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.cv-modal-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.cv-modal-controls__group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cv-modal-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: var(--border-radius-sm);
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.cv-modal-btn:hover {
+  background-color: var(--accent-hover);
+  color: var(--text-light);
+}
+
+.cv-modal-btn.active {
+  background-color: var(--accent-color);
+  color: var(--text-light);
+  border-color: var(--accent-color);
+}
+
+.cv-modal-btn--download {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.cv-modal-viewer {
+  flex-grow: 1;
+  width: 100%;
+  background-color: #333; /* Dark background for PDF viewer area to contrast with light/dark PDFs */
+}
+
+.cv-modal-viewer iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .cv-modal-controls {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .cv-modal-controls__group {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cv-modal-controls__download {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }
