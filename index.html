@@ -131,7 +131,7 @@
         <li><a href="#it-projects-section" data-translate-key="navItProjects">IT projects</a></li>
         <li><a href="#my-journey" data-translate-key="navMyJourney">My Journey</a></li>
         <!-- CV link opens in a new tab and downloads the resume -->
-        <li><a href="./index_files/JustinVanwichelen_Resume.pdf" target="_blank" download data-translate-key="navCv">CV</a></li>
+        <li><a href="#" id="nav-cv-trigger" data-translate-key="navCv">CV</a></li>
       </div>
       <li class="theme-toggle-item"><button id="theme-toggle-btn" data-translate-key="switchToLightMode">Switch to Light Mode</button></li>
       <li class="language-switcher">
@@ -622,6 +622,7 @@
   <script src="scripts/modals/modalDataRepository.js" defer></script>
   <script src="scripts/modals/lightboxController.js" defer></script>
   <script src="scripts/modals/modalManager.js" defer></script>
+  <script src="scripts/modals/cvModal.js" defer></script>
   <script src="modal.js" defer></script>
   <script src="navbar.js" defer></script>
   <script src="scroll-animations.js" defer></script>
@@ -643,7 +644,7 @@
       </div>
 
       <div class="footer-cv-download">
-        <a href="./index_files/JustinVanwichelen_Resume.pdf" class="btn btn-cv" data-translate-aria-label-key="footerCvAriaLabel" aria-label="Download my CV" download target="_blank" data-translate-key="footerCvDownload">Download CV</a>
+        <a href="#" id="footer-cv-trigger" class="btn btn-cv" data-translate-aria-label-key="footerCvAriaLabel" aria-label="Open my CV" data-translate-key="footerCvDownload">Download CV</a>
       </div>
       
       <div class="footer-email">
@@ -847,6 +848,35 @@
   </script>
 
   </main>
+
+  <!-- CV Modal Structure -->
+  <div class="cv-modal__overlay" id="cv-modal">
+    <div class="cv-modal__card">
+      <span class="cv-modal__close-btn" id="cv-modal-close-btn" data-translate-aria-label-key="cvModalCloseButtonAriaLabel">&times;</span>
+
+      <div class="cv-modal__header">
+        <h2 class="cv-modal__title" data-translate-key="cvModalTitle">Curriculum Vitae</h2>
+        <div class="cv-modal__controls">
+          <div class="language-switcher cv-modal__lang-switcher">
+            <button id="cv-lang-en" data-lang="en">EN</button>
+            <span>/</span>
+            <button id="cv-lang-fr" data-lang="fr">FR</button>
+          </div>
+          <button id="cv-theme-toggle" class="btn cv-modal__theme-btn" data-translate-key="cvSwitchTheme">Switch Theme</button>
+        </div>
+      </div>
+
+      <div class="cv-modal__content">
+        <iframe id="cv-iframe" src="" title="CV PDF Viewer" frameborder="0"></iframe>
+      </div>
+
+      <div class="cv-modal__footer">
+        <a href="#" id="cv-download-btn" class="btn cv-modal__download-btn" download>
+          <i class="fas fa-download"></i> <span data-translate-key="cvDownloadBtn">Download</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Modal Structure -->
   <div class="modal-overlay" id="project-modal">

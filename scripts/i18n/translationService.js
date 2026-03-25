@@ -151,6 +151,12 @@
     // Modal Generic
     modalPlayButton: "Play",
     modalCloseButtonAriaLabel: "Close modal", // For the &times;
+    cvModalTitle: "Curriculum Vitae",
+    cvSwitchTheme: "Switch Theme",
+    cvSwitchToLightMode: "Switch to Light Mode",
+    cvSwitchToDarkMode: "Switch to Dark Mode",
+    cvDownloadBtn: "Download",
+    cvModalCloseButtonAriaLabel: "Close CV modal",
 
     modal_rpgLLM_btn_report: "Watch the defence",
     modal_rpgLLM_btn_thesis: "Read Thesis",
@@ -394,6 +400,12 @@
     // Modale Générique
     modalPlayButton: "Jouer",
     modalCloseButtonAriaLabel: "Fermer le module",
+    cvModalTitle: "Curriculum Vitae",
+    cvSwitchTheme: "Changer le thème",
+    cvSwitchToLightMode: "Activer le mode clair",
+    cvSwitchToDarkMode: "Activer le mode sombre",
+    cvDownloadBtn: "Télécharger",
+    cvModalCloseButtonAriaLabel: "Fermer le CV",
     modal_rpgLLM_btn_report: "Regarder la défense",
     modal_rpgLLM_btn_thesis: "Lire le mémoire",
     modal_rpgLLM_btn_defence: "Voir la défense",
