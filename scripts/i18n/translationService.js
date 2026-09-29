@@ -147,7 +147,7 @@
     footerLinkedinAriaLabel: "Visit my LinkedIn profile",
     footerYoutubeAriaLabel: "Visit my YouTube channel",
     footerEmailAriaLabel: "Send me an email",
-    footerCopyright: "&copy; 2025 Justin Vanwichelen. All rights reserved. --> My website's code is available on GitHub.",
+    footerCopyright: "&copy; 2026 Justin Vanwichelen. All rights reserved. My website's code is available on <a href=\"https://github.com/Juvwh/Portefolio\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a>.",
 
     // Modal Generic
     modalPlayButton: "Play",
@@ -399,7 +399,7 @@
     footerLinkedinAriaLabel: "Visiter mon profil LinkedIn",
     footerYoutubeAriaLabel: "Visiter ma chaîne YouTube",
     footerEmailAriaLabel: "M'envoyer un email",
-    footerCopyright: "&copy; 2025 Justin Vanwichelen. Tous droits réservés. --> Le code de mon site web est disponible sur GitHub.",
+    footerCopyright: "&copy; 2026 Justin Vanwichelen. Tous droits réservés. Le code de mon site web est disponible sur <a href=\"https://github.com/Juvwh/Portefolio\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a>.",
     // Modale Générique
     modalPlayButton: "Jouer",
     modalCloseButtonAriaLabel: "Fermer le module",
@@ -558,7 +558,21 @@
     return null;
   }
 
+  // ?lang=fr in the URL wins, so the hreflang alternate URLs serve the right language.
+  function readUrlLanguage() {
+    try {
+      return new URLSearchParams(global.location.search).get('lang');
+    } catch (error) {
+      return null;
+    }
+  }
+
   function resolveInitialLanguage() {
+    const urlLanguage = readUrlLanguage();
+    if (urlLanguage && supportedLanguages.includes(urlLanguage)) {
+      return urlLanguage;
+    }
+
     const storedLanguage = readStoredLanguage();
     if (storedLanguage && supportedLanguages.includes(storedLanguage)) {
       return storedLanguage;

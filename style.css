@@ -329,6 +329,7 @@ iframe {
 }
 .custom-image {
   width: 100%;
+  height: auto;
   border-radius: 1rem;
   display: block;
 }
@@ -847,6 +848,7 @@ iframe {
 }
 .custom-image {
   width: 100%;
+  height: auto;
   border-radius: 1rem;
   display: block;
   box-shadow: 0 10px 25px var(--card-shadow-color); 
@@ -1108,8 +1110,8 @@ iframe {
     margin-top: 3rem;
   }
 }
-my-journey { 
-  scroll-margin-top: -1rem; 
+#my-journey { 
+  scroll-margin-top: 5rem; 
 }
 .timeline {
   background: var(--timeline-background-color);
@@ -2187,7 +2189,7 @@ my-journey {
   box-shadow: 0 8px 20px var(--card-shadow-color), 0 0 0 2px var(--accent-color); 
 }
 .it-project-icon {
-  width: 125x; 
+  width: 125px; 
   height: 125px;
   object-fit: contain;
   margin: 0 auto 1rem auto; 

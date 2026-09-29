@@ -89,8 +89,26 @@ function updateLanguageButtonStates(language, buttons) {
   });
 }
 
+// Keep the address bar in sync (?lang=fr) so shared links open in the same language.
+function updateUrlLanguage(language) {
+  try {
+    const url = new URL(window.location.href);
+    if (language === 'en') {
+      url.searchParams.delete('lang');
+    } else {
+      url.searchParams.set('lang', language);
+    }
+    if (url.href !== window.location.href) {
+      window.history.replaceState(window.history.state, '', url);
+    }
+  } catch (error) {
+    console.warn('Unable to update the language in the URL.', error);
+  }
+}
+
 function handleLanguageChange(language, buttons) {
   document.documentElement.lang = language;
+  updateUrlLanguage(language);
   updateDocumentTitle(language);
   updateMetaTags(language);
   applyTranslationsToDom(language);
