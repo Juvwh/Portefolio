@@ -95,7 +95,8 @@
     timelineGradHeaj: "Graduates as a Technical Artist from the Haute Ecole Albert-Jacquard",
     timelineTutorUcl: "IT tutor for around forty students in the first year of a bachelor's degree in IT (at UCLouvain)",
     timelineGradUcl: "Master's degree graduates in computer science from the Catholic University of Louvain-La-Neuve",
-    timelineNext: "Maybe with you ... ?",
+    timelineDefense: "Rollout Manager & AI Project Product Owner at the Belgian Defence",
+    timelineAlterface: "Software Engineer at Alterface",
 
     // Tools & Technologies Section
     toolsTechTitle: "Tools & Technologies",
@@ -350,7 +351,8 @@
     timelineGradHeaj: "Diplômé en tant que Tech. Art à la Haute École Albert-Jacquard",
     timelineTutorUcl: "Tuteur en informatique pour environ quarante étudiants en première année de bachelier en informatique (à l'UCLouvain)",
     timelineGradUcl: "Diplômé d'un master en informatique de l'Université Catholique de Louvain-La-Neuve",
-    timelineNext: "Peut-être avec vous... ?",
+    timelineDefense: "Rollout Manager & Product Owner de projets IA à la Défense belge",
+    timelineAlterface: "Ingénieur logiciel chez Alterface",
     // Section Outils & Technologies
     toolsTechTitle: "Outils & Technologies",
     // Section Projets IT
