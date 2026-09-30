@@ -10,33 +10,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const cvLangFrBtn = document.getElementById('cv-lang-fr');
     const cvThemeToggleBtn = document.getElementById('cv-theme-toggle');
 
-    // Mappings for file names
+    // File paths: the main CVs live at the site root, the IT variants in index_files/
     const CV_FILES = {
         'GameDev': {
             'en': {
-                'dark': 'JustinVanwichelen_ResumeEN_Dark.pdf',
-                'light': 'JustinVanwichelen_ResumeEN_Light.pdf'
+                'dark': './JustinVanwichelen_ResumeEN_Dark.pdf',
+                'light': './JustinVanwichelen_ResumeEN_Light.pdf'
             },
             'fr': {
-                'dark': 'JustinVanwichelen_ResumeFR_Dark.pdf',
-                'light': 'JustinVanwichelen_ResumeFR_Light.pdf'
+                'dark': './JustinVanwichelen_ResumeFR_Dark.pdf',
+                'light': './JustinVanwichelen_ResumeFR_Light.pdf'
             }
         },
         'IT': {
             'en': {
-                'dark': 'JustinVanwichelen_IT_ResumeEN_Dark.pdf',
-                'light': 'JustinVanwichelen_IT_ResumeEN_Light.pdf'
+                'dark': './index_files/JustinVanwichelen_IT_ResumeEN_Dark.pdf',
+                'light': './index_files/JustinVanwichelen_IT_ResumeEN_Light.pdf'
             },
             'fr': {
-                'dark': 'JustinVanwichelen_IT_ResumeFR_Dark.pdf',
-                'light': 'JustinVanwichelen_IT_ResumeFR_Light.pdf'
+                'dark': './index_files/JustinVanwichelen_IT_ResumeFR_Dark.pdf',
+                'light': './index_files/JustinVanwichelen_IT_ResumeFR_Light.pdf'
             }
         }
+    };
+
+    const fileNameOf = (filePath) => filePath.split('/').pop();
+
+    const notify = (eventName, detail) => {
+        document.dispatchEvent(new CustomEvent(eventName, { detail }));
     };
 
     // State for the modal
     let currentModalLang = 'en';
     let currentModalTheme = 'dark';
+    let focusBeforeOpen = null;
 
     // 1. Check for direct download URL hashes
     const checkDirectDownload = () => {
@@ -57,15 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (pathParts) {
             const [track, lang, theme] = pathParts;
-            const fileName = CV_FILES[track][lang][theme];
+            const filePath = CV_FILES[track][lang][theme];
 
             // Create a hidden link and click it to trigger download
             const link = document.createElement('a');
-            link.href = `./index_files/${fileName}`;
-            link.download = fileName;
+            link.href = filePath;
+            link.download = fileNameOf(filePath);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            notify('cvDownloaded', { track, lang, theme, source: 'direct-link' });
 
             // Clean up the hash without scrolling and trailing space
             history.replaceState(null, document.title, window.location.pathname + window.location.search);
@@ -82,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update the PDF and download link based on current modal state
     const updateCVDisplay = () => {
-        const fileName = CV_FILES['GameDev'][currentModalLang][currentModalTheme];
-        const filePath = `./index_files/${fileName}`;
+        const filePath = CV_FILES['GameDev'][currentModalLang][currentModalTheme];
+        const fileName = fileNameOf(filePath);
 
         // Only update if it changed to avoid reloading iframe unnecessarily
         if (!cvIframe.src.endsWith(fileName)) {
@@ -138,13 +146,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateCVDisplay();
 
+        focusBeforeOpen = document.activeElement;
         cvModalOverlay.classList.add('active');
         document.body.classList.add('modal-open');
+        if (cvModalCloseBtn) cvModalCloseBtn.focus({ preventScroll: true });
+        notify('cvOpened', { lang: currentModalLang, theme: currentModalTheme });
     };
 
     const closeCVModal = () => {
+        if (!cvModalOverlay.classList.contains('active')) return;
         cvModalOverlay.classList.remove('active');
         document.body.classList.remove('modal-open');
+        if (focusBeforeOpen && typeof focusBeforeOpen.focus === 'function') {
+            focusBeforeOpen.focus({ preventScroll: true });
+        }
+        focusBeforeOpen = null;
     };
 
     // Event Listeners for Opening/Closing Modal
@@ -152,6 +168,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (footerCvTrigger) footerCvTrigger.addEventListener('click', openCVModal);
 
     if (cvModalCloseBtn) cvModalCloseBtn.addEventListener('click', closeCVModal);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeCVModal();
+    });
+
+    if (cvDownloadBtn) {
+        cvDownloadBtn.addEventListener('click', () => {
+            notify('cvDownloaded', { track: 'GameDev', lang: currentModalLang, theme: currentModalTheme, source: 'modal' });
+        });
+    }
 
     // Close modal when clicking outside
     cvModalOverlay.addEventListener('click', (e) => {

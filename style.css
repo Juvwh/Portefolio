@@ -509,6 +509,13 @@ iframe {
   opacity: 0.9;
 }
 
+.game-card:focus-visible,
+.modal-gallery-img:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 4px;
+  border-radius: 0.5rem;
+}
+
 .hero-cta-group {
   margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
   display: flex;
@@ -772,7 +779,7 @@ iframe {
   border-bottom: 2px solid var(--navbar-outline-color);
   transition: border-bottom-color 0.3s ease;
 }
-.navbar ul {
+.navbar__inner {
   list-style: none;
   margin: 0;
   padding: 0 2rem; 
@@ -784,9 +791,10 @@ iframe {
 .navbar li {
   display: inline;
 }
-.navbar li:not(.theme-toggle-item) {
-}
-.navbar ul .nav-links-group {
+.navbar .nav-links-group {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   gap: 2rem;
   justify-content: center; 
@@ -996,7 +1004,7 @@ iframe {
   .navbar {
     padding: 0.5rem 0;
   }
-  .navbar ul {
+  .navbar__inner {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -1017,7 +1025,7 @@ iframe {
     display: flex;
     align-items: center;
   }
-  .navbar ul .nav-links-group {
+  .navbar .nav-links-group {
     display: none;
     flex-direction: column;
     position: absolute;
@@ -1030,20 +1038,20 @@ iframe {
     z-index: 999;
     border-top: 1px solid var(--navbar-outline-color);
   }
-  .navbar ul .nav-links-group.mobile-menu-open {
+  .navbar .nav-links-group.mobile-menu-open {
     display: flex;
   }
-  .navbar ul .nav-links-group li { 
+  .navbar .nav-links-group li { 
     width: 100%;
     text-align: center;
   }
-  .navbar ul .nav-links-group li a {
+  .navbar .nav-links-group li a {
     display: block;
     padding: 1rem;
     color: var(--navbar-link-color);
     transition: background-color 0.2s ease;
   }
-  .navbar ul .nav-links-group li a:hover {
+  .navbar .nav-links-group li a:hover {
     background-color: var(--accent-color);
     color: var(--navbar-link-hover-color);
   }
@@ -1495,6 +1503,15 @@ iframe {
 .modal-overlay.active .modal-card {
   transform: scale(1) translateY(0);
   opacity: 1;
+}
+.modal-close-btn,
+.cv-modal__close-btn,
+.lightbox-close-btn {
+  font-family: inherit;
+}
+.modal-close-btn,
+.cv-modal__close-btn {
+  padding: 0;
 }
 .modal-close-btn {
   position: absolute;
@@ -2219,7 +2236,8 @@ iframe {
   text-align:left; 
   margin-top:0; 
 }
-@media (max-width: 1200px) {
+/* Six cards (min 220px) only fit on one row on wide screens: use 3 + 3 below that */
+@media (max-width: 1500px) {
   .it-project-card {
     width: calc((100% / 3) - 1.5rem); 
   }

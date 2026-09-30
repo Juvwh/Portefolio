@@ -14,8 +14,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-translate-key="docTitle">Justin Vanwichelen's Portfolio – Developer</title>
-  <meta name="description" data-translate-key="metaDescription" content="Explore the portfolio of Justin Vanwichelen, showcasing projects in game development, AI, and technical art.">
+  <title data-translate-key="docTitle">Justin Vanwichelen – Software Engineer · Gameplay &amp; AI</title>
+  <meta name="description" data-translate-key="metaDescription" content="Portfolio of Justin Vanwichelen, software engineer specialising in gameplay programming and AI: games, LLM-driven projects and IT work.">
   <meta name="keywords" data-translate-key="metaKeywords" content="Justin Vanwichelen, Portfolio, Technical Artist, Game Developer, AI, Computer Science, Unreal Engine, Unity, HEAJ, UCLouvain, Game Development, Interactive Systems, Gameplay Programming, Technical Art, AI in Games, Game Design, Game Projects, IT Projects">
   <meta name="author" content="Justin Vanwichelen">
   <meta name="robots" content="index, follow">
@@ -32,8 +32,8 @@
   <link rel="me" href="https://github.com/Juvwh">
 
   <!-- Open Graph / Facebook Meta Tags -->
-  <meta property="og:title" content="Justin Vanwichelen's Portfolio – Developer">
-  <meta property="og:description" content="Explore the portfolio of Justin Vanwichelen, showcasing projects in game development, AI, and technical art.">
+  <meta property="og:title" content="Justin Vanwichelen – Software Engineer · Gameplay &amp; AI">
+  <meta property="og:description" content="Portfolio of Justin Vanwichelen, software engineer specialising in gameplay programming and AI: games, LLM-driven projects and IT work.">
   <meta property="og:image" content="https://justinvanwichelen.be/index_files/metaPreview_JustinVanwichelen.png">
   <meta property="og:image:alt" content="Justin Vanwichelen portfolio preview">
   <meta property="og:url" content="https://justinvanwichelen.be/">
@@ -47,8 +47,8 @@
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Justin Vanwichelen's Portfolio – Developer">
-  <meta name="twitter:description" content="Explore the portfolio of Justin Vanwichelen, showcasing projects in game development, AI, and technical art.">
+  <meta name="twitter:title" content="Justin Vanwichelen – Software Engineer · Gameplay &amp; AI">
+  <meta name="twitter:description" content="Portfolio of Justin Vanwichelen, software engineer specialising in gameplay programming and AI: games, LLM-driven projects and IT work.">
   <meta name="twitter:image" content="https://justinvanwichelen.be/index_files/metaPreview_JustinVanwichelen.png">
   <meta name="twitter:image:alt" content="Justin Vanwichelen portfolio preview">
 
@@ -59,9 +59,9 @@
     "@type": "Person",
     "name": "Justin Vanwichelen",
     "url": "https://justinvanwichelen.be/",
-    "description": "Explore the portfolio of Justin Vanwichelen, showcasing projects in game development, AI, and technical art.",
+    "description": "Portfolio of Justin Vanwichelen, software engineer specialising in gameplay programming and AI: games, LLM-driven projects and IT work.",
     "image": "https://justinvanwichelen.be/index_files/metaPreview_JustinVanwichelen.png",
-    "jobTitle": "Game Developer and Technical Artist",
+    "jobTitle": "Software Engineer",
     "knowsAbout": [
       "Gameplay programming",
       "Artificial Intelligence",
@@ -80,8 +80,8 @@
     ],
     "hasOccupation": {
       "@type": "Occupation",
-      "name": "Game Developer",
-      "description": "Designs and implements interactive game systems and AI-driven experiences."
+      "name": "Software Engineer",
+      "description": "Designs and implements interactive systems, gameplay and AI-driven experiences."
     },
     "sameAs": [
       "https://github.com/Juvwh",
@@ -109,7 +109,7 @@
   <link rel="icon" href="./index_files/icon_JustinVanwichelen.ico" type="image/x-icon">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <!-- Cache busting: bump ?v= on style.css and the scripts at the bottom whenever they change -->
-  <link rel="stylesheet" href="style.css?v=20260929">
+  <link rel="stylesheet" href="style.css?v=20260929-2">
   <link
     rel="preload"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -122,28 +122,28 @@
 </head>
 <body id="home">
   <!-- Navbar Section -->
-  <nav class="navbar">
-    <ul>
-      <button class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
+  <nav class="navbar" aria-label="Main">
+    <div class="navbar__inner">
+      <button class="hamburger-menu" type="button" aria-label="Open the menu" data-translate-aria-label-key="navMenuAriaLabel" aria-expanded="false" aria-controls="nav-links">
         <span class="hamburger-menu__line"></span>
         <span class="hamburger-menu__line"></span>
         <span class="hamburger-menu__line"></span>
       </button>
-      <div class="nav-links-group">
+      <ul class="nav-links-group" id="nav-links">
         <li><a href="#home" data-translate-key="navHome">Home</a></li>
-        <li><a href="#all-games-section" data-translate-key="navGameProjects">Game projects</a></li>
-        <li><a href="#it-projects-section" data-translate-key="navItProjects">IT projects</a></li>
         <li><a href="#my-journey" data-translate-key="navMyJourney">My Journey</a></li>
-        <!-- CV link opens in a new tab and downloads the resume -->
+        <li><a href="#it-projects-section" data-translate-key="navItProjects">IT projects</a></li>
+        <li><a href="#all-games-section" data-translate-key="navGameProjects">Game projects</a></li>
+        <!-- CV link opens the CV viewer modal -->
         <li><a href="#" id="nav-cv-trigger" data-translate-key="navCv">CV</a></li>
+      </ul>
+      <div class="theme-toggle-item"><button id="theme-toggle-btn" type="button" data-translate-key="switchToLightMode">Switch to Light Mode</button></div>
+      <div class="language-switcher">
+        <button id="lang-en" type="button" data-lang="en">EN</button>
+        <span aria-hidden="true">/</span>
+        <button id="lang-fr" type="button" data-lang="fr">FR</button>
       </div>
-      <li class="theme-toggle-item"><button id="theme-toggle-btn" data-translate-key="switchToLightMode">Switch to Light Mode</button></li>
-      <li class="language-switcher">
-        <button id="lang-en" data-lang="en">EN</button>
-        <span>/</span>
-        <button id="lang-fr" data-lang="fr">FR</button>
-      </li>
-    </ul>
+    </div>
   </nav>
   <header>
     <!-- Hero Section  -->
@@ -162,7 +162,7 @@
           >
         </div>
         <div class="hero-text" data-animate data-animate-step="2">
-          <p class="hero-role-chip" data-translate-key="heroRoleChip">• Game Developer •</p>
+          <p class="hero-role-chip" data-translate-key="heroRoleChip">• Software Engineer · Gameplay &amp; AI •</p>
           <h1 data-translate-key="heroGreeting">HI ALL, I'M <strong>JUSTIN 👋</strong></h1>
           <p data-translate-key="heroP1">With a background as a <strong>Technical Artist</strong> and a <strong>Master's degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I focus on <strong>gameplay programming</strong> and interactive systems development. My strong creative instincts, paired with my technical skills, allow me to design <strong>immersive and intelligent experiences</strong>.</p>
           <p data-translate-key="heroP2">I enjoy <strong>blending logic with aesthetics</strong>. Comfortable with <strong>Photoshop</strong>, I mainly use it to design clear and functional visual prototypes that help communicate ideas and concepts effectively.</p>
@@ -188,7 +188,7 @@
   <main id="main-content">
   <h2 class="carousel-header" data-translate-key="carouselHeader">Highlighted projects</h2>
   <div class="carousel-container">
-    <button class="arrow nav left" id="prev-btn" aria-label="Previous project"><i class="fas fa-chevron-left"></i></button>
+    <button class="arrow nav left" id="prev-btn" aria-label="Previous project" data-translate-aria-label-key="carouselPrevAriaLabel"><i class="fas fa-chevron-left"></i></button>
     <div class="carousel-wrapper">
       <div class="carousel-track" id="carousel-track">
         <!-- Card -- The Human Variable -->
@@ -216,7 +216,7 @@
       <div class="card">
         <iframe src="https://www.youtube.com/embed/hoBgf6kSkwQ?rel=0&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;controls=0&amp;loop=1&amp;playlist=hoBgf6kSkwQ" title="Project video" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         <div class="card-content">
-          <h3 data-translate-key="rpgLLMTitleCarousel">ROLES PLAY GAME WITH LLM (2025)</h3>
+          <h3 data-translate-key="rpgLLMTitleCarousel">ROLE-PLAYING GAME WITH LLM (2025)</h3>
           <div class="badges">
             <span class="badge badge-award">
               <i class="fa-solid fa-trophy"></i>
@@ -242,7 +242,7 @@
               <img src="index_files/img_ue_icon.webp" alt="Unreal Engine" class="icon-ue">UE 4
             </span>
             </div>
-            <p class="description" data-translate-key="lokiDescriptionCarousel">Signy have the power to <strong>take the form of anyone</strong> or any animal. From a strong brute to a stealthy cat, each transformation opens new paths to infiltrate, deceive, and climb the social ladder.</p>
+            <p class="description" data-translate-key="lokiDescriptionCarousel">Signy has the power to <strong>take the form of anyone</strong> or any animal. From a strong brute to a stealthy cat, each transformation opens new paths to infiltrate, deceive, and climb the social ladder.</p>
             <button class="btn project-modal-trigger" data-modal-id="loki" data-translate-key="lokiBtnCurious">I'm as curious as a cat</button>
           </div>
         </div>
@@ -257,7 +257,7 @@
             <span class="badge"><i class="fa-brands fa-unity"></i>Unity</span>
             </div>
             <p class="description" data-translate-key="kartColorDescriptionCarousel">🚗💨 <strong>Kart Color</strong> is a fast-paced arcade battle where every second counts. Outsmart your rival, <strong>paint the arena</strong>, grab power-ups and claim victory in a burst of colors and chaos.</p>
-            <button class="btn project-modal-trigger" data-modal-id="kart-color" data-translate-key="kartColorBtnTellMeMore">Waw</button>
+            <button class="btn project-modal-trigger" data-modal-id="kart-color" data-translate-key="kartColorBtnTellMeMore">Learn more</button>
           </div>
         </div>
 
@@ -265,7 +265,7 @@
         <div class="card">
           <iframe src="https://www.youtube.com/embed/rfodBcYEb9I?rel=0&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;controls=0&amp;loop=1&amp;playlist=rfodBcYEb9I" title="Project video" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           <div class="card-content">
-            <h3 data-translate-key="diabloTitleCarousel">DIABOLO III CYBERPUNK (2021)</h3>
+            <h3 data-translate-key="diabloTitleCarousel">DIABLO III CYBERPUNK (2021)</h3>
             <div class="badges">
             <span class="badge"><i class="fa-solid fa-user"></i><span data-translate-key="diabloBadgeMadeAlone">Made alone</span></span>
             <span class="badge"><i class="fa-regular fa-clock"></i><span data-translate-key="diabloBadge3MonthsCarousel">3 months</span></span>
@@ -277,7 +277,7 @@
         </div>
       </div>
     </div>
-    <button class="arrow nav right" id="next-btn" aria-label="Next project"><i class="fas fa-chevron-right"></i></button>
+    <button class="arrow nav right" id="next-btn" aria-label="Next project" data-translate-aria-label-key="carouselNextAriaLabel"><i class="fas fa-chevron-right"></i></button>
   </div>
 <!--Highlighted projects Section-->
 <!-- 1. Who is lying -->
@@ -416,7 +416,7 @@
            Jun 2025
           </h3>
           <p data-translate-key="timelineGradUcl">
-           Master's degree graduates in computer science from the Catholic University of Louvain-La-Neuve
+           Graduates with a Master's degree in Computer Science from UCLouvain (Louvain-la-Neuve)
           </p>
           <div class="timeline-image-wrapper">
            <div class="o_we_shape timeline_wavy_background"></div>
@@ -530,37 +530,37 @@
       <!-- Card 2 -->
       <div class="it-project-card reveal-on-scroll">
         <img src="./index_files/Img_IT_Compiler.webp" alt="Compiler Icon" class="it-project-icon" width="125" height="125" loading="lazy" decoding="async">
-        <h3 data-translate-key="itCompilerTitle">Compiler<br><br></h3>
+        <h3 data-translate-key="itCompilerTitle">Compiler</h3>
         <p class="it-project-year" data-translate-key="itCompilerYear">2024</p>
-        <p class="it-project-description" data-translate-key="itCompilerDesc">Coding a complet compiler that transforms an invented language into Java bytecode, from lexical analysis in the code to translating it into executable instructions.</p>
+        <p class="it-project-description" data-translate-key="itCompilerDesc">Built a complete compiler that turns an invented language into Java bytecode, from lexical analysis all the way to executable instructions.</p>
       </div>
       <!-- Card 3 -->
       <div class="it-project-card reveal-on-scroll">
         <img src="./index_files/Img_IT_MachineLearning.webp" alt="Machine learning Icon" class="it-project-icon" width="125" height="125" loading="lazy" decoding="async">
         <h3 data-translate-key="itMachineLearningTitle">Machine learning</h3>
         <p class="it-project-year" data-translate-key="itMachineLearningYear">2024</p>
-        <p class="it-project-description" data-translate-key="itMachineLearningDesc">We tackled a binary classification task using a real industrial dataset that was diverse and poorly cleaned, spread across multiple CSV files with many variables but few observations. We could use any machine learning techniques we wanted.​</p>
+        <p class="it-project-description" data-translate-key="itMachineLearningDesc">We tackled a binary classification task using a real industrial dataset that was diverse and poorly cleaned, spread across multiple CSV files with many variables but few observations. We were free to use any machine learning technique.</p>
       </div>
       <!-- Card 4 -->
       <div class="it-project-card reveal-on-scroll">
         <img src="./index_files/img_IT_RepairPal.webp" alt="Car Damage APP Icon" class="it-project-icon" width="125" height="125" loading="lazy" decoding="async">
-        <h3 data-translate-key="itCarDamageAppTitle">Car Damage APP</h3>
+        <h3 data-translate-key="itCarDamageAppTitle">Car Damage App</h3>
         <p class="it-project-year" data-translate-key="itCarDamageAppYear">2023</p>
-        <p class="it-project-description" data-translate-key="itCarDamageAppDesc">For my Software course, I worded on the Car Damage App (RepairPal) (by NRB)  to enable quick damage detection and repair cost estimates after accidents, aiding users and insurers.</p>
+        <p class="it-project-description" data-translate-key="itCarDamageAppDesc">For my Software Engineering course, I worked on the Car Damage App (RepairPal, by NRB), which enables quick damage detection and repair cost estimates after accidents for users and insurers.</p>
       </div>
       <!-- Card 5 -->
       <div class="it-project-card reveal-on-scroll">
         <img src="./index_files/img_IT_SRv6b.webp" alt="SRV6 - TRAFFIC ENGINEERING Icon" class="it-project-icon" width="125" height="125" loading="lazy" decoding="async">
         <h3 data-translate-key="itSRV6Title">SRV6 - TRAFFIC ENGINEERING</h3>
         <p class="it-project-year" data-translate-key="itSRV6Year">2023</p>
-        <p class="it-project-description" data-translate-key="itSRV6Desc">I utilized Containerlab and FRRouting to simulate a 14-node network topology, assessing Traffic Engineering by adding artificial delays to optimize data routing across various paths.</p>
+        <p class="it-project-description" data-translate-key="itSRV6Desc">I used Containerlab and FRRouting to simulate a 14-node network topology, assessing Traffic Engineering by adding artificial delays to optimize data routing across various paths.</p>
       </div>
       <!-- Card 6 -->
       <div class="it-project-card reveal-on-scroll">
-        <img src="./index_files/img_IT_OZ.webp" alt="Text preacher Icon" class="it-project-icon" width="125" height="125" loading="lazy" decoding="async">
-        <h3 data-translate-key="itTextPreacherTitle">Text preacher<br><br></h3>
+        <img src="./index_files/img_IT_OZ.webp" alt="Text predictor icon" class="it-project-icon" width="125" height="125" loading="lazy" decoding="async">
+        <h3 data-translate-key="itTextPreacherTitle">Text predictor</h3>
         <p class="it-project-year" data-translate-key="itTextPreacherYear">2023</p>
-        <p class="it-project-description" data-translate-key="itTextPreacherDesc">A text preacher trained on Twitter datas (X now),  created using Oz language (no loops and single assignment).</p>
+        <p class="it-project-description" data-translate-key="itTextPreacherDesc">A text predictor trained on Twitter (now X) data, built in Oz, a language with no loops and single assignment.</p>
       </div>
     </div>
   </div>
@@ -573,56 +573,56 @@
     <h2 class="games-section-title" data-translate-key="allGamesSectionTitle">All Games</h2> 
     <div class="games-grid-container">
       <!-- The Human Variable -->
-      <div class="game-card" data-modal-id="the-human-variable">
+      <div class="game-card" data-modal-id="the-human-variable" role="button" tabindex="0" aria-haspopup="dialog">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureHumanVariable.webp" alt="The Human Variable" class="game-cover-image" width="1024" height="768" loading="lazy" decoding="async">
         </div>
         <h3 class="game-title" data-translate-key="gameHumanVariableTitle">The Human Variable</h3>
       </div>
       <!-- RPG with LLM -->
-      <div class="game-card" data-modal-id="rpg-with-llm">
+      <div class="game-card" data-modal-id="rpg-with-llm" role="button" tabindex="0" aria-haspopup="dialog">
         <div class="game-image-wrapper">
           <img src="./index_files/img_RpgWithLLM.webp" alt="RPG with LLM" class="game-cover-image" width="1024" height="768" loading="lazy" decoding="async">
         </div>
         <h3 class="game-title" data-translate-key="gameRpgLLMTitle">RPG with LLM</h3>
       </div>
       <!-- Loki-->
-      <div class="game-card" data-modal-id="loki">
+      <div class="game-card" data-modal-id="loki" role="button" tabindex="0" aria-haspopup="dialog">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureLoki.webp" alt="Loki" class="game-cover-image" width="1024" height="768" loading="lazy" decoding="async">
         </div>
         <h3 class="game-title" data-translate-key="gameLokiTitle">Loki</h3>
       </div>
       <!-- Who is Lying -->
-      <div class="game-card" data-modal-id="who-is-lying">
+      <div class="game-card" data-modal-id="who-is-lying" role="button" tabindex="0" aria-haspopup="dialog">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureWhoIsLyingB.webp" alt="Who is Lying" class="game-cover-image" width="1024" height="768" loading="lazy" decoding="async">
         </div>
         <h3 class="game-title" data-translate-key="gameWhoIsLyingTitle">Who is Lying</h3>
       </div>
       <!-- Kart Color-->
-      <div class="game-card" data-modal-id="kart-color">
+      <div class="game-card" data-modal-id="kart-color" role="button" tabindex="0" aria-haspopup="dialog">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureKartColor2.webp" alt="Kart Color" class="game-cover-image" width="1024" height="768" loading="lazy" decoding="async">
         </div>
         <h3 class="game-title" data-translate-key="gameKartColorTitle">Kart Color</h3>
       </div>
       <!-- Diablo Cyberpunk -->
-      <div class="game-card" data-modal-id="diablo-cyberpunk">
+      <div class="game-card" data-modal-id="diablo-cyberpunk" role="button" tabindex="0" aria-haspopup="dialog">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureDiabloCyberpunk.webp" alt="Diablo cyberpunk" class="game-cover-image" width="1024" height="768" loading="lazy" decoding="async">
         </div>
         <h3 class="game-title" data-translate-key="gameDiabloCyberpunkTitle">Diablo Cyberpunk</h3>
       </div>
       <!-- Stalk and Ruin -->
-      <div class="game-card" data-modal-id="stalk-and-ruin">
+      <div class="game-card" data-modal-id="stalk-and-ruin" role="button" tabindex="0" aria-haspopup="dialog">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureStalkAndRuin.webp" alt="Stalk and Ruin" class="game-cover-image" width="1024" height="768" loading="lazy" decoding="async">
         </div>
         <h3 class="game-title" data-translate-key="gameStalkAndRuinTitle">Stalk and Ruin</h3>
       </div>
       <!-- One Way Trip-->
-      <div class="game-card" data-modal-id="one-way-trip">
+      <div class="game-card" data-modal-id="one-way-trip" role="button" tabindex="0" aria-haspopup="dialog">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureOneWayTrip.webp" alt="One Way Trip" class="game-cover-image" width="1024" height="768" loading="lazy" decoding="async">
         </div>
@@ -634,19 +634,7 @@
 </section>
 <!-- All Games Section - END -->
 
-  <script src="scripts/i18n/translationService.js?v=20260929" defer></script>
-  <script src="scripts/i18n/languageSwitcher.js?v=20260929" defer></script>
-  <script src="scripts/theme/themeSwitcher.js?v=20260929" defer></script>
-  <script src="scripts/carousel/carouselController.js?v=20260929" defer></script>
-  <script src="carousel.js?v=20260929" defer></script>
-  <script src="scripts/modals/modalDataRepository.js?v=20260929" defer></script>
-  <script src="scripts/modals/lightboxController.js?v=20260929" defer></script>
-  <script src="scripts/modals/modalManager.js?v=20260929" defer></script>
-  <script src="scripts/modals/cvModal.js?v=20260929" defer></script>
-  <script src="modal.js?v=20260929" defer></script>
-  <script src="navbar.js?v=20260929" defer></script>
-  <script src="scroll-animations.js?v=20260929" defer></script>
-  <script src="scripts/quests/questSystem.js?v=20260929" defer></script>
+  </main>
 
   <!-- Footer Section -->
      <footer id="contact" class="site-footer"> <!-- Example id="contact" if you want a "Contact" link to scroll here -->
@@ -867,22 +855,21 @@
   }
   </script>
 
-  </main>
 
   <!-- CV Modal Structure -->
   <div class="cv-modal__overlay" id="cv-modal">
-    <div class="cv-modal__card">
-      <span class="cv-modal__close-btn" id="cv-modal-close-btn" data-translate-aria-label-key="cvModalCloseButtonAriaLabel">&times;</span>
+    <div class="cv-modal__card" role="dialog" aria-modal="true" aria-labelledby="cv-modal-title">
+      <button type="button" class="cv-modal__close-btn" id="cv-modal-close-btn" aria-label="Close CV modal" data-translate-aria-label-key="cvModalCloseButtonAriaLabel">&times;</button>
 
       <div class="cv-modal__header">
-        <h2 class="cv-modal__title" data-translate-key="cvModalTitle">Curriculum Vitae</h2>
+        <h2 class="cv-modal__title" id="cv-modal-title" data-translate-key="cvModalTitle">Curriculum Vitae</h2>
         <div class="cv-modal__controls">
           <div class="language-switcher cv-modal__lang-switcher">
-            <button id="cv-lang-en" data-lang="en">EN</button>
+            <button id="cv-lang-en" type="button" data-lang="en">EN</button>
             <span>/</span>
-            <button id="cv-lang-fr" data-lang="fr">FR</button>
+            <button id="cv-lang-fr" type="button" data-lang="fr">FR</button>
           </div>
-          <button id="cv-theme-toggle" class="btn cv-modal__theme-btn" data-translate-key="cvSwitchTheme">Switch Theme</button>
+          <button id="cv-theme-toggle" type="button" class="btn cv-modal__theme-btn" data-translate-key="cvSwitchTheme">Switch Theme</button>
         </div>
       </div>
 
@@ -900,8 +887,8 @@
 
   <!-- Modal Structure -->
   <div class="modal-overlay" id="project-modal">
-    <div class="modal-card">
-      <span class="modal-close-btn" id="modal-close-btn" data-translate-aria-label-key="modalCloseButtonAriaLabel">&times;</span>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+      <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close modal" data-translate-aria-label-key="modalCloseButtonAriaLabel">&times;</button>
       <div class="modal-content-wrapper">
         <!-- Left Side: Video and Gallery -->
         <div class="modal-left">
@@ -923,11 +910,11 @@
         </div>
         <!-- Right Side: Text Content -->
         <div class="modal-right">
-          <h3 class="modal-title" data-translate-key="">Project Title Goes Here</h3>
+          <h3 class="modal-title" id="project-modal-title">Project Title Goes Here</h3>
           <div class="modal-badges">
           </div>
           <!-- Project Description -->
-          <p class="modal-description" data-translate-key="">
+          <p class="modal-description">
             Description will be populated by JS.
           </p>
           <!-- Buttons Container -->
@@ -939,8 +926,8 @@
   </div>
 
   <!-- Lightbox for Gallery Images -->
-  <div class="lightbox" id="gallery-lightbox">
-    <span class="lightbox-close-btn" id="lightbox-close-btn" data-translate-aria-label-key="lightboxCloseAriaLabel">&times;</span>
+  <div class="lightbox" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button type="button" class="lightbox-close-btn" id="lightbox-close-btn" aria-label="Close lightbox" data-translate-aria-label-key="lightboxCloseAriaLabel">&times;</button>
     <div class="lightbox-content">
       <img src="" alt="Enlarged gallery image" class="lightbox-image" id="lightbox-img">
       <div class="lightbox-caption" id="lightbox-caption"></div> 
@@ -951,5 +938,21 @@
     <div class="lightbox-nav-zone right" id="lightbox-next-zone"></div>
   </div>
 
+  <script src="scripts/i18n/translationService.js?v=20260929-2" defer></script>
+  <script src="scripts/i18n/languageSwitcher.js?v=20260929-2" defer></script>
+  <script src="scripts/theme/themeSwitcher.js?v=20260929-2" defer></script>
+  <script src="scripts/carousel/carouselController.js?v=20260929-2" defer></script>
+  <script src="carousel.js?v=20260929-2" defer></script>
+  <script src="scripts/modals/modalDataRepository.js?v=20260929-2" defer></script>
+  <script src="scripts/modals/lightboxController.js?v=20260929-2" defer></script>
+  <script src="scripts/modals/modalManager.js?v=20260929-2" defer></script>
+  <script src="scripts/modals/cvModal.js?v=20260929-2" defer></script>
+  <script src="modal.js?v=20260929-2" defer></script>
+  <script src="navbar.js?v=20260929-2" defer></script>
+  <script src="scroll-animations.js?v=20260929-2" defer></script>
+  <script src="scripts/quests/questSystem.js?v=20260929-2" defer></script>
+  <script src="scripts/analytics/analytics.js?v=20260929-2" defer></script>
+  <!-- Privacy-friendly analytics (GoatCounter): no cookies, no personal data. Dashboard: https://justinvanwichelen.goatcounter.com -->
+  <script data-goatcounter="https://justinvanwichelen.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

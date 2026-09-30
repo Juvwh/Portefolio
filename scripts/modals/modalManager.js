@@ -30,6 +30,7 @@
     this.activeModalId = null;
     this.currentLightboxImages = [];
     this.lightboxJustClosed = false;
+    this.focusBeforeOpen = null;
 
     this.touchStartX = null;
     this.touchStartY = null;
@@ -40,6 +41,7 @@
     this.handleKeydown = this.handleKeydown.bind(this);
     this.handleTouchStart = this.handleTouchStart.bind(this);
     this.handleTouchEnd = this.handleTouchEnd.bind(this);
+    this.handleHashChange = this.handleHashChange.bind(this);
   }
 
   initialize() {
@@ -121,6 +123,7 @@
     }
 
     this.document.addEventListener('keydown', this.handleKeydown);
+    this.window.addEventListener('hashchange', this.handleHashChange);
   }
 
   handleBodyClick(event) {
@@ -140,6 +143,13 @@
   }
 
   handleKeydown(event) {
+    const focusedCard = event.target.closest?.('.game-card');
+    if (focusedCard && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      this.openModal(focusedCard);
+      return;
+    }
+
     if (event.key === 'Escape') {
       if (this.lightbox?.isOpen()) {
         return;
@@ -226,10 +236,7 @@
 
     if (modalDataToDisplay) {
       this.populateModal(modalDataToDisplay);
-      this.modalOverlay.classList.add('active');
-      this.document.body.classList.add('modal-open');
-      this.activeModalId = modalId || null;
-      this.document.dispatchEvent(new CustomEvent('projectModalOpened', { detail: { modalId: this.activeModalId } }));
+      this.showModal(modalId || null);
     } else {
       console.error('No data available to populate the modal for button:', triggerButton);
     }
@@ -282,10 +289,7 @@
     const data = this.dataRepository?.getModalData?.(modalId);
     if (data) {
       this.populateModal(data);
-      this.modalOverlay.classList.add('active');
-      this.document.body.classList.add('modal-open');
-      this.activeModalId = modalId;
-      this.document.dispatchEvent(new CustomEvent('projectModalOpened', { detail: { modalId } }));
+      this.showModal(modalId);
       return true;
     }
 
@@ -297,6 +301,32 @@
 
     console.warn(`Unable to open modal with id "${modalId}" because no data or trigger was found.`);
     return false;
+  }
+
+  showModal(modalId) {
+    if (!this.modalOverlay.classList.contains('active')) {
+      this.focusBeforeOpen = this.document.activeElement;
+    }
+
+    this.modalOverlay.classList.add('active');
+    this.document.body.classList.add('modal-open');
+    this.activeModalId = modalId;
+
+    // Deep link: #loki opens the Loki modal, so a project can be shared directly
+    if (modalId) {
+      this.setUrlHash(modalId);
+    }
+
+    this.modalCloseBtn?.focus({ preventScroll: true });
+    this.document.dispatchEvent(new CustomEvent('projectModalOpened', { detail: { modalId } }));
+  }
+
+  setUrlHash(hash) {
+    const url = new URL(this.window.location.href);
+    url.hash = hash;
+    if (url.href !== this.window.location.href) {
+      this.window.history.replaceState(this.window.history.state, '', url.href);
+    }
   }
 
   closeModal() {
@@ -312,8 +342,17 @@
       this.modalVideoIframe.src = currentVideoSrc;
     }
 
+    if (this.activeModalId && this.window.location.hash === `#${this.activeModalId}`) {
+      this.setUrlHash('');
+    }
+
     this.activeModalId = null;
     this.lightboxJustClosed = false;
+
+    if (this.focusBeforeOpen && typeof this.focusBeforeOpen.focus === 'function') {
+      this.focusBeforeOpen.focus({ preventScroll: true });
+    }
+    this.focusBeforeOpen = null;
   }
 
   populateModal(data) {
@@ -431,8 +470,16 @@
 
       this.currentLightboxImages.push({ src: entry.src, alt: altText });
 
+      imgEl.tabIndex = 0;
+      imgEl.setAttribute('role', 'button');
       imgEl.addEventListener('click', () => {
         this.lightbox?.show(this.currentLightboxImages, index);
+      });
+      imgEl.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          this.lightbox?.show(this.currentLightboxImages, index);
+        }
       });
 
       if (this.modalHoverImageElement && this.modalVideoContainer) {
@@ -471,6 +518,7 @@
     if (data.playUrl) {
       const playButton = this.document.createElement('button');
       playButton.className = 'btn modal-play-btn';
+      playButton.dataset.analytics = 'play';
       playButton.textContent = this.getTranslationValue('modalPlayButton', 'Play');
       playButton.addEventListener('click', () => {
         this.window.open(data.playUrl, '_blank');
@@ -487,6 +535,7 @@
     if (data.reportUrl) {
       const reportButton = this.document.createElement('button');
       reportButton.className = 'btn';
+      reportButton.dataset.analytics = 'report';
       reportButton.textContent = 'View Report';
       reportButton.addEventListener('click', () => {
         this.window.open(data.reportUrl, '_blank');
@@ -497,6 +546,7 @@
     if (data.thesisUrl) {
       const thesisButton = this.document.createElement('button');
       thesisButton.className = 'btn';
+      thesisButton.dataset.analytics = 'thesis';
       thesisButton.textContent = data.thesisBtnKey ? this.getTranslationValue(data.thesisBtnKey, 'Read Thesis') : 'Read Thesis';
       thesisButton.addEventListener('click', () => {
         this.window.open(data.thesisUrl, '_blank');
@@ -507,6 +557,7 @@
     if (data.defenceUrl) {
       const defenceButton = this.document.createElement('button');
       defenceButton.className = 'btn';
+      defenceButton.dataset.analytics = 'defence';
       defenceButton.textContent = data.defenceBtnKey ? this.getTranslationValue(data.defenceBtnKey, 'View the defence') : 'View the defence';
       defenceButton.addEventListener('click', () => {
         this.window.open(data.defenceUrl, '_blank');
@@ -516,17 +567,16 @@
   }
 
   openModalFromUrl() {
-    const hash = this.window.location.hash.substring(1);
-    if (!hash) {
+    const hash = decodeURIComponent(this.window.location.hash.substring(1));
+    if (!hash || hash === this.activeModalId || !this.modalIdSequence.includes(hash)) {
       return;
     }
 
-    const triggerElement = this.document.querySelector(`[data-modal-id="${hash}"]`);
-    if (triggerElement) {
-      this.openModal(triggerElement);
-    } else {
-      console.warn(`URL hash #${hash} found, but no corresponding modal trigger element could be found.`);
-    }
+    this.openModalById(hash);
+  }
+
+  handleHashChange() {
+    this.openModalFromUrl();
   }
   }
 
